@@ -1,0 +1,48 @@
+<table border="0" cellpadding="0" cellspacing="0">
+<tr>
+
+	#foreach ($parentMenuRoleAction in $parentMenuRoleActionList)
+   
+        <td nowrap="nowrap" bgcolor="#eeeeee" ><a href=$parentMenuRoleAction.getRoleActionUrl()>$parentMenuRoleAction.getRoleActionName()</a>
+          &nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
+        </td>
+ 
+    #end
+
+
+<td nowrap="nowrap" ><a href="chgpwd.do">100</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;</td>
+<td nowrap="nowrap" ><a href="queryCache.do">query by cache</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;</td>
+<td nowrap="nowrap" ><a href="queryEvCache.do">query without cache</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;</td>
+<td nowrap="nowrap" ><a href="logout.do">101</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;</td>
+        
+<td nowrap="nowrap"> &nbsp;&nbsp; this will display current time </td>
+
+</tr>
+</table>
+        
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td class="menu_line_1"></td>
+</tr>
+</table>
+        
+<table  border="0" cellspacing="0" cellpadding="0">
+<tr>
+
+
+	#foreach ($sonMenuRoleAction in $sonMenuRoleActionList)
+   
+        <td nowrap="nowrap" ><span style="white-space:nowrap"><a href=$sonMenuRoleAction.getRoleActionUrl()>$sonMenuRoleAction.getRoleActionName()</a></span>
+        &nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
+        </td>
+   
+    #end
+
+</tr>
+</table>
+        
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td class="menu_line_2"></td>
+</tr>
+</table>

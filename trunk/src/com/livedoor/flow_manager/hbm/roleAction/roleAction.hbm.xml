@@ -1,0 +1,48 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+	"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+	"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+
+	<class name="com.livedoor.flow_manager.roleAction.beans.RoleAction"
+		table="t_role_action">
+		<cache usage="read-write" region="com.livedoor.flow_manager.common.cacheTemplate"/>
+		
+		<id name="menuSeq" column="MENU_SEQ" type="java.lang.String">
+            <generator class="assigned" />
+		</id>
+		
+		<property name="roleActionUrl" column="ROLE_ACTION_URL"
+			type="java.lang.String">
+		</property>
+		<property name="roleActionName" column="ROLE_ACTION_NAME"
+			type="java.lang.String">
+		</property>
+		<property name="displayOrder" column="DISPLAY_ORDER"
+			type="java.lang.Integer">
+		</property>
+		<property name="parentMenuSeq" column="PARENT_MENU_SEQ"
+			type="java.lang.String">
+		</property>
+		<property name="updateStaffId" column="UPDATE_STAFF_ID"
+			type="java.lang.String">
+		</property>
+		<property name="inputStaffId" column="INPUT_STAFF_ID"
+			type="java.lang.String">
+		</property>
+		
+		<property name="activeFlag" column="ACTIVE_FLAG"
+			type="java.lang.Integer">
+		</property>
+		
+		
+		<property name="inputDate" column="INPUT_DATE"
+			type="java.util.Calendar">
+		</property>
+		<property name="updateDate" column="UPDATE_DATE"
+			type="java.util.Calendar">
+		</property>
+		
+	</class>
+
+</hibernate-mapping>
