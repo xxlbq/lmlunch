@@ -1,0 +1,267 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN" "http://www.springframework.org/dtd/spring-beans.dtd">
+<!-- 延迟初始化它的bean,第一次访问时加载|| 根据名字自动Aop -->
+<!--<beans default-lazy-init="true" default-autowire="byName">-->
+<beans>
+
+	<!--	以当前文件的目录为base目录 [ like ant ]-->
+	<import resource="/applicationContext-permission-source.xml" />
+	<import resource="/applicationContext-permission-user.xml" />
+	<import resource="/applicationContext-permission-acegi.xml" />
+	<import resource="/applicationContext-permission-other.xml" />
+	<import resource="/applicationContext-permission-action-login.xml" />
+	<!--	<import resource="/applicationContext-permission-jms.xml" />-->
+
+
+	<bean id="propertyConfigurer"
+		class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+		<property name="locations">
+			<list>
+				<!--	建议：以classpath来指向文件	[在进行junit 或者 其他单体测试时较方便]-->
+				<value>classpath:/jdbc-spring.properties</value>
+				<!--	以web root 来指向文件		-->
+				<!-- <value>/WEB-INF/conf/spring/jdbc-spring.properties</value>-->
+			</list>
+		</property>
+	</bean>
+
+
+	<!--	在使用p6Spy时配置DataSource，P6DataSource需要通过构造函数来进行 AOP，-->
+	<!--		[注：直接配置DataSource 会报错驱动错误]-->
+	<bean id="dataSourceTarget" class="org.apache.commons.dbcp.BasicDataSource"
+								destroy-method="close">
+		<property name="url" value="${url}"/>
+		<property name="driverClassName" value="${driverClassName}"/>
+		<property name="username" value="${username}"/>
+		<property name="password" value="${password}"/>
+	</bean>
+
+	<bean id="dataSource" class="com.p6spy.engine.spy.P6DataSource">
+		<constructor-arg ref="dataSourceTarget" />
+	</bean>
+
+	<bean id="mySessionFactory"
+		class="org.springframework.orm.hibernate3.LocalSessionFactoryBean"
+		singleton="true">
+		<property name="dataSource" ref="dataSource" />
+		
+<!--	两种hiber8配置方法-->
+<!--	方法1。-->
+		<!--		<property name="configLocations">-->
+		<!--			<list><value>/WEB-INF/permission-hibernate-cfg.xml</value></list>-->
+		<!--		</property>-->
+
+		<!--		<property name="mappingResources"> -->
+		<!--			<list> -->
+		<!--				<value>com/meagle/bo/Order.hbm.xml</value> -->
+		<!--		      	<value>com/meagle/bo/OrderLineItem.hbm.xml</value> -->
+		<!--    		</list> -->
+		<!--  		</property> -->
+		
+<!--	方法2。-->
+		<!-- setup with 'mappingDirectoryLocations' ,add all [.hbm.xml] to mapping resources -->
+		<property name="mappingDirectoryLocations">
+			<list>
+				<value>classpath:/com/livedoor/flow_manager/hbm/group</value>
+				<value>classpath:/com/livedoor/flow_manager/hbm/group_source</value>
+				<value>classpath:/com/livedoor/flow_manager/hbm/source</value>
+				<value>classpath:/com/livedoor/flow_manager/hbm/user</value>
+				<value>classpath:/com/livedoor/flow_manager/hbm/food</value>
+				<value>classpath:/com/livedoor/flow_manager/hbm/role</value>
+				<value>classpath:/com/livedoor/flow_manager/hbm/cash</value>
+				<value>classpath:/com/livedoor/flow_manager/hbm/roleAction</value>
+				<value>classpath:/com/livedoor/flow_manager/hbm/roleAuth</value>
+			</list>
+		</property>
+	
+		<!-- setup Properties about hibern8 -->
+		<property name="hibernateProperties">
+			<props>
+				<prop key="hibernate.dialect">org.hibernate.dialect.MySQLDialect</prop>
+				<prop key="hibernate.show_sql">true</prop>
+				<prop key="hibernate.format_sql">true</prop>
+				<prop key="hibernate.cache.provider_class">org.hibernate.cache.EhCacheProvider</prop>
+				<prop key="hibernate.cache.use_query_cache">true</prop>
+				<prop key="hibernate.c3p0.max_size">10</prop>
+				<prop key="hibernate.c3p0.min_size">5</prop>
+				<prop key="hibernate.c3p0.timeout">5000</prop>
+				<prop key="hibernate.c3p0.max_statements">100</prop>
+				<prop key="hibernate.c3p0.idle_test_period">3000</prop>
+				<prop key="hibernate.c3p0.acquire_increment">2</prop>
+				<prop key="hibernate.c3p0.validate">false</prop>
+			</props>
+		</property>
+	</bean>
+
+	<!--common  hibernateTemplate (Spring is provider) -->
+	<bean id="hibernateTemplate" class="org.springframework.orm.hibernate3.HibernateTemplate">
+		<property name="sessionFactory" ref="mySessionFactory"/>
+		<property name="cacheQueries" 	value="true"/>
+	</bean>
+
+	<!--common  jdbcTemplate -->
+	<bean id="jdbcTemplate" class="org.springframework.jdbc.core.JdbcTemplate">
+		<constructor-arg ref="dataSource" />
+	</bean>
+
+
+	<bean id="myTransactionManager"
+		class="org.springframework.orm.hibernate3.HibernateTransactionManager">
+		<property name="sessionFactory" ref="mySessionFactory" />
+	</bean>
+	
+	
+	<!-- ========= personal dao config ======= -->
+	<!-- source -->
+	<bean id="sourceDao"
+		class="com.livedoor.flow_manager.sources.dao.imp.SourceDAO">
+		<property name="hibernateTemplate" ref="hibernateTemplate" />
+	</bean>
+
+	<bean id="sourceJdbcDao"
+		class="com.livedoor.flow_manager.sources.dao.imp.SourceJdbcDAO">
+		<property name="jdbcTemplate" ref="jdbcTemplate" />
+	</bean>
+
+	<!-- food -->
+	<bean id="foodDao"
+		class="com.livedoor.flow_manager.food.dao.imp.FoodDao">
+		<property name="hibernateTemplate" ref="hibernateTemplate" />
+	</bean>
+	
+	<!-- role -->
+	<bean id="roleDao"
+		class="com.livedoor.flow_manager.common.role.RoleDao">
+		<property name="hibernateTemplate" ref="hibernateTemplate" />
+	</bean>
+
+	<!-- ========= personal service config ======= -->
+	<bean id="sourceService"
+		class="com.livedoor.flow_manager.sources.service.SourceService"
+		>
+		<property name="sourceDao" ref="sourceDao" />
+		<property name="sourceJdbcDao" ref="sourceJdbcDao" />
+	</bean>
+
+	<bean id="foodService"
+		class="com.livedoor.flow_manager.food.service.FoodService"
+		>
+		<property name="foodDao" ref="foodDao" />
+	</bean>
+	
+	<!--======================================================================-->
+	<!--    通过事务代理,用匹配 service中***方法来为此方法配置事务     -->
+	<!--======================================================================-->
+
+<!--		<bean id="targetUserService"-->
+<!--			class="com.livedoor.flow_manager.user.service.UserService">-->
+<!--			<property name="userDao" ref="userDao" />-->
+<!--		</bean>-->
+<!--		-->
+<!--		-->
+<!--		<bean id="baseTranProxyTemplate" abstract="true"-->
+<!--			class="org.springframework.transaction.interceptor.TransactionProxyFactoryBean">-->
+<!--			<property name="transactionManager" ref="myTransactionManager" />-->
+<!--		</bean>-->
+<!--	-->
+<!--		<bean id="userService" parent="baseTranProxyTemplate"-->
+<!--			class="org.springframework.transaction.interceptor.TransactionProxyFactoryBean">-->
+<!--			<property name="target" ref="targetUserService" />-->
+<!--			<property name="transactionAttributes">-->
+<!--				<props>-->
+<!--	-->
+<!--					<prop key="queryAllUser">-->
+<!--						PROPAGATION_REQUIRED,readOnly-->
+<!--					</prop>-->
+<!--					<prop key="getUserCount">-->
+<!--						PROPAGATION_REQUIRED,readOnly-->
+<!--					</prop>-->
+<!--					<prop key="addUser">-->
+<!--						PROPAGATION_REQUIRED,-com.livedoor.flow_manager.user.exception.UserExcption-->
+<!--					</prop>-->
+<!--				</props>-->
+<!--			</property>-->
+<!--		</bean>-->
+
+
+<!--  <bean id="methodDefinitionSource" class="org.springframework.aop.framework.ProxyFactoryBean">-->
+<!--     <property name="proxyInterfaces"><value>org.acegisecurity.intercept.method.MethodDefinitionSource</value></property>-->
+<!--     <property name="interceptorNames">-->
+<!--        <list>-->
+<!--           <idref local="transactionInterceptor"/>           -->
+<!--           <idref local="methodDefinitionSourceTarget"/>-->
+<!--        </list>-->
+<!--     </property>-->
+<!--  </bean>-->
+<!--  -->
+<!--    <bean id="methodDefinitionSourceTarget" class="sample.auth.DatabaseDrivenMethodDefinitionSourcew" >-->
+<!--    <property name="baseDao">-->
+<!--      <ref bean="baseDao"/>-->
+<!--    </property>-->
+<!--    <property name="cache">-->
+<!--      <ref bean="authorityFunctionCache"/>-->
+<!--    </property>-->
+<!--  </bean>-->
+
+	<!--======================================================================-->
+	<!--    通过事务拦截器,和 bean id 名字自省的方式,用 匹配*Service名字的方法 来代理事务(为*Service中没个方法加事务)     -->
+	<!--======================================================================-->
+
+	
+	<bean id="transactionInterceptor"
+		class="org.springframework.transaction.interceptor.TransactionInterceptor">
+		<property name="transactionManager" ref="myTransactionManager" />
+		<property name="transactionAttributes">
+			<props>
+				<prop key="add*">PROPAGATION_REQUIRED,-com.livedoor.flow_manager.sources.exception.SourceException</prop>
+				<prop key="get*">PROPAGATION_REQUIRED,readOnly</prop>
+				<prop key="query*">PROPAGATION_REQUIRED,readOnly</prop>
+			</props>
+		</property>
+	</bean>
+
+	<!-- 切换事务配置方式时注释方便 ^@^ -->
+	<import resource="/applicationContext-permission-transaction-BeanNameAutoProxyCreator.xml" />
+
+
+
+	<bean class="org.springframework.transaction.interceptor.TransactionAttributeSourceAdvisor">
+		<property name="transactionInterceptor" ref="transactionInterceptor" />
+	</bean>
+
+	<!--======================================================================-->
+	<!--    JMX  DEMO   -->
+	<!--======================================================================-->
+<!---->
+<!--	<bean id="jmxMBeanExport" class="org.springframework.jmx.export.MBeanExporter">-->
+<!--		<property name="server">-->
+<!--			<bean class="javax.management.MBeanServerFactory" factory-method="createMBeanServer" />-->
+<!--		</property>-->
+<!--		<property name="beans">-->
+<!--			<map>-->
+<!--				<entry key="MyAgent:name=htmladapter,port=9092">-->
+<!--					<bean class="com.sun.jdmk.comm.HtmlAdaptorServer"-->
+<!--						init-method="start">-->
+<!--						<property name="port">-->
+<!--							<value>9092</value>-->
+<!--						</property>-->
+<!--					</bean>-->
+<!--				</entry>-->
+<!--				<entry key="MyAgent:name=hello"><ref bean="hello" /></entry>-->
+<!--			</map>-->
+<!--		</property>-->
+<!--	</bean>-->
+<!--	-->
+<!--	<bean id="hello" class="com.livedoor.flow_manager.jmx.demo.Hello" />-->
+
+
+
+<!--xxAction继承BaseAction,BaseAction注入了一个CommonManager，BaseAction.commonSave()方法调用了commonManager。-->
+<!---->
+<!--本来想xxAction调用父类的commonSave方法将会导致commonManager为null的错误，因为jvm去初始化BaseAction时并不会去注入CommonManger。 -->
+<!--其实解决这个问题只需要在子类xxAction bean配置文件中加上commonManager这个property，然后把父类BaseAction的commonManager 改为protected就 Ok了。这样初始化子类的时候会注入commonManager，调用commonSave方法也就不会抛出npe了。-->
+<!---->
+<!--配置文件中把xxAction 加上parent的配置也是可以的，这样会把父类的所有property都注入-->
+<!---->
+
+</beans>

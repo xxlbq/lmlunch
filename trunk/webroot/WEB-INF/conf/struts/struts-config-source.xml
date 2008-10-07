@@ -1,0 +1,186 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!DOCTYPE struts-config PUBLIC
+          "-//Apache Software Foundation//DTD Struts Configuration 1.2//EN"
+          "http://struts.apache.org/dtds/struts-config_1_2.dtd">
+
+<struts-config>
+
+  	<form-beans>
+  		<form-bean name="source" type="com.livedoor.flow_manager.sources.form.SourceForm"></form-bean>
+  	
+  		
+        <form-bean name="dynamicForm" type="org.apache.struts.validator.DynaValidatorForm">
+            <form-property name="comments" type="java.util.HashMap"/>
+            <form-property name="people" type="java.lang.String[]"/>
+<!--            <form-property name="people" type="com.livedoor.flow_manager.test.bean.Employee[]"/>-->
+        </form-bean>
+        
+  	</form-beans>
+  	
+	<global-forwards>
+		<forward name="error" path="/error.html"></forward>
+	</global-forwards>
+	
+	<action-mappings>
+	
+		<!--================================-->
+		<!--======        管理        =======-->
+		<!--================================-->
+		<action   path="/displayMenuManage" name="source" scope="request" parameter="moveNextPage">
+		    <forward  name="success" path="/WEB-INF/jsp/source/sourceSearch.jsp" />
+		</action>
+		
+		<action   path="/displaySourceManage" type="org.apache.struts.actions.ForwardAction"
+			parameter="/WEB-INF/jsp/source/sourceAdd.jsp"/>
+
+		
+		
+		
+		
+		
+		
+		<!--================================-->
+		<!--======        查询        =======-->
+		<!--================================-->
+		<action   path="/ws/showSourceSearch" name="source" scope="request">
+			<forward  name="success" path="/WEB-INF/jsp/source/sourceSearch.jsp" />
+		</action>
+
+		<action   path="/showSourceSearch" name="source" scope="request">
+			<forward  name="success" path="/WEB-INF/jsp/source/sourceSearch.jsp" />
+		</action>
+
+		<action   path="/querySource" name="source" scope="request">
+		    <forward  name="success" path="/WEB-INF/jsp/source/sourceSearch.jsp" />
+		    <forward  name="failure" path="/WEB-INF/jsp/source/sourceSearch.jsp" />
+		</action>
+
+		<action   path="/sourceQueryNextPage" name="source" scope="request" parameter="moveNextPage">
+		    <forward  name="success" path="/WEB-INF/jsp/source/sourceSearch.jsp" />
+		</action>
+		
+		<action   path="/sourceQueryPreviousPage" name="source" scope="request" parameter="movePreviousPage">
+		    <forward  name="success" path="/WEB-INF/jsp/source/sourceSearch.jsp" />
+		</action>
+		
+		<action   path="/sourceQueryFirstPage" name="source" scope="request" parameter="moveFirstPage">
+		    <forward  name="success" path="/WEB-INF/jsp/source/sourceSearch.jsp" />
+		</action>
+		
+		<action   path="/sourceQueryLastPage" name="source" scope="request" parameter="moveLastPage">
+		    <forward  name="success" path="/WEB-INF/jsp/source/sourceSearch.jsp" />
+		</action>
+		
+		<action   path="/sourceQueryAssignPage" name="source" scope="request" parameter="moveAssignPage">
+		    <forward  name="success" path="/WEB-INF/jsp/source/sourceSearch.jsp" />
+		</action>
+		
+		<action   path="/pagerSource" name="source" scope="request" parameter="movePageSupport">
+		    <forward  name="success" path="/WEB-INF/jsp/source/sourceSearch.jsp" />
+		</action>
+		
+		<!--========== pdf =========-->		
+<!--		    <forward  name="success" path="/common/pdfdownload.jsp" />-->
+		<action   path="/sourceSearchPdfReport" name="source" scope="request" parameter="pdfReportDownload">
+		    <forward  name="success" path="/WEB-INF/jsp/source/sourceSearch.jsp" />
+		</action>
+		
+		
+		<!--================================-->
+		<!--======        添加        =======-->
+		<!--================================-->
+		<action   path="/showAddSource" name="source" scope="request">
+		    <forward  name="success" path="/WEB-INF/jsp/source/sourceAdd.jsp" />
+		</action>
+		
+		<action   path="/addSource" name="source" scope="request">
+		    <forward  name="success" path="/common/success.jsp" />
+		</action>
+		
+		<action   path="/addReback" scope="request">
+		    <forward  name="success" path="/WEB-INF/jsp/source/sourceAdd.jsp" />
+		</action>
+		
+		
+		<!--================================-->
+		<!--======        更新        =======-->
+		<!--================================-->		
+		<action   path="/showSourceUpdate" name="source" scope="request">
+		    <forward  name="success" path="/WEB-INF/jsp/source/sourceUpdate.jsp" />
+		</action>
+		
+		<action   path="/updateSource" name="source" scope="request">
+		    <forward  name="success" path="/common/success.jsp" />
+		</action>
+		
+		<action   path="/updateReback" scope="request">
+		    <forward  name="success" path="/WEB-INF/jsp/source/sourceSearch.jsp" />
+		</action>
+		
+		
+		<!--================================-->
+		<!--======        删除        =======-->
+		<!--================================-->		
+		
+		<action   path="/showSourceDelete" name="source" scope="request">
+		    <forward  name="success" path="/WEB-INF/jsp/source/sourceUpdate.jsp" />
+		</action>	
+		
+		
+			
+		<action   path="/deleteSource" scope="request">
+		    <forward  name="success" path="/common/success.jsp" />
+		</action>
+		
+		<action   path="/deleteReback" scope="request">
+		    <forward  name="success" path="/WEB-INF/jsp/source/sourceSearch.jsp" />
+		</action>
+		
+		
+		
+<!--		<action   path="/returnMenu" scope="request">-->
+<!--		    <forward  name="success" path="/test.html" />-->
+<!--		</action>-->
+		
+		<action   path="/returnMenu" scope="request" parameter="/introduce.html"></action>
+		
+		<action   path="/toDownload" scope="request" parameter="showDownLoad" >
+			<forward  name="success" path="/downloadfile.jsp" />
+		</action>
+		
+		<action   path="/download" scope="request">
+		    <forward  name="success" path="/common/success.jsp" />
+		</action>
+		
+		<action   path="/toCommonDemo" scope="request" parameter="display">
+			<forward  name="success" path="/commonDemo/commonIndex.jsp" />
+		</action>
+		
+		<action   path="/toJmsSend" scope="request" name="dynamicForm" validate="false">
+			<forward  name="success" path="/msg/msgSender.jsp" />
+		</action>
+		
+		<action   path="/toJmsReceive" scope="request" forward="/msg/msgReceiver.jsp"></action>
+		
+		<action   path="/jmsSend" scope="request" name="source">
+			<forward  name="success" path="/msg/msgSender.jsp" />
+		</action>
+
+		<action   path="/jmsReceive" scope="request" name="source">
+			<forward  name="success" path="/msg/msgReceiver.jsp" />
+		</action>
+		
+		<action   path="/jmsTopicSend" scope="request">
+			<forward  name="success" path="/msg/msgPublisher.jsp" />
+		</action>
+		
+		<action   path="/toVelocity" scope="request"  parameter="showTemplate">
+			<forward  name="success" path="/velocity/sample.vm" />
+		</action>
+		
+	</action-mappings>
+	
+	
+	
+</struts-config>

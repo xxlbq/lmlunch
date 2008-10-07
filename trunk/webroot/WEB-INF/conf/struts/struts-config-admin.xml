@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!DOCTYPE struts-config PUBLIC
+          "-//Apache Software Foundation//DTD Struts Configuration 1.2//EN"
+          "http://struts.apache.org/dtds/struts-config_1_2.dtd">
+
+<struts-config>
+
+	
+	<action-mappings>
+
+		<action path="/lubq_jack"
+			type="org.apache.struts.actions.ForwardAction"
+			parameter="/WEB-INF/jsp/demo/lubq_jack.jsp"/>
+		
+		<action path="/lubq_tom"
+			type="org.apache.struts.actions.ForwardAction"
+			parameter="/WEB-INF/jsp/demo/lubq_tom.jsp"/>
+			
+		<action path="/lubq_rose"
+			type="org.apache.struts.actions.ForwardAction"
+			parameter="/WEB-INF/jsp/demo/lubq_rose.jsp"/>
+			
+		<action path="/lubq_marry"
+			type="org.apache.struts.actions.ForwardAction"
+			parameter="/WEB-INF/jsp/demo/lubq_marry.jsp"/>
+			
+		<action path="/lubq_animal1"
+			type="org.apache.struts.actions.ForwardAction"
+			parameter="/WEB-INF/jsp/demo/lubq_animal1.jsp"/>
+			
+		<action path="/lubq_animal2"
+			type="org.apache.struts.actions.ForwardAction"
+			parameter="/WEB-INF/jsp/demo/lubq_animal2.jsp"/>
+			
+
+			
+		<action path="/boy"
+			type="org.apache.struts.actions.ForwardAction"
+			parameter="/WEB-INF/jsp/demo/lubq_jack.jsp"/>
+			
+		<action path="/girl"
+			type="org.apache.struts.actions.ForwardAction"
+			parameter="/WEB-INF/jsp/demo/lubq_rose.jsp"/>			
+		
+		
+		
+		<!--================================-->
+		<!--======        管理        =======-->
+		<!--================================-->
+		<action   path="/grant" 
+			type="org.apache.struts.actions.ForwardAction"
+		    parameter="/displayMenuManage.do" />
+
+		
+		
+		<action   path="/displayMenuManage" 
+			type="org.apache.struts.actions.ForwardAction"
+		    parameter="/WEB-INF/jsp/admin/displayMenuManage.jsp" />
+
+		
+		<action   path="/displaySourceManage" type="org.apache.struts.actions.ForwardAction"
+		    parameter="/showSourceSearch.do" />
+		    
+		<action   path="/displayUserManage" type="org.apache.struts.actions.ForwardAction"
+		    parameter="/showUserSearch.do" />
+		
+		
+		
+	</action-mappings>
+
+	
+</struts-config>
+
