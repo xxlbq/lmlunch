@@ -15,8 +15,7 @@ import org.springframework.web.context.WebApplicationContext;
 import org.springframework.web.context.support.WebApplicationContextUtils;
 
 import com.livedoor.flow_manager.IConstant.AttributeKeyConstant;
-import com.livedoor.flow_manager.common.entity.MenuEntity;
-import com.livedoor.flow_manager.common.role.RoleDao;
+import com.livedoor.flow_manager.role.dao.RoleDao;
 import com.livedoor.flow_manager.roleAction.beans.RoleAction;
 import com.livedoor.flow_manager.user.beans.User;
 
@@ -157,7 +156,7 @@ public class AuthMenuTag extends javax.servlet.jsp.tagext.BodyTagSupport {
 
 			t.merge(context, writer);
 			String result = writer.getBuffer().toString();
-			System.out.println("00000000000000000:" + writer.toString());
+//			System.out.println("00000000000000000:" + writer.toString());
 			writer.flush();
 			writer.close();
 

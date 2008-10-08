@@ -14,6 +14,7 @@ import org.springframework.orm.hibernate3.HibernateCallback;
 import org.springframework.orm.hibernate3.HibernateTemplate;
 import org.springframework.orm.hibernate3.support.HibernateDaoSupport;
 
+import com.livedoor.flow_manager.IConstant.SystemConstants;
 import com.livedoor.flow_manager.sources.enums.DeleteFlagEnum;
 
 public class GenericDAOHibernateImpl  
@@ -41,6 +42,12 @@ public class GenericDAOHibernateImpl
 	}
 	
 	public List query(String hql, Object paramObj) {
+		return getHibernateTemplate().find(hql,paramObj);
+	}
+	
+	public List queryUseCache(String hql, Object paramObj) {
+		getHibernateTemplate().setCacheQueries(true);
+		getHibernateTemplate().setQueryCacheRegion(SystemConstants.QUERY_CACHE_PREFIX + "");
 		return getHibernateTemplate().find(hql,paramObj);
 	}
 

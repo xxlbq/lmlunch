@@ -85,7 +85,9 @@
 	<cache name="com.livedoor.flow_manager.user.beans.User"
 		maxElementsInMemory="100000" eternal="true" overflowToDisk="false" />
 
-	<cache name="com.livedoor.flow_manager.roleAction.beans.RoleAction"
+
+	<!--   Role  cache setup  -->
+	<cache name="com.livedoor.flow_manager.role.beans.Role"
 		maxElementsInMemory="100000" eternal="true" overflowToDisk="false" timeToIdleSeconds="3600" timeToLiveSeconds="3600"/>
 		
 	<cache name="sampleCache1" maxElementsInMemory="10000"
@@ -97,7 +99,7 @@
 		They are not expired. -->
 	<cache name="sampleCache2" maxElementsInMemory="1000" eternal="true"
 		timeToIdleSeconds="0" timeToLiveSeconds="0" overflowToDisk="false" />
-	-->
+
 
 	<!-- Place configuration for your caches following -->
 	<cache name="org.hibernate.cache.UpdateTimestampsCache"

@@ -12,7 +12,7 @@
 
 <td nowrap="nowrap" ><a href="chgpwd.do">100</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;</td>
 <td nowrap="nowrap" ><a href="queryCache.do">query by cache</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;</td>
-<td nowrap="nowrap" ><a href="queryEvCache.do">query without cache</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;</td>
+<td nowrap="nowrap" ><a href="queryEvictCache.do">query without cache</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;</td>
 <td nowrap="nowrap" ><a href="logout.do">101</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;</td>
         
 <td nowrap="nowrap"> &nbsp;&nbsp; this will display current time </td>
