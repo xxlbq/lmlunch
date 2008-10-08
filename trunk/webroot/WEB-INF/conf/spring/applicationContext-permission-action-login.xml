@@ -15,6 +15,36 @@
 	</property>
 
 </bean>
-<!--<bean name="/main" class="com.livedoor.flow_manager.main.actions.MainAction" />	-->
+
+
+<bean name="/login" class="com.livedoor.flow_manager.main.actions.LoginAction" >
+	<property name="userService">
+		<ref bean="userService"/>
+	</property>
+	<property name="userDetailsServiceImp">
+		<ref bean="userDetailsServiceImp"/>
+	</property>
+
+</bean>
+
+
+<bean name="/queryCache" class="com.livedoor.flow_manager.main.actions.QueryCacheAction" >
+	<property name="roleService">
+		<ref bean="roleService"/>
+	</property>
+
+</bean>
+
+<bean name="/queryEvictCache" class="com.livedoor.flow_manager.main.actions.QueryEvictCacheAction" >
+	<property name="roleService">
+		<ref bean="roleService"/>
+	</property>
+	
+	<property name="sessionFactory">
+		<ref bean="mySessionFactory"/>
+	</property>
+	
+
+</bean>
 
 </beans>

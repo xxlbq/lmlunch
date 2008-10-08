@@ -66,6 +66,17 @@
 		    parameter="/showUserSearch.do" />
 		
 		
+		<!--================================-->
+		<!--======        管理        =======-->
+		<!--================================-->
+		<action path="/queryCache"  scope="request" input="/error.jsp">
+			<forward name="successes" path="/boy.do" />
+		</action>
+		
+		<action path="/queryEvictCache"  scope="request" input="/error.jsp">
+			<forward name="successes" path="/boy.do" />
+		</action>
+   
 		
 	</action-mappings>
 
