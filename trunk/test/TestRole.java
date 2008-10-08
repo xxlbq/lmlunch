@@ -5,7 +5,7 @@ import junit.framework.TestCase;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.FileSystemXmlApplicationContext;
 
-import com.livedoor.flow_manager.common.role.RoleDao;
+import com.livedoor.flow_manager.role.dao.RoleDao;
 import com.livedoor.flow_manager.sources.dao.imp.SourceDAO;
 import com.livedoor.flow_manager.sources.service.SourceService;
 
