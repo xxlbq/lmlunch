@@ -15,7 +15,7 @@
             The rule means that requests to /test/status/ will be redirected to /rewrite-status
             the url will be rewritten.
         </note>
-        <from>/cust/1.jsp</from>
+        <from>/cust/logout</from>
         <to>/logout.jsp</to>
     </rule>
 
