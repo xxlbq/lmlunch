@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN" "http://www.springframework.org/dtd/spring-beans.dtd">
+<beans>	
+
+
+
+<bean name="/left" class="com.livedoor.flow_manager.main.actions.LeftAction" />	
+
+<bean name="/login" class="com.livedoor.flow_manager.main.actions.LoginAction" >
+	<property name="userService">
+		<ref bean="userService"/>
+	</property>
+	<property name="userDetailsServiceImp">
+		<ref bean="userDetailsServiceImp"/>
+	</property>
+
+</bean>
+
+
+<bean name="/login" class="com.livedoor.flow_manager.main.actions.LoginAction" >
+	<property name="userService">
+		<ref bean="userService"/>
+	</property>
+	<property name="userDetailsServiceImp">
+		<ref bean="userDetailsServiceImp"/>
+	</property>
+
+</bean>
+
+
+<bean name="/queryCache" class="com.livedoor.flow_manager.main.actions.QueryCacheAction" >
+	<property name="roleService">
+		<ref bean="roleService"/>
+	</property>
+
+</bean>
+
+<bean name="/queryEvictCache" class="com.livedoor.flow_manager.main.actions.QueryEvictCacheAction" >
+	<property name="roleService">
+		<ref bean="roleService"/>
+	</property>
+	
+	<property name="sessionFactory">
+		<ref bean="mySessionFactory"/>
+	</property>
+	
+
+</bean>
+
+</beans>

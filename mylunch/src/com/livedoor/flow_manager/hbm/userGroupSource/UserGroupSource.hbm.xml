@@ -1,0 +1,28 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+	"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+	"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd" >
+
+<hibernate-mapping>
+	<class name="com.livedoor.flow_manager.userGroupSource.beans.UserGroupSource"
+		table="t_user_group_source">
+		<id name="id" type="integer" column="USER_GROUP_SOURCE_ID">
+			<generator class="increment" />
+		</id>
+
+		<property name="userId" column="USER_ID" type="integer"
+			not-null="true" length="11" />
+
+		
+		<property name="groupSourceId" column="GROUP_SOURCE_ID"
+			type="integer" not-null="true" length="11" />
+		<property name="userGroupSourceDesc"
+			column="USER_GROUP_SOURCE_DESC" type="string" not-null="false"
+			length="500" />
+		
+		<!--many-to-one name="user" column="USER_ID"
+			class="com.livedoor.flow_manager.user.beans.User" not-null="true"/-->
+
+
+	</class>
+</hibernate-mapping>

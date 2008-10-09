@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN" "http://www.springframework.org/dtd/spring-beans.dtd">
+<beans>
+
+
+
+
+
+	<bean name="/actionFormListDisplay" class="com.livedoor.flow_manager.common.action.ActionFormListDisplay" singleton="false">
+	</bean>
+
+	<bean name="/demoValid" class="com.livedoor.flow_manager.common.action.ActionFormListDisplay" singleton="false">
+	</bean>
+
+	<bean name="/pdfDownload" class="com.livedoor.flow_manager.common.action.PDFDownloadDemoAction" singleton="false">
+		<property name="dataSource">
+			<ref bean="dataSource" />
+		</property>
+	</bean>
+	
+	<bean name="xstreamSupport" class="com.lm.xml.biz.imp.ObjXmlConvertSupport" singleton="false">
+		<property name="objxmlConvertTemplate" ref="xstreamTemplate"/>
+	</bean>
+	
+	<bean name="xstreamTemplate" class="com.lm.xml.biz.imp.ObjXmlConvertTemplate" singleton="false">
+	</bean>
+
+</beans>

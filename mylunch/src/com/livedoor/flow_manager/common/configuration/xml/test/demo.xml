@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<gui-definition>
+  <colors>
+    <background>#808080</background>
+    <text>#000000</text>
+    <header>#008000</header>
+    <link normal="#000080" visited="#800080">
+    	<content ignore="never">
+    		just test
+    	</content>
+    </link>
+    <default>${colors.header}</default>
+  </colors>
+  <rowsPerPage>15</rowsPerPage>
+  <buttons>
+    <name>OK,Cancel,Help</name>
+  </buttons>
+  <numberFormat pattern="###\,###.##"/>
+  
+  <!-- this node just like table -->
+  <database>
+  <!-- table system -->
+  <tables>
+    <table tableType="system">
+      <name>users</name>
+      <fields>
+        <field>
+          <name>uid</name>
+          <type>long</type>
+        </field>
+        <field>
+          <name>uname</name>
+          <type>java.lang.String</type>
+        </field>
+        <field>
+          <name>firstName</name>
+          <type>java.lang.String</type>
+        </field>
+        <field>
+          <name>lastName</name>
+          <type>java.lang.String</type>
+        </field>
+        <field>
+          <name>email</name>
+          <type>java.lang.String</type>
+        </field>
+      </fields>
+    </table>
+      <!-- table application -->
+    <table tableType="application">
+      <name>documents</name>
+      <fields>
+        <field>
+          <name>docid</name>
+          <type>long</type>
+        </field>
+        <field>
+          <name>name</name>
+          <type>java.lang.String</type>
+        </field>
+        <field>
+          <name>creationDate</name>
+          <type>java.util.Date</type>
+        </field>
+        <field>
+          <name>authorID</name>
+          <type>long</type>
+        </field>
+        <field>
+          <name>version</name>
+          <type>int</type>
+        </field>
+      </fields>
+    </table>
+  </tables>
+</database>
+
+</gui-definition>
