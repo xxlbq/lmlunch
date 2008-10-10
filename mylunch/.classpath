@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <classpath>
 	<classpathentry kind="src" output="webroot/WEB-INF/classes" path="src"/>
-	<classpathentry kind="src" output="webroot/WEB-INF/classes" path="test"/>
 	<classpathentry kind="lib" path="webroot/WEB-INF/lib/acegi-security-1.0.1.jar" sourcepath="E:/java/2java/acegi-security/acegi-1.0.1/acegi-security-1.0.1-src.zip"/>
 	<classpathentry kind="lib" path="webroot/WEB-INF/lib/activation.jar"/>
 	<classpathentry kind="lib" path="webroot/WEB-INF/lib/ant-1.6.5.jar"/>
@@ -9,7 +8,6 @@
 	<classpathentry kind="lib" path="webroot/WEB-INF/lib/ant-junit-1.6.5.jar"/>
 	<classpathentry kind="lib" path="webroot/WEB-INF/lib/ant-launcher-1.6.5.jar"/>
 	<classpathentry kind="lib" path="webroot/WEB-INF/lib/ant-swing-1.6.5.jar"/>
-	<classpathentry kind="lib" path="webroot/WEB-INF/lib/antlr-2.7.5H3.jar"/>
 	<classpathentry kind="lib" path="webroot/WEB-INF/lib/antlr-2.7.6.jar"/>
 	<classpathentry kind="lib" path="webroot/WEB-INF/lib/asm-attrs.jar"/>
 	<classpathentry kind="lib" path="webroot/WEB-INF/lib/asm.jar"/>
@@ -22,7 +20,6 @@
 	<classpathentry kind="lib" path="webroot/WEB-INF/lib/commons-collections-3.0.jar"/>
 	<classpathentry kind="lib" path="webroot/WEB-INF/lib/commons-configuration-1.3.jar"/>
 	<classpathentry kind="lib" path="webroot/WEB-INF/lib/commons-dbcp-1.2.1.jar"/>
-	<classpathentry kind="lib" path="webroot/WEB-INF/lib/commons-digester-1.5.jar"/>
 	<classpathentry kind="lib" path="webroot/WEB-INF/lib/commons-digester-1.7.jar"/>
 	<classpathentry kind="lib" path="webroot/WEB-INF/lib/commons-lang-2.1.jar"/>
 	<classpathentry kind="lib" path="webroot/WEB-INF/lib/commons-logging-1.0.4.jar"/>
@@ -46,7 +43,6 @@
 	<classpathentry kind="lib" path="webroot/WEB-INF/lib/jboss-common.jar"/>
 	<classpathentry kind="lib" path="webroot/WEB-INF/lib/jboss-jmx.jar"/>
 	<classpathentry kind="lib" path="webroot/WEB-INF/lib/jboss-system.jar"/>
-	<classpathentry kind="lib" path="webroot/WEB-INF/lib/jbossall-client.jar"/>
 	<classpathentry kind="lib" path="webroot/WEB-INF/lib/jdbc2_0-stdext.jar"/>
 	<classpathentry kind="lib" path="webroot/WEB-INF/lib/jdmkrt.jar"/>
 	<classpathentry kind="lib" path="webroot/WEB-INF/lib/jdt-compiler-3.1.1.jar"/>
@@ -72,7 +68,6 @@
 	<classpathentry kind="lib" path="webroot/WEB-INF/lib/spring.jar" sourcepath="E:/java/2java/spring/Spring-1.2.x/spring-framework-1.2.8-with-dependencies/spring-framework-1.2.8.zip"/>
 	<classpathentry kind="lib" path="webroot/WEB-INF/lib/sqlprofiler.jar"/>
 	<classpathentry kind="lib" path="webroot/WEB-INF/lib/standard-1.0.6.jar"/>
-	<classpathentry kind="lib" path="webroot/WEB-INF/lib/standard.jar"/>
 	<classpathentry kind="lib" path="webroot/WEB-INF/lib/struts-el.jar"/>
 	<classpathentry kind="lib" path="webroot/WEB-INF/lib/struts-menu-2.4.3.jar"/>
 	<classpathentry kind="lib" path="webroot/WEB-INF/lib/struts.jar"/>
