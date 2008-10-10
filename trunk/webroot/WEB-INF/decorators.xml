@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+
+<decorators defaultdir="/WEB-INF/jsp/decorators">
+    <!-- Any urls that are excluded will never be decorated by Sitemesh -->
+    <excludes>
+    	<pattern>/login.jsp</pattern>
+    	<pattern>/error.jsp</pattern>
+    	<pattern>/cust/**</pattern>
+    	<pattern>/logout.jsp</pattern>
+
+    </excludes>
+
+   	<decorator name="mainDecorator" page="main.jsp">
+        <pattern>/*</pattern>
+    </decorator>
+    
+    
+    <!-- decorator name="main" page="main.jsp">
+        <pattern>/*</pattern>
+    </decorator -->
+    
+    <decorator name="luDecorator" page="luDecorator.jsp">
+        <pattern>/lubqSiteTest1.jsp</pattern>
+    </decorator>
+
+	<decorator name="luDecorator2" page="luDecorator2.jsp">
+        <pattern>/lubqSiteTest2.jsp</pattern>
+    </decorator>  
+
+
+  	<decorator name="luDecorator3" page="luDecorator3.jsp">
+        <pattern>/lubqSiteTest3.jsp</pattern>
+    </decorator>
+    
+    <decorator name="luDecorator31" page="luDecorator31.jsp">
+    
+    
+    
+    </decorator>
+    <!-- decorator name="panel" page="panel.jsp"/>
+    <decorator name="printable" page="printable.jsp"/>
+    <decorator name="black" page="black.jsp"/>
+    <decorator name="nopanelsource" page="nopanelsource.jsp"/>
+    <decorator name="badpanelsource" page="badpanelsource.jsp"/>
+
+    <decorator name="velocity" page="velocity.vm">
+        <pattern>/velocity.html</pattern>
+    </decorator>
+
+    <decorator name="freemarker" page="freemarker.ftl">
+        <pattern>/freemarker.html</pattern>
+    </decorator>
+
+    <decorator name="test" page="test.jsp">
+        <pattern>/agent.jsp</pattern>
+    </decorator-->
+</decorators>
