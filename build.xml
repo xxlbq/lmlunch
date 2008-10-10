@@ -1,0 +1,603 @@
+<?xml version="1.0"?>
+<!-- Ant build.xml for common projects
+@author: <a href="mailto:xxlbq@163.com">BaoQiang Lu</a>
+-->
+
+<project name="${project.name}" default="usage" basedir=".">
+	
+	<description>This xml write by xxlbq@163.com</description>
+	
+	<!--================================= 
+				task define   {ant-contrib.jar} add 3th jar to ANT_HOME     
+		================================= -->
+	
+	<taskdef resource="net/sf/antcontrib/antlib.xml">
+	  <classpath>
+	    <pathelement location="${ant.library.dir}/ant-contrib.jar"/>
+	  </classpath>
+	</taskdef>
+
+	
+	<!--================================= 
+				ant information            
+		================================= -->
+		
+	<target name="usage" > 
+		<echo message="  Execute 'ant -projecthelp' for build file help."/> 
+		<echo message="  Execute 'ant -help' 		for Ant help."/> 
+		<echo>The using ant version is ${ant.version}</echo>
+	</target> 
+	
+	<!--================================= 
+				property file define             
+		================================= -->
+	<property name="build.envProperties.name" 	value="build-baseEnv.properties"/>
+	<property file="${build.envProperties.name}" />
+
+	
+	<!--================================= 
+				files pattern define          
+		================================= -->
+
+	<patternset id="data.files">
+		<include name="**/*.dtd" />
+		<include name="**/*.xml" />
+		<include name="**/*.tld" />
+		<include name="**/*.xslt" />
+		<include name="**/*.properties" />
+		<include name="**/*.js" />
+		<include name="**/*.html" />
+		<include name="**/*.xhtml" />
+		<include name="**/*.bat" />
+		<include name="**/*.vm" />
+	</patternset>
+	
+	<patternset id="compile.exclude.files">
+		<exclude name="**/CVS/*"/>
+		<exclude name="**/.svn/*"/>
+	</patternset>
+
+	
+	<!--================================= 
+				system time format            
+		================================= -->
+
+	<tstamp prefix="AntTimeStamp.">
+		<format property="currentDate" 		pattern="yyyyMMdd" />
+		<format property="currentDateTime" 	pattern="yyyyMMdd-HHmmss" />
+	</tstamp>
+
+    <target name="testAntTimeStamps">
+     	<echo>this is AntTimeStamp.currentDate:${AntTimeStamp.currentDate}</echo>
+    	<echo>this is AntTimeStamp.currentDateTime:${AntTimeStamp.currentDateTime}</echo>
+    </target>
+
+	
+	<!--================================= 
+				classpath setup           
+		================================= -->
+
+	<!-- project lib classpath -->
+	<path id="project.lib">
+		<fileset dir="${project.lib.root}">
+			<include name="**/*.jar" />
+		</fileset>
+		
+		<!--pathelement location="${project.classes.root}"/-->
+		<!--pathelement path="${~~~}"/-->
+	</path>
+	
+
+	
+	
+	<!--================================= 
+				test new ant task in ant-contrib.jar         
+		================================= -->
+
+	<target name="test-for">
+		<echo message="The first five letters of the alphabet are:"/>
+		<for list="a,b,c,d,e" param="letter">
+			<sequential>
+				<echo>Letter @{letter}</echo>
+			</sequential>
+		</for>
+	</target>
+	
+	<target name="test-IF">
+		<property name="foo1" value="bar"></property>
+		<if><equals arg1="${foo}" arg2="bar" />
+			<then>
+				<echo message="The value of property foo is 'bar'" />
+			</then>
+		<elseif><equals arg1="${foo}" arg2="foo" />
+			<then>
+			   <echo message="The value of property foo is 'foo'" />
+			</then>
+		</elseif>
+			<else>
+			   <echo message="The value of property foo is not 'foo' or 'bar'" />
+			</else>
+		</if>
+	</target>
+	
+	<!--================================= 
+				init file check            
+		================================= -->
+
+	<target name="initcheck">
+		
+		<!-- if available file can find,the condition proprety boolean is true -->
+		
+		<!-- property file setup-->
+		<condition property="properties.ok">
+			<and><available file="${build.envProperties.name}" /></and>
+		</condition>
+		
+		<fail unless="properties.ok" message="WARN~~~">
+				Missing property or property pointing to an invalid file(check your build-*.properties file)
+		</fail>
+		
+		<if><equals arg1="${properties.ok}" arg2="true" />
+			<then><echo message="Build properties file ok  ^@^  " /></then>
+		<else>
+			<echo message="Missing property or property pointing to an invalid file" />
+			<echo message="(check your build-baseEnv.properties file)  : ( " />
+		</else>
+		</if>
+		
+		<!-- jar file setup-->
+		<condition property="jar.ok">
+			<and><available file="${ant.library.dir}/ant-contrib.jar" /></and>
+		</condition>
+		
+		<if><equals arg1="${jar.ok}" arg2="true" />
+			<then><echo message="ant jar file ok  ^@^  " /></then>
+		<else>
+			<echo message="Missing antjar or antjar pointing to an invalid file" />
+			<echo message="(check your  file) ant-contrib.jar : ( " />
+		</else>
+		</if>
+		
+	</target>
+
+	<!--================================= 
+				init ant dir            
+		================================= -->
+	
+	<target name="init" depends="initcheck">
+		<if><available file="${project.build.root}" type="dir"/>
+			<then><echo message="[project.build.root] is exist !" /></then>
+		<else>
+			<mkdir dir="${project.build.root}" />
+			<echo message="make [project.build.root] !"/>
+		</else>
+		</if>
+	</target>
+
+	
+	<!--================================= 
+				 compile java            
+		================================= -->
+
+
+	<target name="compile.java" depends="init">
+		<echo>+--------------------------------+</echo>
+		<echo>|                                |</echo>
+		<echo>|      COMPILE---CLASSES         |</echo>
+		<echo>|                                |</echo>
+		<echo>+--------------------------------+</echo>		
+
+		<javac 	destdir="${project.classes.root}"
+				classpathref="project.lib"
+				encoding="${javac.src.encoding}"
+				failonerror="false"
+				debug="true">
+
+			<src path="${project.src.root}" />
+			<exclude name="**/*.properties"/>
+			<exclude name="**/*.xml"/>
+			<exclude name="**/*.txt"/>
+			<patternset refid="compile.exclude.files"/>
+		</javac>
+	</target>
+
+	<!--================================= 
+				compile resources            
+		================================= -->
+
+	<target name="compile.resources">
+		<copy todir="${project.classes.root}">
+			<fileset dir="${project.src.root}" >
+				<patternset refid="data.files"/>
+			</fileset>
+		</copy>
+		
+	    <!-- native2ascii encoding="Windows-31J" src="${env.PROJECT_HOME}/src/java" 
+	       dest="${build.dir}/classes" includes="**/*_ja.properties,**/*_zh_CN.properties" / -->
+		
+	</target>
+
+
+	<target name="compile.all">
+		<antcall target="clean.classesDir"/>
+		<antcall target="compile.java"/>
+		<antcall target="compile.resources"/>
+	</target>
+
+	<!--================================= 
+				CLEAN CLASSES            
+		===================================== -->
+
+	<target name="clean.classesDir" description="clean the classes">
+		<echo>+--------------------------------+</echo>
+		<echo>|                                |</echo>
+		<echo>|        CLEAN---CLASSES         |</echo>
+		<echo>|                                |</echo>
+		<echo>+--------------------------------+</echo>
+
+		<delete includeEmptyDirs="true">
+			<fileset dir="${project.classes.root}">
+				<include name="**/*" />
+			</fileset>
+		</delete>
+	</target>
+
+	<!--================================= 
+				clean war files            
+		===================================== -->
+
+	<target name="clean.tomcat5.x.war">
+		<echo>+--------------------------------+</echo>
+		<echo>|                                |</echo>
+		<echo>|    CLEAN.TOMCATWAR.FILE        |</echo>
+		<echo>|                                |</echo>
+		<echo>+--------------------------------+</echo>
+		<delete includeEmptyDirs="true">
+			<fileset dir="${tomcat5x.root}/webapps">
+				<include name="${project.name}/**" />
+				<include name="${project.name}.war" />
+			</fileset>
+		</delete>
+
+	</target>
+
+	<target name="clean.jboss4.0.deploy">
+		<echo>+--------------------------------+</echo>
+		<echo>|                                |</echo>
+		<echo>|    CLEAN.JBOSS4.0.FILE         |</echo>
+		<echo>|                                |</echo>
+		<echo>+--------------------------------+</echo>
+		<delete includeEmptyDirs="true">
+			<fileset dir="${jboss4.0.root}/server/default/deploy">
+				<include name="${project.name}/**" />
+				<include name="${project.name}.war" />
+			</fileset>
+		</delete>
+
+		<delete>
+			<fileset dir="${jboss4.0.root}/server/default/work/jboss.web/localhost">
+				<include name="${project.name}/**" />
+			</fileset>
+		</delete>
+	</target>
+
+	<target name="clean.buildfile">
+		<echo>+--------------------------------+</echo>
+		<echo>|                                |</echo>
+		<echo>|      CLEAN.BUILD.FILE          |</echo>
+		<echo>|                                |</echo>
+		<echo>+--------------------------------+</echo>
+		
+		<delete includeEmptyDirs="true">
+			<fileset dir="${project.build.root}">
+				<include name="${project.name}.war" />
+			</fileset>
+		</delete>
+	</target>
+
+	<target name="clean.all">
+		<antcall target="clean.classes"/>
+		<antcall target="clean.tomcat5.x.war"/>
+		<antcall target="clean.buildfile"/>
+	</target>
+
+	<!-- ================================= 
+		         copy ${project.name}.xml to tomcat            
+		 ================================= -->
+
+	<target name="copy.xml.toTomcat5.x">
+		<echo>+--------------------------------+</echo>
+		<echo>|                                |</echo>
+		<echo>|           COPY.XML             |</echo>
+		<echo>|                                |</echo>
+		<echo>+--------------------------------+</echo>
+		
+		<if><available file="${project.web.root}/META-INF/${project.name}.xml" type="file"/>
+			<then>
+				<copy todir="${tomcat5x.root}/conf/Catalina/localhost">
+					<!--fileset dir="${tomcat5x.root}/conf/Catalina">
+						<include name="${project.name}.xml" />
+					</fileset-->
+					<fileset dir="${project.web.root}/META-INF">
+						<include name="${project.name}.xml" />
+					</fileset>
+				</copy>
+				<echo message=" copy ${project.name}.xml to tomcat  ! "/>
+			</then>
+		<else>
+			<echo message=" There isn't ${project.name}.xml File in folder 'META-INF'  ! "/>
+		</else>
+		</if>
+	</target>
+
+	<!-- ================================= 
+		          delete projectname.xml from tomcat           
+		 ================================= -->
+
+	<target name="delete.xml.fromTomcat5.x">
+		<echo>+--------------------------------+</echo>
+		<echo>|                                |</echo>
+		<echo>|           DELETE.XML           |</echo>
+		<echo>|                                |</echo>
+		<echo>+--------------------------------+</echo>
+			
+		<if><available file="${tomcat5x.root}/conf/Catalina/localhost/${project.name}.xml" type="file"/>
+			<then>
+				<delete includeEmptyDirs="false">
+					<fileset dir="${tomcat5x.root}/conf/Catalina/localhost">
+						<include name="${project.name}.xml" />
+					</fileset>
+				</delete>
+				<echo message=" ${project.name}.xml  delete ! "/>
+			</then>
+		<else>
+			<echo message=" ${project.name}.xml is not exist! "/>
+		</else>
+		</if>
+	</target>
+
+	
+	<!-- ================================= 
+		          deploy war file            
+		 ================================= -->	
+	
+	<target name="copy.war.to.Tomcat5.x">
+		<copy todir="${tomcat5x.root}/webapps">
+			<fileset dir="${project.build.root}/${AntTimeStamp.currentDate}">
+				<include name="*.war" />
+			</fileset>
+		</copy>
+	</target>
+	
+	
+	
+	<!-- ================================= 
+		          deploy war file            
+		 ================================= -->
+	
+	<target name="deploy.war.tomcat5.x">
+		<echo>+--------------------------------+</echo>
+		<echo>|                                |</echo>
+		<echo>|     deploy.war.tomcat5.x       |</echo>
+		<echo>|                                |</echo>
+		<echo>+--------------------------------+</echo>
+
+		<antcall target="clean.tomcat5.x.war"/>
+		<antcall target="package.war" />
+		<antcall target="copy.war.to.Tomcat5.x"></antcall>
+	</target>
+
+	<target name="deploy.war.jboss4.0">
+		<echo>+--------------------------------+</echo>
+		<echo>|                                |</echo>
+		<echo>|      deploy.war.jboss4.0       |</echo>
+		<echo>|                                |</echo>
+		<echo>+--------------------------------+</echo>
+		
+		<antcall target="clean.jboss4.0.deploy"/>
+		<antcall target="package.war" />
+		<copy todir="${jboss4.0.root}/server/default/deploy">
+			<fileset dir="${project.build.root}">
+				<include name="*.war" />
+			</fileset>
+		</copy>
+	</target>
+	
+	<target name="build.daily.dir">
+		<echo>+--------------------------------+</echo>
+		<echo>|                                |</echo>
+		<echo>|      build.daily.dir           |</echo>
+		<echo>|                                |</echo>
+		<echo>+--------------------------------+</echo>
+		
+		<if><available file="${project.build.root}/${AntTimeStamp.currentDate}" type="dir"/>
+			<then><echo message="[project.build.root]/${AntTimeStamp.currentDate} is exist !" /></then>
+		<else>
+			<mkdir dir="${project.build.root}/${AntTimeStamp.currentDate}"/>
+			<echo message="make [project.build.root]/${AntTimeStamp.currentDate} !"/>
+		</else>
+		</if>
+	</target>
+
+	<target name="package.war" depends="compile.all,build.daily.dir">
+		<echo>+--------------------------------+</echo>
+		<echo>|                                |</echo>
+		<echo>|        PACKAGE WAR             |</echo>
+		<echo>|                                |</echo>
+		<echo>+--------------------------------+</echo>
+		
+		<delete  file="${project.build.root}/${AntTimeStamp.currentDate}/${project.name}.war"/>
+		<war destfile="${project.build.root}/${AntTimeStamp.currentDate}/${project.name}.war" 
+			webxml="${project.web.root}/WEB-INF/web.xml" 
+			duplicate="preserve">
+
+			<fileset dir="${project.web.root}">
+				<exclude name="META-INF/**/*.*" />
+				<exclude name="WEB-INF/**/*.*" />
+			</fileset>
+
+			<webinf dir="${project.web.root}/WEB-INF">
+				<exclude name="**/web.xml" />
+				<exclude name="classes/**" />
+				<exclude name="lib/**" />
+			</webinf>
+
+			<lib dir="${project.lib.root}" />
+
+			<classes dir="${project.classes.root}" />
+		</war>
+	</target>
+	
+	<target name="package.ear" depends="compile.all,build.daily.dir,package.war">
+		<echo>+--------------------------------+</echo>
+		<echo>|                                |</echo>
+		<echo>|        PACKAGE EAR             |</echo>
+		<echo>|                                |</echo>
+		<echo>+--------------------------------+</echo>
+	<!--//TODO-->	
+		<delete  file="${project.build.root}/${AntTimeStamp.currentDate}/${project.name}.ear"/>
+		<ear destfile="${project.build.root}/${AntTimeStamp.currentDate}/${project.name}.war" 
+			webxml="${project.web.root}/WEB-INF/web.xml" 
+			duplicate="preserve">
+
+			<fileset dir="${project.web.root}">
+				<exclude name="META-INF/**/*.*" />
+				<exclude name="WEB-INF/**/*.*" />
+			</fileset>
+
+			<webinf dir="${project.web.root}/WEB-INF">
+				<exclude name="**/web.xml" />
+				<exclude name="classes/**" />
+				<exclude name="lib/**" />
+			</webinf>
+
+			<lib dir="${project.lib.root}" />
+
+			<classes dir="${project.classes.root}" />
+		</ear>
+	</target>
+	
+	<target name="package.jar" depends="compile.all, build.daily.dir">
+		
+		<!--record name="${name}.log" action="start" /-->
+		<delete  file="${project.build.root}/${AntTimeStamp.currentDate}/${project.name}.jar"/>
+		<jar  jarfile="${project.build.root}/${AntTimeStamp.currentDate}/${project.name}.jar"
+			basedir="${project.web.root}">
+			
+			<include name="**/*.class" />
+			<exclude name="**/test/*.class" />
+			<patternset refid="data.files" />
+			<manifest>
+				<attribute name="Copyright" value="BaoQiang Lu" />
+				<attribute name="${project.name}-Version" value="${project.version}" />
+				<attribute name="Distribution-TimeSign" value="${AntTimeStamp.currentDate}" />
+			</manifest>
+		</jar>
+
+		<!--record name="${name}.log" action="stop" /-->
+
+		<!--antcall target="mail" /-->
+	</target>
+	
+	
+	<!--================================= 
+				BACKUP BUILD.XML           
+		================================= -->
+
+
+	<target name="bak.buildxml">
+		<echo>+--------------------------------+</echo>
+		<echo>|                                |</echo>
+		<echo>|       BACKUP BUILD.XML         |</echo>
+		<echo>|                                |</echo>
+		<echo>+--------------------------------+</echo>
+		<copy 	file="${ant.file}"
+				tofile="${buildfile.bakup.dest}/${AntTimeStamp.currentDate}-${project.name}_build.xml"
+				overwrite="true"
+		/>
+	</target>
+	
+	<target name="bak.buildproperties">
+		<echo>+--------------------------------+</echo>
+		<echo>|                                |</echo>
+		<echo>|    BACKUP BUILD-*.PROPERTIES   |</echo>
+		<echo>|                                |</echo>
+		<echo>+--------------------------------+</echo>
+		
+		<copy tofile="${buildfile.bakup.dest}/${AntTimeStamp.currentDate}-${project.name}_${build.envProperties.name}"  overwrite="true">
+			<fileset dir="${basedir}">
+				<include name="${build.envProperties.name}" />
+			</fileset>
+		</copy>
+		
+	</target>
+	
+	<target name="bak.all">
+		<antcall target="bak.buildxml"/>
+		<antcall target="bak.buildproperties"/>
+	</target>
+	
+	
+
+	
+	<!--================================= 
+				zip all classes & jar into one *.jar           
+		================================= -->
+	<target name="AllJarsInOne">
+	 <jar jarfile="AllJarsInOne.jar" manifest="src/MANIFEST.MF">
+	 <fileset dir="classes" includes="**/*.class" />
+	 	
+	 <zipfileset src="lib/Jar-A.jar" excludes="META-INF/*" />
+	 <zipfileset src="lib/Jar-B.jar" excludes="META-INF/*" />
+	 <zipfileset src="lib/Jar-C.jar" excludes="META-INF/*" />
+
+	 </jar>
+	</target>
+
+	<!--================================= 
+				SEND MAIL           
+		================================= -->
+
+	<target name="mail">
+		<mail mailhost="${mail.host}"
+			mailport="${mail.port}"
+			subject="${mail.subject}"
+			encoding="${mail.encoding}"
+			charset="$(mail.charset)"
+			tolist="${mail.tolist}"
+			messagefile="${mail.bodyfile}">
+			
+			<from address="${mail.from.address}" />
+			<replyto address="${mail.replyto.address}" />
+		</mail>
+	</target>
+
+	
+	
+	<!--================================= 
+				input message ,then do that          
+		================================= -->
+	
+	<target name="input">
+		<input
+	    	message="Please enter yes or no :"
+	    	addproperty="param"
+	    	defaultvalue="no"/>
+		
+		<if>
+			<equals arg1="yes" arg2="${param}"/>
+			<then>
+				<echo message="you choose 'yes' : )" />
+			</then>
+		<elseif><equals arg1="no" arg2="${param}"/>
+			<then>
+				<echo message="you choose 'no'  : ( "/>
+			</then>
+		</elseif>
+			
+		<else><echo>you enter other words :${boolean}</echo>
+		</else>
+		</if>
+	</target>
+	
+</project>

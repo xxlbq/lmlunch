@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN" "http://www.springframework.org/dtd/spring-beans.dtd">
+<beans>
+
+	<!-- user Dao-->
+	<bean id="userDao"
+		class="com.livedoor.flow_manager.user.dao.imp.UserDao">
+		<property name="hibernateTemplate" ref="hibernateTemplate" />
+	</bean>
+	
+	<!-- user Service-->
+	<bean id="userService"
+		class="com.livedoor.flow_manager.user.service.UserService">
+		<property name="userDao" ref="userDao" />
+
+	</bean>
+	
+	
+
+</beans>
