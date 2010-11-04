@@ -1,0 +1,33 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+	"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+	"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+
+	<class name="com.livedoor.flow_manager.foodprovider.beans.FoodProvider"
+		table="t_food_provider">
+		
+		<id name="foodProviderId" column="FOOD_PROVIDER_ID" type="java.lang.Integer">
+			<generator class="identity" />
+		</id>
+		<property name="foodProviderName" column="FOOD_PROVIDER_NAME"
+			type="java.lang.String">
+		</property>
+		<property name="foodProviderAddress" column="FOOD_PROVIDER_ADDRESS"
+			type="java.lang.String">
+		</property>
+		<property name="foodProviderPhone" column="FOOD_PROVIDER_PHONE"
+			type="java.lang.String">
+		</property>
+		<property name="inputDate" column="INPUT_DATE"
+			type="java.util.Calendar">
+		</property>
+		<property name="updateDate" column="UPDATE_DATE"
+			type="java.util.Calendar">
+		</property>
+		<property name="deletedFlag" column="DELETED_FLAG"
+			type="java.lang.Integer">
+		</property>
+	</class>
+
+</hibernate-mapping>

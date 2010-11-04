@@ -1,0 +1,109 @@
+12:10:23,468  INFO [/lmlunch],main:647 - Initializing WebApplicationContext for Struts ActionServlet 'struts-action', module ''
+12:10:23,953  INFO ValidatorPlugIn,main:211 - Loading validation rules file from '/WEB-INF/conf/validate/validator-rules.xml'
+12:10:23,968  INFO ValidatorPlugIn,main:211 - Loading validation rules file from '/WEB-INF/conf/validate/validation.xml'
+12:10:25,593  INFO [/lmlunch],main:647 -  Velocity   [info] VelocityViewServlet: No custom properties found. Using default Velocity configuration.
+12:10:25,593  INFO [/lmlunch],main:647 -  Velocity   [info] ************************************************************** 
+12:10:25,593  INFO [/lmlunch],main:647 -  Velocity   [info] Starting Jakarta Velocity v1.4
+12:10:25,593  INFO [/lmlunch],main:647 -  Velocity   [info] RuntimeInstance initializing.
+12:10:25,593  INFO [/lmlunch],main:647 -  Velocity   [info] Default Properties File: org\apache\velocity\runtime\defaults\velocity.properties
+12:10:25,593  INFO [/lmlunch],main:647 -  Velocity   [info] Trying to use logger class org.apache.velocity.tools.view.servlet.ServletLogger
+12:10:25,593  INFO [/lmlunch],main:647 -  Velocity   [info] Using logger class org.apache.velocity.tools.view.servlet.ServletLogger
+12:10:25,593  INFO [/lmlunch],main:647 -  Velocity   [info] Default ResourceManager initializing. (class org.apache.velocity.runtime.resource.ResourceManagerImpl)
+12:10:25,609  INFO [/lmlunch],main:647 -  Velocity   [info] Resource Loader Instantiated: org.apache.velocity.tools.view.servlet.WebappLoader
+12:10:25,609  INFO [/lmlunch],main:647 -  Velocity   [info] WebappLoader : initialization starting.
+12:10:25,609  INFO [/lmlunch],main:647 -  Velocity   [info] WebappLoader : initialization complete.
+12:10:25,609  INFO [/lmlunch],main:647 -  Velocity   [info] ResourceCache : initialized. (class org.apache.velocity.runtime.resource.ResourceCacheImpl)
+12:10:25,609  INFO [/lmlunch],main:647 -  Velocity   [info] Default ResourceManager initialization complete.
+12:10:25,609  INFO [/lmlunch],main:647 -  Velocity   [info] Loaded System Directive: org.apache.velocity.runtime.directive.Literal
+12:10:25,609  INFO [/lmlunch],main:647 -  Velocity   [info] Loaded System Directive: org.apache.velocity.runtime.directive.Macro
+12:10:25,609  INFO [/lmlunch],main:647 -  Velocity   [info] Loaded System Directive: org.apache.velocity.runtime.directive.Parse
+12:10:25,609  INFO [/lmlunch],main:647 -  Velocity   [info] Loaded System Directive: org.apache.velocity.runtime.directive.Include
+12:10:25,609  INFO [/lmlunch],main:647 -  Velocity   [info] Loaded System Directive: org.apache.velocity.runtime.directive.Foreach
+12:10:25,625  INFO [/lmlunch],main:647 -  Velocity   [info] Created: 20 parsers.
+12:10:25,625  INFO [/lmlunch],main:647 -  Velocity   [info] Velocimacro : initialization starting.
+12:10:25,625  INFO [/lmlunch],main:647 -  Velocity   [info] Velocimacro : adding VMs from VM library template : VM_global_library.vm
+12:10:25,640  INFO [/lmlunch],main:647 -  Velocity  [error] ResourceManager : unable to find resource 'VM_global_library.vm' in any resource loader.
+12:10:25,640  INFO [/lmlunch],main:647 -  Velocity   [info] Velocimacro : error using  VM library template VM_global_library.vm : org.apache.velocity.exception.ResourceNotFoundException: Unable to find resource 'VM_global_library.vm'
+12:10:25,640  INFO [/lmlunch],main:647 -  Velocity   [info] Velocimacro :  VM library template macro registration complete.
+12:10:25,640  INFO [/lmlunch],main:647 -  Velocity   [info] Velocimacro : allowInline = true : VMs can be defined inline in templates
+12:10:25,640  INFO [/lmlunch],main:647 -  Velocity   [info] Velocimacro : allowInlineToOverride = false : VMs defined inline may NOT replace previous VM definitions
+12:10:25,640  INFO [/lmlunch],main:647 -  Velocity   [info] Velocimacro : allowInlineLocal = false : VMs defined inline will be  global in scope if allowed.
+12:10:25,640  INFO [/lmlunch],main:647 -  Velocity   [info] Velocimacro : messages on  : VM system will output logging messages
+12:10:25,656  INFO [/lmlunch],main:647 -  Velocity   [info] Velocimacro : autoload off  : VM system will not automatically reload global library macros
+12:10:25,656  INFO [/lmlunch],main:647 -  Velocity   [info] Velocimacro : initialization complete.
+12:10:25,656  INFO [/lmlunch],main:647 -  Velocity   [info] Velocity successfully started.
+12:10:25,828  INFO ServletToolboxManager,main:? - Using config file '/WEB-INF/conf/velocity/toolbox.xml'
+12:10:25,984  INFO ServletToolboxManager,main:? - Toolbox setup complete.
+12:10:25,984  INFO [/lmlunch],main:647 -  Velocity   [info] VelocityViewServlet: Default content-type is: text/html
+13:34:51,687  INFO PHttpSessionListener,http-8090-Processor25:35 - CsSessionListener: session Created ->id:DD7394BF2E113EE05833CC3D6F8A6410
+13:34:54,671  INFO [/lmlunch],http-8090-Processor25:647 - Exception initializing TldLocationsCache: XML parsing error on file /WEB-INF/web.xml: (line 3, col 9): Document is invalid: no grammar found.
+13:34:55,265  INFO [/lmlunch],http-8090-Processor25:647 - Exception initializing TldLocationsCache: XML parsing error on file /WEB-INF/web.xml: (line 3, col 9): Document is invalid: no grammar found.
+13:34:55,562  INFO [/lmlunch],http-8090-Processor25:647 - Exception initializing TldLocationsCache: XML parsing error on file /WEB-INF/web.xml: (line 3, col 9): Document is invalid: no grammar found.
+13:34:55,703  INFO [/lmlunch],http-8090-Processor25:647 - Exception initializing TldLocationsCache: XML parsing error on file /WEB-INF/web.xml: (line 3, col 9): Document is invalid: no grammar found.
+13:34:56,484  INFO [/lmlunch],http-8090-Processor25:647 - Exception initializing TldLocationsCache: XML parsing error on file /WEB-INF/web.xml: (line 3, col 9): Document is invalid: no grammar found.
+13:34:56,625  INFO [/lmlunch],http-8090-Processor25:647 - Exception initializing TldLocationsCache: XML parsing error on file /WEB-INF/web.xml: (line 3, col 9): Document is invalid: no grammar found.
+13:34:56,734  INFO [/lmlunch],http-8090-Processor25:647 - Exception initializing TldLocationsCache: XML parsing error on file /WEB-INF/web.xml: (line 3, col 9): Document is invalid: no grammar found.
+13:34:56,781  INFO [/lmlunch],http-8090-Processor25:647 - Exception initializing TldLocationsCache: XML parsing error on file /WEB-INF/web.xml: (line 3, col 9): Document is invalid: no grammar found.
+13:34:56,843  INFO [/lmlunch],http-8090-Processor25:647 - Exception initializing TldLocationsCache: XML parsing error on file /WEB-INF/web.xml: (line 3, col 9): Document is invalid: no grammar found.
+13:34:57,421  INFO [/lmlunch],http-8090-Processor25:647 - Exception initializing TldLocationsCache: XML parsing error on file /WEB-INF/web.xml: (line 3, col 9): Document is invalid: no grammar found.
+13:35:20,531  WARN ValidatorResources,http-8090-Processor24:439 - Form '/login' not found for locale 'zh_CN'
+13:35:28,484  INFO LoginAction,http-8090-Processor24:115 - Authentication:org.acegisecurity.providers.UsernamePasswordAuthenticationToken@40b22cd2: Username: null; Password: [PROTECTED]; Authenticated: true; Details: [id:3,username:MEI,userPassword:3333,roleId:1,userDesc:null]userRole:; Granted Authorities: ROLE_SUPERVISOR
+13:35:28,500  INFO LoginAction,http-8090-Processor24:118 -  ====login==user========>[id:3,username:MEI,userPassword:3333,roleId:1,userDesc:null]userRole:ROLE_SUPERVISOR,
+13:35:28,500  INFO LoginAction,http-8090-Processor24:119 - login req sessionId:DD7394BF2E113EE05833CC3D6F8A6410
+13:35:29,218  INFO LoginAction,http-8090-Processor24:146 -  before login return ~~~
+13:35:31,406  INFO [/lmlunch],http-8090-Processor24:647 - Exception initializing TldLocationsCache: XML parsing error on file /WEB-INF/web.xml: (line 3, col 9): Document is invalid: no grammar found.
+13:35:31,500  INFO [/lmlunch],http-8090-Processor24:647 - Exception initializing TldLocationsCache: XML parsing error on file /WEB-INF/web.xml: (line 3, col 9): Document is invalid: no grammar found.
+13:35:31,515  INFO [/lmlunch],http-8090-Processor24:647 - Exception initializing TldLocationsCache: XML parsing error on file /WEB-INF/web.xml: (line 3, col 9): Document is invalid: no grammar found.
+13:35:31,531  INFO [/lmlunch],http-8090-Processor24:647 - Exception initializing TldLocationsCache: XML parsing error on file /WEB-INF/web.xml: (line 3, col 9): Document is invalid: no grammar found.
+13:35:31,562  INFO [/lmlunch],http-8090-Processor24:647 - Exception initializing TldLocationsCache: XML parsing error on file /WEB-INF/web.xml: (line 3, col 9): Document is invalid: no grammar found.
+13:35:32,750  INFO [/lmlunch],http-8090-Processor24:647 - Exception initializing TldLocationsCache: XML parsing error on file /WEB-INF/web.xml: (line 3, col 9): Document is invalid: no grammar found.
+13:35:32,765  INFO [/lmlunch],http-8090-Processor24:647 - Exception initializing TldLocationsCache: XML parsing error on file /WEB-INF/web.xml: (line 3, col 9): Document is invalid: no grammar found.
+13:35:32,781  INFO [/lmlunch],http-8090-Processor24:647 - Exception initializing TldLocationsCache: XML parsing error on file /WEB-INF/web.xml: (line 3, col 9): Document is invalid: no grammar found.
+13:35:32,906  INFO [/lmlunch],http-8090-Processor24:647 - Exception initializing TldLocationsCache: XML parsing error on file /WEB-INF/web.xml: (line 3, col 9): Document is invalid: no grammar found.
+13:35:32,953  INFO [/lmlunch],http-8090-Processor24:647 - Exception initializing TldLocationsCache: XML parsing error on file /WEB-INF/web.xml: (line 3, col 9): Document is invalid: no grammar found.
+13:35:32,953  INFO [/lmlunch],http-8090-Processor24:647 - Exception initializing TldLocationsCache: XML parsing error on file /WEB-INF/web.xml: (line 3, col 9): Document is invalid: no grammar found.
+13:35:33,015  INFO [/lmlunch],http-8090-Processor24:647 - Exception initializing TldLocationsCache: XML parsing error on file /WEB-INF/web.xml: (line 3, col 9): Document is invalid: no grammar found.
+13:36:31,281  INFO [/lmlunch],http-8090-Processor22:647 - Exception initializing TldLocationsCache: XML parsing error on file /WEB-INF/web.xml: (line 3, col 9): Document is invalid: no grammar found.
+13:36:31,359  INFO [/lmlunch],http-8090-Processor22:647 - Exception initializing TldLocationsCache: XML parsing error on file /WEB-INF/web.xml: (line 3, col 9): Document is invalid: no grammar found.
+13:36:53,140 ERROR RequestProcessor,http-8090-Processor24:664 - Invalid path was requested /chgpwd
+13:36:54,171  INFO [/lmlunch],http-8090-Processor23:647 - Exception initializing TldLocationsCache: XML parsing error on file /WEB-INF/web.xml: (line 3, col 9): Document is invalid: no grammar found.
+13:36:54,250  INFO [/lmlunch],http-8090-Processor23:647 - Exception initializing TldLocationsCache: XML parsing error on file /WEB-INF/web.xml: (line 3, col 9): Document is invalid: no grammar found.
+13:36:54,312  INFO [/lmlunch],http-8090-Processor23:647 - Exception initializing TldLocationsCache: XML parsing error on file /WEB-INF/web.xml: (line 3, col 9): Document is invalid: no grammar found.
+13:36:54,328  INFO [/lmlunch],http-8090-Processor23:647 - Exception initializing TldLocationsCache: XML parsing error on file /WEB-INF/web.xml: (line 3, col 9): Document is invalid: no grammar found.
+13:36:54,359  INFO [/lmlunch],http-8090-Processor23:647 - Exception initializing TldLocationsCache: XML parsing error on file /WEB-INF/web.xml: (line 3, col 9): Document is invalid: no grammar found.
+13:36:54,406  INFO [/lmlunch],http-8090-Processor23:647 - Exception initializing TldLocationsCache: XML parsing error on file /WEB-INF/web.xml: (line 3, col 9): Document is invalid: no grammar found.
+13:36:54,437  INFO [/lmlunch],http-8090-Processor23:647 - Exception initializing TldLocationsCache: XML parsing error on file /WEB-INF/web.xml: (line 3, col 9): Document is invalid: no grammar found.
+13:36:54,453  INFO [/lmlunch],http-8090-Processor23:647 - Exception initializing TldLocationsCache: XML parsing error on file /WEB-INF/web.xml: (line 3, col 9): Document is invalid: no grammar found.
+13:36:54,484  INFO [/lmlunch],http-8090-Processor23:647 - Exception initializing TldLocationsCache: XML parsing error on file /WEB-INF/web.xml: (line 3, col 9): Document is invalid: no grammar found.
+13:36:54,531  INFO [/lmlunch],http-8090-Processor23:647 - Exception initializing TldLocationsCache: XML parsing error on file /WEB-INF/web.xml: (line 3, col 9): Document is invalid: no grammar found.
+13:36:54,546  INFO [/lmlunch],http-8090-Processor23:647 - Exception initializing TldLocationsCache: XML parsing error on file /WEB-INF/web.xml: (line 3, col 9): Document is invalid: no grammar found.
+13:36:54,562  INFO [/lmlunch],http-8090-Processor23:647 - Exception initializing TldLocationsCache: XML parsing error on file /WEB-INF/web.xml: (line 3, col 9): Document is invalid: no grammar found.
+13:37:01,609  INFO ShowSourceSearchAction,http-8090-Processor24:67 - session have no value
+13:37:01,609  INFO ShowSourceSearchAction,http-8090-Processor24:69 - req test:null
+13:37:01,640  INFO ShowSourceSearchAction,http-8090-Processor24:71 - req test:DD7394BF2E113EE05833CC3D6F8A6410
+13:37:05,921  INFO [/lmlunch],http-8090-Processor24:647 - Exception initializing TldLocationsCache: XML parsing error on file /WEB-INF/web.xml: (line 3, col 9): Document is invalid: no grammar found.
+13:37:06,015  INFO [/lmlunch],http-8090-Processor24:647 - Exception initializing TldLocationsCache: XML parsing error on file /WEB-INF/web.xml: (line 3, col 9): Document is invalid: no grammar found.
+13:37:06,031  INFO [/lmlunch],http-8090-Processor24:647 - Exception initializing TldLocationsCache: XML parsing error on file /WEB-INF/web.xml: (line 3, col 9): Document is invalid: no grammar found.
+13:37:06,031  INFO [/lmlunch],http-8090-Processor24:647 - Exception initializing TldLocationsCache: XML parsing error on file /WEB-INF/web.xml: (line 3, col 9): Document is invalid: no grammar found.
+13:37:06,078  INFO [/lmlunch],http-8090-Processor24:647 - Exception initializing TldLocationsCache: XML parsing error on file /WEB-INF/web.xml: (line 3, col 9): Document is invalid: no grammar found.
+13:37:06,093  INFO [/lmlunch],http-8090-Processor24:647 - Exception initializing TldLocationsCache: XML parsing error on file /WEB-INF/web.xml: (line 3, col 9): Document is invalid: no grammar found.
+13:37:06,140  INFO [/lmlunch],http-8090-Processor24:647 - Exception initializing TldLocationsCache: XML parsing error on file /WEB-INF/web.xml: (line 3, col 9): Document is invalid: no grammar found.
+13:37:06,500  INFO [/lmlunch],http-8090-Processor24:647 - Exception initializing TldLocationsCache: XML parsing error on file /WEB-INF/web.xml: (line 3, col 9): Document is invalid: no grammar found.
+13:37:06,625  INFO [/lmlunch],http-8090-Processor24:647 - Exception initializing TldLocationsCache: XML parsing error on file /WEB-INF/web.xml: (line 3, col 9): Document is invalid: no grammar found.
+13:37:06,640  INFO [/lmlunch],http-8090-Processor24:647 - Exception initializing TldLocationsCache: XML parsing error on file /WEB-INF/web.xml: (line 3, col 9): Document is invalid: no grammar found.
+13:37:11,281  INFO [/lmlunch],http-8090-Processor24:647 - Exception initializing TldLocationsCache: XML parsing error on file /WEB-INF/web.xml: (line 3, col 9): Document is invalid: no grammar found.
+13:37:11,640  INFO ShowSourceSearchAction,http-8090-Processor23:65 - get session value OK!!!
+13:37:11,718  INFO ShowSourceSearchAction,http-8090-Processor23:69 - req test:null
+13:37:11,718  INFO ShowSourceSearchAction,http-8090-Processor23:71 - req test:DD7394BF2E113EE05833CC3D6F8A6410
+13:37:11,828  INFO [/lmlunch],http-8090-Processor24:647 - Exception initializing TldLocationsCache: XML parsing error on file /WEB-INF/web.xml: (line 3, col 9): Document is invalid: no grammar found.
+13:37:13,140  INFO [/lmlunch],http-8090-Processor24:647 - Exception initializing TldLocationsCache: XML parsing error on file /WEB-INF/web.xml: (line 3, col 9): Document is invalid: no grammar found.
+13:37:13,218  INFO [/lmlunch],http-8090-Processor24:647 - Exception initializing TldLocationsCache: XML parsing error on file /WEB-INF/web.xml: (line 3, col 9): Document is invalid: no grammar found.
+13:37:15,406  INFO [/lmlunch],http-8090-Processor24:647 - Exception initializing TldLocationsCache: XML parsing error on file /WEB-INF/web.xml: (line 3, col 9): Document is invalid: no grammar found.
+13:37:15,500  INFO [/lmlunch],http-8090-Processor24:647 - Exception initializing TldLocationsCache: XML parsing error on file /WEB-INF/web.xml: (line 3, col 9): Document is invalid: no grammar found.
+13:37:15,546  INFO [/lmlunch],http-8090-Processor24:647 - Exception initializing TldLocationsCache: XML parsing error on file /WEB-INF/web.xml: (line 3, col 9): Document is invalid: no grammar found.
+13:37:15,562  INFO [/lmlunch],http-8090-Processor24:647 - Exception initializing TldLocationsCache: XML parsing error on file /WEB-INF/web.xml: (line 3, col 9): Document is invalid: no grammar found.
+13:37:15,578  INFO [/lmlunch],http-8090-Processor24:647 - Exception initializing TldLocationsCache: XML parsing error on file /WEB-INF/web.xml: (line 3, col 9): Document is invalid: no grammar found.
+13:37:15,609  INFO [/lmlunch],http-8090-Processor24:647 - Exception initializing TldLocationsCache: XML parsing error on file /WEB-INF/web.xml: (line 3, col 9): Document is invalid: no grammar found.
+13:37:26,406  INFO ShowSourceSearchAction,http-8090-Processor25:65 - get session value OK!!!
+13:37:26,421  INFO ShowSourceSearchAction,http-8090-Processor25:69 - req test:null
+13:37:26,421  INFO ShowSourceSearchAction,http-8090-Processor25:71 - req test:DD7394BF2E113EE05833CC3D6F8A6410

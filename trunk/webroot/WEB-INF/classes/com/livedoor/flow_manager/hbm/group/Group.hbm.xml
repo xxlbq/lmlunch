@@ -1,0 +1,62 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+	"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+	"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+	<class name="com.livedoor.flow_manager.group.beans.Group" table="t_group">
+		<cache usage="read-write" region="com.livedoor.flow_manager.common.cacheTemplate"/>
+		
+		<id name="id" type="integer" column="GROUP_ID">
+			<generator class="increment" />
+		</id>
+
+		<property name="groupName" column="GROUP_NAME" type="string"
+			not-null="true" length="30" />
+		<property name="groupLevelRelation"
+			column="GROUP_LEVEL_RELATION" type="string" length="300" />
+		<property name="groupFather" column="GROUP_FATHER"
+			type="integer" not-null="false" length="11" />
+		<property name="inputUserId" column="INPUT_USER_ID"
+			type="integer" not-null="true" length="11" />
+		<property name="inputDatetime" column="INPUT_DATETIME"
+			type="timestamp" not-null="false" length="19" />
+		<property name="updateUserId" column="UPDATE_USER_ID"
+			type="integer" not-null="false" length="11" />
+		<property name="updateDatetime" column="UPDATE_DATETIME"
+			type="timestamp" not-null="false" length="19" />
+		<property name="deletedFlag" column="DELETED_FLAG"
+			type="integer" not-null="true" length="11" />
+		<property name="groupDesc" column="GROUP_DESC" type="string"
+			not-null="false" length="500" />
+		
+			
+		<set name="sourceSet"
+				table="t_group_source"
+				lazy="false"
+				inverse="false"
+				cascade="save-update" >
+				
+			<key column="GROUP_ID"></key>
+			<many-to-many
+				class="com.livedoor.flow_manager.sources.beans.Source"
+				column="SOURCE_ID"
+			/>
+		</set>
+		
+		<set name="user"
+				table="t_group_user"
+				lazy="false"
+				inverse="false"
+				cascade="save-update" >
+				
+			<key column="GROUP_ID"></key>
+			<many-to-many
+				class="com.livedoor.flow_manager.user.beans.User"
+				column="USER_ID"
+			/>
+		</set>
+		
+		
+	</class>
+</hibernate-mapping>
