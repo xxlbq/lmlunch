@@ -1,0 +1,195 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+	"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+	"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+
+	<class name="com.livedoor.flow_manager.sources.beans.Source"
+		table="t_source">
+		<cache usage="read-write" region="com.livedoor.flow_manager.common.cacheTemplate"/>
+		
+		<id name="sourceId" column="SOURCE_ID" type="java.lang.Integer">
+			<generator class="identity" />
+		</id>
+		<property name="sourceName" column="SOURCE_NAME"
+			type="java.lang.String">
+		</property>
+		<property name="sourceFoodSum" column="SOURCE_FOOD_SUM"
+			type="java.math.BigDecimal">
+		</property>
+		<property name="sourceFoodCount" column="SOURCE_FOOD_COUNT"
+			type="java.lang.Integer">
+		</property>
+
+
+		
+<!--		<property name="inputUserId" column="INPUT_USER_ID"-->
+<!--			type="java.lang.Integer">-->
+<!--		</property>-->
+<!--		-->
+<!--		<property name="inputUserName" -->
+<!--			formula="( select u.USER_NAME from t_user u where u.USER_ID = INPUT_USER_ID )" -->
+<!--			type="java.lang.String">-->
+<!--		</property>-->
+<!--		-->
+
+		<many-to-one name="inputUser"
+				column="INPUT_USER_ID"
+				lazy="false"
+				class="com.livedoor.flow_manager.user.beans.User"/>
+		
+		<property name="inputDatetime" column="INPUT_DATETIME"
+			type="java.util.Calendar">
+		</property>
+		
+		
+		
+<!--		<property name="updateUserId" column="UPDATE_USER_ID"-->
+<!--			type="java.lang.Integer">-->
+<!--		</property>-->
+		
+		<many-to-one name="updateUser"
+				column="UPDATE_USER_ID"
+				lazy="false"
+				class="com.livedoor.flow_manager.user.beans.User"/>
+		
+		<property name="updateDatetime" column="UPDATE_DATETIME"
+			type="java.util.Calendar">
+		</property>
+		<property name="deletedFlag" column="DELETED_FLAG"
+			type="java.lang.Integer">
+		</property>
+		
+		
+		<many-to-one name="food"
+				column="SOURCE_FOOD_ID"
+				lazy="false"
+				class="com.livedoor.flow_manager.food.beans.Food"/>
+
+
+		<set name="groupSet"
+				table="t_group_source"
+				lazy="false"
+				inverse="false"
+				cascade="save-update">
+				
+			<key column="SOURCE_ID"></key>
+			<many-to-many
+				class="com.livedoor.flow_manager.group.beans.Group"
+				column="GROUP_ID"
+			/>
+		</set>
+		
+	</class>
+
+<!--	<sql-query name="queryAllSourceId">-->
+<!--		<return alias="s"  class="java.lang.Integer">-->
+<!--			<return-property name="sourceId" column="SOURCE_ID"></return-property>-->
+<!--		</return>	-->
+<!--		-->
+<!--		select s.SOURCE_ID from Source as s where s.DELETED_FLAG &alt&agt 1-->
+<!--				-->
+<!--				-->
+<!--	</sql-query>-->
+	
+
+	
+<!--	<sql-query name="queryAllSourceByNamedQuery">-->
+<!--		<return alias="s"  class="com.livedoor.flow_manager.sources.beans.Source">-->
+<!--			<return-property name="sourceId" column="SOURCE_ID"></return-property>-->
+<!--			<return-property name="sourceName" column="SOURCE_NAME"></return-property>-->
+<!--	        <return-property name="sourceDoor" column="SOURCE_DOOR"></return-property>-->
+<!--	        <return-property name="sourceFather" column="SOURCE_FATHER"></return-property>-->
+<!--	        <return-property name="inputUserId" column="INPUT_USER_ID"></return-property>-->
+<!--	        <return-property name="inputeDatetime" column="INPUTE_DATETIME" ></return-property>-->
+<!--	        <return-property name="updateUserId" column="UPDATE_USER_ID"></return-property>-->
+<!--	        <return-property name="updateDatetime" column="UPDATE_DATETIME"></return-property>-->
+<!--	        <return-property name="deletedFlag" column="DELETED_FLAG"></return-property>-->
+<!--	        <return-property name="sourceDesc" column="SOURCE_DESC"></return-property>-->
+<!--	        -->
+<!--	        <return-property name="sourceFatherName" column="SOURCE_FATHER_NAME"></return-property>-->
+<!--	        <return-property name="inputUserName" column="INPUT_USER_NAME"></return-property>-->
+<!--	        <return-property name="updateUserName" column="UPDATE_USER_NAME"></return-property>-->
+<!--		</return>	-->
+<!--		-->
+<!--		select s.SOURCE_ID,-->
+<!--				s.SOURCE_NAME,-->
+<!--				s.SOURCE_DOOR,-->
+<!--				s.SOURCE_FATHER,-->
+<!--				father_source.SOURCE_NAME as SOURCE_FATHER_NAME,-->
+<!--				s.INPUT_USER_ID,-->
+<!--				input_user.USER_NAME as INPUT_USER_NAME,-->
+<!--				-->
+<!--				s.INPUTE_DATETIME,-->
+<!--				s.UPDATE_USER_ID,-->
+<!--				update_user.USER_NAME as UPDATE_USER_NAME,-->
+<!--				-->
+<!--				s.UPDATE_DATETIME,-->
+<!--				s.DELETED_FLAG,-->
+<!--				s.SOURCE_DESC-->
+<!--				-->
+<!--				from t_source s-->
+<!--				LEFT JOIN t_source father_source on s.SOURCE_FATHER = father_source.SOURCE_ID-->
+<!--                LEFT OUTER JOIN t_user input_user on s.INPUT_USER_ID = input_user.USER_ID-->
+<!--                LEFT OUTER JOIN t_user update_user on s.UPDATE_USER_ID = update_user.USER_ID-->
+<!---->
+<!--				-->
+<!--	</sql-query>-->
+	
+<!--	<sql-query name="getSourceBySourceName">-->
+<!--		<return  class="com.livedoor.flow_manager.sources.beans.Source">-->
+<!--			<return-property name="sourceId" column="SOURCE_ID"></return-property>-->
+<!--			<return-property name="sourceName" column="SOURCE_NAME"></return-property>-->
+<!--	        <return-property name="sourceDoor" column="SOURCE_DOOR"></return-property>-->
+<!--	        <return-property name="sourceDather" column="SOURCE_FATHER"></return-property>-->
+<!--	        <return-property name="inputUserId" column="INPUT_USER_ID"></return-property>-->
+<!--	        <return-property name="inputeDatetime" column="INPUTE_DATETIME" ></return-property>-->
+<!--	        <return-property name="updateUserId" column="UPDATE_USER_ID"></return-property>-->
+<!--	        <return-property name="updateDatetime" column="UPDATE_DATETIME"></return-property>-->
+<!--	        <return-property name="deletedFlag" column="DELETED_FLAG"></return-property>-->
+<!--	        -->
+<!--	        <return-property name="sourceDesc" column="SOURCE_DESC"></return-property>-->
+<!--		</return>	-->
+<!--		select SOURCE_ID,-->
+<!--				SOURCE_NAME,-->
+<!--				SOURCE_DOOR,-->
+<!--				SOURCE_FATHER,-->
+<!--				INPUT_USER_ID,-->
+<!--				INPUTE_DATETIME,-->
+<!--				UPDATE_USER_ID,-->
+<!--				UPDATE_DATETIME,-->
+<!--				DELETED_FLAG,-->
+<!--				SOURCE_DESC-->
+<!--				from t_source-->
+<!--				where SOURCE_NAME like :varSourceName-->
+<!--	</sql-query>-->
+<!--	-->
+<!--	<sql-query name="getSourceBySourceId">-->
+<!--		<return  class="com.livedoor.flow_manager.sources.beans.Source">-->
+<!--			<return-property name="sourceId" column="SOURCE_ID"></return-property>-->
+<!--			<return-property name="sourceName" column="SOURCE_NAME"></return-property>-->
+<!--	        <return-property name="sourceDoor" column="SOURCE_DOOR"></return-property>-->
+<!--	        <return-property name="sourceDather" column="SOURCE_FATHER"></return-property>-->
+<!--	        <return-property name="inputUserId" column="INPUT_USER_ID"></return-property>-->
+<!--	        <return-property name="inputeDatetime" column="INPUTE_DATETIME" ></return-property>-->
+<!--	        <return-property name="updateUserId" column="UPDATE_USER_ID"></return-property>-->
+<!--	        <return-property name="updateDatetime" column="UPDATE_DATETIME"></return-property>-->
+<!--	        <return-property name="deletedFlag" column="DELETED_FLAG"></return-property>-->
+<!--	        -->
+<!--	        <return-property name="sourceDesc" column="SOURCE_DESC"></return-property>-->
+<!--		</return>	-->
+<!--		select SOURCE_ID,-->
+<!--				SOURCE_NAME,-->
+<!--				SOURCE_DOOR,-->
+<!--				SOURCE_FATHER,-->
+<!--				INPUT_USER_ID,-->
+<!--				INPUTE_DATETIME,-->
+<!--				UPDATE_USER_ID,-->
+<!--				UPDATE_DATETIME,-->
+<!--				DELETED_FLAG,-->
+<!--				SOURCE_DESC-->
+<!--				from t_source-->
+<!--				where SOURCE_ID = :varSourceId-->
+<!--	</sql-query>-->
+
+</hibernate-mapping>
