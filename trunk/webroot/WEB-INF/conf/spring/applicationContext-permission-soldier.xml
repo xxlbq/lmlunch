@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN" "http://www.springframework.org/dtd/spring-beans.dtd">
+<beans>
+
+	<bean name="/soldier_source_add_display"
+		class="com.livedoor.flow_manager.soldierSource.action.SoldierSourceAddAction">
+		<property name="soldierService">
+			<ref bean="soldierService" />
+		</property>
+		<property name="soldierSourceService">
+			<ref bean="soldierSourceService" />
+		</property>
+		<property name="kingdomService">
+			<ref bean="kingdomService" />
+		</property>
+
+		
+	</bean>
+	
+	<bean name="/soldier_source_add"
+		class="com.livedoor.flow_manager.soldierSource.action.SoldierSourceAddAction">
+		<property name="soldierService">
+			<ref bean="soldierService" />
+		</property>
+		<property name="soldierSourceService">
+			<ref bean="soldierSourceService" />
+		</property>
+		<property name="kingdomService">
+			<ref bean="kingdomService" />
+		</property>
+
+	</bean>
+
+	<bean name="/soldier_source_query_display"
+		class="com.livedoor.flow_manager.soldierSource.action.SoldierSourceQueryAction">
+		<property name="soldierService">
+			<ref bean="soldierService" />
+		</property>
+		<property name="soldierSourceService">
+			<ref bean="soldierSourceService" />
+		</property>
+		<property name="kingdomService">
+			<ref bean="kingdomService" />
+		</property>
+
+	</bean>
+	<bean name="/soldier_source_query"
+		class="com.livedoor.flow_manager.soldierSource.action.SoldierSourceQueryAction">
+		<property name="soldierService">
+			<ref bean="soldierService" />
+		</property>
+		<property name="soldierSourceService">
+			<ref bean="soldierSourceService" />
+		</property>
+		<property name="kingdomService">
+			<ref bean="kingdomService" />
+		</property>
+
+	</bean>
+	
+	
+	
+	
+	
+</beans>

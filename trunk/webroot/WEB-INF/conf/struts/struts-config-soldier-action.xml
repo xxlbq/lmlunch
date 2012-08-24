@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!DOCTYPE struts-config PUBLIC
+          "-//Apache Software Foundation//DTD Struts Configuration 1.2//EN"
+          "http://struts.apache.org/dtds/struts-config_1_2.dtd">
+
+<struts-config>
+
+	<form-beans>
+		<form-bean name="soldierSourceForm"
+			type="com.livedoor.flow_manager.soldierSource.form.SoldierSourceForm">
+		</form-bean>
+	</form-beans>
+	
+	
+	<action-mappings>
+
+		<action   path="/soldier_source_add_display"  scope="request" parameter="display">
+		    <forward  name="success" path="/WEB-INF/jsp/soldier/soldier_source_add.jsp" />
+		</action>
+
+		<action   path="/soldier_source_add" name="soldierSourceForm"  scope="request" parameter="add">
+		    <forward  name="success" path="/soldier.do" />
+		</action>
+
+
+
+		<action   path="/soldier_source_query_display"  scope="request" parameter="display">
+		    <forward  name="success" path="/WEB-INF/jsp/soldier/soldier_source_query.jsp" />
+		</action>
+
+		<action   path="/soldier_source_query" name="soldierSourceForm"  scope="request" parameter="query">
+		    <forward  name="success" path="/WEB-INF/jsp/soldier/soldier_source_query.jsp" />
+		</action>
+		
+		<action   path="/pagerSource" name="soldierSourceForm" scope="request" parameter="query">
+		    <forward  name="success" path="/WEB-INF/jsp/soldier/soldier_source_query.jsp" />
+		</action>
+		
+		
+		
+		
+		<action path="/soldier_add"
+			type="org.apache.struts.actions.ForwardAction"
+			parameter="/WEB-INF/jsp/soldier/soldier_add.jsp"/>
+			
+		<action path="/soldier_update"
+			type="org.apache.struts.actions.ForwardAction"
+			parameter="/WEB-INF/jsp/soldier/soldier_update.jsp"/>
+					
+		<action path="/soldier_query"
+			type="org.apache.struts.actions.ForwardAction"
+			parameter="/WEB-INF/jsp/soldier/soldier_query.jsp"/>
+			
+		<action path="/soldier_approve"
+			type="org.apache.struts.actions.ForwardAction"
+			parameter="/WEB-INF/jsp/soldier/soldier_approve.jsp"/>
+			
+			
+			
+	</action-mappings>
+
+	
+</struts-config>
+

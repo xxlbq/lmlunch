@@ -373,9 +373,9 @@ style="margin-top:10px; margin-bottom:15px;" width="800">
 	</pg:pager>	
 	<br>
 
-</form>
 	</td>
 </tr>
+</form>
 </table>
 <tr>
 	<td align="center"><hr color="#5F52A0" size="1" width="700" align="center" noshade></td>

@@ -7,6 +7,7 @@
 	<!--	以当前文件的目录为base目录 [ like ant ]-->
 	<import resource="/applicationContext-permission-source.xml" />
 	<import resource="/applicationContext-permission-user.xml" />
+	<import resource="/applicationContext-permission-soldier.xml" />
 	<import resource="/applicationContext-permission-acegi.xml" />
 	<import resource="/applicationContext-permission-other.xml" />
 	<import resource="/applicationContext-permission-action-login.xml" />
@@ -65,8 +66,10 @@
 				<value>classpath:/com/livedoor/flow_manager/hbm/group</value>
 				<value>classpath:/com/livedoor/flow_manager/hbm/group_source</value>
 				<value>classpath:/com/livedoor/flow_manager/hbm/source</value>
+				<value>classpath:/com/livedoor/flow_manager/hbm/soldier</value>
+				<value>classpath:/com/livedoor/flow_manager/hbm/kingdom</value>
+				<value>classpath:/com/livedoor/flow_manager/hbm/soldierSource</value>
 				<value>classpath:/com/livedoor/flow_manager/hbm/user</value>
-				<value>classpath:/com/livedoor/flow_manager/hbm/food</value>
 				<value>classpath:/com/livedoor/flow_manager/hbm/role</value>
 				<value>classpath:/com/livedoor/flow_manager/hbm/cash</value>
 				<value>classpath:/com/livedoor/flow_manager/hbm/roleAction</value>
@@ -125,10 +128,10 @@
 	</bean>
 
 	<!-- food -->
-	<bean id="foodDao"
-		class="com.livedoor.flow_manager.food.dao.imp.FoodDao">
-		<property name="hibernateTemplate" ref="hibernateTemplate" />
-	</bean>
+<!--	<bean id="foodDao"-->
+<!--		class="com.livedoor.flow_manager.food.dao.imp.FoodDao">-->
+<!--		<property name="hibernateTemplate" ref="hibernateTemplate" />-->
+<!--	</bean>-->
 	
 	<!-- role -->
 	<bean id="roleDao"
@@ -144,11 +147,50 @@
 		<property name="sourceJdbcDao" ref="sourceJdbcDao" />
 	</bean>
 
-	<bean id="foodService"
-		class="com.livedoor.flow_manager.food.service.FoodService"
-		>
-		<property name="foodDao" ref="foodDao" />
+
+
+	<!-- for   soldier   -->
+
+
+	<bean id="soldierService"
+		class="com.livedoor.flow_manager.soldier.SoldierService">
+		<property name="soldierDao" ref="soldierDao" />
 	</bean>
+	
+	<bean id="soldierDao"
+		class="com.livedoor.flow_manager.soldier.SoldierDao">
+		<property name="hibernateTemplate" ref="hibernateTemplate" />
+	</bean>
+	
+	<bean id="kingdomService"
+		class="com.livedoor.flow_manager.kingdom.KingdomService">
+		<property name="kingdomDao" ref="kingdomDao" />
+	</bean>
+	
+	<bean id="kingdomDao"
+		class="com.livedoor.flow_manager.kingdom.KingdomDao">
+		<property name="hibernateTemplate" ref="hibernateTemplate" />
+	</bean>
+	
+	<bean id="soldierSourceService"
+		class="com.livedoor.flow_manager.soldierSource.SoldierSourceService">
+		<property name="soldierSourceDao" ref="soldierSourceDao" />
+	</bean>
+	
+	<bean id="soldierSourceDao"
+		class="com.livedoor.flow_manager.soldierSource.SoldierSourceDao">
+		<property name="hibernateTemplate" ref="hibernateTemplate" />
+	</bean>
+	
+
+
+
+
+<!--	<bean id="foodService"-->
+<!--		class="com.livedoor.flow_manager.food.service.FoodService"-->
+<!--		>-->
+<!--		<property name="foodDao" ref="foodDao" />-->
+<!--	</bean>-->
 	
 	<bean id="roleService"
 		class="com.livedoor.flow_manager.role.service.RoleService"
