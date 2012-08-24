@@ -6,16 +6,6 @@
 
 <bean name="/left" class="com.livedoor.flow_manager.main.actions.LeftAction" />	
 
-<bean name="/login" class="com.livedoor.flow_manager.main.actions.LoginAction" >
-	<property name="userService">
-		<ref bean="userService"/>
-	</property>
-	<property name="userDetailsServiceImp">
-		<ref bean="userDetailsServiceImp"/>
-	</property>
-
-</bean>
-
 
 <bean name="/login" class="com.livedoor.flow_manager.main.actions.LoginAction" >
 	<property name="userService">
@@ -24,8 +14,14 @@
 	<property name="userDetailsServiceImp">
 		<ref bean="userDetailsServiceImp"/>
 	</property>
-
 </bean>
+
+
+
+
+
+
+
 
 
 <bean name="/queryCache" class="com.livedoor.flow_manager.main.actions.QueryCacheAction" >

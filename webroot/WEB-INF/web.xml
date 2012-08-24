@@ -282,7 +282,12 @@
 						/WEB-INF/conf/struts/struts-config.xml,
 						/WEB-INF/conf/struts/struts-config-source.xml,
 						/WEB-INF/conf/struts/struts-config-common.xml,
-						/WEB-INF/conf/struts/struts-config-action.xml
+						/WEB-INF/conf/struts/struts-config-action.xml,
+						/WEB-INF/conf/struts/struts-config-soldier-action.xml,
+						/WEB-INF/conf/struts/struts-config-member-action.xml,
+						/WEB-INF/conf/struts/struts-config-gem-action.xml
+						
+						
 			</param-value>
 		</init-param>
 		<load-on-startup>3</load-on-startup>

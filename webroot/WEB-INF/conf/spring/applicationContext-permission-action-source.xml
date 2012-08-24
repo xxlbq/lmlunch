@@ -5,29 +5,29 @@
 	
 	<bean name="/ws/showSourceSearch" class="com.livedoor.flow_manager.sources.action.ShowSourceSearchAction" >
 		<property name="sourceService"><ref bean="sourceService"/></property>
-		<property name="foodService"><ref bean="foodService"/></property>
+<!--		<property name="foodService"><ref bean="foodService"/></property>-->
 		<property name="userService"><ref bean="userService"/></property>
 	</bean>
 	
 	<bean name="/showSourceSearch" class="com.livedoor.flow_manager.sources.action.ShowSourceSearchAction" >
 		<property name="sourceService"><ref bean="sourceService"/></property>
-		<property name="foodService"><ref bean="foodService"/></property>
+<!--		<property name="foodService"><ref bean="foodService"/></property>-->
 		<property name="userService"><ref bean="userService"/></property>
 	</bean>
 	
 	<bean name="/querySource" class="com.livedoor.flow_manager.sources.action.QuerySourceAction" singleton="false">
 		<property name="sourceService"><ref bean="sourceService"/></property>
 		<property name="userService"><ref bean="userService"/></property>
-		<property name="foodService"><ref bean="foodService"/></property>
+<!--		<property name="foodService"><ref bean="foodService"/></property>-->
 	</bean>
 	
 	<bean name="/showAddSource" class="com.livedoor.flow_manager.sources.action.ShowSourceAddAction" singleton="false">
-		<property name="foodService"><ref bean="foodService"/></property>
+<!--		<property name="foodService"><ref bean="foodService"/></property>-->
 	</bean>
 	
 	<bean name="/addSource" class="com.livedoor.flow_manager.sources.action.SourceAddAction" singleton="false">
 		<property name="sourceService"><ref bean="sourceService"/></property>
-		<property name="foodService"><ref bean="foodService"/></property>
+<!--		<property name="foodService"><ref bean="foodService"/></property>-->
 	</bean>
 	
 	<bean name="/addReback" class="com.livedoor.flow_manager.sources.action.AddRebackAction" singleton="false">
@@ -36,37 +36,37 @@
 	
 	<bean name="/sourceQueryNextPage" class="com.livedoor.flow_manager.sources.action.SourceSearchMovePageAction" singleton="false">
 		<property name="sourceService"><ref bean="sourceService"/></property>
-		<property name="foodService"><ref bean="foodService"/></property>
+<!--		<property name="foodService"><ref bean="foodService"/></property>-->
 		<property name="userService"><ref bean="userService"/></property>
 	</bean>
 	
 	<bean name="/sourceQueryPreviousPage" class="com.livedoor.flow_manager.sources.action.SourceSearchMovePageAction" singleton="false">
 		<property name="sourceService"><ref bean="sourceService"/></property>
-		<property name="foodService"><ref bean="foodService"/></property>
+<!--		<property name="foodService"><ref bean="foodService"/></property>-->
 		<property name="userService"><ref bean="userService"/></property>
 	</bean>
 	
 	<bean name="/sourceQueryFirstPage" class="com.livedoor.flow_manager.sources.action.SourceSearchMovePageAction" singleton="false">
 		<property name="sourceService"><ref bean="sourceService"/></property>
-		<property name="foodService"><ref bean="foodService"/></property>
+<!--		<property name="foodService"><ref bean="foodService"/></property>-->
 		<property name="userService"><ref bean="userService"/></property>
 	</bean>
 	
 	<bean name="/sourceQueryLastPage" class="com.livedoor.flow_manager.sources.action.SourceSearchMovePageAction" singleton="false">
 		<property name="sourceService"><ref bean="sourceService"/></property>
-		<property name="foodService"><ref bean="foodService"/></property>
+<!--		<property name="foodService"><ref bean="foodService"/></property>-->
 		<property name="userService"><ref bean="userService"/></property>
 	</bean>
 	
 	<bean name="/sourceQueryAssignPage" class="com.livedoor.flow_manager.sources.action.SourceSearchMovePageAction" singleton="false">
 		<property name="sourceService"><ref bean="sourceService"/></property>
-		<property name="foodService"><ref bean="foodService"/></property>
+<!--		<property name="foodService"><ref bean="foodService"/></property>-->
 		<property name="userService"><ref bean="userService"/></property>
 	</bean>
 	
 	<bean name="/pagerSource" class="com.livedoor.flow_manager.sources.action.SourceSearchMovePageAction" singleton="false">
 		<property name="sourceService"><ref bean="sourceService"/></property>
-		<property name="foodService"><ref bean="foodService"/></property>
+<!--		<property name="foodService"><ref bean="foodService"/></property>-->
 		<property name="userService"><ref bean="userService"/></property>
 	</bean>
 	
@@ -87,12 +87,12 @@
 	
 	<bean name="/showSourceUpdate" class="com.livedoor.flow_manager.sources.action.ShowSourceUpdateAction" >
 		<property name="sourceService"><ref bean="sourceService"/></property>
-		<property name="foodService"><ref bean="foodService"/></property>
+<!--		<property name="foodService"><ref bean="foodService"/></property>-->
 	</bean>
 	
 	<bean name="/updateSource" class="com.livedoor.flow_manager.sources.action.SourceUpdateAction" >
 		<property name="sourceService"><ref bean="sourceService"/></property>
-		<property name="foodService"><ref bean="foodService"/></property>
+<!--		<property name="foodService"><ref bean="foodService"/></property>-->
 	</bean>
 	
 	<bean name="/updateReback" class="com.livedoor.flow_manager.sources.action.UpdateRebackAction" singleton="false">
