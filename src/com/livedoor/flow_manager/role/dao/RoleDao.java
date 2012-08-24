@@ -1,31 +1,14 @@
 package com.livedoor.flow_manager.role.dao;
 
 import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.Collection;
-import java.util.Collections;
 import java.util.List;
 
-import org.apache.commons.beanutils.BeanUtils;
 import org.apache.log4j.Logger;
-import org.hibernate.Criteria;
-import org.hibernate.HibernateException;
-import org.hibernate.Query;
-import org.hibernate.Session;
-import org.hibernate.criterion.DetachedCriteria;
-import org.hibernate.criterion.Projections;
-import org.hibernate.criterion.Restrictions;
-import org.springframework.orm.hibernate3.HibernateCallback;
 
-import com.livedoor.flow_manager.food.beans.Food;
-import com.livedoor.flow_manager.food.dao.imp.FoodDao;
 import com.livedoor.flow_manager.generic.dao.GenericDAOHibernateImpl;
 import com.livedoor.flow_manager.roleAction.beans.RoleAction;
 import com.livedoor.flow_manager.roleAuth.beans.RoleAuthority;
 import com.livedoor.flow_manager.roleAuth.beans.RoleAuthorityId;
-import com.livedoor.flow_manager.tools.lbq.Page;
-import com.lm.common.util.obj.ObjectCommonUtil;
-import com.lm.common.util.str.StringCommonUtil;
 
 public class RoleDao extends GenericDAOHibernateImpl{
 	private final static Logger log = Logger.getLogger(RoleDao.class);
@@ -87,7 +70,7 @@ public class RoleDao extends GenericDAOHibernateImpl{
 		String SQL = " SELECT new RoleAction(ACT.menuSeq,ACT.roleActionUrl,ACT.roleActionName,ACT.displayOrder ) " +
 		  " FROM  com.livedoor.flow_manager.roleAction.beans.RoleAction AS ACT ," +
 		  "       com.livedoor.flow_manager.roleAuth.beans.RoleAuthority AS AUT  " +
-		  " WHERE AUT.id.menuSeq =ACT.menuSeq AND AUT.id.roleId = :varRoleId AND AUT.selectedFlag=:varSelectedFlag AND ACT.parentMenuSeq IS NULL ";
+		  " WHERE AUT.id.menuSeq =ACT.menuSeq AND AUT.id.roleId = :varRoleId AND AUT.selectedFlag=:varSelectedFlag AND ACT.parentMenuSeq IS NULL ORDER BY ACT.displayOrder ASC ";
 		
 		
 		
@@ -110,7 +93,7 @@ public class RoleDao extends GenericDAOHibernateImpl{
 			  " FROM  com.livedoor.flow_manager.roleAction.beans.RoleAction AS ACT ," +
 			  "       com.livedoor.flow_manager.roleAuth.beans.RoleAuthority AS AUT " +
 			  " WHERE AUT.id.menuSeq =ACT.menuSeq AND AUT.id.roleId = :varRoleId AND AUT.selectedFlag=:varSelectedFlag AND ACT.parentMenuSeq =(" +
-			  "SELECT roleAct.parentMenuSeq FROM RoleAction AS  roleAct WHERE INSTR(roleActionUrl,:varActionUrl) > 0) ";
+			  "SELECT roleAct.parentMenuSeq FROM RoleAction AS  roleAct WHERE INSTR(roleActionUrl,:varActionUrl) > 0)   ORDER BY ACT.displayOrder ASC ";
 
 	
 //	    String SQL = " SELECT new list(ACT.menuSeq,ACT.roleActionUrl,ACT.roleActionName,ACT.displayOrder ) " +
@@ -125,7 +108,7 @@ public class RoleDao extends GenericDAOHibernateImpl{
 	    String SQL2 = " SELECT new RoleAction(ACT.menuSeq,ACT.roleActionUrl,ACT.roleActionName,ACT.displayOrder ) " +
 		  " FROM  com.livedoor.flow_manager.roleAction.beans.RoleAction AS ACT ," +
 		  "       com.livedoor.flow_manager.roleAuth.beans.RoleAuthority AS AUT " +
-		  " WHERE AUT.id.menuSeq =ACT.menuSeq AND AUT.id.roleId = :varRoleId AND AUT.selectedFlag=:varSelectedFlag AND ACT.parentMenuSeq =:varMenuSeq" ;
+		  " WHERE AUT.id.menuSeq =ACT.menuSeq AND AUT.id.roleId = :varRoleId AND AUT.selectedFlag=:varSelectedFlag AND ACT.parentMenuSeq =:varMenuSeq   ORDER BY ACT.displayOrder ASC "  ;
 
 	    
 	    
