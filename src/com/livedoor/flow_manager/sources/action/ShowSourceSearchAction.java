@@ -12,8 +12,8 @@ import org.apache.struts.action.ActionMapping;
 
 import com.livedoor.flow_manager.IConstant.PageConstant;
 import com.livedoor.flow_manager.common.action.BaseAction;
-import com.livedoor.flow_manager.food.beans.Food;
-import com.livedoor.flow_manager.food.service.IFoodService;
+import com.livedoor.flow_manager.soldier.Soldier;
+import com.livedoor.flow_manager.soldier.SoldierService;
 import com.livedoor.flow_manager.sources.service.ISourceService;
 import com.livedoor.flow_manager.tools.lbq.Page;
 import com.livedoor.flow_manager.tools.lbq.PageFactory;
@@ -28,11 +28,11 @@ public class ShowSourceSearchAction extends BaseAction{
 	
 	private ISourceService sourceService;
 	
-	private IFoodService foodService;
+	private SoldierService foodService;
 	
 	
 	
-	public void setFoodService(IFoodService foodService) {
+	public void setFoodService(SoldierService foodService) {
 		this.foodService = foodService;
 	}
 
@@ -71,7 +71,7 @@ public class ShowSourceSearchAction extends BaseAction{
 		logger.info("req test:"+request.getSession().getId());
 		
 		List<User> insertUserList = getUserService().queryAllUser();
-		List<Food> foodList = foodService.queryAllFood();
+		List<Soldier> foodList = foodService.queryAllSoldier();
 //		List<Source> SourceList = getSourceManager().queryPageSource(PageConstant.SOURCE_BEGIN_NUMBER, PageConstant.SOURCE_PAGE_SIZE);
 //		
 //		SourcePageInfoBean SP = SourcePageInfoBean

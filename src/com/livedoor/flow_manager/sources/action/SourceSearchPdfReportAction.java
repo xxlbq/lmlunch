@@ -76,11 +76,11 @@ public class SourceSearchPdfReportAction extends BaseAction {
 	    			.isNotEmpty(source.getFood())){
 	    		
 	    		if(ObjectCommonUtil
-	    				.isNotEmpty(source.getFood().getFoodId())){
+	    				.isNotEmpty(source.getFood().getSoldierId())){
 	    			
 	    			paramMap.put("FOOD_ID", 
-		    				" AND S.FOOD_ID = "+source.getFood().getFoodId());
-	    			logger.info("paramMap.put(FOOD_ID)==>"+source.getFood().getFoodId());
+		    				" AND S.FOOD_ID = "+source.getFood().getSoldierId());
+	    			logger.info("paramMap.put(FOOD_ID)==>"+source.getFood().getSoldierId());
 	    		}else{
 		    		paramMap.put("FOOD_ID", 
 					" ");

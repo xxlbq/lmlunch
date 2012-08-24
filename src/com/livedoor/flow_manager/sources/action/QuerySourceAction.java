@@ -14,8 +14,8 @@ import org.apache.struts.action.ActionMessages;
 
 import com.livedoor.flow_manager.IConstant.AttributeKeyConstant;
 import com.livedoor.flow_manager.IConstant.PageConstant;
-import com.livedoor.flow_manager.food.beans.Food;
-import com.livedoor.flow_manager.food.service.IFoodService;
+import com.livedoor.flow_manager.soldier.Soldier;
+import com.livedoor.flow_manager.soldier.SoldierService;
 import com.livedoor.flow_manager.sources.beans.Source;
 import com.livedoor.flow_manager.sources.form.SourceForm;
 import com.livedoor.flow_manager.sources.service.ISourceService;
@@ -34,7 +34,7 @@ public class QuerySourceAction extends Action{
 	private IUserService userService;
 	
 	private ISourceService sourceService;
-	private IFoodService foodService;
+	private SoldierService soldierService;
 	
 	public ISourceService getSourceService() {
 		return sourceService;
@@ -46,8 +46,8 @@ public class QuerySourceAction extends Action{
 
 	
 
-	public void setFoodService(IFoodService foodService) {
-		this.foodService = foodService;
+	public void setFoodService(SoldierService foodService) {
+		this.soldierService = foodService;
 	}
 
 
@@ -112,9 +112,9 @@ public class QuerySourceAction extends Action{
 
 		if(StringCommonUtil.isNotEmpty(sf.getUpdateUserId())) updateUser.setUserId(Integer.valueOf(sf.getUpdateUserId()));
 		
-		Food food = new Food();
+		com.livedoor.flow_manager.soldier.Soldier food = new Soldier();
 		
-		if(StringCommonUtil.isNotEmpty(sf.getSourceFoodId())) food.setFoodId(Integer.valueOf(sf.getSourceFoodId()));
+		if(StringCommonUtil.isNotEmpty(sf.getSourceFoodId())) food.setSoldierId(Integer.valueOf(sf.getSourceFoodId()));
 //		==================================================
 		
 		Source criteriaSource = new Source();
@@ -129,7 +129,7 @@ public class QuerySourceAction extends Action{
 		criteriaSource.setUpdateDatetime(GetDate.getCalendar(sf.getUpdateDatetime()));
 		
 		List<User> commonUser = getUserService().queryAllUser();
-		List<Food> foodList = foodService.queryAllFood();
+		List<Soldier> foodList = soldierService.queryAllSoldier();
 		
 		/*  pageInfo Object */
 //		SourcePageInfoBean sp = getSourceManager()

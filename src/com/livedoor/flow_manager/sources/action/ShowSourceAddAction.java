@@ -11,16 +11,16 @@ import org.apache.struts.action.ActionForm;
 import org.apache.struts.action.ActionForward;
 import org.apache.struts.action.ActionMapping;
 
-import com.livedoor.flow_manager.food.beans.Food;
-import com.livedoor.flow_manager.food.service.IFoodService;
+import com.livedoor.flow_manager.soldier.Soldier;
+import com.livedoor.flow_manager.soldier.SoldierService;
 
 public class ShowSourceAddAction extends Action{
 	
 	private static Logger  log = Logger.getLogger(ShowSourceAddAction.class);
 	
-	private IFoodService foodService;
+	private SoldierService foodService;
 
-	public void setFoodService(IFoodService foodService) {
+	public void setFoodService(SoldierService foodService) {
 		this.foodService = foodService;
 	}
 	
@@ -31,7 +31,7 @@ public class ShowSourceAddAction extends Action{
 		   HttpServletResponse response) throws Exception {
 		
 		log.info(" ShowSourceAddAction ---> ");
-		List<Food> foodList = foodService.queryAllFood();
+		List<Soldier> foodList = foodService.queryAllSoldier();
 		log.info(" food list size :"+foodList.size());
 		request.setAttribute("SOURCE_FOOD", foodList);
 		request.setAttribute("SOURCE_FOOD_OBJ", foodList);

@@ -11,7 +11,7 @@ import org.apache.struts.action.ActionMapping;
 
 import com.livedoor.flow_manager.IConstant.AttributeKeyConstant;
 import com.livedoor.flow_manager.common.action.BaseAction;
-import com.livedoor.flow_manager.food.service.IFoodService;
+import com.livedoor.flow_manager.soldier.SoldierService;
 import com.livedoor.flow_manager.sources.beans.Source;
 import com.livedoor.flow_manager.sources.form.SourceForm;
 import com.livedoor.flow_manager.sources.service.ISourceService;
@@ -25,14 +25,14 @@ public class SourceUpdateAction extends BaseAction{
 	
 	
 	private ISourceService sourceService;
-	private IFoodService foodService;
+	private SoldierService foodService;
 	
 	
-	public IFoodService getFoodService() {
+	public SoldierService getFoodService() {
 		return foodService;
 	}
 
-	public void setFoodService(IFoodService foodService) {
+	public void setFoodService(SoldierService foodService) {
 		this.foodService = foodService;
 	}
 
