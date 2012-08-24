@@ -9,6 +9,8 @@ import java.util.regex.Pattern;
 
 public class DateUtil {
 	
+	private static final SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd");
+	private static final SimpleDateFormat sdf2 = new SimpleDateFormat("yyyyMMddHHmmss");
 	public static String getDateStringAsYYYYMMddHHmmss(Date date){
 		SimpleDateFormat sdt=new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 		return sdt.format(date);
@@ -71,36 +73,24 @@ public class DateUtil {
 		return true;
 	}
 	
-//	public static String getDateFromString(String formatString,String dateString){
-//		
-//		Format format = new SimpleDateFormat(formatString);
-//		format.parseObject(dateString)
-//	}
-//	
-//	
-//	 8 
-//	10 
-//	11         Date date = new Date();
-//	12         System.out.println(format.format(date));
-//	13 
-//	14         try {
-//	15             Date date1 = (Date) format.parseObject("2005-11-15 20:55:48");
-//	16             System.out.println(date1);
-//	17         } catch (ParseException e) {
-//	18             // TODO Auto-generated catch block
-//	19 
-//	20         }
-//	21 
-//	22         format = new SimpleDateFormat("yyyy-MM-dd");
-//	23         System.out.println(format.format(date));
-//	24         format = new SimpleDateFormat("hh:mm:ss");
-//	25         System.out.println(format.format(new Date()));
-//	26 
-//	27     }
 	
+	
+	
+	public static String getCurrentSaturday() {
+		Calendar cal = Calendar.getInstance();
+		cal.setTimeInMillis((new Date()).getTime());
+		cal.set(Calendar.DAY_OF_WEEK, 7);
+		return sdf.format(cal.getTime());
+	}
+
+	public static String getCurrentDatetime(){
+		return sdf2.format(new Date());
+	}
 	
 	public static void main(String[] args) {
-		
+		for (int i = 0; i < 10; i++) {
+			System.out.println(DateUtil.getCurrentDatetime());
+		}
 	}
 
 

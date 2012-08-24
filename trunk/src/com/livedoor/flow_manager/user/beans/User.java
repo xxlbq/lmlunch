@@ -162,6 +162,7 @@ public class User implements Serializable, Comparable ,UserDetails {
 	private java.lang.String userName;
 	private java.lang.String userPassword;
 	private int userRole;
+	private java.lang.String userDisplayName;
 	private java.lang.String userPhoto;
 	private java.lang.String userEmail;
 	private java.lang.String userMsn;
@@ -221,6 +222,14 @@ public class User implements Serializable, Comparable ,UserDetails {
 
 
 
+
+	public java.lang.String getUserDisplayName() {
+		return userDisplayName;
+	}
+
+	public void setUserDisplayName(java.lang.String userDisplayName) {
+		this.userDisplayName = userDisplayName;
+	}
 
 	public java.lang.Integer getUserId() {
 		return userId;

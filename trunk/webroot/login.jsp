@@ -6,7 +6,7 @@
 
 <link href="<c:url value="css/mj/style.css"/>" rel="stylesheet" type="text/css">
 
-<title>管理画面ログイン</title>
+<title>烽火管理</title>
 <script type="text/javascript">
 
 </script>
@@ -19,16 +19,7 @@
     <td width="68%" height="65" align="right" background="images/top_right.gif" bgcolor="#492702"><img src="images/mj_logo.gif" alt="logo" width="171" height="45" /></td>
   </tr>
 </table>
-<table width="100%" border="0" cellspacing="0" cellpadding="0">
-  <tr>
-    <td height="10" align="right" background="images/line_bg.gif"><img src="images/line_bg.gif" width="2" height="10" /></td>
-  </tr>
-</table>
-<table width="100%" border="0" cellspacing="0" cellpadding="0">
-  <tr>
-    <td height="10" align="left" background="images/line_bg_right.gif" style="border-bottom:#000000 1px solid"><img src="images/line_bg_right.gif" width="225" height="10" /></td>
-  </tr>
-</table>
+
 
 <table width="100%" border="0" cellpadding="10" cellspacing="1" bgcolor="#FFFFFF">
 
