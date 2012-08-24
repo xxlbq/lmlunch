@@ -64,7 +64,7 @@
 		<many-to-one name="food"
 				column="SOURCE_FOOD_ID"
 				lazy="false"
-				class="com.livedoor.flow_manager.food.beans.Food"/>
+				class="com.livedoor.flow_manager.soldier.Soldier"/>
 
 
 		<set name="groupSet"

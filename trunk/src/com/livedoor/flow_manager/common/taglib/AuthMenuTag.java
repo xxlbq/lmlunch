@@ -153,6 +153,8 @@ public class AuthMenuTag extends javax.servlet.jsp.tagext.BodyTagSupport {
 			VelocityContext context = new VelocityContext();
 			context.put("parentMenuRoleActionList", parentColl);
 			context.put("sonMenuRoleActionList", sonColl);
+			context.put("user", user);
+			
 
 			t.merge(context, writer);
 			String result = writer.getBuffer().toString();
