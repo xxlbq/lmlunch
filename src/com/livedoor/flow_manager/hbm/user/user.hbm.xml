@@ -136,5 +136,12 @@
 			not-null="true"
 			type="java.lang.String"
 		 />
+		 <property
+			column="USER_DISPLAY_NAME"
+			length="30"
+			name="userDisplayName"
+			not-null="true"
+			type="java.lang.String"
+		 />
 	</class>
 </hibernate-mapping>

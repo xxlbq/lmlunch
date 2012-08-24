@@ -1,0 +1,64 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+	"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+	"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+
+	<class name="com.livedoor.flow_manager.soldierSource.SoldierSource"
+		table="t_soldier_source">
+		<cache usage="read-write" region="com.livedoor.flow_manager.common.cacheTemplate"/>
+		
+		<id name="sourceId" column="SOURCE_ID" type="java.lang.String">
+			<generator class="assigned" />
+		</id>
+
+		<many-to-one name="user"
+				column="USER_ID"
+				lazy="false"
+				class="com.livedoor.flow_manager.user.beans.User"/>
+
+
+
+		<many-to-one name="soldier"
+			column="SOURCE_SOLDIER_ID"
+			lazy="false"
+			class="com.livedoor.flow_manager.soldier.Soldier"/>
+		
+		<property  name="sourceSoliderCount" column="SOURCE_SOLDIER_COUNT"
+			type="java.lang.Integer">
+		</property>
+		
+		<many-to-one name="kingdom"
+			column="KINGDOM_ID"
+			lazy="false"
+			class="com.livedoor.flow_manager.kingdom.Kingdom"/>
+		
+		<property name="sourceSoliderSumCount" column="SOURCE_SOLDIER_SUM_POINT"
+			type="java.math.BigDecimal">
+		</property>
+		<property name="approved" column="APPROVED"
+			type="java.lang.Integer">
+		</property>
+		<property name="sourceDate" column="SOURCE_DATE"
+			type="java.lang.String">
+		</property>
+		
+		<property name="inputStaffId" column="INPUT_STAFF_ID"
+			type="java.lang.String">
+		</property>
+		<property name="updateStaffId" column="UPDATE_STAFF_ID"
+			type="java.lang.String">
+		</property>
+		
+		<property name="inputDate" column="INPUT_DATE"
+			type="java.util.Date">
+		</property>
+		<property name="updateDate" column="UPDATE_DATE"
+			type="java.util.Date">
+		</property>
+		<property name="activeFlag" column="ACTIVE_FLAG"
+			type="java.lang.Integer">
+		</property>
+	</class>
+
+</hibernate-mapping>
