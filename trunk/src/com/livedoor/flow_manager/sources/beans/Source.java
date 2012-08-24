@@ -8,8 +8,8 @@ import javax.servlet.http.HttpServletRequest;
 
 import org.apache.commons.lang.ObjectUtils;
 
-import com.livedoor.flow_manager.food.beans.Food;
 import com.livedoor.flow_manager.group.beans.Group;
+import com.livedoor.flow_manager.soldier.Soldier;
 import com.livedoor.flow_manager.sources.form.SourceForm;
 import com.livedoor.flow_manager.tools.DateUtil;
 import com.livedoor.flow_manager.tools.GetDate;
@@ -102,7 +102,7 @@ public class Source {
 	 */
 	private Integer sourceFood;
 
-	private Food food;
+	private Soldier food;
 	
 	
 	
@@ -290,7 +290,7 @@ public class Source {
 			sobj.setSourceName	(request.getParameter("sourceName").trim());
 		
 		if(StringCommonUtil.isNotEmpty(request.getParameter("sourceFoodId"))){
-			Food food = new Food();
+			Soldier food = new Soldier();
 			sobj.setFood(food);
 			sobj.setSourceFood(Integer.parseInt(request.getParameter("sourceFoodId")));
 			
@@ -315,7 +315,7 @@ public class Source {
 		sf.setSourceName(source.getSourceName());
 		
 		if(null != source.getFood()){
-			sf.setSourceFoodId((ObjectUtils.toString(source.getFood().getFoodId() ,"-1")));
+			sf.setSourceFoodId((ObjectUtils.toString(source.getFood().getSoldierId() ,"-1")));
 		}
 		
 		sf.setInputUserId( source.getInputUserId() == null ? null : String.valueOf(source.getInputUserId()));
@@ -345,7 +345,7 @@ public class Source {
 
 
 	public BigDecimal getSourcFoodPrice() {
-		return food.getFoodPrice();
+		return food.getSoldierPoint();
 	}
 
 	public void setSourceFoodPrice(BigDecimal sourceFoodPrice) {
@@ -363,22 +363,22 @@ public class Source {
 	
 	
 	//many to one
-	public Food getFood() {
+	public Soldier getFood() {
 		return food;
 	}
 
-	public void setFood(Food food) {
+	public void setFood(Soldier food) {
 		this.food = food;
 	}
 	
 	
 
 	public Integer getSourceFood() {
-		return food.getFoodId();
+		return food.getSoldierId();
 	}
 
 	public void setSourceFood(Integer sourceFood) {
-		this.food.setFoodId(sourceFood) ;
+		this.food.setSoldierId(sourceFood) ;
 	}
 
 	public void setSourceFoodCount(Integer sourceFoodCount) {
@@ -390,7 +390,7 @@ public class Source {
 	}
 
 	public String getSourceFoodName() {
-		return food.getFoodName();
+		return food.getSoldierName();
 	}
 	
 	public String getSourceFoodPriceString(){

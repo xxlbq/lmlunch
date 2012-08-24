@@ -11,8 +11,8 @@ import org.apache.struts.action.ActionForward;
 import org.apache.struts.action.ActionMapping;
 
 import com.livedoor.flow_manager.IConstant.ForwardMappingConstant;
-import com.livedoor.flow_manager.food.beans.Food;
-import com.livedoor.flow_manager.food.service.IFoodService;
+import com.livedoor.flow_manager.soldier.Soldier;
+import com.livedoor.flow_manager.soldier.SoldierService;
 import com.livedoor.flow_manager.sources.beans.Source;
 import com.livedoor.flow_manager.sources.form.SourceForm;
 import com.livedoor.flow_manager.sources.service.ISourceService;
@@ -21,15 +21,15 @@ import com.livedoor.flow_manager.user.beans.User;
 public class SourceAddAction extends Action{
 	
 	private ISourceService sourceService;
-	private IFoodService foodService;
+	private SoldierService foodService;
 	
 	
 	
-	public IFoodService getFoodService() {
+	public SoldierService getFoodService() {
 		return foodService;
 	}
 
-	public void setFoodService(IFoodService foodService) {
+	public void setFoodService(SoldierService foodService) {
 		this.foodService = foodService;
 	}
 
@@ -65,11 +65,11 @@ public class SourceAddAction extends Action{
 //		s.setSourceDoor(sf.getSourceDoor());
 		
 		s.setSourceName(sf.getSourceName());
-		s.setFood(new Food(Integer.valueOf(sf.getSourceFoodId())));
+		s.setFood(new Soldier(Integer.valueOf(sf.getSourceId())));
 		s.setSourceFoodCount(Integer.valueOf(sf.getSourceFoodCount()));
 		s.setSourceFoodPrice(
-				foodService.getFoodByFoodId(
-						Integer.valueOf(sf.getSourceFoodId())).getFoodPrice()); 
+				foodService.getSoldierBySoldierId(
+						Integer.valueOf(sf.getSourceFoodId())).getSoldierPoint()); 
 				
 		
 //		s.setSourceFather(Integer.valueOf(sf.getSourceFather()));

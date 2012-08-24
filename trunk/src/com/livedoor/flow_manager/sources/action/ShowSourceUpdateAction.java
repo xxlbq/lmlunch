@@ -10,8 +10,8 @@ import org.apache.struts.action.ActionForward;
 import org.apache.struts.action.ActionMapping;
 
 import com.livedoor.flow_manager.common.action.BaseAction;
-import com.livedoor.flow_manager.food.beans.Food;
-import com.livedoor.flow_manager.food.service.IFoodService;
+import com.livedoor.flow_manager.soldier.Soldier;
+import com.livedoor.flow_manager.soldier.SoldierService;
 import com.livedoor.flow_manager.sources.beans.Source;
 import com.livedoor.flow_manager.sources.form.SourceForm;
 import com.livedoor.flow_manager.sources.service.ISourceService;
@@ -20,9 +20,9 @@ import com.lm.common.util.str.StringCommonUtil;
 public class ShowSourceUpdateAction extends BaseAction{
 	
 	private ISourceService sourceService;
-	private IFoodService foodService;
+	private SoldierService foodService;
 
-	public void setFoodService(IFoodService foodService) {
+	public void setFoodService(SoldierService foodService) {
 		this.foodService = foodService;
 	}
 	public ISourceService getSourceService() {
@@ -45,12 +45,12 @@ public class ShowSourceUpdateAction extends BaseAction{
 		
 		if(null != updateSource){
 			
-			((SourceForm)form).setSourceFoodId(String.valueOf(updateSource.getFood().getFoodId()));
+			((SourceForm)form).setSourceFoodId(String.valueOf(updateSource.getFood().getSoldierId()));
 		}else{
 			updateSource = new Source();
 		}
 		
-		List<Food> foodList = foodService.queryAllFood();
+		List<Soldier> foodList = foodService.queryAllSoldier();
 		request.setAttribute("SOURCE_FOOD_OBJ", foodList);
 		
 		request.setAttribute("UPDATE_SOURCE_OBJECT", updateSource);
