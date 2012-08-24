@@ -257,7 +257,7 @@ public class SourceDAO extends GenericDAOHibernateImpl implements ISource {
 //				cr.add(Restrictions.like("sourceDesc", "%" + source.getSourceDesc()+ "%"));
 //
 			if (ObjectCommonUtil.isNotEmpty(source.getFood())
-					&& ObjectCommonUtil.isNotEmpty(source.getFood().getFoodId()) && source.getFood().getFoodId()>0)
+					&& ObjectCommonUtil.isNotEmpty(source.getFood().getSoldierId()) && source.getFood().getSoldierId()>0)
 				
 				cr.add(Restrictions.eq("food", source.getFood()));
 			
