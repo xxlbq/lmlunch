@@ -8,8 +8,14 @@
         </td>
  
     #end
-
+&nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp;
 <td>$user.role.roleName</td>
+&nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp;
+
 </tr>
 </table>
         

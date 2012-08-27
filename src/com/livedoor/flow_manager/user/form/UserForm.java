@@ -1,13 +1,17 @@
 package com.livedoor.flow_manager.user.form;
 
-public class UserForm {
+import org.apache.struts.action.ActionForm;
+
+public class UserForm extends ActionForm{
 //	 primary key
 	private java.lang.Integer id;
 
 	// fields
 	private java.lang.String userName;
 	private java.lang.String userPassword;
+	private String userPassword2; 
 	private java.lang.String userRole;
+	private java.lang.String userDisplayName;
 	private java.lang.String userPhoto;
 	private java.lang.String userEmail;
 	private java.lang.String userMsn;
@@ -19,6 +23,21 @@ public class UserForm {
 	private java.lang.Integer deletedFlag;
 	private java.lang.String userDesc;
 	
+	
+	
+	
+	public String getUserPassword2() {
+		return userPassword2;
+	}
+	public void setUserPassword2(String userPassword2) {
+		this.userPassword2 = userPassword2;
+	}
+	public java.lang.String getUserDisplayName() {
+		return userDisplayName;
+	}
+	public void setUserDisplayName(java.lang.String userDisplayName) {
+		this.userDisplayName = userDisplayName;
+	}
 	public java.lang.Integer getDeletedFlag() {
 		return deletedFlag;
 	}

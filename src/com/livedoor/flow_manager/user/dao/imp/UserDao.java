@@ -89,7 +89,7 @@ public class UserDao extends GenericDAOHibernateImpl implements IUser {
 
 	
 	@SuppressWarnings("unchecked")
-	public List<User> getUserByUserName(String userName) {
+	public List<User> getUserByUserNameLike(String userName) {
 		String hql = "from com.livedoor.flow_manager.user.beans.User as user where user.userName like ? and user.deletedFlag <> 1";
 		return query(hql, "%" + userName + "%");
 		
@@ -101,7 +101,13 @@ public class UserDao extends GenericDAOHibernateImpl implements IUser {
 		return query(hql, new String[]{userName,password});
 		
 	}
-
+	
+	@SuppressWarnings("unchecked")
+	public List<User> getUserByUserName(String userName) {
+		String hql = "from com.livedoor.flow_manager.user.beans.User as user where user.userName = ? and user.deletedFlag <> 1";
+		return query(hql, userName );
+		
+	}
 	
 
 	/**
