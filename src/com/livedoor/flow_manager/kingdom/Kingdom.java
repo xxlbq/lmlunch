@@ -4,7 +4,7 @@ import java.util.Date;
 
 public class Kingdom {
 	
-	int kingdomId;
+	Integer kingdomId;
 	String kingdomName;
 	String inputStaffId;
 	String updateStaffId;
@@ -22,16 +22,18 @@ public class Kingdom {
 		super();
 	}
 
-	public Kingdom(int kingdomId) {
+	public Kingdom(Integer kingdomId) {
 		super();
 		this.kingdomId = kingdomId;
 	}
 
-	public int getKingdomId() {
+
+
+	public Integer getKingdomId() {
 		return kingdomId;
 	}
 
-	public void setKingdomId(int kingdomId) {
+	public void setKingdomId(Integer kingdomId) {
 		this.kingdomId = kingdomId;
 	}
 

@@ -17,6 +17,7 @@ public class SoldierSourceForm extends ActionForm{
 	 */
 	private static final long serialVersionUID = 2733546925657151179L;
 	private String sourceId;
+	private Integer userId;
 	private String userName;
 	private int sourceSoldierId;
 	private int sourceSoliderCount;
@@ -33,6 +34,14 @@ public class SoldierSourceForm extends ActionForm{
 	private String userDisplayName;
 	
 	
+	public Integer getUserId() {
+		return userId;
+	}
+
+	public void setUserId(Integer userId) {
+		this.userId = userId;
+	}
+
 	public String getUserDisplayName() {
 		return userDisplayName;
 	}

@@ -1,26 +1,17 @@
 package com.livedoor.flow_manager.soldierSource;
 
-import java.lang.reflect.InvocationTargetException;
-import java.util.ArrayList;
 import java.util.List;
 
 import org.apache.log4j.Logger;
-import org.hibernate.Criteria;
 import org.hibernate.HibernateException;
-import org.hibernate.Session;
-import org.hibernate.criterion.DetachedCriteria;
-import org.springframework.dao.DataAccessException;
-import org.springframework.orm.hibernate3.HibernateCallback;
 
 import com.livedoor.flow_manager.group.beans.Group;
-import com.livedoor.flow_manager.sources.beans.Source;
 import com.livedoor.flow_manager.sources.exception.SourceException;
 import com.livedoor.flow_manager.tools.lbq.Page;
-import com.lm.common.util.obj.ObjectCommonUtil;
 
 public class SoldierSourceService implements ISoldierSourceService{
 
-	private final static Logger log = Logger.getLogger(SoldierSourceService.class);
+	private final static Logger LOGGER = Logger.getLogger(SoldierSourceService.class);
 	
 	private SoldierSourceDao soldierSourceDao;
 
@@ -35,7 +26,7 @@ public class SoldierSourceService implements ISoldierSourceService{
 		try {
 			soldierSourceDao.save(s);
 		} catch (Exception e){
-			log.error("",e);
+			LOGGER.error("",e);
 			throw new Exception("",e);
 		}	
 	}
@@ -44,7 +35,7 @@ public class SoldierSourceService implements ISoldierSourceService{
 		try {
 			soldierSourceDao.delete(s);
 		} catch (Exception e){
-			log.error("",e);
+			LOGGER.error("",e);
 			throw new Exception("",e);
 		}	
 	}
@@ -65,7 +56,7 @@ public class SoldierSourceService implements ISoldierSourceService{
 		try {
 			s = (SoldierSource)soldierSourceDao.get(SoldierSource.class, sid);
 		} catch (Exception e){
-			log.error("",e);
+			LOGGER.error("",e);
 			throw new Exception("",e);
 		}
 		return s;	
@@ -76,7 +67,7 @@ public class SoldierSourceService implements ISoldierSourceService{
 		try {
 			sList = soldierSourceDao.getSoldierSourceBySoldierSourceName(sname);
 		}  catch (Exception e){
-			log.error("",e);
+			LOGGER.error("",e);
 			throw new Exception("",e);
 		}
 		return sList;
@@ -89,7 +80,7 @@ public class SoldierSourceService implements ISoldierSourceService{
 			count= soldierSourceDao.getSoldierSourceCount();
 			
 		} catch (Exception e) {
-			log.error("",e);
+			LOGGER.error("",e);
 			throw new Exception("",e);
 		}
         return count;
@@ -102,14 +93,11 @@ public class SoldierSourceService implements ISoldierSourceService{
 		try {
 			count= soldierSourceDao.getSoldierSourceCount(soldierSource);
 			
-		} catch (DataAccessException he){
-			log.error("+++@_@+++[ DataAccessException In getSourceCount(source) method ]++++++",he);
-			throw new SourceException(1005,"getSourceCount(source) error! :"+he.getMessage());
 		} catch (Exception e) {
-			log.error("+++@_@+++[ Other Exception In getSourceCount(source) method ]++++++",e);
+			LOGGER.error("+++@_@+++[ Other Exception In getSourceCount(source) method ]++++++",e);
 			throw new SourceException(9999,"getSourceCount(source) error! :"+e.getMessage());
 		}
-
+		LOGGER.info("getSoldierSourceCount :"+count);
         return count;
     }
 	
@@ -122,7 +110,7 @@ public class SoldierSourceService implements ISoldierSourceService{
 			
 		
 		}catch (Exception e){
-			log.error("%%%@_@%%%[Other Exception In  getSourceListByCriteriaQuerySource(Source s,Page page) method ]%%%%%%%",e);
+			LOGGER.error("%%%@_@%%%[Other Exception In  getSourceListByCriteriaQuerySource(Source s,Page page) method ]%%%%%%%",e);
 			throw new SourceException(9999,"getSourceListByCriteriaQuerySource(Source s,Page page)  error! :"+e.getMessage());
 		}
 		
@@ -153,7 +141,7 @@ public class SoldierSourceService implements ISoldierSourceService{
 			sList= soldierSourceDao.queryAllSoldierSource();
 			
 		} catch (Exception e) {
-			log.error("",e);
+			LOGGER.error("",e);
 			throw new Exception("",e);
 		}
 		return sList;
@@ -175,7 +163,7 @@ public class SoldierSourceService implements ISoldierSourceService{
 		try {
 			soldierSourceDao.update(f);
 		} catch (Exception e){
-			log.error("",e);
+			LOGGER.error("",e);
 			throw new Exception("",e);		}	
 	}
 

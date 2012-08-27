@@ -5,7 +5,7 @@ import java.util.Date;
 
 public class Soldier {
 	
-	int soldierId;
+	Integer soldierId;
 	String soldierName;
 	BigDecimal soldierPoint;
 	String inputStaffId;
@@ -24,19 +24,20 @@ public class Soldier {
 		super();
 	}
 
-	public Soldier(int soldierId) {
+	public Soldier(Integer soldierId) {
 		super();
 		this.soldierId = soldierId;
 	}
 
-	public int getSoldierId() {
+
+
+	public Integer getSoldierId() {
 		return soldierId;
 	}
 
-	public void setSoldierId(int soldierId) {
+	public void setSoldierId(Integer soldierId) {
 		this.soldierId = soldierId;
 	}
-
 
 	public String getSoldierName() {
 		return soldierName;
