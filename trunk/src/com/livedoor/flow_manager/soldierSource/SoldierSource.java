@@ -19,7 +19,7 @@ public class SoldierSource{
 	private int sourceSoliderCount;
 	private Kingdom kingdom;
 	private BigDecimal sourceSoliderSumCount;
-	private int approved;
+	private Integer approved;
 	private String sourceDate;
 	private String inputStaffId;
 	private String updateStaffId;
@@ -84,11 +84,13 @@ public class SoldierSource{
 		this.sourceSoliderSumCount = sourceSoliderSumCount;
 	}
 
-	public int getApproved() {
+
+
+	public Integer getApproved() {
 		return approved;
 	}
 
-	public void setApproved(int approved) {
+	public void setApproved(Integer approved) {
 		this.approved = approved;
 	}
 

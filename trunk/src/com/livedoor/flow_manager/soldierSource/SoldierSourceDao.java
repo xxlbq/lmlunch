@@ -6,6 +6,7 @@ import java.util.Calendar;
 import java.util.List;
 
 import org.apache.commons.beanutils.BeanUtils;
+import org.apache.commons.lang.StringUtils;
 import org.apache.log4j.Logger;
 import org.hibernate.Criteria;
 import org.hibernate.HibernateException;
@@ -96,6 +97,26 @@ public class SoldierSourceDao extends GenericDAOHibernateImpl{
 	private boolean buildCriteriaFromSoldierSourceObject(Criteria cr,SoldierSource s){
 		try{
 		if ( !ObjectCommonUtil.isEmpty(s) ){
+			
+			if (ObjectCommonUtil.isNotEmpty(s.getUser().getUserId()) && s.getUser().getUserId() > 0 ){
+				cr.add(Restrictions.eq("user.userId", s.getUser().getUserId()));
+			}
+			
+			if(ObjectCommonUtil.isNotEmpty(s.getKingdom().getKingdomId()) && s.getKingdom().getKingdomId() > 0){
+				cr.add(Restrictions.eq("kingdom.kingdomId", s.getKingdom().getKingdomId()));
+			}
+			
+			if(ObjectCommonUtil.isNotEmpty(s.getSoldier().getSoldierId()) && s.getSoldier().getSoldierId() > 0){
+				cr.add(Restrictions.eq("soldier.soldierId", s.getSoldier().getSoldierId()));
+			}
+			
+			if(StringUtils.isNotEmpty(s.getSourceDate())){
+				cr.add(Restrictions.eq("sourceDate", s.getSourceDate()));
+			}
+			
+			if(ObjectCommonUtil.isNotEmpty(s.getApproved()) && s.getApproved() >=0 ){
+				cr.add(Restrictions.eq("approved", s.getApproved()));
+			}
 			
 //			if (StringCommonUtil.isNotEmpty(s.getSolderName())){
 //				cr.add(Restrictions.like("SoldierSourceName", "%" + s.getSolderName()+ "%"));

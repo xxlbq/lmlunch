@@ -1,7 +1,5 @@
 package com.livedoor.flow_manager.soldierSource.action;
 
-import java.math.BigDecimal;
-import java.util.Date;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -16,28 +14,20 @@ import org.apache.struts.actions.MappingDispatchAction;
 
 import com.livedoor.flow_manager.IConstant.AttributeKeyConstant;
 import com.livedoor.flow_manager.IConstant.PageConstant;
-import com.livedoor.flow_manager.common.info.MessageInfo;
-import com.livedoor.flow_manager.enums.ActiveEnum;
-import com.livedoor.flow_manager.enums.ApproveEnum;
 import com.livedoor.flow_manager.kingdom.IKingdomService;
 import com.livedoor.flow_manager.kingdom.Kingdom;
+import com.livedoor.flow_manager.role.RoleUtil;
 import com.livedoor.flow_manager.soldier.ISoldierService;
 import com.livedoor.flow_manager.soldier.Soldier;
 import com.livedoor.flow_manager.soldierSource.ISoldierSourceService;
 import com.livedoor.flow_manager.soldierSource.SoldierSource;
 import com.livedoor.flow_manager.soldierSource.SoldierSourceUtil;
 import com.livedoor.flow_manager.soldierSource.form.SoldierSourceForm;
-import com.livedoor.flow_manager.sources.beans.Source;
-import com.livedoor.flow_manager.sources.form.SourceForm;
-import com.livedoor.flow_manager.tools.DateUtil;
-import com.livedoor.flow_manager.tools.GetDate;
-import com.livedoor.flow_manager.tools.UUIDGenerator;
 import com.livedoor.flow_manager.tools.lbq.Page;
 import com.livedoor.flow_manager.tools.lbq.PageFactory;
 import com.livedoor.flow_manager.tools.lbq.PageTemplate;
 import com.livedoor.flow_manager.user.beans.User;
 import com.livedoor.flow_manager.user.service.IUserService;
-import com.lm.common.util.str.StringCommonUtil;
 
 public class SoldierSourceQueryAction extends MappingDispatchAction{
 	
@@ -46,7 +36,13 @@ public class SoldierSourceQueryAction extends MappingDispatchAction{
 	private ISoldierService soldierService;
 	private IKingdomService kingdomService ;
 	private ISoldierSourceService soldierSourceService;
+	private IUserService userService;
 
+	
+	
+	public void setUserService(IUserService userService) {
+		this.userService = userService;
+	}
 
 	public void setSoldierService(ISoldierService soldierService) {
 		this.soldierService = soldierService;
@@ -151,9 +147,12 @@ public class SoldierSourceQueryAction extends MappingDispatchAction{
 		/*  pageInfo Object */
 //		SourcePageInfoBean sp = getSourceManager()
 //									.getSourcePageInfoBeanByCriteriaQuerySource(criteriaSource, PageConstant.SOURCE_INIT_PAGE_NUMBER);
-		
-		User user = (User)request.getSession().getAttribute(AttributeKeyConstant.USER_INFO_KEY);
-		SoldierSource ss = SoldierSourceUtil.toSoldierSource(sf, user);
+
+		User user = userService.getUniqueUserByUserName(sf.getUserName());
+		if(null == user){
+			throw new Exception("there is no user ["+sf.getUserName()+"] in db . error fire !");
+		}
+		SoldierSource ss = SoldierSourceUtil.toSoldierSource4Query(sf, user);
 		
 		int pageNo = Integer.parseInt(request.getParameter("pageNo")== null ? "1" : request.getParameter("pageNo"));
 		int recordsCount = soldierSourceService.getSoldierSourceCount(ss);
@@ -161,6 +160,7 @@ public class SoldierSourceQueryAction extends MappingDispatchAction{
 		List<SoldierSource> list = soldierSourceService.getSourceListByCriteriaQuerySource(ss, p);
 		
 		PageTemplate sp = new PageTemplate(p,list);
+		sf.setUserId(user.getUserId());
 		request.setAttribute(PageConstant.SOURCE_QUERY_OBJECT_KEY, sf);
 		request.setAttribute(PageConstant.PAGER_VIEW_KEY, sp);
 

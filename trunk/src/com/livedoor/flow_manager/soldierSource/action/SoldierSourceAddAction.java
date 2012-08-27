@@ -83,7 +83,7 @@ public class SoldierSourceAddAction extends MappingDispatchAction{
 		LOGGER.info(" SoldierSourceAddAction add ---> ");
 		SoldierSourceForm ssf = (SoldierSourceForm)form ;
 		User user = (User)request.getSession().getAttribute(AttributeKeyConstant.USER_INFO_KEY);
-		SoldierSource s = SoldierSourceUtil.toSoldierSource(ssf,user);
+		SoldierSource s = SoldierSourceUtil.toSoldierSource4Add(ssf,user);
 		soldierSourceService.addSoldierSource(s);
 		
 		MessageInfo info = new MessageInfo();

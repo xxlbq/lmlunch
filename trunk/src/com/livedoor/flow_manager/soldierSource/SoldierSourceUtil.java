@@ -17,7 +17,7 @@ import com.livedoor.flow_manager.user.beans.User;
 public class SoldierSourceUtil {
 	private static Logger  LOGGER = Logger.getLogger(SoldierSourceUtil.class);
 	
-	public static SoldierSource toSoldierSource(SoldierSourceForm ssf, User user) {
+	public static SoldierSource toSoldierSource4Add(SoldierSourceForm ssf, User user) {
 		LOGGER.info("SoldierSourceForm :"+ssf);
 		SoldierSource ss = new SoldierSource();
 		Date d = new Date();
@@ -29,6 +29,29 @@ public class SoldierSourceUtil {
 		ss.setSourceSoliderSumCount(BigDecimal.ZERO);
 		ss.setApproved(ApproveEnum.UNAPPROVE.getValue());
 		ss.setSourceDate(DateUtil.getCurrentSaturday());
+		ss.setInputStaffId(user.getUserDisplayName());
+		ss.setUpdateStaffId(user.getUserDisplayName());
+		ss.setInputDate(d);
+		ss.setUpdateDate(d);
+		ss.setActiveFlag(ActiveEnum.ACTIVE.getValue());
+		LOGGER.info("SoldierSource :"+ss);
+		return ss;
+	}
+	
+	
+	public static SoldierSource toSoldierSource4Query(SoldierSourceForm ssf, User user) {
+		LOGGER.info("SoldierSourceForm :"+ssf);
+		SoldierSource ss = new SoldierSource();
+		Date d = new Date();
+		ss.setSourceId(UUIDGenerator.getUUID());
+		ss.setUser(user);
+		ss.setSoldier(SoldierUtil.toSoldier(ssf.getSourceSoldierId()));
+		ss.setSourceSoliderCount(ssf.getSourceSoliderCount());
+		ss.setKingdom(KingdomUtil.toKingdom(ssf.getKingdomId()));
+		ss.setSourceSoliderSumCount(BigDecimal.ZERO);
+		ss.setApproved(ssf.getApproved());
+		ss.setSourceDate(ssf.getSourceDate());
+		
 		ss.setInputStaffId(user.getUserDisplayName());
 		ss.setUpdateStaffId(user.getUserDisplayName());
 		ss.setInputDate(d);
