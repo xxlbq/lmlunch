@@ -39,6 +39,9 @@
 				scope="request" input="/login.jsp">
 			<forward name="successes" path="/index.do" />
 		</action>
+		<action path="/reg"
+			type="org.apache.struts.actions.ForwardAction"
+			parameter="/WEB-INF/jsp/member/member_add.jsp"/>
 		
 		<!-- forward to frame page -->
 		<action path="/index"

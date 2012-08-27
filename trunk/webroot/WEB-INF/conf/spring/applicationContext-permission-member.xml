@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN" "http://www.springframework.org/dtd/spring-beans.dtd">
+<beans>
+
+	
+	<bean name="/member_add"
+		class="com.livedoor.flow_manager.user.action.UserAddAction">
+<!--		<property name="soldierService">-->
+<!--			<ref bean="soldierService" />-->
+<!--		</property>-->
+<!--		<property name="soldierSourceService">-->
+<!--			<ref bean="soldierSourceService" />-->
+<!--		</property>-->
+<!--		<property name="kingdomService">-->
+<!--			<ref bean="kingdomService" />-->
+<!--		</property>-->
+	</bean>
+	
+</beans>
