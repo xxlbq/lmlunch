@@ -111,8 +111,14 @@ td {
 							<td bgcolor="#5F52A0" align="right"><strong><font color="#ffffff">·¢±ø»áÔ±ID</font></strong></td>
 							<td bgcolor="#B2BECE">
 								<logic:present name="USER_INFO" scope="request">
+								<logic:equal name="USER_INFO" property="role.roleId" value="1">
+									<html:text  maxlength="30" name="USER_INFO" property="userName" size="20" />
+								</logic:equal>						
+								<logic:equal name="USER_INFO" property="role.roleId" value="0">
 									<bean:write name="USER_INFO" property="userName"/>
-								</logic:present> 
+								</logic:equal>
+								</logic:present>
+								 
 							</td>
 						</tr>
 						<tr>
@@ -181,6 +187,7 @@ td {
 
 			</table>
 			</td>
+			
 	</tr>
 </table>
 

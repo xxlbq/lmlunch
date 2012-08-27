@@ -59,12 +59,12 @@ td{font-size:10pt;}
 								<strong><font color="#ffffff">发兵会员ID</font></strong></td>
 							<td bgcolor="#B2BECE">
 							
-								<logic:notEqual name="USER_INFO" property="userRole" value="1">
-									<bean:write name="USER_INFO" property="userName"/>
-								</logic:notEqual>
-								<logic:equal name="USER_INFO" property="userRole" value="1">
+								<logic:equal name="USER_INFO" property="role.roleId" value="1">
 									<html:text  maxlength="30" name="USER_INFO" property="userName" size="20" />
 								</logic:equal>						
+								<logic:equal name="USER_INFO" property="role.roleId" value="0">
+									<bean:write name="USER_INFO" property="userName"/>
+								</logic:equal>
 							
 							</td>
 						</tr>
@@ -106,7 +106,7 @@ td{font-size:10pt;}
 							<td bgcolor="#B2BECE">
 								
 								<html:select property="approved" style="width=162;" >
-									<option value="">请选择</option>
+									<option value="-1">请选择</option>
 									<option value="1">已审批</option>
 									<option value="0">未审批</option>
 								</html:select>
@@ -152,7 +152,7 @@ td{font-size:10pt;}
 	
 	<%-- ================================ --%>
 	
-		<form name="middleform">
+		<form name="source_soldier_approve.do">
 	
 		<div>
 		<input type="hidden"  name="ec_i"  value="ec" />
@@ -180,7 +180,7 @@ td{font-size:10pt;}
 	
 	
 		<tr>
-			<td bgcolor="#5F52A0" nowrap  width="50"><strong><font color="#ffffff"><input type="checkbox" name="allchecked" onclick="checkedAll()"></font></strong></td>
+			<td bgcolor="#5F52A0" nowrap  width="50"><strong><font color="#ffffff"><input type="checkbox" name="allchecked" onclick="checkedAll()">审批</font></strong></td>
 			<td bgcolor="#5F52A0" nowrap  width="100"><strong><font color="#ffffff">会员君主名称</font></strong></td>
 			<td bgcolor="#5F52A0" nowrap  width="90"><strong><font color="#ffffff">发兵国家</font></strong></td>
 			<td bgcolor="#5F52A0" nowrap  width="100"><strong><font color="#ffffff">发兵种类</font></strong></td>
@@ -192,7 +192,16 @@ td{font-size:10pt;}
 		<logic:present name="pageTemplate" >
 			<logic:iterate name="pageTemplate" property="items" id="source">
 			<tr>
-				<td bgcolor="#B2BECE"><input type="checkbox" name="sId" value='<bean:write name="source" property="sourceId" />'/></td>
+
+				<td bgcolor="#B2BECE">
+					
+					<logic:equal name="source" property="approved" value="1">
+						<font color="#111010">已审</font>
+					</logic:equal>
+					<logic:equal name="source" property="approved" value="0">
+						<input type="checkbox" name="sId" value='<bean:write name="source" property="sourceId" />'/>
+					</logic:equal>
+				</td>
 				<td bgcolor="#B2BECE"><bean:write name="source" property="user.userDisplayName" /></td>
 				<td bgcolor="#B2BECE"><bean:write name="source" property="kingdom.kingdomName"/></td>
 				<td bgcolor="#B2BECE"><bean:write name="source" property="soldier.soldierName"/></td>
@@ -279,23 +288,19 @@ style="margin-top:10px; margin-bottom:15px;" width="800">
 	<%-- ================================== --%>
 	  	
 	  <pg:param id="lu" scope="request" 
-	  name="<%=PageConstant.SOURCE_QUERY_OBJECT_KEY%>" property="sourceName"/>
+	  name="<%=PageConstant.SOURCE_QUERY_OBJECT_KEY%>" property="userName"/>
 	  
 	  <pg:param id="lu" scope="request" 
-	  name="<%=PageConstant.SOURCE_QUERY_OBJECT_KEY%>" property="sourceFoodId"/>
+	  name="<%=PageConstant.SOURCE_QUERY_OBJECT_KEY%>" property="kingdomId"/>
 		
 	  <pg:param id="lu" scope="request" 
-	  name="<%=PageConstant.SOURCE_QUERY_OBJECT_KEY%>" property="inputUserId"/>
+	  name="<%=PageConstant.SOURCE_QUERY_OBJECT_KEY%>" property="sourceSoldierId"/>
 		
 	  <pg:param id="lu" scope="request" 
-	  name="<%=PageConstant.SOURCE_QUERY_OBJECT_KEY%>" property="inputeDatetime"/>
+	  name="<%=PageConstant.SOURCE_QUERY_OBJECT_KEY%>" property="sourceDate"/>
 		
 	  <pg:param id="lu" scope="request" 
-	  name="<%=PageConstant.SOURCE_QUERY_OBJECT_KEY%>" property="updateUserId"/>
-		
-	  <pg:param id="lu" scope="request" 
-	  name="<%=PageConstant.SOURCE_QUERY_OBJECT_KEY%>" property="updateDatetime"/>
-	  
+	  name="<%=PageConstant.SOURCE_QUERY_OBJECT_KEY%>" property="approved"/>
   	 
 	<!-- It's necessary for this hidden component ,example: 50~60 display ,offset=50 -->  
 	<input type="hidden" name="lu.offset" value="<%= offset %>">

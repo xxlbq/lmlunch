@@ -55,7 +55,9 @@
 		<property name="kingdomService">
 			<ref bean="kingdomService" />
 		</property>
-
+		<property name="userService">
+			<ref bean="userService" />
+		</property>
 	</bean>
 	
 	

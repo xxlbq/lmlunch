@@ -7,13 +7,23 @@
 <struts-config>
 
 	
+	<form-beans>
+		<form-bean name="memberForm"
+			type="com.livedoor.flow_manager.user.form.UserForm">
+		</form-bean>
+	</form-beans>
+	
+	
 	<action-mappings>
 
-<!--		<action path="/soldier_add"-->
-<!--			type="org.apache.struts.actions.ForwardAction"-->
-<!--			parameter="/WEB-INF/jsp/demo/soldier_add.jsp"/>-->
-		
-	
+
+		<action   path="/member_add" name="memberForm"  scope="request" parameter="add">
+		    <forward  name="success" path="/reg_success.jsp" />
+		</action>
+
+			
+			
+			
 	</action-mappings>
 
 	
