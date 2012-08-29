@@ -161,7 +161,6 @@ public class User implements Serializable, Comparable ,UserDetails {
 	// fields
 	private java.lang.String userName;
 	private java.lang.String userPassword;
-	private int userRole;
 	private java.lang.String userDisplayName;
 	private java.lang.String userPhoto;
 	private java.lang.String userEmail;
