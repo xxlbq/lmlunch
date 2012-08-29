@@ -8,6 +8,7 @@ import java.util.Properties;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.jsp.JspException;
 
+import org.apache.log4j.Logger;
 import org.apache.velocity.Template;
 import org.apache.velocity.VelocityContext;
 import org.apache.velocity.app.VelocityEngine;
@@ -17,6 +18,7 @@ import org.springframework.web.context.support.WebApplicationContextUtils;
 import com.livedoor.flow_manager.IConstant.AttributeKeyConstant;
 import com.livedoor.flow_manager.role.dao.RoleDao;
 import com.livedoor.flow_manager.roleAction.beans.RoleAction;
+import com.livedoor.flow_manager.user.action.UserAddAction;
 import com.livedoor.flow_manager.user.beans.User;
 
 //import cn.bestwiz.jhf.admin.authority.service.CsMenuService;
@@ -34,6 +36,7 @@ import com.livedoor.flow_manager.user.beans.User;
  */
 public class AuthMenuTag extends javax.servlet.jsp.tagext.BodyTagSupport {
 
+	private static Logger  LOGGER = Logger.getLogger(AuthMenuTag.class);
 	/**
 	 * 
 	 */
@@ -93,9 +96,14 @@ public class AuthMenuTag extends javax.servlet.jsp.tagext.BodyTagSupport {
 			//                StringBuffer output = this.buildOutputHtml(webpath, groupId,uri);
 			//                pageContext.getOut().print(output.toString());
 			//            }
-
-			StringBuffer output = this.buildOutputHtml(uri);
-			pageContext.getOut().print(output.toString());
+			if(!uri.equals("member_add.do")
+					&&  !uri.equals("reg.do")){
+				
+				StringBuffer output = this.buildOutputHtml(uri);
+				pageContext.getOut().print(output.toString());
+			}else{
+				LOGGER.info("reg page redirect to home page. not display menu page.");
+			}
 
 		} catch (Exception e) {
 			throw new JspException("AuthMenuTag eroror : ", e);

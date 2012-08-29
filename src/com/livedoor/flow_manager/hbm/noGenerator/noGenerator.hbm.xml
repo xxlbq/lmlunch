@@ -1,0 +1,32 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+    <class name="com.livedoor.flow_manager.noGenerator.NoGenerator" table="t_no_generator" >
+        <comment></comment>
+        <id name="noType" type="string">
+            <column name="NO_TYPE" length="4" />
+            <generator class="assigned" />
+        </id>
+        <property name="noCount" type="java.lang.Integer">
+            <column name="NO_COUNT" >
+            </column>
+        </property>
+        <property name="activeFlag" type="java.lang.Integer">
+            <column name="ACTIVE_FLAG" >
+                <comment></comment>
+            </column>
+        </property>
+        <property name="inputDate" type="timestamp">
+            <column name="INPUT_DATE" length="19">
+                <comment></comment>
+            </column>
+        </property>
+        <property name="updateDate" type="timestamp">
+            <column name="UPDATE_DATE" length="19" not-null="true">
+                <comment></comment>
+            </column>
+        </property>
+    </class>
+</hibernate-mapping>
