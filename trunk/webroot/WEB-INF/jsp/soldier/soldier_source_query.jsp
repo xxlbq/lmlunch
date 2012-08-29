@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=gb2312"%>
 <%@ page import="com.livedoor.flow_manager.IConstant.PageConstant"%>
 <%@ page import="com.livedoor.flow_manager.enums.RoleEnum"%>
+<%@ page import="com.livedoor.flow_manager.IConstant.AttributeKeyConstant"%>
 <%@ include file="/common/taglibs.jsp" %>
 <%@ include file="/common/meta.jsp" %>
 
@@ -59,12 +60,12 @@ td{font-size:10pt;}
 								<strong><font color="#ffffff">·¢±ø»áÔ±ID</font></strong></td>
 							<td bgcolor="#B2BECE">
 							
-								<logic:equal name="USER_INFO" property="role.roleId" value="1">
+								<logic:lessEqual name="<%=AttributeKeyConstant.USER_INFO_KEY %>" scope="session" property="role.roleId" value="1">
 									<html:text  maxlength="30" name="USER_INFO" property="userName" size="20" />
-								</logic:equal>						
-								<logic:equal name="USER_INFO" property="role.roleId" value="0">
+								</logic:lessEqual>						
+								<logic:greaterThan name="<%=AttributeKeyConstant.USER_INFO_KEY %>" scope="session" property="role.roleId" value="1">
 									<bean:write name="USER_INFO" property="userName"/>
-								</logic:equal>
+								</logic:greaterThan>
 							
 							</td>
 						</tr>

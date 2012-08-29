@@ -8,6 +8,7 @@
 	<import resource="/applicationContext-permission-source.xml" />
 	<import resource="/applicationContext-permission-user.xml" />
 	<import resource="/applicationContext-permission-soldier.xml" />
+	<import resource="/applicationContext-permission-member.xml" />
 	<import resource="/applicationContext-permission-acegi.xml" />
 	<import resource="/applicationContext-permission-other.xml" />
 	<import resource="/applicationContext-permission-action-login.xml" />
@@ -69,6 +70,7 @@
 				<value>classpath:/com/livedoor/flow_manager/hbm/soldier</value>
 				<value>classpath:/com/livedoor/flow_manager/hbm/kingdom</value>
 				<value>classpath:/com/livedoor/flow_manager/hbm/soldierSource</value>
+				<value>classpath:/com/livedoor/flow_manager/hbm/noGenerator</value>
 				<value>classpath:/com/livedoor/flow_manager/hbm/user</value>
 				<value>classpath:/com/livedoor/flow_manager/hbm/role</value>
 				<value>classpath:/com/livedoor/flow_manager/hbm/cash</value>
@@ -182,7 +184,15 @@
 		<property name="hibernateTemplate" ref="hibernateTemplate" />
 	</bean>
 	
-
+	<bean id="noGeneratorService"
+		class="com.livedoor.flow_manager.noGenerator.NoGeneratorService">
+		<property name="noGeneratorDao" ref="noGeneratorDao" />
+	</bean>
+	
+	<bean id="noGeneratorDao"
+		class="com.livedoor.flow_manager.noGenerator.NoGeneratorDao">
+		<property name="hibernateTemplate" ref="hibernateTemplate" />
+	</bean>
 
 
 
@@ -263,7 +273,8 @@
 		<property name="transactionAttributes">
 			<props>
 				<prop key="add*">PROPAGATION_REQUIRED,-com.livedoor.flow_manager.sources.exception.SourceException</prop>
-				<prop key="get*">PROPAGATION_REQUIRED,readOnly</prop>
+<!--				<prop key="get*">PROPAGATION_REQUIRED,readOnly</prop>-->
+				<prop key="get*">PROPAGATION_REQUIRED</prop>
 				<prop key="query*">PROPAGATION_REQUIRED,readOnly</prop>
 			</props>
 		</property>
