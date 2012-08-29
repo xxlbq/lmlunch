@@ -87,7 +87,6 @@ public class SoldierSourceQueryAction extends MappingDispatchAction{
 		
 		LOGGER.info(this.clazz.getName() + " query   ->");
 		
-		User user=(User)request.getSession().getAttribute(AttributeKeyConstant.USER_INFO_KEY);
 		SoldierSourceForm sf = (SoldierSourceForm)form;
 		
 		ActionMessages aMsgs = sf.validateSourceForm();

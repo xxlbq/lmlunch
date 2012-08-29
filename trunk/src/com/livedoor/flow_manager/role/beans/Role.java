@@ -15,6 +15,24 @@ public class Role implements Serializable{
 
 	private Integer deletedFlag ;
 
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	private Role() {
+		super();
+	}
+
+	public Role(Integer roleId) {
+		super();
+		this.roleId = roleId;
+	}
+
 	public Integer getDeletedFlag() {
 		return deletedFlag;
 	}

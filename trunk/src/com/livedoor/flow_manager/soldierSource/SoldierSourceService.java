@@ -24,7 +24,7 @@ public class SoldierSourceService implements ISoldierSourceService{
 	
 	public void addSoldierSource(SoldierSource s) throws Exception {
 		try {
-			soldierSourceDao.save(s);
+			soldierSourceDao.addSoldierSource(s);
 		} catch (Exception e){
 			LOGGER.error("",e);
 			throw new Exception("",e);

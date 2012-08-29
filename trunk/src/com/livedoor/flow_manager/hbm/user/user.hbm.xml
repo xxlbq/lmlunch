@@ -10,7 +10,7 @@
 		<id column="USER_ID"
 			name="userId"
 			type="java.lang.Integer">
-			<generator class="identity" />
+			<generator class="increment" />
 		</id>
 		
 		<property

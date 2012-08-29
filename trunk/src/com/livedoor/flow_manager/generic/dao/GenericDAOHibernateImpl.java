@@ -6,6 +6,7 @@ import java.util.List;
 import org.hibernate.Criteria;
 import org.hibernate.HibernateException;
 import org.hibernate.LockMode;
+import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.criterion.DetachedCriteria;
 import org.hibernate.criterion.Projections;
@@ -91,17 +92,15 @@ public class GenericDAOHibernateImpl
 
 	           public Object doInHibernate(Session session)throws HibernateException{
 
-	              session.createQuery(tempsql).executeUpdate();
-
-	              return session.createQuery(tempsql).executeUpdate();
-
+	        	   Query q = session.createSQLQuery(tempsql) ;
+	        	   return q.executeUpdate();
 	           }
 
 	       });
 
 	    }
 
-	public static List queryWithSQL(HibernateTemplate hibernateTemplate,String sql){
+	public static List queryWithHQL(HibernateTemplate hibernateTemplate,String sql){
 
 	       final String tempsql = sql;
 
