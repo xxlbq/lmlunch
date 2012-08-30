@@ -6,12 +6,19 @@
 
 <struts-config>
 
-	
+	<form-beans>
+		<form-bean name="gemSourceForm"
+			type="com.livedoor.flow_manager.gemSource.form.GemSourceForm">
+		</form-bean>
+	</form-beans>
 	<action-mappings>
 
-<!--		<action path="/soldier_add"-->
-<!--			type="org.apache.struts.actions.ForwardAction"-->
-<!--			parameter="/WEB-INF/jsp/demo/soldier_add.jsp"/>-->
+		<action   path="/gem_source_add_display"  scope="request" parameter="display">
+		    <forward  name="success" path="/WEB-INF/jsp/gem/gem_source_add.jsp" />
+		</action>
+		<action   path="/gem_source_add"  name="gemSourceForm" scope="request" parameter="add">
+		    <forward  name="success" path="/WEB-INF/jsp/gem/gem_source_add.jsp" />
+		</action>
 		
 	
 	</action-mappings>

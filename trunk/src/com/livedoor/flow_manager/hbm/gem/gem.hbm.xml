@@ -1,0 +1,40 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+	"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+	"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+
+	<class name="com.livedoor.flow_manager.gem.Gem"
+		table="t_gem">
+		<cache usage="read-write" region="com.livedoor.flow_manager.common.cacheTemplate"/>
+		
+		<id name="gemId" type="java.lang.Integer" column="GEM_ID" >
+			<generator class="identity" />
+		</id>
+		<property name="gemDisplayName" column="GEM_DISPLAY_NAME"
+			type="java.lang.String">
+		</property>
+
+		<property name="gemPoint" column="GEM_POINT"
+			type="java.math.BigDecimal">
+		</property>
+		
+		<property name="inputStaffId" column="INPUT_STAFF_ID"
+			type="java.lang.String">
+		</property>
+		<property name="updateStaffId" column="UPDATE_STAFF_ID"
+			type="java.lang.String">
+		</property>
+		
+		<property name="inputDate" column="INPUT_DATE"
+			type="java.util.Date">
+		</property>
+		<property name="updateDate" column="UPDATE_DATE"
+			type="java.util.Date">
+		</property>
+		<property name="activeFlag" column="ACTIVE_FLAG"
+			type="java.lang.Integer">
+		</property>
+	</class>
+
+</hibernate-mapping>

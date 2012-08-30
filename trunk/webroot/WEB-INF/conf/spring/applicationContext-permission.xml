@@ -9,6 +9,7 @@
 	<import resource="/applicationContext-permission-user.xml" />
 	<import resource="/applicationContext-permission-soldier.xml" />
 	<import resource="/applicationContext-permission-member.xml" />
+	<import resource="/applicationContext-permission-gem.xml" />
 	<import resource="/applicationContext-permission-acegi.xml" />
 	<import resource="/applicationContext-permission-other.xml" />
 	<import resource="/applicationContext-permission-action-login.xml" />
@@ -69,6 +70,7 @@
 				<value>classpath:/com/livedoor/flow_manager/hbm/source</value>
 				<value>classpath:/com/livedoor/flow_manager/hbm/soldier</value>
 				<value>classpath:/com/livedoor/flow_manager/hbm/kingdom</value>
+				<value>classpath:/com/livedoor/flow_manager/hbm/gem</value>
 				<value>classpath:/com/livedoor/flow_manager/hbm/soldierSource</value>
 				<value>classpath:/com/livedoor/flow_manager/hbm/noGenerator</value>
 				<value>classpath:/com/livedoor/flow_manager/hbm/user</value>
@@ -151,9 +153,9 @@
 
 
 
-	<!-- for   soldier   -->
 
 
+<!--	1-->
 	<bean id="soldierService"
 		class="com.livedoor.flow_manager.soldier.SoldierService">
 		<property name="soldierDao" ref="soldierDao" />
@@ -163,7 +165,7 @@
 		class="com.livedoor.flow_manager.soldier.SoldierDao">
 		<property name="hibernateTemplate" ref="hibernateTemplate" />
 	</bean>
-	
+<!--	2-->
 	<bean id="kingdomService"
 		class="com.livedoor.flow_manager.kingdom.KingdomService">
 		<property name="kingdomDao" ref="kingdomDao" />
@@ -173,24 +175,49 @@
 		class="com.livedoor.flow_manager.kingdom.KingdomDao">
 		<property name="hibernateTemplate" ref="hibernateTemplate" />
 	</bean>
+<!--	3-->
+	<bean id="gemService"
+		class="com.livedoor.flow_manager.gem.GemService">
+		<property name="gemDao" ref="gemDao" />
+	</bean>
+	
+	<bean id="gemDao"
+		class="com.livedoor.flow_manager.gem.GemDao">
+		<property name="hibernateTemplate" ref="hibernateTemplate" />
+	</bean>
+	
+	
+	
+	
+	
+	
 	
 	<bean id="soldierSourceService"
 		class="com.livedoor.flow_manager.soldierSource.SoldierSourceService">
 		<property name="soldierSourceDao" ref="soldierSourceDao" />
 	</bean>
-	
 	<bean id="soldierSourceDao"
 		class="com.livedoor.flow_manager.soldierSource.SoldierSourceDao">
 		<property name="hibernateTemplate" ref="hibernateTemplate" />
 	</bean>
 	
+	
 	<bean id="noGeneratorService"
 		class="com.livedoor.flow_manager.noGenerator.NoGeneratorService">
 		<property name="noGeneratorDao" ref="noGeneratorDao" />
 	</bean>
-	
 	<bean id="noGeneratorDao"
 		class="com.livedoor.flow_manager.noGenerator.NoGeneratorDao">
+		<property name="hibernateTemplate" ref="hibernateTemplate" />
+	</bean>
+
+
+	<bean id="gemSourceService"
+		class="com.livedoor.flow_manager.gemSource.GemSourceService">
+		<property name="gemSourceDao" ref="gemSourceDao" />
+	</bean>
+	<bean id="gemSourceDao"
+		class="com.livedoor.flow_manager.gemSource.GemSourceDao">
 		<property name="hibernateTemplate" ref="hibernateTemplate" />
 	</bean>
 

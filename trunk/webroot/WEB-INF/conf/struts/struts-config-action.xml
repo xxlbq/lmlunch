@@ -34,13 +34,27 @@
 			parameter="/WEB-INF/jsp/demo/lubq_animal2.jsp"/>
 			
 
+
+
+
+		<action path="/soldier"
+			type="org.apache.struts.actions.ForwardAction"
+			parameter="/WEB-INF/jsp/msg.jsp"/>
+
+		<action path="/gem"
+			type="org.apache.struts.actions.ForwardAction"
+			parameter="/WEB-INF/jsp/msg.jsp"/>		
+
+
+
+
+
+
+
 			
 		<action path="/boy"
 			type="org.apache.struts.actions.ForwardAction"
 			parameter="/WEB-INF/jsp/demo/lubq_jack.jsp"/>
-		<action path="/soldier"
-			type="org.apache.struts.actions.ForwardAction"
-			parameter="/WEB-INF/jsp/msg.jsp"/>
 			
 		<action path="/girl"
 			type="org.apache.struts.actions.ForwardAction"
@@ -50,9 +64,6 @@
 			type="org.apache.struts.actions.ForwardAction"
 			parameter="/WEB-INF/jsp/demo/lubq_rose.jsp"/>	
 		
-		<action path="/gem"
-			type="org.apache.struts.actions.ForwardAction"
-			parameter="/WEB-INF/jsp/demo/lubq_rose.jsp"/>		
 		
 		<!--================================-->
 		<!--======        管理        =======-->

@@ -65,6 +65,7 @@ td{font-size:10pt;}
 								</logic:lessEqual>						
 								<logic:greaterThan name="<%=AttributeKeyConstant.USER_INFO_KEY %>" scope="session" property="role.roleId" value="1">
 									<bean:write name="USER_INFO" property="userName"/>
+									<html:hidden name="USER_INFO" property="userName"></html:hidden>
 								</logic:greaterThan>
 							
 							</td>

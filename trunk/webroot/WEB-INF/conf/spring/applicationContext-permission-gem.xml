@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN" "http://www.springframework.org/dtd/spring-beans.dtd">
+<beans>
+
+	<bean name="/gem_source_add_display"
+		class="com.livedoor.flow_manager.gemSource.action.GemSourceAddAction">
+		<property name="userService">
+			<ref bean="userService" />
+		</property>
+		<property name="gemService">
+			<ref bean="gemService" />
+		</property>
+		<property name="kingdomService">
+			<ref bean="kingdomService" />
+		</property>
+		<property name="gemSourceService">
+			<ref bean="gemSourceService" />
+		</property>
+	</bean>
+	
+	
+	<bean name="/gem_source_add"
+		class="com.livedoor.flow_manager.user.action.UserAddAction">
+		<property name="userService">
+			<ref bean="userService" />
+		</property>
+		<property name="noGeneratorService">
+			<ref bean="noGeneratorService" />
+		</property>
+
+	</bean>
+	
+</beans>
