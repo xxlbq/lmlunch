@@ -1,0 +1,218 @@
+package com.livedoor.flow_manager.gemSource;
+
+import java.lang.reflect.InvocationTargetException;
+import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.List;
+
+import org.apache.commons.beanutils.BeanUtils;
+import org.apache.commons.lang.StringUtils;
+import org.apache.log4j.Logger;
+import org.hibernate.Criteria;
+import org.hibernate.HibernateException;
+import org.hibernate.Query;
+import org.hibernate.Session;
+import org.hibernate.criterion.DetachedCriteria;
+import org.hibernate.criterion.Projections;
+import org.hibernate.criterion.Restrictions;
+import org.springframework.orm.hibernate3.HibernateCallback;
+
+import com.livedoor.flow_manager.generic.dao.GenericDAOHibernateImpl;
+import com.livedoor.flow_manager.sources.beans.Source;
+import com.livedoor.flow_manager.tools.lbq.Page;
+import com.lm.common.util.obj.ObjectCommonUtil;
+import com.lm.common.util.str.StringCommonUtil;
+
+public class GemSourceDao extends GenericDAOHibernateImpl{
+
+	private final static Logger log = Logger.getLogger(GemSourceDao.class);
+	
+	public void addGemSource(GemSource f) {
+		save(f);
+	}
+
+	public void deleteGemSource(GemSource f) {
+		delete(f);		//	HibernateTemplate().delete()		
+	}
+
+	public void deleteGemSourceByDeleteFlag(GemSource s) {
+		s.setActiveFlag(0);
+		update(s);		//HibernateTemplate().update()		
+	}
+
+	public void deleteGemSourceByDeleteFlag(int sid){
+
+		GemSource s = getGemSourceByGemSourceId(sid);
+		s.setActiveFlag(0);
+		update(s);		//HibernateTemplate().update()
+	}
+	
+	public GemSource getGemSourceByGemSourceId(Integer sid) {
+		return (GemSource)get(GemSource.class, sid);	//HibernateTemplate().get()
+	}
+
+	public List<GemSource> getGemSourceByGemSourceName(String GemSourceName) {
+		String hql = "from GemSource as s where s.solderName like ? and s.activeFlag <> 1";
+		return query(hql, "%" + GemSourceName + "%");
+	}
+
+
+	public List<GemSource> queryAllGemSource() {
+		return query("from GemSource as s where s.activeFlag = 1");
+	}
+
+	public List<GemSource> queryAllGemSources(final Page page) {
+
+		return (List<GemSource>)getHibernateTemplate().execute(
+			    new HibernateCallback() {
+			        public Object doInHibernate(Session session) throws HibernateException {
+			        	String querySentence = "from GemSource s " +
+			        			" where s.activeFlag = 1";	
+			        	Query query = session.createQuery(querySentence);
+			    		query	.setFirstResult(page.getBeginIndex()-1)
+			    				.setMaxResults(page.getPageSize())
+			    				//æ­¤å?ä½¿ç?Source??ache
+//			    				.setCacheable(true)
+//			    				.setCacheRegion("com.livedoor.flow_manager.sources.beans.Source")
+			    				//
+			    				;
+			    		return query.list();
+			        }
+			    }
+			,true);
+	}
+
+	public void updateGemSource(GemSource s) {
+		update(s);		//HibernateTemplate().update()	
+	}
+	
+	public int getGemSourceCount() throws HibernateException {
+
+		DetachedCriteria detachedCriteria = DetachedCriteria.forClass(GemSource.class);
+		
+		return queryRowCount(detachedCriteria);
+	}
+
+	
+	private boolean buildCriteriaFromGemSourceObject(Criteria cr,GemSource s){
+		try{
+		if ( !ObjectCommonUtil.isEmpty(s) ){
+			
+//			if (ObjectCommonUtil.isNotEmpty(s.getUser().getUserId()) && s.getUser().getUserId() > 0 ){
+//				cr.add(Restrictions.eq("user.userId", s.getUser().getUserId()));
+//			}
+//			
+//			if(ObjectCommonUtil.isNotEmpty(s.getKingdom().getKingdomId()) && s.getKingdom().getKingdomId() > 0){
+//				cr.add(Restrictions.eq("kingdom.kingdomId", s.getKingdom().getKingdomId()));
+//			}
+//			
+//			if(ObjectCommonUtil.isNotEmpty(s.getSoldier().getSoldierId()) && s.getSoldier().getSoldierId() > 0){
+//				cr.add(Restrictions.eq("soldier.soldierId", s.getSoldier().getSoldierId()));
+//			}
+//			
+//			if(StringUtils.isNotEmpty(s.getSourceDate())){
+//				cr.add(Restrictions.eq("sourceDate", s.getSourceDate()));
+//			}
+//			
+//			if(ObjectCommonUtil.isNotEmpty(s.getApproved()) && s.getApproved() >=0 ){
+//				cr.add(Restrictions.eq("approved", s.getApproved()));
+//			}
+			
+//			if (StringCommonUtil.isNotEmpty(s.getSolderName())){
+//				cr.add(Restrictions.like("GemSourceName", "%" + s.getSolderName()+ "%"));
+//			}
+			
+//			if(ObjectCommonUtil.isNotEmpty(s.getGemSourcePoint())){
+//				cr.add(Restrictions.eq("GemSourcePrice", s.getGemSourcePoint()));
+//			}
+	
+//			if (!UtilValidate.isEmpty(GemSource.getSourceDesc()))
+//	
+//				cr.add(Restrictions.like("sourceDesc", "%" + GemSource.getSourceDesc()+ "%"));
+//	
+//			if (!UtilValidate.isEmpty(GemSource.getInputUserId()))
+//	
+//				cr.add(Restrictions.eq("inputUser", GemSource.getInputUser()));
+//			
+//			if (!UtilValidate.isEmpty(GemSource.getUpdateUserId()))
+//	
+//				cr.add(Restrictions.eq("updateUser", GemSource.getUpdateUser()));
+//			
+//			
+//			if (ObjectCommonUtil.isNotEmpty(s.getInputDate())) {
+//	
+//				Calendar end = (Calendar) BeanUtils.cloneBean(s.getInputDate());
+//	
+//				end.add(Calendar.DAY_OF_MONTH, 1);
+//	
+//				cr.add(Restrictions.between("inputDate", s.getInputDate(), end));
+//			}
+//	
+//			if (!UtilValidate.isEmpty(GemSource.getUpdateDatetime())) {
+//	
+//				Calendar end = (Calendar) BeanUtils.cloneBean(GemSource.getUpdateDatetime());
+//	
+//				end.add(Calendar.DAY_OF_MONTH, 1);
+//	
+//				cr.add(Restrictions.between("updateDatetime", GemSource.getUpdateDatetime(), end));
+//			}
+		}
+		
+		cr.add(Restrictions.eq("activeFlag", 1));
+		
+		
+		
+		}catch(Exception e){
+			log.error("buildCriteriaFromSourceObject() error ! ",e);
+			return false;
+		}
+		
+		return true;
+		
+	}
+
+	
+	
+	public int getGemSourceCount(final GemSource s) throws HibernateException {
+		
+		final DetachedCriteria detachedCriteria = DetachedCriteria.forClass(GemSource.class);
+		
+//		return queryRowCount(detachedCriteria);
+		return (Integer)getHibernateTemplate().execute(new HibernateCallback() {
+			public Object doInHibernate(Session session) throws HibernateException {
+				Criteria criteria = detachedCriteria.getExecutableCriteria(session);
+				buildCriteriaFromGemSourceObject(criteria, s);
+				int totalCount = ((Integer) criteria.setProjection(Projections.rowCount()).uniqueResult()).intValue();
+				criteria.setProjection(null);
+				return totalCount;
+			}
+		}, true);
+	}
+
+	public List<GemSource> getSourceListByCriteriaQuerySource(final GemSource GemSource,
+			final Page page) throws IllegalAccessException,
+			InstantiationException, InvocationTargetException,
+			NoSuchMethodException {
+
+		if (ObjectCommonUtil.isEmpty(GemSource))
+			return new ArrayList<GemSource>();
+		if (ObjectCommonUtil.isEmpty(page))
+			return new ArrayList<GemSource>();
+
+		return (List<GemSource>) getHibernateTemplate().execute(
+				new HibernateCallback() {
+					public Object doInHibernate(Session session) {
+						DetachedCriteria detachedCriteria = DetachedCriteria.forClass(GemSource.class);
+						Criteria criteria = detachedCriteria
+								.getExecutableCriteria(session);
+						if (!buildCriteriaFromGemSourceObject(criteria, GemSource))
+							return new ArrayList<Source>();
+
+						criteria.setFirstResult(page.getBeginIndex() - 1);
+						criteria.setMaxResults(page.getPageSize());
+						return criteria.list();
+					}
+				}, true);
+	}
+
+}

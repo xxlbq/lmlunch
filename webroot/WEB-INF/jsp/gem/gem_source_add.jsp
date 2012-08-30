@@ -4,14 +4,13 @@
 <%@ taglib uri="/WEB-INF/conf/tld/struts-html.tld" prefix="html"%>
 <%@ taglib uri="/WEB-INF/conf/tld/struts-bean.tld" prefix="bean"%>
 <%@ taglib uri="/WEB-INF/conf/tld/struts-logic.tld" prefix="logic"%>
-<%@ page import="com.livedoor.flow_manager.IConstant.AttributeKeyConstant"%>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html lang="zh">
 <head>
 
 <meta http-equiv="content-style=type" content="text/css">
 
-<title>添加发兵</title>
+<title>宝石添加</title>
 <style type="text/css">
 <!--
 body {
@@ -84,13 +83,13 @@ td {
 
 	<tr>
 		<td>
-		<div class="menu"><strong>添加发兵</strong></div>
+		<div class="menu"><strong>宝石添加</strong></div>
 		</td>
 	</tr>
 	<!-- form-->
 	<tr>
 		<td>
-		<html:form action="soldier_source_add.do" method="post">
+		<html:form action="gem_source_add.do" method="post">
 			<tr>
 				<td>&nbsp;</td>
 			</tr>
@@ -109,30 +108,7 @@ td {
 						style="margin-top: 10px; margin-bottom: 15px;" width="560">
 
 						<tr>
-							<td bgcolor="#5F52A0" align="right"><strong><font color="#ffffff">发兵会员ID</font></strong></td>
-							<td bgcolor="#B2BECE">
-		
-								 
-								<logic:lessEqual name="<%=AttributeKeyConstant.USER_INFO_KEY %>" scope="session" property="role.roleId" value="1">
-									<html:text  maxlength="30" name="USER_INFO" property="userName" size="20" />
-								</logic:lessEqual>						
-								<logic:greaterThan name="<%=AttributeKeyConstant.USER_INFO_KEY %>" scope="session" property="role.roleId" value="1">
-									<bean:write name="USER_INFO" property="userName"/>
-									<html:hidden name="USER_INFO" property="userName"></html:hidden>
-								</logic:greaterThan> 
-								 
-							</td>
-						</tr>
-						<tr>
-							<td bgcolor="#5F52A0" align="right"><strong><font color="#ffffff">发兵会员名称</font></strong></td>
-							<td bgcolor="#B2BECE">
-								<logic:present name="USER_INFO" scope="request">
-									<bean:write name="USER_INFO" property="userDisplayName"/>
-								</logic:present> 
-							</td>
-						</tr>
-						<tr>
-							<td bgcolor="#5F52A0" align="right"><strong><font color="#ffffff">发兵国家</font></strong></td>
+							<td bgcolor="#5F52A0" align="right"><strong><font color="#ffffff">发宝石国家</font></strong></td>
 							<td bgcolor="#B2BECE">
 								<logic:present name="KINGDOM_LIST" scope="request">
 									<html:select property="kingdomId" style="width=162;">
@@ -144,27 +120,22 @@ td {
 								</logic:present>
 							</td>
 						</tr>
-
-
 						<tr>
-							<td bgcolor="#5F52A0"  align="right"><strong><font color="#ffffff">发兵种类</font></strong></td>
+							<td bgcolor="#5F52A0" align="right"><strong><font color="#ffffff">宝石种类</font></strong></td>
 							<td bgcolor="#B2BECE">
-
-								 
-								<logic:present name="SOLDIER_LIST" scope="request">
-									<html:select property="sourceSoldierId" style="width=162;">
+								<logic:present name="GEM_LIST" scope="request">
+									<html:select property="gemId" style="width=162;">
 										<option value="-1">请选择</option>
-										<logic:present name="SOLDIER_LIST" scope="request">
-											<html:options collection="SOLDIER_LIST" property="soldierId" labelProperty="soldierName" />
+										<logic:present name="GEM_LIST" scope="request">
+											<html:options collection="GEM_LIST" property="gemId" labelProperty="gemDisplayName" />
 										</logic:present>
 									</html:select>
 								</logic:present>
 							</td>
 						</tr>
 						<tr>
-							<td bgcolor="#5F52A0" align="right"><strong><font color="#ffffff">发兵数量</font></strong></td>
+							<td bgcolor="#5F52A0" align="right"><strong><font color="#ffffff">宝石数量</font></strong></td>
 							<td bgcolor="#B2BECE"><input type="text" name="sourceSoliderCount" value="" size="14"style="height:20" tabindex="1"/>
-							&nbsp;&nbsp;( 单位:万&nbsp;&nbsp;例如:&nbsp;实际数量为10万, 请填入10 )
 							</td>
 						</tr>
 
@@ -189,7 +160,6 @@ td {
 
 			</table>
 			</td>
-			
 	</tr>
 </table>
 

@@ -3,6 +3,7 @@ package com.livedoor.flow_manager.user.action;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.commons.codec.Decoder;
 import org.apache.log4j.Logger;
 import org.apache.struts.action.ActionForm;
 import org.apache.struts.action.ActionForward;
@@ -83,6 +84,7 @@ public class UserAddAction extends MappingDispatchAction{
 		
 		LOGGER.info(" SoldierSourceAddAction add ---> ");
 		UserForm ssf = (UserForm)form ;
+//		ssf.setUserName(new String(ssf.getUserName().getBytes("ISO8859_1"),"gb2312"));
 //		User user = (User)request.getSession().getAttribute(AttributeKeyConstant.USER_INFO_KEY);
 //		int newUserId = ngService.getId(IdKeyEnum.LOGIN_IN_ID.getValue());
 		String loginId= noGeneratorService.getPrefixId(prefix,IdKeyEnum.LOGIN_IN_ID.getValue());
