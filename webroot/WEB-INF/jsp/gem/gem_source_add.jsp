@@ -135,10 +135,18 @@ td {
 						</tr>
 						<tr>
 							<td bgcolor="#5F52A0" align="right"><strong><font color="#ffffff">±¦Ê¯ÊýÁ¿</font></strong></td>
-							<td bgcolor="#B2BECE"><input type="text" name="sourceSoliderCount" value="" size="14"style="height:20" tabindex="1"/>
+							<td bgcolor="#B2BECE"><html:text property="sourceGemCount" size="14"style="height:20" tabindex="1"/>
 							</td>
 						</tr>
-
+				        <tr align="left">
+				         <td ></td>
+							<td  class="error">
+							<html:errors property="loginIdOrPwd"  />
+							<br>
+							<html:errors property="userExpired"  />
+							</td>
+							 <td ></td>
+						</tr>
 					</table>
 					</td>
 				</tr>

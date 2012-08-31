@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.hibernate.HibernateException;
 
+import com.livedoor.flow_manager.gemSource.form.GemSourceForm;
 import com.livedoor.flow_manager.sources.exception.SourceException;
 import com.livedoor.flow_manager.tools.lbq.Page;
 
@@ -29,6 +30,8 @@ public interface IGemSourceService {
 
 	List<GemSource> getSourceListByCriteriaQuerySource(
 			GemSource GemSource, Page page) throws SourceException;
+
+	boolean haveUniqueGemSourceAlready(GemSource gs) throws Exception;
 
 
 

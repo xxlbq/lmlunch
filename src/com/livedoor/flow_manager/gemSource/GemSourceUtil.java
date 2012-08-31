@@ -7,6 +7,7 @@ import org.apache.log4j.Logger;
 
 import com.livedoor.flow_manager.enums.ActiveEnum;
 import com.livedoor.flow_manager.enums.ApproveEnum;
+import com.livedoor.flow_manager.gem.Gem;
 import com.livedoor.flow_manager.gemSource.form.GemSourceForm;
 import com.livedoor.flow_manager.kingdom.KingdomUtil;
 import com.livedoor.flow_manager.soldier.SoldierUtil;
@@ -26,7 +27,7 @@ public class GemSourceUtil {
 		Date d = new Date();
 		gs.setGemSourcId(UUIDGenerator.getUUID());
 		gs.setKingdom(KingdomUtil.toKingdom(ssf.getKingdomId()));
-//		gs.setGem(gem);
+		gs.setGem(new Gem(ssf.getGemId()));
 		gs.setSourceGemCount(ssf.getSourceGemCount());
 		gs.setSourceGemDate(DateUtil.getCurrentSaturday());
 		gs.setInputStaffId(user.getUserDisplayName());

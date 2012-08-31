@@ -98,17 +98,17 @@ public class GemSourceDao extends GenericDAOHibernateImpl{
 		try{
 		if ( !ObjectCommonUtil.isEmpty(s) ){
 			
-//			if (ObjectCommonUtil.isNotEmpty(s.getUser().getUserId()) && s.getUser().getUserId() > 0 ){
-//				cr.add(Restrictions.eq("user.userId", s.getUser().getUserId()));
-//			}
-//			
-//			if(ObjectCommonUtil.isNotEmpty(s.getKingdom().getKingdomId()) && s.getKingdom().getKingdomId() > 0){
-//				cr.add(Restrictions.eq("kingdom.kingdomId", s.getKingdom().getKingdomId()));
-//			}
-//			
-//			if(ObjectCommonUtil.isNotEmpty(s.getSoldier().getSoldierId()) && s.getSoldier().getSoldierId() > 0){
-//				cr.add(Restrictions.eq("soldier.soldierId", s.getSoldier().getSoldierId()));
-//			}
+			if (ObjectCommonUtil.isNotEmpty(s.getKingdom().getKingdomId()) && s.getKingdom().getKingdomId() > 0 ){
+				cr.add(Restrictions.eq("kingdom.kingdomId", s.getKingdom().getKingdomId()));
+			}
+			
+			if(ObjectCommonUtil.isNotEmpty(s.getGem().getGemId()) && s.getGem().getGemId() > 0){
+				cr.add(Restrictions.eq("gem.gemId", s.getGem().getGemId()));
+			}
+			
+			if(ObjectCommonUtil.isNotEmpty(s.getSourceGemDate())){
+				cr.add(Restrictions.eq("sourceGemDate", s.getSourceGemDate()));
+			}
 //			
 //			if(StringUtils.isNotEmpty(s.getSourceDate())){
 //				cr.add(Restrictions.eq("sourceDate", s.getSourceDate()));
@@ -215,4 +215,24 @@ public class GemSourceDao extends GenericDAOHibernateImpl{
 				}, true);
 	}
 
+	public List<GemSource> getSourceListByCriteriaQuerySource(final GemSource GemSource) throws Exception {
+
+		if (ObjectCommonUtil.isEmpty(GemSource))
+			return new ArrayList<GemSource>();
+
+		return (List<GemSource>) getHibernateTemplate().execute(
+				new HibernateCallback() {
+					public Object doInHibernate(Session session) {
+						DetachedCriteria detachedCriteria = DetachedCriteria.forClass(GemSource.class);
+						Criteria criteria = detachedCriteria
+								.getExecutableCriteria(session);
+						if (!buildCriteriaFromGemSourceObject(criteria, GemSource))
+							return new ArrayList<Source>();
+						return criteria.list();
+					}
+				}, true);
+	}
+	
+	
+	
 }

@@ -20,12 +20,18 @@
 	
 	
 	<bean name="/gem_source_add"
-		class="com.livedoor.flow_manager.user.action.UserAddAction">
+		class="com.livedoor.flow_manager.gemSource.action.GemSourceAddAction">
 		<property name="userService">
 			<ref bean="userService" />
 		</property>
-		<property name="noGeneratorService">
-			<ref bean="noGeneratorService" />
+		<property name="gemService">
+			<ref bean="gemService" />
+		</property>
+		<property name="kingdomService">
+			<ref bean="kingdomService" />
+		</property>
+		<property name="gemSourceService">
+			<ref bean="gemSourceService" />
 		</property>
 
 	</bean>

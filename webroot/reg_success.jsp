@@ -103,22 +103,18 @@ td {
 				</tr>
 				<tr>
 					<td>
-					<table border="0" cellpadding="5" cellspacing="1" align="center"
+					<table border="1" bordercolor="black" cellpadding="5" cellspacing="1" align="center"
 						style="margin-top: 10px; margin-bottom: 15px;" width="560">
 
 						<tr>
-							<td bgcolor="#5F52A0" align="right"><strong><font color="#ffffff">您的登陆ID:</font></strong></td>
-							<td bgcolor="#B2BECE"><strong><font color="#ffffff">
-								<logic:present name="USER_INFO" >
+							<td  align="center""><strong><font color="black" size="20">您的登陆ID:<logic:present name="USER_INFO" >
 									<bean:write name="USER_INFO" property="userName"/>
-								</logic:present>
-								</font></strong>
+								</logic:present></font></strong>
 							</td>
 						</tr>
 						<tr>
-							<td bgcolor="#5F52A0" align="right" colspan="2"><strong><font color="#ffffff">请使用此ID与注册时的密码进行登陆</font></strong></td>
+							<td  align="center" ><strong><font color=""black"">请保存此ID，用此ID与注册时的密码进行登陆</font></strong></td>
 						</tr>
-
 
 					</table>
 					</td>
