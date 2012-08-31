@@ -167,5 +167,17 @@ public class GemSourceService implements IGemSourceService{
 			throw new Exception("",e);		}	
 	}
 
+
+
+
+	@Override
+	public boolean haveUniqueGemSourceAlready(GemSource gs) throws Exception {
+		List<GemSource> gsList = GemSourceDao.getSourceListByCriteriaQuerySource(gs);
+		return (gsList == null || gsList.size() >=1 ) ? true:false;
+	}
+
+
+
+
 	
 }

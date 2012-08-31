@@ -9,6 +9,8 @@ import org.apache.log4j.Logger;
 import org.apache.struts.action.ActionForm;
 import org.apache.struts.action.ActionForward;
 import org.apache.struts.action.ActionMapping;
+import org.apache.struts.action.ActionMessage;
+import org.apache.struts.action.ActionMessages;
 import org.apache.struts.actions.MappingDispatchAction;
 
 import com.livedoor.flow_manager.IConstant.AttributeKeyConstant;
@@ -21,6 +23,7 @@ import com.livedoor.flow_manager.gemSource.IGemSourceService;
 import com.livedoor.flow_manager.gemSource.form.GemSourceForm;
 import com.livedoor.flow_manager.kingdom.IKingdomService;
 import com.livedoor.flow_manager.kingdom.Kingdom;
+import com.livedoor.flow_manager.tools.UtilValidate;
 import com.livedoor.flow_manager.user.beans.User;
 import com.livedoor.flow_manager.user.service.IUserService;
 
@@ -30,9 +33,14 @@ public class GemSourceAddAction extends MappingDispatchAction{
 	private IUserService userService;
 	private IGemService gemService;
 	private IKingdomService kingdomService ;
-	private IGemSourceService GemSourceService;
+	private IGemSourceService gemSourceService;
 	
 
+
+
+	public void setGemSourceService(IGemSourceService gemSourceService) {
+		this.gemSourceService = gemSourceService;
+	}
 
 
 	public void setUserService(IUserService userService) {
@@ -50,9 +58,7 @@ public class GemSourceAddAction extends MappingDispatchAction{
 	}
 
 
-	public void setGemSourceService(IGemSourceService GemSourceService) {
-		this.GemSourceService = GemSourceService;
-	}
+
 
 	public ActionForward display(ActionMapping mapping,
 		   ActionForm form,
@@ -79,14 +85,28 @@ public class GemSourceAddAction extends MappingDispatchAction{
 			   ActionForm form,
 			   HttpServletRequest request,
 			   HttpServletResponse response) throws Exception {
-			
-		
 		
 		LOGGER.info(" GemSourceAddAction add ---> ");
-		GemSourceForm ssf = (GemSourceForm)form ;
+		
 		User user = (User)request.getSession().getAttribute(AttributeKeyConstant.USER_INFO_KEY);
-		GemSource s = GemSourceUtil.toGemSource4Add(ssf,user);
-		GemSourceService.addGemSource(s);
+		List<Gem> gemList = gemService.queryAllGem();
+		List<Kingdom> kingdomList = kingdomService.queryAllKingdom();
+
+		request.setAttribute("GEM_LIST", gemList);
+		request.setAttribute("USER_INFO", user);
+		request.setAttribute("KINGDOM_LIST", kingdomList);
+		
+		GemSourceForm ssf = (GemSourceForm)form ;
+		GemSource gs = GemSourceUtil.toGemSource4Add(ssf,user);
+		
+		if( gemSourceService.haveUniqueGemSourceAlready(gs)){
+				ActionMessages errores = new ActionMessages();
+				errores.add("haveUniqueGemSourceAlready",new ActionMessage( "gem.alreadyAdd" ) );
+				saveErrors(request, errores);
+				return mapping.getInputForward();
+		}
+		
+		gemSourceService.addGemSource(gs);
 		
 		MessageInfo info = new MessageInfo();
 		info.setMessage("OK");

@@ -9,6 +9,10 @@ import com.livedoor.flow_manager.kingdom.Kingdom;
 
 public class GemSourceForm extends ActionForm{
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -3231455918646328661L;
 	private String gemSourcId;
 	private Integer kingdomId;
 	private Integer gemId;

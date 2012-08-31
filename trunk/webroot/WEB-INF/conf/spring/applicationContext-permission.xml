@@ -71,6 +71,7 @@
 				<value>classpath:/com/livedoor/flow_manager/hbm/soldier</value>
 				<value>classpath:/com/livedoor/flow_manager/hbm/kingdom</value>
 				<value>classpath:/com/livedoor/flow_manager/hbm/gem</value>
+				<value>classpath:/com/livedoor/flow_manager/hbm/gemSource</value>
 				<value>classpath:/com/livedoor/flow_manager/hbm/soldierSource</value>
 				<value>classpath:/com/livedoor/flow_manager/hbm/noGenerator</value>
 				<value>classpath:/com/livedoor/flow_manager/hbm/user</value>
