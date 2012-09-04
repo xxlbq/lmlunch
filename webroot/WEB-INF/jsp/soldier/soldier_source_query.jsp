@@ -61,11 +61,19 @@ td{font-size:10pt;}
 							<td bgcolor="#B2BECE">
 							
 								<logic:lessEqual name="<%=AttributeKeyConstant.USER_INFO_KEY %>" scope="session" property="role.roleId" value="1">
-									<html:text  maxlength="30" name="USER_INFO" property="userName" size="20" />
+									<logic:present name="USER_INFO">
+									<html:text  maxlength="30" name="USER_INFO" property="userName" size="20" />(当前登录 ID:<bean:write name="<%=AttributeKeyConstant.USER_INFO_KEY %>" property="userName" scope="session"/>)
+									</logic:present>
+									<logic:notPresent name="USER_INFO">
+									<html:text  maxlength="30"  property="userName" size="20" /> (当前登录 ID:<bean:write name="<%=AttributeKeyConstant.USER_INFO_KEY %>" property="userName" scope="session"/>)
+									</logic:notPresent>
+									
 								</logic:lessEqual>						
 								<logic:greaterThan name="<%=AttributeKeyConstant.USER_INFO_KEY %>" scope="session" property="role.roleId" value="1">
+									<logic:present name="USER_INFO">
 									<bean:write name="USER_INFO" property="userName"/>
 									<html:hidden name="USER_INFO" property="userName"></html:hidden>
+									</logic:present>
 								</logic:greaterThan>
 							
 							</td>
@@ -154,7 +162,7 @@ td{font-size:10pt;}
 	
 	<%-- ================================ --%>
 	
-		<form name="source_soldier_approve.do">
+		<form name="middleform">
 	
 		<div>
 		<input type="hidden"  name="ec_i"  value="ec" />
@@ -225,11 +233,11 @@ td{font-size:10pt;}
 		<tr align="center">
 			
 			<td colspan ="7">
-			<input type="button" name="aSourceButton" value="审批" onclick="addSource()"/>
+			<input type="button" name="aSourceButton" value="审批" onclick="approveSource()"/>
 			&nbsp;&nbsp;
-			<input type="button" name="uSourceButton" value="取消审批" onclick="updateSource()"/>
+			<input type="button" name="uSourceButton" value="取消审批" onclick="cancelApproveSource()"/>
 			&nbsp;&nbsp;
-			<input type="button" name="dSourceButton" value="修改" onclick="delSource()"/>
+			<input type="button" name="dSourceButton" value="修改" onclick="updateSource()"/>
 			&nbsp;&nbsp;
 			
 <%--			<a href="#" onclick="pdfReportDisplay()"><img src="images/component/pdf.gif"  border="0" /></a>--%>

@@ -61,6 +61,7 @@ public class SoldierSourceDao extends GenericDAOHibernateImpl{
 		return query("from SoldierSource as s where s.activeFlag = 1");
 	}
 
+	
 	public List<SoldierSource> queryAllSoldierSources(final Page page) {
 
 		return (List<SoldierSource>)getHibernateTemplate().execute(
@@ -98,7 +99,7 @@ public class SoldierSourceDao extends GenericDAOHibernateImpl{
 		try{
 		if ( !ObjectCommonUtil.isEmpty(s) ){
 			
-			if (ObjectCommonUtil.isNotEmpty(s.getUser().getUserId()) && s.getUser().getUserId() > 0 ){
+			if (ObjectCommonUtil.isNotEmpty(s.getUser()) && ObjectCommonUtil.isNotEmpty(s.getUser().getUserId()) && s.getUser().getUserId() > 0 ){
 				cr.add(Restrictions.eq("user.userId", s.getUser().getUserId()));
 			}
 			

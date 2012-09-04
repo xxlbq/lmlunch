@@ -43,6 +43,54 @@ function selectOptionAction(){
 		//}
 	}
 	
+	
+	function approveSource(){
+		var checkedUser;
+		
+		checkedUser = isSingleChecked(document.middleform);
+		
+		if(checkedUser != null){
+		
+			window.alert(checkedUser);
+			
+			window.location.href='showSourceUpdate.do?sourceId='+checkedUser;
+		
+		}
+	}
+	
+	function isSingleCheckedAtLeast(form){
+		
+		var checkTimes = 0 ;
+		
+		var tempVar="" ;
+		
+		for(var i=0;i<form.elements.length;i++)
+			{
+				if(form.elements[i].type=="checkbox" && form.elements[i].name=="sId"){
+			
+					if(form.elements[i].checked){
+					
+						if(tempVar == ""){
+							tempVar = form.elements[i].value;
+						}else{
+							tempVar = tempVar+","+form.elements[i].value;
+						}
+						
+						
+						checkTimes++;
+					}
+				}
+			}
+		
+		if(checkTimes < 1){
+			windowout();
+			return null;
+		}
+		
+		return tempVar;
+	}
+	
+	
 	function updateSource(){
 	
 		var checkedUser;

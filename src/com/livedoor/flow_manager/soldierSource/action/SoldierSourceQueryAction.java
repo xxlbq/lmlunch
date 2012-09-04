@@ -149,7 +149,8 @@ public class SoldierSourceQueryAction extends MappingDispatchAction{
 
 		User user = userService.getUniqueUserByUserName(sf.getUserName());
 		if(null == user){
-			throw new Exception("there is no user ["+sf.getUserName()+"] in db . error fire !");
+//			throw new Exception("there is no user ["+sf.getUserName()+"] in db . error fire !");
+			LOGGER.info("there is no user ["+sf.getUserName()+"] in db . not choose user !");
 		}
 		SoldierSource ss = SoldierSourceUtil.toSoldierSource4Query(sf, user);
 		
@@ -159,7 +160,7 @@ public class SoldierSourceQueryAction extends MappingDispatchAction{
 		List<SoldierSource> list = soldierSourceService.getSourceListByCriteriaQuerySource(ss, p);
 		
 		PageTemplate sp = new PageTemplate(p,list);
-		sf.setUserId(user.getUserId());
+		if( user != null ) sf.setUserId(user.getUserId());
 		request.setAttribute(PageConstant.SOURCE_QUERY_OBJECT_KEY, sf);
 		request.setAttribute(PageConstant.PAGER_VIEW_KEY, sp);
 
