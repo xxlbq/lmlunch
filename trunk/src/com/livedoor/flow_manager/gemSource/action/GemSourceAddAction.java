@@ -99,18 +99,19 @@ public class GemSourceAddAction extends MappingDispatchAction{
 		GemSourceForm ssf = (GemSourceForm)form ;
 		GemSource gs = GemSourceUtil.toGemSource4Add(ssf,user);
 		
-		if( gemSourceService.haveUniqueGemSourceAlready(gs)){
+		if( gemSourceService.queryUniqueGemSourceAlready(gs)){
 				ActionMessages errores = new ActionMessages();
 				errores.add("haveUniqueGemSourceAlready",new ActionMessage( "gem.alreadyAdd" ) );
-				saveErrors(request, errores);
+				request.setAttribute("ERROR_MESSAGE_INFO", errores);
 				return mapping.getInputForward();
 		}
 		
 		gemSourceService.addGemSource(gs);
 		
-		MessageInfo info = new MessageInfo();
-		info.setMessage("OK");
-		request.setAttribute("MESSAGE_INFO", info);
+		ActionMessages successMsg = new ActionMessages();
+		successMsg.add("successMsg",new ActionMessage( "gem.add.success" ) );
+		request.setAttribute("SUCCESS_MESSAGE_INFO", successMsg);
+		
 		LOGGER.info(" GemSourceAddAction add <--- ");
 		
 		

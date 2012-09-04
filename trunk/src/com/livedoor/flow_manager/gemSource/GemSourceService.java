@@ -171,13 +171,30 @@ public class GemSourceService implements IGemSourceService{
 
 
 	@Override
-	public boolean haveUniqueGemSourceAlready(GemSource gs) throws Exception {
+	public boolean queryUniqueGemSourceAlready(GemSource gs) throws Exception {
 		List<GemSource> gsList = GemSourceDao.getSourceListByCriteriaQuerySource(gs);
 		return (gsList == null || gsList.size() >=1 ) ? true:false;
 	}
 
+	public List queryAllGemSourceDate() {
+		return GemSourceDao.queryAllGemSourceDate();
+	}
+	
 
-
+	public List<GemSource> getSourceListByCriteriaQuerySource(final GemSource GemSource)
+	throws SourceException {
+		
+		List<GemSource> sList = null;
+		try {
+			sList = GemSourceDao.getSourceListByCriteriaQuerySource(GemSource);
+			
+		}catch (Exception e){
+			LOGGER.error("%%%@_@%%%[Other Exception In  getSourceListByCriteriaQuerySource(Source s,Page page) method ]%%%%%%%",e);
+			throw new SourceException(9999,"getSourceListByCriteriaQuerySource(Source s,Page page)  error! :"+e.getMessage());
+		}
+		
+		return sList;
+	}
 
 	
 }

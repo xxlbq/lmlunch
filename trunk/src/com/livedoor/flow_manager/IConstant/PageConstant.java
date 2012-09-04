@@ -2,7 +2,8 @@ package com.livedoor.flow_manager.IConstant;
 
 public interface PageConstant {
 	
-	int SOURCE_PAGE_SIZE = 5;
+//	int SOURCE_PAGE_SIZE = 5;
+	int SOURCE_PAGE_SIZE = 20;
 	
 	int SOURCE_INIT_PAGE_NUMBER = 1;
 	

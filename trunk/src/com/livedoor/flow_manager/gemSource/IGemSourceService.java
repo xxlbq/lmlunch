@@ -30,9 +30,12 @@ public interface IGemSourceService {
 
 	List<GemSource> getSourceListByCriteriaQuerySource(
 			GemSource GemSource, Page page) throws SourceException;
+	
+	List<GemSource> getSourceListByCriteriaQuerySource(
+			GemSource GemSource) throws SourceException;
+	
+	boolean queryUniqueGemSourceAlready(GemSource gs) throws Exception;
 
-	boolean haveUniqueGemSourceAlready(GemSource gs) throws Exception;
-
-
+	public List queryAllGemSourceDate();
 
 }
