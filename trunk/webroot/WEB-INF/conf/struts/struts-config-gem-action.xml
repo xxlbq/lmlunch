@@ -16,9 +16,16 @@
 		<action   path="/gem_source_add_display"  scope="request" parameter="display">
 		    <forward  name="success" path="/WEB-INF/jsp/gem/gem_source_add.jsp" />
 		</action>
-		<action   path="/gem_source_add"  name="gemSourceForm" scope="request" parameter="add">
+		<action   path="/gem_source_add"  name="gemSourceForm" scope="request" parameter="add" input="/WEB-INF/jsp/gem/gem_source_add.jsp">
 		    <forward  name="success" path="/WEB-INF/jsp/gem/gem_source_add.jsp" />
 		</action>
+		<action   path="/gem_source_query_display"  name="gemSourceForm" scope="request" parameter="display">
+		    <forward  name="success" path="/WEB-INF/jsp/gem/gem_source_query.jsp" />
+		</action>
+		<action   path="/gem_source_query"  name="gemSourceForm" scope="request" parameter="query">
+		    <forward  name="success" path="/WEB-INF/jsp/gem/gem_source_query.jsp" />
+		</action>
+		
 		
 	
 	</action-mappings>

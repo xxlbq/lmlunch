@@ -52,8 +52,15 @@ public class SoldierSourceUtil {
 		ss.setApproved(ssf.getApproved());
 		ss.setSourceDate(ssf.getSourceDate());
 		
-		ss.setInputStaffId(user.getUserDisplayName());
-		ss.setUpdateStaffId(user.getUserDisplayName());
+		if(null !=  user){
+			ss.setInputStaffId(user.getUserDisplayName());
+			ss.setUpdateStaffId(user.getUserDisplayName());
+		}else{
+			ss.setInputStaffId("INIT");
+			ss.setUpdateStaffId("INIT");
+		}
+		
+		
 		ss.setInputDate(d);
 		ss.setUpdateDate(d);
 		ss.setActiveFlag(ActiveEnum.ACTIVE.getValue());

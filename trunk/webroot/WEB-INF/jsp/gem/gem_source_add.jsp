@@ -94,6 +94,16 @@ td {
 				<td>&nbsp;</td>
 			</tr>
 			<td>
+							<tr align="left">
+		         <td ></td>
+					<td  class="error"><font color="red">
+					<html:messages id="msg"  name="SUCCESS_MESSAGE_INFO" message="false">
+						<bean:write name="msg"/>
+						<br>
+					</html:messages></font>	
+					</td>
+					 <td ></td>
+				</tr>
 			<table border="0" cellpadding="0" cellspacing="0" align="center"
 				width="800">
 	
@@ -102,6 +112,8 @@ td {
 					<hr color="#5F52A0" size="1" width="700" align="center" />
 					</td>
 				</tr>
+
+				
 				<tr>
 					<td>
 					<table border="0" cellpadding="5" cellspacing="1" align="center"
@@ -140,10 +152,13 @@ td {
 						</tr>
 				        <tr align="left">
 				         <td ></td>
-							<td  class="error">
-							<html:errors property="loginIdOrPwd"  />
-							<br>
-							<html:errors property="userExpired"  />
+						<td  class="error">
+								<font color="red">
+								<html:messages id="errmsg"  name="ERROR_MESSAGE_INFO" message="false">
+									<bean:write name="errmsg"/>
+									<br/>
+								</html:messages>
+								</font>	
 							</td>
 							 <td ></td>
 						</tr>
