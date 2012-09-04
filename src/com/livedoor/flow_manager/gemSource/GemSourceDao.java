@@ -18,6 +18,7 @@ import org.hibernate.criterion.Restrictions;
 import org.springframework.orm.hibernate3.HibernateCallback;
 
 import com.livedoor.flow_manager.generic.dao.GenericDAOHibernateImpl;
+import com.livedoor.flow_manager.soldierSource.SoldierSource;
 import com.livedoor.flow_manager.sources.beans.Source;
 import com.livedoor.flow_manager.tools.lbq.Page;
 import com.lm.common.util.obj.ObjectCommonUtil;
@@ -56,11 +57,30 @@ public class GemSourceDao extends GenericDAOHibernateImpl{
 		return query(hql, "%" + GemSourceName + "%");
 	}
 
+	
 
 	public List<GemSource> queryAllGemSource() {
 		return query("from GemSource as s where s.activeFlag = 1");
 	}
 
+	
+
+	/**
+	 * List<Object[]>
+	 * 
+	 * Object[] --> String
+	 * 
+	 * @return
+	 */
+	public List queryAllGemSourceDate() {
+		return query("SELECT DISTINCT(s.sourceGemDate) from GemSource as s where s.activeFlag = 1 ORDER BY s.sourceGemDate DESC LIMIT 24");
+	}
+	
+//	public List queryOneWeekGemSource(String date){
+//		return query("SELECT SUM(s.sourceGemCount) from GemSource as s where s.activeFlag = 1 AND s.sourceGemDate='"+date+"' GROUP BY s.gem.gemId ");
+//	}
+	
+	
 	public List<GemSource> queryAllGemSources(final Page page) {
 
 		return (List<GemSource>)getHibernateTemplate().execute(
@@ -98,11 +118,11 @@ public class GemSourceDao extends GenericDAOHibernateImpl{
 		try{
 		if ( !ObjectCommonUtil.isEmpty(s) ){
 			
-			if (ObjectCommonUtil.isNotEmpty(s.getKingdom().getKingdomId()) && s.getKingdom().getKingdomId() > 0 ){
+			if (ObjectCommonUtil.isNotEmpty(s.getKingdom()) &&  ObjectCommonUtil.isNotEmpty(s.getKingdom().getKingdomId()) && s.getKingdom().getKingdomId() > 0 ){
 				cr.add(Restrictions.eq("kingdom.kingdomId", s.getKingdom().getKingdomId()));
 			}
 			
-			if(ObjectCommonUtil.isNotEmpty(s.getGem().getGemId()) && s.getGem().getGemId() > 0){
+			if(ObjectCommonUtil.isNotEmpty(s.getGem()) && ObjectCommonUtil.isNotEmpty(s.getGem().getGemId()) && s.getGem().getGemId() > 0){
 				cr.add(Restrictions.eq("gem.gemId", s.getGem().getGemId()));
 			}
 			

@@ -3,6 +3,7 @@ package com.livedoor.flow_manager.gemSource.form;
 import java.util.Date;
 
 import org.apache.struts.action.ActionForm;
+import org.apache.struts.action.ActionMessages;
 
 import com.livedoor.flow_manager.gem.Gem;
 import com.livedoor.flow_manager.kingdom.Kingdom;
@@ -182,6 +183,11 @@ public class GemSourceForm extends ActionForm{
 		builder.append(super.toString());
 		builder.append("]");
 		return builder.toString();
+	}
+
+	public ActionMessages validateSourceForm() {
+		// TODO Auto-generated method stub
+		return new ActionMessages();
 	}
 
 	
