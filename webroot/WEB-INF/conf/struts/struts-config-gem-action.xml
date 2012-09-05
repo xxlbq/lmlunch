@@ -26,6 +26,12 @@
 		    <forward  name="success" path="/WEB-INF/jsp/gem/gem_source_query.jsp" />
 		</action>
 		
+		<action   path="/gem_source_distribution_query_display" scope="request" parameter="display">
+		    <forward  name="success" path="/WEB-INF/jsp/gem/gem_source_distribution.jsp" />
+		</action>
+		<action   path="/gem_source_distribution_query" name="gemSourceForm" scope="request" parameter="query">
+		    <forward  name="success" path="/WEB-INF/jsp/gem/gem_source_distribution.jsp" />
+		</action>
 		
 	
 	</action-mappings>

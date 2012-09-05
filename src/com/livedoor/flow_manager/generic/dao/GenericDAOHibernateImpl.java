@@ -84,7 +84,13 @@ public class GenericDAOHibernateImpl
 
 	}
 	
-	public static Object executeSQL(HibernateTemplate hibernateTemplate,String sql){
+	/**
+	 * 执行update delete
+	 * @param hibernateTemplate
+	 * @param sql
+	 * @return
+	 */
+	public Object executeSQL(HibernateTemplate hibernateTemplate,String sql){
 
 	       final String tempsql = sql;
 
@@ -100,7 +106,29 @@ public class GenericDAOHibernateImpl
 
 	    }
 
-	public static List queryWithHQL(HibernateTemplate hibernateTemplate,String sql){
+	/**
+	 * 返回记录集
+	 * @param hibernateTemplate
+	 * @param sql
+	 * @return
+	 */
+	public Object querySQL(HibernateTemplate hibernateTemplate,String sql){
+
+	       final String tempsql = sql;
+
+	       return hibernateTemplate.execute(new HibernateCallback(){
+
+	           public Object doInHibernate(Session session)throws HibernateException{
+
+	        	   Query q = session.createSQLQuery(tempsql) ;
+	        	   return q.list();
+	           }
+
+	       });
+
+	    }
+	
+	public List queryWithHQL(HibernateTemplate hibernateTemplate,String sql){
 
 	       final String tempsql = sql;
 
