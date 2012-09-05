@@ -13,7 +13,7 @@
 
 <script src="js/sourceJs.js" type="text/javascript"></script>
 
-<title>宝石查询</title>
+<title>宝石分配信息</title>
 
 <style type="text/css"><!--
 body{background:#ffffff;background-image:url("img/background.gif");background-attachment:scroll;background-repeat:repeat-x;}
@@ -43,10 +43,10 @@ td{font-size:10pt;}
 <table border="0" cellpadding="0" cellspacing="0" align="center" width="1000">
 
 <tr><td><div class="menu">
-<strong>宝石查询</strong>
+<strong>宝石分配信息</strong>
 </div></td></tr>
 <tr><td>
-		<html:form action="gem_source_query.do" method="post">
+		<html:form action="gem_source_distribution_query.do" method="post">
 		
 		<tr>
 			<tr><td>&nbsp;</td></tr>
@@ -87,7 +87,7 @@ td{font-size:10pt;}
 					</table>
 				</td>
 			</tr>
-		
+
 			<tr>
 				<td align="center"><html:submit  style="width=150;" value="查询"/></td>
 			</tr>
@@ -111,49 +111,42 @@ td{font-size:10pt;}
 	<table border="0" cellpadding="4" cellspacing="1" align="center" 
 	style="margin-top:10px; margin-bottom:15px;" width="800">
 	
-	<%-- ================================ --%>
-	<%-- ========= bean define=========== --%>
-	<%-- ================================ --%>
-	
-	
-	<logic:present name="<%=PageConstant.PAGER_VIEW_KEY %>" scope="request">
-		<bean:define id="pageTemplate" name="<%=PageConstant.PAGER_VIEW_KEY %>" scope="request"></bean:define>
-	</logic:present>
-	
+
 	
 	<%-- ================================ --%>
 	
-		<form name="source_soldier_approve.do">
+		<form name="gem_source_distribution_query.do">
 	
 		<tr>
 			
 			<td bgcolor="#5F52A0" nowrap  width="80" align="center"><strong><font color="#ffffff">国家</font></strong></td>
 			<td bgcolor="#5F52A0" nowrap  width="80" align="center"><strong><font color="#ffffff">日期</font></strong></td>
-			<td bgcolor="#5F52A0" nowrap  width="80" align="center"><strong><font color="#ffffff">2级修罗宝石</font></strong></td>
-			<td bgcolor="#5F52A0" nowrap  width="80" align="center"><strong><font color="#ffffff">2级奔雷宝石</font></strong></td>
-			<td bgcolor="#5F52A0" nowrap  width="80" align="center"><strong><font color="#ffffff">2级防御宝石</font></strong></td>
-			<td bgcolor="#5F52A0" nowrap  width="80" align="center"><strong><font color="#ffffff">2级疾风宝石</font></strong></td>
-			<td bgcolor="#5F52A0" nowrap  width="80" align="center"><strong><font color="#ffffff">2级负载宝石</font></strong></td>
+			<td bgcolor="#5F52A0" nowrap  width="80" align="center"><strong><font color="#ffffff">君主</font></strong></td>
+			<td bgcolor="#5F52A0" nowrap  width="80" align="center"><strong><font color="#ffffff">枪盾</font></strong></td>
+			<td bgcolor="#5F52A0" nowrap  width="80" align="center"><strong><font color="#ffffff">大刀</font></strong></td>
+			<td bgcolor="#5F52A0" nowrap  width="80" align="center"><strong><font color="#ffffff">骑兵</font></strong></td>
+			<td bgcolor="#5F52A0" nowrap  width="80" align="center"><strong><font color="#ffffff">重甲</font></strong></td>
+			<td bgcolor="#5F52A0" nowrap  width="80" align="center"><strong><font color="#ffffff">产生宝石分</font></strong></td>
 		</tr>
 	
-		<logic:present name="GEM_SOURCE_LIST" >
-			<logic:iterate name="GEM_SOURCE_LIST"  id="source" indexId="indexid">
-			<% if(indexid % 2 != 0){%> <!--从1开始编号-->
-			<tr bgcolor="#e4e7ea">
-			<%}else { %>
-			<tr bgcolor="#B2BECE">
-			<%} %>
-				<td align="center"><bean:write name="source" property="kongdomName" /></td>
-				<td align="center"><bean:write name="source" property="gemSourceDate"/></td>
-				<td align="center"><bean:write name="source" property="xiuluoSum"/></td>
-				<td align="center"><bean:write name="source" property="benleiSum"/></td>
-				<td align="center"><bean:write name="source" property="fangyuSum"/></td>
-				<td align="center"><bean:write name="source" property="jifengSum"/></td>
-				<td align="center"><bean:write name="source" property="fuzaiSum"/></td>
-
-			</tr>
-			</logic:iterate>
-		</logic:present>
+<!--		<logic:present name="GEM_SOURCE_LIST" >-->
+<!--			<logic:iterate name="GEM_SOURCE_LIST"  id="source" indexId="indexid">-->
+<!--			<% if(indexid % 2 != 0){%> 从1开始编号-->
+<!--			<tr bgcolor="#e4e7ea">-->
+<!--			<%}else { %>-->
+<!--			<tr bgcolor="#B2BECE">-->
+<!--			<%} %>-->
+<!--				<td align="center"><bean:write name="source" property="kongdomName" /></td>-->
+<!--				<td align="center"><bean:write name="source" property="gemSourceDate"/></td>-->
+<!--				<td align="center"><bean:write name="source" property="xiuluoSum"/></td>-->
+<!--				<td align="center"><bean:write name="source" property="benleiSum"/></td>-->
+<!--				<td align="center"><bean:write name="source" property="fangyuSum"/></td>-->
+<!--				<td align="center"><bean:write name="source" property="jifengSum"/></td>-->
+<!--				<td align="center"><bean:write name="source" property="fuzaiSum"/></td>-->
+<!---->
+<!--			</tr>-->
+<!--			</logic:iterate>-->
+<!--		</logic:present>-->
 		
 	<%--================================--%>
 	<%--=======		更新   删除	========--%>

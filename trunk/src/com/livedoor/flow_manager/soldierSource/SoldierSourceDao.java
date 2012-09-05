@@ -2,10 +2,8 @@ package com.livedoor.flow_manager.soldierSource;
 
 import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.List;
 
-import org.apache.commons.beanutils.BeanUtils;
 import org.apache.commons.lang.StringUtils;
 import org.apache.log4j.Logger;
 import org.hibernate.Criteria;
@@ -21,7 +19,6 @@ import com.livedoor.flow_manager.generic.dao.GenericDAOHibernateImpl;
 import com.livedoor.flow_manager.sources.beans.Source;
 import com.livedoor.flow_manager.tools.lbq.Page;
 import com.lm.common.util.obj.ObjectCommonUtil;
-import com.lm.common.util.str.StringCommonUtil;
 
 public class SoldierSourceDao extends GenericDAOHibernateImpl{
 
@@ -61,6 +58,11 @@ public class SoldierSourceDao extends GenericDAOHibernateImpl{
 		return query("from SoldierSource as s where s.activeFlag = 1");
 	}
 
+	public List queryTotalSoldierSourcePoint(String date){
+		return (List)this.executeSQL(getHibernateTemplate(), "SELECT SUM(T.SP) TOTAL FROM ( " +
+				"SELECT C.KINGDOM_ID,C.SOURCE_SOLDIER_ID,SUM(C.SOURCE_SOLDIER_COUNT),SUM(C.SOURCE_SOLDIER_COUNT)*S.SOLDIER_POINT SP FROM T_SOLDIER_SOURCE C LEFT JOIN T_SOLDIER S ON C.SOURCE_SOLDIER_ID = S.SOLDIER_ID " +
+				"WHERE  C.SOURCE_DATE = '"+date+"' GROUP BY C.KINGDOM_ID,C.SOURCE_SOLDIER_ID ) AS T ");
+	}
 	
 	public List<SoldierSource> queryAllSoldierSources(final Page page) {
 

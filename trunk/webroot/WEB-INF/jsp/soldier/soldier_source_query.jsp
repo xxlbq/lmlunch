@@ -200,10 +200,13 @@ td{font-size:10pt;}
 		</tr>
 	
 		<logic:present name="pageTemplate" >
-			<logic:iterate name="pageTemplate" property="items" id="source">
-			<tr>
-
-				<td bgcolor="#B2BECE">
+			<logic:iterate name="pageTemplate" property="items" id="source" indexId="indexid">
+			<% if(indexid % 2 != 0){%> <!--从1开始编号-->
+			<tr bgcolor="#e4e7ea">
+			<%}else { %>
+			<tr bgcolor="#B2BECE">
+			<%} %>
+				<td>
 					
 					<logic:equal name="source" property="approved" value="1">
 						<font color="#111010">已审</font>
@@ -212,12 +215,12 @@ td{font-size:10pt;}
 						<input type="checkbox" name="sId" value='<bean:write name="source" property="sourceId" />'/>
 					</logic:equal>
 				</td>
-				<td bgcolor="#B2BECE"><bean:write name="source" property="user.userDisplayName" /></td>
-				<td bgcolor="#B2BECE"><bean:write name="source" property="kingdom.kingdomName"/></td>
-				<td bgcolor="#B2BECE"><bean:write name="source" property="soldier.soldierName"/></td>
-				<td bgcolor="#B2BECE"><bean:write name="source" property="sourceSoliderCount"/></td>
-				<td bgcolor="#B2BECE"><bean:write name="source" property="sourceDate"/></td>
-				<td bgcolor="#B2BECE">
+				<td><bean:write name="source" property="user.userDisplayName" /></td>
+				<td><bean:write name="source" property="kingdom.kingdomName"/></td>
+				<td><bean:write name="source" property="soldier.soldierName"/></td>
+				<td><bean:write name="source" property="sourceSoliderCount"/></td>
+				<td><bean:write name="source" property="sourceDate"/></td>
+				<td>
 				<logic:equal name="source" property="approved" value="1"><font color="#111010">已审批</font></logic:equal>
 				<logic:equal name="source" property="approved" value="0"><font color="#a71010">未审批</font></logic:equal>
 				</td>

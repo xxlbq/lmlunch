@@ -68,4 +68,35 @@
 
 	</bean>
 	
+	<bean name="/gem_source_distribution_query_display"
+		class="com.livedoor.flow_manager.gemSource.action.GemSourceDistributionQuery">
+		<property name="userService">
+			<ref bean="userService" />
+		</property>
+		<property name="gemService">
+			<ref bean="gemService" />
+		</property>
+		<property name="kingdomService">
+			<ref bean="kingdomService" />
+		</property>
+		<property name="gemSourceService">
+			<ref bean="gemSourceService" />
+		</property>
+	</bean>
+	
+	<bean name="/gem_source_distribution_query"
+		class="com.livedoor.flow_manager.gemSource.action.GemSourceDistributionQuery">
+		<property name="userService">
+			<ref bean="userService" />
+		</property>
+		<property name="gemService">
+			<ref bean="gemService" />
+		</property>
+		<property name="kingdomService">
+			<ref bean="kingdomService" />
+		</property>
+		<property name="gemSourceService">
+			<ref bean="gemSourceService" />
+		</property>
+	</bean>
 </beans>

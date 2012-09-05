@@ -86,7 +86,7 @@ public class GemSourceQueryAction extends MappingDispatchAction{
 		request.setAttribute("KINGDOM_LIST", kingdomList);
 		
 		List gsList = gemSourceService.queryAllGemSourceDate();
-		if(null != gsList || !gsList.isEmpty()){
+		if(null != gsList && !gsList.isEmpty()){
 			List<LabelValueBean> gsDateArr = toCollection(gsList);
 			request.setAttribute("GEM_SOURCE_DATE_LIST", gsDateArr);
 		}
@@ -167,9 +167,6 @@ public class GemSourceQueryAction extends MappingDispatchAction{
 		Collection<GemSourceSumInfo> infoList = toInfoList(oneWeekGemsList);
 		
 		request.setAttribute("GEM_SOURCE_LIST",infoList);
-		
-
-		
 	}
 
 	private Collection<GemSourceSumInfo> toInfoList(List<GemSource> oneWeekList) {
