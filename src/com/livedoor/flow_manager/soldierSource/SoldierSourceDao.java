@@ -58,11 +58,39 @@ public class SoldierSourceDao extends GenericDAOHibernateImpl{
 		return query("from SoldierSource as s where s.activeFlag = 1");
 	}
 
+	/**
+	 * 兵力分总数
+	 * @param date
+	 * @return
+	 */
 	public List queryTotalSoldierSourcePoint(String date){
-		return (List)this.executeSQL(getHibernateTemplate(), "SELECT SUM(T.SP) TOTAL FROM ( " +
+		return (List)this.querySQL(getHibernateTemplate(), "SELECT SUM(T.SP) TOTAL FROM ( " +
 				"SELECT C.KINGDOM_ID,C.SOURCE_SOLDIER_ID,SUM(C.SOURCE_SOLDIER_COUNT),SUM(C.SOURCE_SOLDIER_COUNT)*S.SOLDIER_POINT SP FROM T_SOLDIER_SOURCE C LEFT JOIN T_SOLDIER S ON C.SOURCE_SOLDIER_ID = S.SOLDIER_ID " +
 				"WHERE  C.SOURCE_DATE = '"+date+"' GROUP BY C.KINGDOM_ID,C.SOURCE_SOLDIER_ID ) AS T ");
 	}
+	
+	public List queryTotalSoldierSource(String date){
+		return (List)this.querySQL(getHibernateTemplate(), 
+				"SELECT C.KINGDOM_ID,C.SOURCE_SOLDIER_ID,SUM(C.SOURCE_SOLDIER_COUNT),SUM(C.SOURCE_SOLDIER_COUNT)*S.SOLDIER_POINT SP FROM T_SOLDIER_SOURCE C LEFT JOIN T_SOLDIER S ON C.SOURCE_SOLDIER_ID = S.SOLDIER_ID " +
+				"WHERE  C.SOURCE_DATE = '"+date+"' GROUP BY C.KINGDOM_ID,C.SOURCE_SOLDIER_ID ");
+	}
+	
+	public List queryTotalSoldierSource(Integer kingdomId,String date){
+		return (List)this.querySQL(getHibernateTemplate(), 
+				"SELECT X.KINGDOM_ID, K.KINGDOM_NAME ,SOURCE_SOLDIER_ID , SSC,SP FROM"+
+				"("+
+				"SELECT " +
+				" C.KINGDOM_ID," +
+				" C.SOURCE_SOLDIER_ID," +
+				" SUM(C.SOURCE_SOLDIER_COUNT) SSC," +
+				" SUM(C.SOURCE_SOLDIER_COUNT)*S.SOLDIER_POINT SP " +
+				"FROM T_SOLDIER_SOURCE C " +
+				"LEFT JOIN T_SOLDIER S ON C.SOURCE_SOLDIER_ID = S.SOLDIER_ID " +
+				"WHERE  " +
+				" C.SOURCE_DATE = '"+date+"' AND C.KINGDOM_ID="+kingdomId+" GROUP BY C.KINGDOM_ID,C.SOURCE_SOLDIER_ID "+
+				") X LEFT JOIN T_KINGDOM K ON K.KINGDOM_ID = X.KINGDOM_ID ");
+	}
+	
 	
 	public List<SoldierSource> queryAllSoldierSources(final Page page) {
 

@@ -7,6 +7,7 @@ import org.apache.log4j.Logger;
 
 import com.livedoor.flow_manager.enums.ActiveEnum;
 import com.livedoor.flow_manager.enums.ApproveEnum;
+import com.livedoor.flow_manager.enums.KingdomEnum;
 import com.livedoor.flow_manager.kingdom.KingdomUtil;
 import com.livedoor.flow_manager.soldier.SoldierUtil;
 import com.livedoor.flow_manager.soldierSource.form.SoldierSourceForm;
@@ -67,4 +68,34 @@ public class SoldierSourceUtil {
 		LOGGER.info("SoldierSource :"+ss);
 		return ss;
 	}
+	
+	
+	
+
+
+	public static void fillSoldierSourceSumInfo(
+			SoldierSourceSumInfo info, String kingdomName,Integer soldierId,Integer soldierSum,Integer pointSum) {
+		info.setKingdomName(kingdomName);
+		info.setGemPointSum(info.getGemPointSum()==null ? 0 : info.getGemPointSum()+pointSum);
+		switch (soldierId) {
+		case 1:
+			info.setQiangdunSum(soldierSum);
+			break;
+		case 2:
+			info.setDadaoSum(soldierSum);
+			break;
+		case 3:
+			info.setQibingSum(soldierSum);
+			break;
+		case 4:
+			info.setZhongjiaSum(soldierSum);
+			break;
+			
+		default:
+			break;
+		}
+		
+	}
+	
+	
 }

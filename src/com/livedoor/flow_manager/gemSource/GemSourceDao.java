@@ -61,13 +61,25 @@ public class GemSourceDao extends GenericDAOHibernateImpl{
 		return query("from GemSource as s where s.activeFlag = 1");
 	}
 
+	/**
+	 * @param date
+	 * @return
+	 */
 	public List queryTotalGemSourcePoint(String date){
-		return (List)this.executeSQL(getHibernateTemplate(), "SELECT SUM(T.GP) TOTAL FROM (" +
+		return (List)this.querySQL(getHibernateTemplate(), "SELECT SUM(T.GP) TOTAL FROM (" +
 				"SELECT S.KINGDOM_ID,S.GEM_ID,SUM(S.SOURCE_GEM_COUNT),SUM(S.SOURCE_GEM_COUNT)* G.GEM_POINT GP FROM T_GEM_SOURCE S LEFT JOIN T_GEM G ON S.GEM_ID=G.GEM_ID " +
 				"WHERE S.SOURCE_GEM_DATE = '"+date+"' GROUP BY S.KINGDOM_ID,S.GEM_ID) AS T ");
 	}
 	
-
+	/**
+	 * @param date
+	 * @return
+	 */
+	public List queryTotalGemSource(String date){
+		return (List)this.querySQL(getHibernateTemplate(), 
+				"SELECT S.KINGDOM_ID,S.GEM_ID,SUM(S.SOURCE_GEM_COUNT),SUM(S.SOURCE_GEM_COUNT)* G.GEM_POINT GP FROM T_GEM_SOURCE S LEFT JOIN T_GEM G ON S.GEM_ID=G.GEM_ID " +
+				"WHERE S.SOURCE_GEM_DATE = '"+date+"' GROUP BY S.KINGDOM_ID,S.GEM_ID ");
+	}
 	/**
 	 * List<Object[]>
 	 * 

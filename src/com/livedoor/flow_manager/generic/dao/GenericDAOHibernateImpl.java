@@ -115,12 +115,13 @@ public class GenericDAOHibernateImpl
 	public Object querySQL(HibernateTemplate hibernateTemplate,String sql){
 
 	       final String tempsql = sql;
-
+	       hibernateTemplate.setCacheQueries(false);
 	       return hibernateTemplate.execute(new HibernateCallback(){
 
 	           public Object doInHibernate(Session session)throws HibernateException{
 
 	        	   Query q = session.createSQLQuery(tempsql) ;
+	        	   
 	        	   return q.list();
 	           }
 

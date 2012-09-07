@@ -76,7 +76,7 @@ td{font-size:10pt;}
 								<strong><font color="#ffffff">发兵国家</strong></td>
 							<td bgcolor="#B2BECE">
 								<html:select property="kingdomId" style="width=162;" >
-									<option value="">请选择</option>
+									
 									<logic:present name="KINGDOM_LIST" scope="request">
 										<html:options collection="KINGDOM_LIST" property="kingdomId" labelProperty="kingdomName" />
 									</logic:present>
@@ -129,24 +129,25 @@ td{font-size:10pt;}
 			<td bgcolor="#5F52A0" nowrap  width="80" align="center"><strong><font color="#ffffff">产生宝石分</font></strong></td>
 		</tr>
 	
-<!--		<logic:present name="GEM_SOURCE_LIST" >-->
-<!--			<logic:iterate name="GEM_SOURCE_LIST"  id="source" indexId="indexid">-->
-<!--			<% if(indexid % 2 != 0){%> 从1开始编号-->
-<!--			<tr bgcolor="#e4e7ea">-->
-<!--			<%}else { %>-->
-<!--			<tr bgcolor="#B2BECE">-->
-<!--			<%} %>-->
-<!--				<td align="center"><bean:write name="source" property="kongdomName" /></td>-->
-<!--				<td align="center"><bean:write name="source" property="gemSourceDate"/></td>-->
-<!--				<td align="center"><bean:write name="source" property="xiuluoSum"/></td>-->
-<!--				<td align="center"><bean:write name="source" property="benleiSum"/></td>-->
-<!--				<td align="center"><bean:write name="source" property="fangyuSum"/></td>-->
-<!--				<td align="center"><bean:write name="source" property="jifengSum"/></td>-->
-<!--				<td align="center"><bean:write name="source" property="fuzaiSum"/></td>-->
-<!---->
-<!--			</tr>-->
-<!--			</logic:iterate>-->
-<!--		</logic:present>-->
+		<logic:present name="SOLDIER_SOURCE_SUM_INFO" >
+			<logic:iterate name="SOLDIER_SOURCE_SUM_INFO"  id="source" indexId="indexid">
+			<% if(indexid % 2 != 0){%> 从1开始编号
+			<tr bgcolor="#e4e7ea">
+			<%}else { %>
+			<tr bgcolor="#B2BECE">
+			<%} %>
+				<td align="center"><bean:write name="source" property="kingdomName" /></td>
+				<td align="center"><bean:write name="source" property="sourceDate"/></td>
+				<td align="center"><bean:write name="source" property="userName"/></td>
+				<td align="center"><bean:write name="source" property="qiangdunSum"/></td>
+				<td align="center"><bean:write name="source" property="dadaoSum"/></td>
+				<td align="center"><bean:write name="source" property="qibingSum"/></td>
+				<td align="center"><bean:write name="source" property="zhongjiaSum"/></td>
+				<td align="center"><bean:write name="source" property="gemPointSum"/></td>
+
+			</tr>
+			</logic:iterate>
+		</logic:present>
 		
 	<%--================================--%>
 	<%--=======		更新   删除	========--%>
