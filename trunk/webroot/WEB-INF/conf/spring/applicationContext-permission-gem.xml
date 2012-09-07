@@ -69,7 +69,7 @@
 	</bean>
 	
 	<bean name="/gem_source_distribution_query_display"
-		class="com.livedoor.flow_manager.gemSource.action.GemSourceDistributionQuery">
+		class="com.livedoor.flow_manager.gemSource.action.GemSourceDistributionQueryAction">
 		<property name="userService">
 			<ref bean="userService" />
 		</property>
@@ -85,7 +85,7 @@
 	</bean>
 	
 	<bean name="/gem_source_distribution_query"
-		class="com.livedoor.flow_manager.gemSource.action.GemSourceDistributionQuery">
+		class="com.livedoor.flow_manager.gemSource.action.GemSourceDistributionQueryAction">
 		<property name="userService">
 			<ref bean="userService" />
 		</property>
@@ -98,5 +98,9 @@
 		<property name="gemSourceService">
 			<ref bean="gemSourceService" />
 		</property>
+		<property name="soldierSourceService">
+			<ref bean="soldierSourceService" />
+		</property>
+		
 	</bean>
 </beans>

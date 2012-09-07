@@ -118,6 +118,16 @@ public class SoldierSourceService implements ISoldierSourceService{
 	}
 	
 
+	public List<Object[]> getKingdomSoldierSourceCountOfWeek(Integer kingdomId,String date){
+		List<Object[]> rs = null;
+		try {
+			rs = soldierSourceDao.queryTotalSoldierSource(kingdomId, date);
+		}catch (Exception e){
+			LOGGER.error("",e);
+			throw new SourceException(9999,""+e.getMessage());
+		}
+		return rs;
+	}
 	
 	
 	public List<SoldierSource> getFoodListByCriteriaQueryFood(SoldierSource f, Page page) {

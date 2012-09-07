@@ -30,6 +30,9 @@ public interface ISoldierSourceService {
 	List<SoldierSource> getSourceListByCriteriaQuerySource(
 			SoldierSource soldierSource, Page page) throws SourceException;
 
+	List<Object[]> getKingdomSoldierSourceCountOfWeek(Integer kingdomId,
+			String date);
+
 
 
 }

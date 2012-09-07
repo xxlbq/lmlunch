@@ -8,6 +8,7 @@ import com.livedoor.flow_manager.enums.ActiveEnum;
 import com.livedoor.flow_manager.gem.Gem;
 import com.livedoor.flow_manager.gemSource.form.GemSourceForm;
 import com.livedoor.flow_manager.kingdom.KingdomUtil;
+import com.livedoor.flow_manager.soldierSource.SoldierSourceSumInfo;
 import com.livedoor.flow_manager.tools.DateUtil;
 import com.livedoor.flow_manager.tools.UUIDGenerator;
 import com.livedoor.flow_manager.user.beans.User;
@@ -88,8 +89,7 @@ public class GemSourceUtil {
 			break;
 		}
 	}
-	
-	
+
 	
 	
 }
