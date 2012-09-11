@@ -66,6 +66,14 @@ public class GemSourceDao extends GenericDAOHibernateImpl{
 	 * @return
 	 */
 	public List queryTotalGemSourcePoint(String date){
+		return (List)this.querySQL(getHibernateTemplate(), "SELECT X.KINGDOM_ID,K.KINGDOM_NAME ,X.GEM_ID ,X.SC ,X.GP,X.SOURCE_GEM_DATE FROM ("+
+				"SELECT S.KINGDOM_ID,S.GEM_ID,SUM(S.SOURCE_GEM_COUNT) SC,SUM(S.SOURCE_GEM_COUNT)* G.GEM_POINT GP ,S.SOURCE_GEM_DATE FROM T_GEM_SOURCE S LEFT JOIN T_GEM G ON S.GEM_ID=G.GEM_ID " +
+				"WHERE S.SOURCE_GEM_DATE = '"+date+"' GROUP BY S.KINGDOM_ID,S.GEM_ID "
+				+") AS X LEFT JOIN T_KINGDOM K ON K.KINGDOM_ID =  X.KINGDOM_ID ");
+	}
+	
+	
+	public List queryTotalGemSourcePointSum(String date){
 		return (List)this.querySQL(getHibernateTemplate(), "SELECT SUM(T.GP) TOTAL FROM (" +
 				"SELECT S.KINGDOM_ID,S.GEM_ID,SUM(S.SOURCE_GEM_COUNT),SUM(S.SOURCE_GEM_COUNT)* G.GEM_POINT GP FROM T_GEM_SOURCE S LEFT JOIN T_GEM G ON S.GEM_ID=G.GEM_ID " +
 				"WHERE S.SOURCE_GEM_DATE = '"+date+"' GROUP BY S.KINGDOM_ID,S.GEM_ID) AS T ");
@@ -75,11 +83,11 @@ public class GemSourceDao extends GenericDAOHibernateImpl{
 	 * @param date
 	 * @return
 	 */
-	public List queryTotalGemSource(String date){
-		return (List)this.querySQL(getHibernateTemplate(), 
-				"SELECT S.KINGDOM_ID,S.GEM_ID,SUM(S.SOURCE_GEM_COUNT),SUM(S.SOURCE_GEM_COUNT)* G.GEM_POINT GP FROM T_GEM_SOURCE S LEFT JOIN T_GEM G ON S.GEM_ID=G.GEM_ID " +
-				"WHERE S.SOURCE_GEM_DATE = '"+date+"' GROUP BY S.KINGDOM_ID,S.GEM_ID ");
-	}
+//	public List queryTotalGemSource(String date){
+//		return (List)this.querySQL(getHibernateTemplate(), 
+//				"SELECT S.KINGDOM_ID,S.GEM_ID,SUM(S.SOURCE_GEM_COUNT),SUM(S.SOURCE_GEM_COUNT)* G.GEM_POINT GP FROM T_GEM_SOURCE S LEFT JOIN T_GEM G ON S.GEM_ID=G.GEM_ID " +
+//				"WHERE S.SOURCE_GEM_DATE = '"+date+"' GROUP BY S.KINGDOM_ID,S.GEM_ID ");
+//	}
 	/**
 	 * List<Object[]>
 	 * 

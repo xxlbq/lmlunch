@@ -126,7 +126,9 @@ td{font-size:10pt;}
 			<td bgcolor="#5F52A0" nowrap  width="80" align="center"><strong><font color="#ffffff">大刀</font></strong></td>
 			<td bgcolor="#5F52A0" nowrap  width="80" align="center"><strong><font color="#ffffff">骑兵</font></strong></td>
 			<td bgcolor="#5F52A0" nowrap  width="80" align="center"><strong><font color="#ffffff">重甲</font></strong></td>
-			<td bgcolor="#5F52A0" nowrap  width="80" align="center"><strong><font color="#ffffff">产生宝石分</font></strong></td>
+			<td bgcolor="#5F52A0" nowrap  width="80" align="center"><strong><font color="#ffffff">原始兵分</font></strong></td>
+			<td bgcolor="#5F52A0" nowrap  width="80" align="center"><strong><font color="#ffffff">税后兵分</font></strong></td>
+			<td bgcolor="#5F52A0" nowrap  width="80" align="center"><strong><font color="#ffffff">宝石分</font></strong></td>
 		</tr>
 	
 		<logic:present name="SOLDIER_SOURCE_SUM_INFO" >
