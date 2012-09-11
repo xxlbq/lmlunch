@@ -18,6 +18,7 @@ import org.apache.struts.actions.MappingDispatchAction;
 import org.apache.struts.util.LabelValueBean;
 
 import com.livedoor.flow_manager.IConstant.AttributeKeyConstant;
+import com.livedoor.flow_manager.gem.Gem;
 import com.livedoor.flow_manager.gem.IGemService;
 import com.livedoor.flow_manager.gemSource.GemSource;
 import com.livedoor.flow_manager.gemSource.GemSourceSumInfo;
@@ -163,22 +164,27 @@ public class GemSourceQueryAction extends MappingDispatchAction{
 		}
 		
 		GemSource ss = GemSourceUtil.toGemSource4Query(sf);
-		List<GemSource> oneWeekGemsList = gemSourceService.getSourceListByCriteriaQuerySource(ss);
-		Collection<GemSourceSumInfo> infoList = toInfoList(oneWeekGemsList);
+		List<Object[]> los=gemSourceService.queryTotalGemSourcePoint(ss);
+//		List<GemSource> oneWeekGemsList = gemSourceService.getSourceListByCriteriaQuerySource(ss);
+//		List<GemSource> oneWeekGemsList =toGemSourceList(los);
+		
+		
+		Collection<GemSourceSumInfo> infoList = toGemSourceSumInfo(los);
 		
 		request.setAttribute("GEM_SOURCE_LIST",infoList);
 	}
 
-	private Collection<GemSourceSumInfo> toInfoList(List<GemSource> oneWeekList) {
+
+	private Collection<GemSourceSumInfo> toGemSourceSumInfo(List<Object[]> rs) {
 		
 		Map<String,GemSourceSumInfo> tempMap = new HashMap<String,GemSourceSumInfo>();
-		for (GemSource gemSource : oneWeekList) {
-			if(tempMap.containsKey(gemSource.getKingdom().getKingdomName())){
-				GemSourceUtil.fillGemSourceInfo(gemSource,tempMap.get(gemSource.getKingdom().getKingdomName())) ;
+		for (Object[] element : rs) {
+			if(tempMap.containsKey((String)element[1])){
+				GemSourceUtil.fillGemSourceInfo(element,tempMap.get((String)element[1])) ;
 			}else{
 				GemSourceSumInfo n = new GemSourceSumInfo();
-				GemSourceUtil.fillGemSourceInfo(gemSource,n) ;
-				tempMap.put(gemSource.getKingdom().getKingdomName(), n);
+				GemSourceUtil.fillGemSourceInfo(element,n) ;
+				tempMap.put((String)element[1], n);
 			}
 		}
 		
@@ -186,5 +192,21 @@ public class GemSourceQueryAction extends MappingDispatchAction{
 	}
 	
 	
-	
+
+
+
+//	private List<GemSource> toGemSourceList(List<Object[]> objList) {
+//		List<GemSource> r = new ArrayList<GemSource>();
+//		for (Object[] objects : objList) {
+//			GemSource gs = new GemSource();
+//			Kingdom k = new Kingdom((Integer)objects[0],(String)objects[1]);
+//			gs.setKingdom(k);
+//			Gem g = new Gem((Integer)objects[2]);
+//			gs.setGem(g);
+//			
+//			gs.se
+//			r.add(gs);
+//		}
+//		return r;
+//	}
 }

@@ -29,6 +29,12 @@ public class Kingdom {
 
 
 
+	public Kingdom(Integer kingdomId, String kingdomName) {
+		super();
+		this.kingdomId = kingdomId;
+		this.kingdomName = kingdomName;
+	}
+
 	public Integer getKingdomId() {
 		return kingdomId;
 	}

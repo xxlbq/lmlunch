@@ -1,5 +1,6 @@
 package com.livedoor.flow_manager.gemSource;
 
+import java.math.BigDecimal;
 import java.util.Date;
 
 import org.apache.log4j.Logger;
@@ -64,32 +65,61 @@ public class GemSourceUtil {
 	 * @param gs
 	 * @param info
 	 */
-	public static void fillGemSourceInfo(GemSource gs,GemSourceSumInfo info){
-		info.setKongdomName(gs.getKingdom().getKingdomName());
-		info.setGemSourceDate(gs.getSourceGemDate());
+//	public static void fillGemSourceInfo(GemSource gs,GemSourceSumInfo info){
+//		info.setKongdomName(gs.getKingdom().getKingdomName());
+//		info.setGemSourceDate(gs.getSourceGemDate());
+//		
+//		switch (gs.getGem().getGemId()) {
+//		case 1:
+//			info.setFuzaiSum(gs.getSourceGemCount());
+//			break;
+//		case 2:
+//			info.setJifengSum(gs.getSourceGemCount());
+//			break;
+//		case 3:
+//			info.setFangyuSum(gs.getSourceGemCount());
+//			break;
+//		case 4:
+//			info.setBenleiSum(gs.getSourceGemCount());
+//			break;
+//		case 5:
+//			info.setXiuluoSum(gs.getSourceGemCount());
+//			break;
+//			
+//		default:
+//			break;
+//		}
+//	}
+
+	public static void fillGemSourceInfo(Object[] objs,GemSourceSumInfo info){
+		info.setKongdomName((String)objs[1]);
+		info.setGemSourceDate((String)objs[5]);
 		
-		switch (gs.getGem().getGemId()) {
+		switch ((Integer)objs[2]) {
 		case 1:
-			info.setFuzaiSum(gs.getSourceGemCount());
+			info.setFuzaiSum((BigDecimal)objs[3]);
+			info.setFuzaiPointSum((BigDecimal)objs[4]);
 			break;
 		case 2:
-			info.setJifengSum(gs.getSourceGemCount());
+			info.setJifengSum((BigDecimal)objs[3]);
+			info.setJifengPointSum((BigDecimal)objs[4]);
 			break;
 		case 3:
-			info.setFangyuSum(gs.getSourceGemCount());
+			info.setFangyuSum((BigDecimal)objs[3]);
+			info.setFangyuPointSum((BigDecimal)objs[4]);
 			break;
 		case 4:
-			info.setBenleiSum(gs.getSourceGemCount());
+			info.setBenleiSum((BigDecimal)objs[3]);
+			info.setBenleiPointSum((BigDecimal)objs[4]);
 			break;
 		case 5:
-			info.setXiuluoSum(gs.getSourceGemCount());
+			info.setXiuluoSum((BigDecimal)objs[3]);
+			info.setXiuluoPointSum((BigDecimal)objs[4]);
 			break;
 			
 		default:
 			break;
 		}
 	}
-
-	
 	
 }

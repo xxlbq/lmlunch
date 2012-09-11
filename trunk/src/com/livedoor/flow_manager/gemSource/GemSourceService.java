@@ -197,4 +197,18 @@ public class GemSourceService implements IGemSourceService{
 	}
 
 	
+	public List<Object[]> queryTotalGemSourcePoint(final GemSource g)
+	throws SourceException {
+		
+		List<Object[]> sList = null;
+		try {
+			sList = GemSourceDao.queryTotalGemSourcePoint(g.getSourceGemDate());
+			
+		}catch (Exception e){
+			LOGGER.error("",e);
+			throw new SourceException(9999,"error :"+e.getMessage());
+		}
+		
+		return sList;
+	}
 }

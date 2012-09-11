@@ -72,17 +72,17 @@ td{font-size:10pt;}
 							</td>
 						</tr>
 						<tr>
-							<td bgcolor="#5F52A0" nowrap align="right">
-								<strong><font color="#ffffff">发兵国家</strong></td>
-							<td bgcolor="#B2BECE">
-								<html:select property="kingdomId" style="width=162;" >
-									<option value="">请选择</option>
-									<logic:present name="KINGDOM_LIST" scope="request">
-										<html:options collection="KINGDOM_LIST" property="kingdomId" labelProperty="kingdomName" />
-									</logic:present>
-								</html:select>
-							</td>
-						</tr>
+<!--							<td bgcolor="#5F52A0" nowrap align="right">-->
+<!--								<strong><font color="#ffffff">发兵国家</strong></td>-->
+<!--							<td bgcolor="#B2BECE">-->
+<!--								<html:select property="kingdomId" style="width=162;" >-->
+<!--									<option value="">请选择</option>-->
+<!--									<logic:present name="KINGDOM_LIST" scope="request">-->
+<!--										<html:options collection="KINGDOM_LIST" property="kingdomId" labelProperty="kingdomName" />-->
+<!--									</logic:present>-->
+<!--								</html:select>-->
+<!--							</td>-->
+<!--						</tr>-->
 						
 					</table>
 				</td>
@@ -127,13 +127,15 @@ td{font-size:10pt;}
 	
 		<tr>
 			
-			<td bgcolor="#5F52A0" nowrap  width="80" align="center"><strong><font color="#ffffff">国家</font></strong></td>
-			<td bgcolor="#5F52A0" nowrap  width="80" align="center"><strong><font color="#ffffff">日期</font></strong></td>
-			<td bgcolor="#5F52A0" nowrap  width="80" align="center"><strong><font color="#ffffff">2级修罗宝石</font></strong></td>
-			<td bgcolor="#5F52A0" nowrap  width="80" align="center"><strong><font color="#ffffff">2级奔雷宝石</font></strong></td>
-			<td bgcolor="#5F52A0" nowrap  width="80" align="center"><strong><font color="#ffffff">2级防御宝石</font></strong></td>
-			<td bgcolor="#5F52A0" nowrap  width="80" align="center"><strong><font color="#ffffff">2级疾风宝石</font></strong></td>
-			<td bgcolor="#5F52A0" nowrap  width="80" align="center"><strong><font color="#ffffff">2级负载宝石</font></strong></td>
+			<td bgcolor="#5F52A0" nowrap  width="50" align="center"><strong><font color="#ffffff">国家</font></strong></td>
+			<td bgcolor="#5F52A0" nowrap  width="50" align="center"><strong><font color="#ffffff">日期</font></strong></td>
+			<td bgcolor="#5F52A0" nowrap  width="50" align="center"><strong><font color="#ffffff">2级修罗宝石</font></strong></td>
+			<td bgcolor="#5F52A0" nowrap  width="50" align="center"><strong><font color="#ffffff">2级奔雷宝石</font></strong></td>
+			<td bgcolor="#5F52A0" nowrap  width="50" align="center"><strong><font color="#ffffff">2级防御宝石</font></strong></td>
+			<td bgcolor="#5F52A0" nowrap  width="50" align="center"><strong><font color="#ffffff">2级疾风宝石</font></strong></td>
+			<td bgcolor="#5F52A0" nowrap  width="50" align="center"><strong><font color="#ffffff">2级负载宝石</font></strong></td>
+			<td bgcolor="#5F52A0" nowrap  width="50" align="center"><strong><font color="#ffffff">宝石总分</font></strong></td>
+			<td bgcolor="#5F52A0" nowrap  width="50" align="center"><strong><font color="#ffffff">税后宝石总分</font></strong></td>
 		</tr>
 	
 		<logic:present name="GEM_SOURCE_LIST" >
@@ -150,6 +152,8 @@ td{font-size:10pt;}
 				<td align="center"><bean:write name="source" property="fangyuSum"/></td>
 				<td align="center"><bean:write name="source" property="jifengSum"/></td>
 				<td align="center"><bean:write name="source" property="fuzaiSum"/></td>
+				<td align="center"><bean:write name="source" property="allDiamondPointSum"/></td>
+				<td align="center"><bean:write name="source" property="allDiamondPointSumAfterTaxRatio"/></td>
 
 			</tr>
 			</logic:iterate>

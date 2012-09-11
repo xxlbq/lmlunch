@@ -15,6 +15,18 @@ public class SoldierSourceSumInfo {
 	
 	private Integer gemPointSum;
 
+	private BigDecimal taxRatio;
+	
+	
+	
+	public BigDecimal getTaxRatio() {
+		return taxRatio;
+	}
+
+	public void setTaxRatio(BigDecimal taxRatio) {
+		this.taxRatio = taxRatio;
+	}
+
 	public String getKingdomName() {
 		return kingdomName;
 	}

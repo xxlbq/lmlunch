@@ -38,4 +38,6 @@ public interface IGemSourceService {
 
 	public List queryAllGemSourceDate();
 
+	List<Object[]> queryTotalGemSourcePoint(GemSource g) throws SourceException;
+
 }
