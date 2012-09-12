@@ -64,6 +64,7 @@ public class GemSourceUtil {
 
 	 * @param gs
 	 * @param info
+	 * @param ratio 
 	 */
 //	public static void fillGemSourceInfo(GemSource gs,GemSourceSumInfo info){
 //		info.setKongdomName(gs.getKingdom().getKingdomName());
@@ -91,9 +92,10 @@ public class GemSourceUtil {
 //		}
 //	}
 
-	public static void fillGemSourceInfo(Object[] objs,GemSourceSumInfo info){
+	public static void fillGemSourceInfo(Object[] objs,GemSourceSumInfo info, BigDecimal ratio){
 		info.setKongdomName((String)objs[1]);
 		info.setGemSourceDate((String)objs[5]);
+		info.setTaxRatio(ratio);
 		
 		switch ((Integer)objs[2]) {
 		case 1:

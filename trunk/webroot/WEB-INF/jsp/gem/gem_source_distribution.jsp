@@ -146,6 +146,7 @@ td{font-size:10pt;}
 				<td align="center"><bean:write name="source" property="qibingSum"/></td>
 				<td align="center"><bean:write name="source" property="zhongjiaSum"/></td>
 				<td align="center"><bean:write name="source" property="gemPointSum"/></td>
+				<td align="center"><bean:write name="source" property="poinSumAfterTax"/></td>
 
 			</tr>
 			</logic:iterate>

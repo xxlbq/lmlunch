@@ -127,7 +127,7 @@ td{font-size:10pt;}
 	
 		<tr>
 			
-			<td bgcolor="#5F52A0" nowrap  width="50" align="center"><strong><font color="#ffffff">国家</font></strong></td>
+			<td bgcolor="#5F52A0" nowrap  width="30" align="center"><strong><font color="#ffffff">国家</font></strong></td>
 			<td bgcolor="#5F52A0" nowrap  width="50" align="center"><strong><font color="#ffffff">日期</font></strong></td>
 			<td bgcolor="#5F52A0" nowrap  width="50" align="center"><strong><font color="#ffffff">2级修罗宝石</font></strong></td>
 			<td bgcolor="#5F52A0" nowrap  width="50" align="center"><strong><font color="#ffffff">2级奔雷宝石</font></strong></td>
@@ -135,7 +135,7 @@ td{font-size:10pt;}
 			<td bgcolor="#5F52A0" nowrap  width="50" align="center"><strong><font color="#ffffff">2级疾风宝石</font></strong></td>
 			<td bgcolor="#5F52A0" nowrap  width="50" align="center"><strong><font color="#ffffff">2级负载宝石</font></strong></td>
 			<td bgcolor="#5F52A0" nowrap  width="50" align="center"><strong><font color="#ffffff">宝石总分</font></strong></td>
-			<td bgcolor="#5F52A0" nowrap  width="50" align="center"><strong><font color="#ffffff">税后宝石总分</font></strong></td>
+			<td bgcolor="#5F52A0" nowrap  width="80" align="center"><strong><font color="#ffffff">税后宝石总分(<bean:write name="RATIO_DISPLAY"/>)</font></strong></td>
 		</tr>
 	
 		<logic:present name="GEM_SOURCE_LIST" >

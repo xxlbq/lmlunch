@@ -1,5 +1,6 @@
 package com.livedoor.flow_manager.soldierSource;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 import org.apache.log4j.Logger;
@@ -127,6 +128,10 @@ public class SoldierSourceService implements ISoldierSourceService{
 			throw new SourceException(9999,""+e.getMessage());
 		}
 		return rs;
+	}
+	
+	public BigDecimal queryTotalSoldierSourcePoint(String date,Integer kingdomId){
+		return (BigDecimal)soldierSourceDao.queryTotalSoldierSourcePoint(date, kingdomId).get(0);
 	}
 	
 	

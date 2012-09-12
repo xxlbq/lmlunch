@@ -1,5 +1,6 @@
 package com.livedoor.flow_manager.gemSource;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 import org.hibernate.HibernateException;
@@ -38,6 +39,8 @@ public interface IGemSourceService {
 
 	public List queryAllGemSourceDate();
 
-	List<Object[]> queryTotalGemSourcePoint(GemSource g) throws SourceException;
+	List<Object[]> queryGemSourcePointList(GemSource g) throws SourceException;
+
+	BigDecimal queryTotalGemSourcePoint(String sourceGemDate, Integer kingdomId);
 
 }

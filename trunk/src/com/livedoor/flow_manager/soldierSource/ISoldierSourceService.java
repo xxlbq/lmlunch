@@ -1,5 +1,6 @@
 package com.livedoor.flow_manager.soldierSource;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 import org.hibernate.HibernateException;
@@ -32,6 +33,8 @@ public interface ISoldierSourceService {
 
 	List<Object[]> getKingdomSoldierSourceCountOfWeek(Integer kingdomId,
 			String date);
+
+	BigDecimal queryTotalSoldierSourcePoint(String date, Integer kingdomId);
 
 
 

@@ -1,5 +1,6 @@
 package com.livedoor.flow_manager.gemSource.action;
 
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
@@ -18,7 +19,6 @@ import org.apache.struts.actions.MappingDispatchAction;
 import org.apache.struts.util.LabelValueBean;
 
 import com.livedoor.flow_manager.IConstant.AttributeKeyConstant;
-import com.livedoor.flow_manager.gem.Gem;
 import com.livedoor.flow_manager.gem.IGemService;
 import com.livedoor.flow_manager.gemSource.GemSource;
 import com.livedoor.flow_manager.gemSource.GemSourceSumInfo;
@@ -27,6 +27,8 @@ import com.livedoor.flow_manager.gemSource.IGemSourceService;
 import com.livedoor.flow_manager.gemSource.form.GemSourceForm;
 import com.livedoor.flow_manager.kingdom.IKingdomService;
 import com.livedoor.flow_manager.kingdom.Kingdom;
+import com.livedoor.flow_manager.sysConfig.ISysConfigConstants;
+import com.livedoor.flow_manager.sysConfig.ISysConfigService;
 import com.livedoor.flow_manager.user.beans.User;
 import com.livedoor.flow_manager.user.service.IUserService;
 
@@ -38,8 +40,13 @@ public class GemSourceQueryAction extends MappingDispatchAction{
 	private IKingdomService kingdomService ;
 	private IGemSourceService gemSourceService;
 	private IUserService userService;
+	private ISysConfigService sysConfigService;
+	
 
 	
+	public void setSysConfigService(ISysConfigService sysConfigService) {
+		this.sysConfigService = sysConfigService;
+	}
 
 	public IGemService getGemService() {
 		return gemService;
@@ -91,7 +98,10 @@ public class GemSourceQueryAction extends MappingDispatchAction{
 			List<LabelValueBean> gsDateArr = toCollection(gsList);
 			request.setAttribute("GEM_SOURCE_DATE_LIST", gsDateArr);
 		}
-
+		
+		String ratioValue = sysConfigService.querySysConfig(ISysConfigConstants.CONFIG_TYPE_GEM, ISysConfigConstants.CONFIG_KEY_FAMILY_FOUNDATION);
+		BigDecimal ratio = new BigDecimal(100 - Integer.parseInt(ratioValue)).divide(new BigDecimal("100"));
+		request.setAttribute("RATIO_DISPLAY", (100 - (Integer.parseInt(ratioValue))+"%"));
 		
 		LOGGER.info(" SoldierSourceQueryAction display <--- ");
 		return mapping.findForward("success");
@@ -164,26 +174,29 @@ public class GemSourceQueryAction extends MappingDispatchAction{
 		}
 		
 		GemSource ss = GemSourceUtil.toGemSource4Query(sf);
-		List<Object[]> los=gemSourceService.queryTotalGemSourcePoint(ss);
+		List<Object[]> los=gemSourceService.queryGemSourcePointList(ss);
 //		List<GemSource> oneWeekGemsList = gemSourceService.getSourceListByCriteriaQuerySource(ss);
 //		List<GemSource> oneWeekGemsList =toGemSourceList(los);
 		
 		
-		Collection<GemSourceSumInfo> infoList = toGemSourceSumInfo(los);
+		String ratioValue = sysConfigService.querySysConfig(ISysConfigConstants.CONFIG_TYPE_GEM, ISysConfigConstants.CONFIG_KEY_FAMILY_FOUNDATION);
+		BigDecimal ratio = new BigDecimal(100 - Integer.parseInt(ratioValue)).divide(new BigDecimal("100"));
+		request.setAttribute("RATIO_DISPLAY", (100 - (Integer.parseInt(ratioValue))+"%"));
 		
+		Collection<GemSourceSumInfo> infoList = toGemSourceSumInfo(los,ratio);
 		request.setAttribute("GEM_SOURCE_LIST",infoList);
 	}
 
 
-	private Collection<GemSourceSumInfo> toGemSourceSumInfo(List<Object[]> rs) {
-		
+	private Collection<GemSourceSumInfo> toGemSourceSumInfo(List<Object[]> rs,BigDecimal ratio) {
+
 		Map<String,GemSourceSumInfo> tempMap = new HashMap<String,GemSourceSumInfo>();
 		for (Object[] element : rs) {
 			if(tempMap.containsKey((String)element[1])){
-				GemSourceUtil.fillGemSourceInfo(element,tempMap.get((String)element[1])) ;
+				GemSourceUtil.fillGemSourceInfo(element,tempMap.get((String)element[1]),ratio) ;
 			}else{
 				GemSourceSumInfo n = new GemSourceSumInfo();
-				GemSourceUtil.fillGemSourceInfo(element,n) ;
+				GemSourceUtil.fillGemSourceInfo(element,n,ratio) ;
 				tempMap.put((String)element[1], n);
 			}
 		}

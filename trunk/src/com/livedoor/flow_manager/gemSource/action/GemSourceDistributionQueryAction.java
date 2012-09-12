@@ -1,6 +1,7 @@
 package com.livedoor.flow_manager.gemSource.action;
 
 import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
@@ -28,6 +29,8 @@ import com.livedoor.flow_manager.kingdom.Kingdom;
 import com.livedoor.flow_manager.soldierSource.ISoldierSourceService;
 import com.livedoor.flow_manager.soldierSource.SoldierSourceSumInfo;
 import com.livedoor.flow_manager.soldierSource.SoldierSourceUtil;
+import com.livedoor.flow_manager.sysConfig.ISysConfigConstants;
+import com.livedoor.flow_manager.sysConfig.ISysConfigService;
 import com.livedoor.flow_manager.user.beans.User;
 import com.livedoor.flow_manager.user.service.IUserService;
 
@@ -40,7 +43,7 @@ public class GemSourceDistributionQueryAction extends MappingDispatchAction{
 	private IGemSourceService gemSourceService;
 	private IUserService userService;
 	private ISoldierSourceService soldierSourceService;
-	
+	private ISysConfigService sysConfigService;
 
 	public void setSoldierSourceService(ISoldierSourceService soldierSourceService) {
 		this.soldierSourceService = soldierSourceService;
@@ -121,18 +124,40 @@ public class GemSourceDistributionQueryAction extends MappingDispatchAction{
 			request.setAttribute("GEM_SOURCE_DATE_LIST", gsDateArr);
 		}
 		
-		//本周兵力总数
+
 		//本周兵力分合计
+		BigDecimal soldierSourceTotalPoint = soldierSourceService.queryTotalSoldierSourcePoint(gsf.getSourceGemDate(),gsf.getKingdomId());
+		LOGGER.info("date :"+gsf.getSourceGemDate()+",kingdomId:"+gsf.getKingdomId()+" ,soldierSourceTotalPoint:"+soldierSourceTotalPoint);
+
+		
+		//本周宝石分合计
+		BigDecimal gemSourceTotalPoint = gemSourceService.queryTotalGemSourcePoint(gsf.getSourceGemDate(),gsf.getKingdomId());
+		LOGGER.info("date :"+gsf.getSourceGemDate()+",kingdomId:"+gsf.getKingdomId()+" ,gemSourceTotalPoint:"+gemSourceTotalPoint);
+	
+		//本周宝石兵力比例       每1w防御对应的宝石 比率   ，1 兵力分 ：0.03 宝石分 
+		BigDecimal gemPointPerSoldier =  gemSourceTotalPoint.divide(soldierSourceTotalPoint).setScale(2, RoundingMode.DOWN);
+		LOGGER.info("date :"+gsf.getSourceGemDate()+",kingdomId:"+gsf.getKingdomId()+" ,gemPointPerSoldier:"+gemPointPerSoldier);
+
+		//家族基金比率
+		String ratioValue = sysConfigService.querySysConfig(ISysConfigConstants.CONFIG_TYPE_GEM, ISysConfigConstants.CONFIG_KEY_FAMILY_FOUNDATION);
+		BigDecimal ratio = new BigDecimal(100 - Integer.parseInt(ratioValue)).divide(new BigDecimal("100"));
+		LOGGER.info("date :"+gsf.getSourceGemDate()+",kingdomId:"+gsf.getKingdomId()+" ,ratio:"+ratio);
+		
+		//国家 日期 名字 枪盾 大刀 骑兵 重甲  产生宝石分  交基金后宝石分
 		List<Object[]> rs = soldierSourceService.getKingdomSoldierSourceCountOfWeek(gsf.getKingdomId(),gsf.getSourceGemDate());
-		Collection<SoldierSourceSumInfo> ssInfoList = toSoldierSourceSumInfo(rs,gsf.getSourceGemDate(),user.getUserDisplayName());
+		Collection<SoldierSourceSumInfo> ssInfoList = toSoldierSourceSumInfo(rs,gemPointPerSoldier);
 		request.setAttribute("SOLDIER_SOURCE_SUM_INFO", ssInfoList);
 		
 		
-		//本周宝石总数
 		
-		//本周宝石分合计
+		request.setAttribute("soldierSourceTotalPoint", soldierSourceTotalPoint);
+		request.setAttribute("soldierSourceTotalPointRatio", soldierSourceTotalPoint.multiply(ratio).setScale(0, RoundingMode.DOWN));
 		
-		//国家 日期 名字 枪盾 大刀 骑兵 重甲 产生宝石分
+		request.setAttribute("gemSourceTotalPoint", gemSourceTotalPoint);
+		request.setAttribute("gemSourceTotalPointRatio", gemSourceTotalPoint.multiply(ratio).setScale(0, RoundingMode.DOWN));
+		
+		request.setAttribute("gemPointPerSoldier", gemPointPerSoldier);
+		request.setAttribute("ratio", ratio);
 		
 		
 		
@@ -147,19 +172,23 @@ public class GemSourceDistributionQueryAction extends MappingDispatchAction{
 	 * 国家 兵种 数量  积分数
 	 * 
 	 * @param rs
+	 * @param gemPointPerSoldier 
 	 * @param string2 
 	 * @param string 
 	 * @return
 	 */
-	private Collection<SoldierSourceSumInfo> toSoldierSourceSumInfo(List<Object[]> rs, String date, String displayName) {
+	private Collection<SoldierSourceSumInfo> toSoldierSourceSumInfo(List<Object[]> rs, BigDecimal gemPointPerSoldier) {
 		//Map<国家,Map<兵种,SoldierSourceSumInfo>>
 		Map<Integer,SoldierSourceSumInfo> map = new HashMap<Integer,SoldierSourceSumInfo>();
 		for (Object[] objArr : rs) {
 			Integer kingdomId = (Integer)objArr[0];
 			String 	kingdomName = (String)objArr[1];
-			Integer soldierId = (Integer)objArr[2];
-			BigDecimal sumSoldier =(BigDecimal)objArr[3];
-			BigDecimal sumPoint = (BigDecimal)objArr[4];
+			String  date = (String)objArr[2];
+			String	displayName = (String)objArr[3];
+			Integer soldierId = (Integer)objArr[5];
+			
+			BigDecimal sumSoldier =(BigDecimal)objArr[6];
+			BigDecimal sumPoint = (BigDecimal)objArr[7];
 			
 			if(map.containsKey(kingdomId)){
 				SoldierSourceUtil.fillSoldierSourceSumInfo(map.get(kingdomId),kingdomName,soldierId,sumSoldier.intValue(),sumPoint.intValue()) ;

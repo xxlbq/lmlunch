@@ -1,6 +1,7 @@
 package com.livedoor.flow_manager.soldierSource;
 
 import java.math.BigDecimal;
+import java.math.RoundingMode;
 
 public class SoldierSourceSumInfo {
 	
@@ -14,10 +15,12 @@ public class SoldierSourceSumInfo {
 	private Integer zhongjiaSum;
 	
 	private Integer gemPointSum;
+	
+	private BigDecimal taxRatio = BigDecimal.ONE;
 
-	private BigDecimal taxRatio;
-	
-	
+	public BigDecimal getPoinSumAfterTax(){
+		return taxRatio.multiply(new BigDecimal(gemPointSum)).setScale(0,RoundingMode.DOWN);
+	}
 	
 	public BigDecimal getTaxRatio() {
 		return taxRatio;

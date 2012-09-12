@@ -1,6 +1,7 @@
 package com.livedoor.flow_manager.soldierSource;
 
 import java.lang.reflect.InvocationTargetException;
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -63,10 +64,10 @@ public class SoldierSourceDao extends GenericDAOHibernateImpl{
 	 * @param date
 	 * @return
 	 */
-	public List queryTotalSoldierSourcePoint(String date){
+	public List queryTotalSoldierSourcePoint(String date,Integer kingdomId){
 		return (List)this.querySQL(getHibernateTemplate(), "SELECT SUM(T.SP) TOTAL FROM ( " +
 				"SELECT C.KINGDOM_ID,C.SOURCE_SOLDIER_ID,SUM(C.SOURCE_SOLDIER_COUNT),SUM(C.SOURCE_SOLDIER_COUNT)*S.SOLDIER_POINT SP FROM T_SOLDIER_SOURCE C LEFT JOIN T_SOLDIER S ON C.SOURCE_SOLDIER_ID = S.SOLDIER_ID " +
-				"WHERE  C.SOURCE_DATE = '"+date+"' GROUP BY C.KINGDOM_ID,C.SOURCE_SOLDIER_ID ) AS T ");
+				"WHERE  C.SOURCE_DATE = '"+date+"' AND C.KINGDOM_ID = "+kingdomId+" GROUP BY C.KINGDOM_ID,C.SOURCE_SOLDIER_ID ) AS T ");
 	}
 	
 	public List queryTotalSoldierSource(String date){
@@ -77,18 +78,33 @@ public class SoldierSourceDao extends GenericDAOHibernateImpl{
 	
 	public List queryTotalSoldierSource(Integer kingdomId,String date){
 		return (List)this.querySQL(getHibernateTemplate(), 
-				"SELECT X.KINGDOM_ID, K.KINGDOM_NAME ,SOURCE_SOLDIER_ID , SSC,SP FROM"+
-				"("+
-				"SELECT " +
-				" C.KINGDOM_ID," +
-				" C.SOURCE_SOLDIER_ID," +
-				" SUM(C.SOURCE_SOLDIER_COUNT) SSC," +
-				" SUM(C.SOURCE_SOLDIER_COUNT)*S.SOLDIER_POINT SP " +
-				"FROM T_SOLDIER_SOURCE C " +
-				"LEFT JOIN T_SOLDIER S ON C.SOURCE_SOLDIER_ID = S.SOLDIER_ID " +
-				"WHERE  " +
-				" C.SOURCE_DATE = '"+date+"' AND C.KINGDOM_ID="+kingdomId+" GROUP BY C.KINGDOM_ID,C.SOURCE_SOLDIER_ID "+
-				") X LEFT JOIN T_KINGDOM K ON K.KINGDOM_ID = X.KINGDOM_ID ");
+        "SELECT "+
+        "    C.KINGDOM_ID,"+
+        "    K.KINGDOM_NAME,"+
+        "   C.SOURCE_DATE ,"+
+        "   U.USER_DISPLAY_NAME,"+
+        "   C.USER_ID,"+
+        "   C.SOURCE_SOLDIER_ID,"+
+        "   SUM(C.SOURCE_SOLDIER_COUNT) SSC,"+
+        "   SUM(C.SOURCE_SOLDIER_COUNT)*S.SOLDIER_POINT SP "+ 
+        "FROM "+
+        "   T_SOLDIER_SOURCE C "+ 
+        "LEFT JOIN "+
+        "    T_SOLDIER S "+ 
+        "       ON S.SOLDIER_ID =  C.SOURCE_SOLDIER_ID "+ 
+        "LEFT JOIN "+
+        "   T_KINGDOM K "+
+        "   	ON K.KINGDOM_ID = C.KINGDOM_ID "+ 
+        "LEFT JOIN "+
+        "   T_USER U "+
+        "   	ON U.USER_ID = C.USER_ID "+ 
+        "WHERE "+
+        "   C.SOURCE_DATE = '"+date+"' "+ 
+        "   AND C.KINGDOM_ID="+kingdomId+
+        "GROUP BY "+
+        "   C.KINGDOM_ID,"+
+        "   C.USER_ID,"+
+        "   C.SOURCE_SOLDIER_ID ");
 	}
 	
 	

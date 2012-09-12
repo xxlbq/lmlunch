@@ -46,7 +46,7 @@ public class GenericDAOHibernateImpl
 		return getHibernateTemplate().find(hql,paramObj);
 	}
 	
-	public List queryUseCache(String hql, Object paramObj) {
+	public List queryUseCache(String hql, Object[] paramObj) {
 		getHibernateTemplate().setCacheQueries(true);
 		getHibernateTemplate().setQueryCacheRegion(SystemConstants.QUERY_CACHE_PREFIX + "");
 		return getHibernateTemplate().find(hql,paramObj);
