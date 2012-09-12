@@ -49,7 +49,9 @@
 		<property name="gemSourceService">
 			<ref bean="gemSourceService" />
 		</property>
-
+		<property name="sysConfigService">
+			<ref bean="sysConfigService" />
+		</property>
 	</bean>
 		<bean name="/gem_source_query"
 		class="com.livedoor.flow_manager.gemSource.action.GemSourceQueryAction">
@@ -64,6 +66,9 @@
 		</property>
 		<property name="gemSourceService">
 			<ref bean="gemSourceService" />
+		</property>
+		<property name="sysConfigService">
+			<ref bean="sysConfigService" />
 		</property>
 
 	</bean>
@@ -101,6 +106,8 @@
 		<property name="soldierSourceService">
 			<ref bean="soldierSourceService" />
 		</property>
-		
+		<property name="sysConfigService">
+			<ref bean="sysConfigService" />
+		</property>
 	</bean>
 </beans>

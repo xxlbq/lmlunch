@@ -1,0 +1,29 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+	"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+	"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+
+	<class name="com.livedoor.flow_manager.sysConfig.SysConfig"
+		table="T_SYS_CONFIG">
+		<cache usage="read-write" region="com.livedoor.flow_manager.common.cacheTemplate"/>
+		
+		<composite-id name="id" class="com.livedoor.flow_manager.sysConfig.SysConfigId">
+            <key-property name="configType" type="string">
+                <column name="CONFIG_TYPE" length="50" />
+            </key-property>
+            <key-property name="configKey" type="string">
+                <column name="CONFIG_KEY" length="50" />
+            </key-property>
+        </composite-id>
+		
+		<property name="configValue" column="CONFIG_VALUE"
+			type="string">
+		</property>
+		<property name="configMemo" column="CONFIG_MEMO"
+			type="string">
+		</property>
+
+	</class>
+
+</hibernate-mapping>

@@ -1,6 +1,7 @@
 package com.livedoor.flow_manager.gemSource;
 
 import java.lang.reflect.InvocationTargetException;
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
@@ -73,10 +74,10 @@ public class GemSourceDao extends GenericDAOHibernateImpl{
 	}
 	
 	
-	public List queryTotalGemSourcePointSum(String date){
+	public List queryTotalGemSourcePointSum(String date,Integer kingdomId){
 		return (List)this.querySQL(getHibernateTemplate(), "SELECT SUM(T.GP) TOTAL FROM (" +
 				"SELECT S.KINGDOM_ID,S.GEM_ID,SUM(S.SOURCE_GEM_COUNT),SUM(S.SOURCE_GEM_COUNT)* G.GEM_POINT GP FROM T_GEM_SOURCE S LEFT JOIN T_GEM G ON S.GEM_ID=G.GEM_ID " +
-				"WHERE S.SOURCE_GEM_DATE = '"+date+"' GROUP BY S.KINGDOM_ID,S.GEM_ID) AS T ");
+				"WHERE S.SOURCE_GEM_DATE = '"+date+"' AND S.KINGDOM_ID = "+kingdomId+" GROUP BY S.KINGDOM_ID,S.GEM_ID) AS T ");
 	}
 	
 	/**

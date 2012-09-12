@@ -74,6 +74,7 @@
 				<value>classpath:/com/livedoor/flow_manager/hbm/gemSource</value>
 				<value>classpath:/com/livedoor/flow_manager/hbm/soldierSource</value>
 				<value>classpath:/com/livedoor/flow_manager/hbm/noGenerator</value>
+				<value>classpath:/com/livedoor/flow_manager/hbm/sysConfig</value>
 				<value>classpath:/com/livedoor/flow_manager/hbm/user</value>
 				<value>classpath:/com/livedoor/flow_manager/hbm/role</value>
 				<value>classpath:/com/livedoor/flow_manager/hbm/cash</value>
@@ -221,6 +222,17 @@
 		class="com.livedoor.flow_manager.gemSource.GemSourceDao">
 		<property name="hibernateTemplate" ref="hibernateTemplate" />
 	</bean>
+
+	<bean id="sysConfigService"
+		class="com.livedoor.flow_manager.sysConfig.SysConfigService">
+		<property name="sysConfigDao" ref="sysConfigDao" />
+	</bean>
+	
+	<bean id="sysConfigDao"
+		class="com.livedoor.flow_manager.sysConfig.SysConfigDao">
+		<property name="hibernateTemplate" ref="hibernateTemplate" />
+	</bean>
+
 
 
 

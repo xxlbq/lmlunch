@@ -1,5 +1,6 @@
 package com.livedoor.flow_manager.gemSource;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 import org.apache.log4j.Logger;
@@ -197,7 +198,7 @@ public class GemSourceService implements IGemSourceService{
 	}
 
 	
-	public List<Object[]> queryTotalGemSourcePoint(final GemSource g)
+	public List<Object[]> queryGemSourcePointList(final GemSource g)
 	throws SourceException {
 		
 		List<Object[]> sList = null;
@@ -211,4 +212,25 @@ public class GemSourceService implements IGemSourceService{
 		
 		return sList;
 	}
+
+
+
+
+	@Override
+	public BigDecimal queryTotalGemSourcePoint(String sourceGemDate,
+			Integer kingdomId) {
+		BigDecimal total = null;
+		try {
+			total = (BigDecimal)GemSourceDao.queryTotalGemSourcePointSum(sourceGemDate,kingdomId).get(0);
+			
+		}catch (Exception e){
+			LOGGER.error("",e);
+			throw new SourceException(9999,"error :"+e.getMessage());
+		}
+		
+		return total;
+	}
+	
+	
+	
 }
