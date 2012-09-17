@@ -2,7 +2,7 @@ package com.livedoor.flow_manager.enums;
 
 public enum ApproveEnum {
 
-	UNAPPROVE(0),APPROVED(1);
+	UNAPPROVED(0),APPROVED(1);
 	
 	private int value ;
 

@@ -228,7 +228,7 @@ public class GemSourceService implements IGemSourceService{
 			throw new SourceException(9999,"error :"+e.getMessage());
 		}
 		
-		return total;
+		return total == null ? BigDecimal.ZERO : total;
 	}
 	
 	

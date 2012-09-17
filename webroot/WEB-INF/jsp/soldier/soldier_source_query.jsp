@@ -106,9 +106,11 @@ td{font-size:10pt;}
 						<tr>
 							<td bgcolor="#5F52A0" nowrap align="right"><strong><font color="#ffffff">发兵日期</font></strong></td>
 							<td bgcolor="#B2BECE">
-								
-								<html:text maxlength="8"  property="sourceDate" size="10"/>（YYYYMMDD 例如:2012年8月24日，则填入 20120824）
-
+								<html:select property="sourceDate" style="width=162;" >
+									<logic:present name="SOLDIER_SOURCE_DATE_LIST" scope="request">
+										<html:options collection="SOLDIER_SOURCE_DATE_LIST" property="value" labelProperty="label"/>
+									</logic:present>
+								</html:select>
 							</td>
 						</tr>
 						<tr>
@@ -209,7 +211,7 @@ td{font-size:10pt;}
 				<td>
 					
 					<logic:equal name="source" property="approved" value="1">
-						<font color="#111010">已审</font>
+						<input type="checkbox" name="cancelSId" value='<bean:write name="source" property="sourceId" />'/><font color="#111010">已审</font>
 					</logic:equal>
 					<logic:equal name="source" property="approved" value="0">
 						<input type="checkbox" name="sId" value='<bean:write name="source" property="sourceId" />'/>

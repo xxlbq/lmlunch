@@ -9,17 +9,44 @@ public class SoldierSourceSumInfo {
 	private String sourceDate;
 	private String userName;
 	
-	private Integer qiangdunSum;
-	private Integer dadaoSum;
-	private Integer qibingSum;
-	private Integer zhongjiaSum;
+	private Integer qiangdunSum = 0 ;
+	private Integer dadaoSum = 0;
+	private Integer qibingSum = 0;
+	private Integer zhongjiaSum = 0;
 	
-	private Integer gemPointSum;
+	private Integer soldierPointSum = 0;
 	
 	private BigDecimal taxRatio = BigDecimal.ONE;
 
-	public BigDecimal getPoinSumAfterTax(){
-		return taxRatio.multiply(new BigDecimal(gemPointSum)).setScale(0,RoundingMode.DOWN);
+	private BigDecimal gemPointPerSoldier =BigDecimal.ZERO;
+
+	
+	public BigDecimal getGemPointSumAfterTax() {
+		return gemPointPerSoldier.multiply(getSoldierPointSumAfterTax()).setScale(0,RoundingMode.DOWN) ;
+	}
+	
+	public BigDecimal getGemPointSum() {
+		return gemPointPerSoldier.multiply(new BigDecimal(soldierPointSum)).setScale(0,RoundingMode.DOWN) ;
+	}
+	
+	public Integer getSoldierPointSum() {
+		return soldierPointSum;
+	}
+
+	public void setSoldierPointSum(Integer soldierPointSum) {
+		this.soldierPointSum = soldierPointSum;
+	}
+
+	public BigDecimal getGemPointPerSoldier() {
+		return gemPointPerSoldier;
+	}
+
+	public void setGemPointPerSoldier(BigDecimal gemPointPerSoldier) {
+		this.gemPointPerSoldier = gemPointPerSoldier;
+	}
+
+	public BigDecimal getSoldierPointSumAfterTax(){
+		return taxRatio.multiply(new BigDecimal(soldierPointSum)).setScale(0,RoundingMode.DOWN);
 	}
 	
 	public BigDecimal getTaxRatio() {
@@ -87,13 +114,6 @@ public class SoldierSourceSumInfo {
 		this.zhongjiaSum = zhongjiaSum;
 	}
 
-	public Integer getGemPointSum() {
-		return gemPointSum;
-	}
-
-	public void setGemPointSum(Integer gemPointSum) {
-		this.gemPointSum = gemPointSum;
-	}
 
 	
 	

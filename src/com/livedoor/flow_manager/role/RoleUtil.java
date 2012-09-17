@@ -4,6 +4,11 @@ import com.livedoor.flow_manager.enums.RoleEnum;
 
 public class RoleUtil {
 	public static boolean isAdmin(int roleId){
-		return RoleEnum.ADMIN.getValue() == roleId;
+		return roleId <= RoleEnum.ADMIN.getValue();
 	}
+	public static boolean isGod(int roleId){
+		return roleId  <= RoleEnum.GOD.getValue() ;
+	}
+	
+	
 }

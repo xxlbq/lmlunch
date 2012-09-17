@@ -33,6 +33,18 @@
 		    <forward  name="success" path="/WEB-INF/jsp/soldier/soldier_source_query.jsp" />
 		</action>
 		
+		<action   path="/soldier_source_approve" name="soldierSourceForm"  scope="request" parameter="approve">
+		    <forward  name="success" path="/WEB-INF/jsp/soldier/soldier_source_query.jsp" />
+		</action>
+		
+		<action   path="/soldier_source_cancel_approve" name="soldierSourceForm"  scope="request" parameter="cancelApprove">
+		    <forward  name="success" path="/WEB-INF/jsp/soldier/soldier_source_query.jsp" />
+		</action>
+		
+		
+		
+		
+		
 		<action   path="/pagerSource" name="soldierSourceForm" scope="request" parameter="query">
 		    <forward  name="success" path="/WEB-INF/jsp/soldier/soldier_source_query.jsp" />
 		</action>

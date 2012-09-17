@@ -28,7 +28,7 @@ public class SoldierSourceUtil {
 		ss.setSourceSoliderCount(ssf.getSourceSoliderCount());
 		ss.setKingdom(KingdomUtil.toKingdom(ssf.getKingdomId()));
 		ss.setSourceSoliderSumCount(BigDecimal.ZERO);
-		ss.setApproved(ApproveEnum.UNAPPROVE.getValue());
+		ss.setApproved(ApproveEnum.UNAPPROVED.getValue());
 		ss.setSourceDate(DateUtil.getCurrentSaturday());
 		ss.setInputStaffId(user.getUserDisplayName());
 		ss.setUpdateStaffId(user.getUserDisplayName());
@@ -76,7 +76,7 @@ public class SoldierSourceUtil {
 	public static void fillSoldierSourceSumInfo(
 			SoldierSourceSumInfo info, String kingdomName,Integer soldierId,Integer soldierSum,Integer pointSum) {
 		info.setKingdomName(kingdomName);
-		info.setGemPointSum(info.getGemPointSum()==null ? 0 : info.getGemPointSum()+pointSum);
+		info.setSoldierPointSum(info.getSoldierPointSum() == null ? 0 : info.getSoldierPointSum() + pointSum);
 		switch (soldierId) {
 		case 1:
 			info.setQiangdunSum(soldierSum);

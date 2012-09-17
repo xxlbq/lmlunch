@@ -2,7 +2,7 @@ package com.livedoor.flow_manager.enums;
 
 public enum RoleEnum {
 	
-	ADMIN(1),MEMBER(2),UNREGISTERED(3),UNKNOWN(4);
+	GOD(0),ADMIN(1),MEMBER(2),UNREGISTERED(3),UNKNOWN(4);
 	
 	private int value ;
 
