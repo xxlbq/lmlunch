@@ -1,8 +1,9 @@
-#Mon Sep 03 13:07:09 JST 2012
+#Fri Sep 14 13:04:01 JST 2012
 eclipse.preferences.version=1
 encoding//bak/SOLDIER.SQL=UTF-8
 encoding//bak/bakup.sql=UTF-8
 encoding//bak/flow_manager.sql=gb2312
+encoding//src/com/livedoor/flow_manager/role/dao/RoleDao.java=UTF-8
 encoding//src/com/livedoor/flow_manager/soldierSource/SoldierSourceDao.java=UTF-8
 encoding//src/spy.properties=UTF-8
 encoding//webroot/WEB-INF/conf/log4j/log4j.properties=UTF-8
