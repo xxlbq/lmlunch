@@ -61,16 +61,46 @@ INSERT INTO t_role_action(MENU_SEQ, ROLE_ACTION_URL, ROLE_ACTION_NAME, DISPLAY_O
     VALUES('G00103', '(gem_source_query_display.do)', '查询宝石', 3, 'G001', 'INIT', 'INIT', 1, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP) ;
 INSERT INTO t_role_action(MENU_SEQ, ROLE_ACTION_URL, ROLE_ACTION_NAME, DISPLAY_ORDER, PARENT_MENU_SEQ, UPDATE_STAFF_ID, INPUT_STAFF_ID, ACTIVE_FLAG, INPUT_DATE, UPDATE_DATE) 
     VALUES('G00104', '(gem_source_distribution_query_display.do)', '宝石发放', 4, 'G001', 'INIT', 'INIT', 1, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP) ;
-
-
     
 INSERT INTO t_role_action(MENU_SEQ, ROLE_ACTION_URL, ROLE_ACTION_NAME, DISPLAY_ORDER, PARENT_MENU_SEQ, UPDATE_STAFF_ID, INPUT_STAFF_ID, ACTIVE_FLAG, INPUT_DATE, UPDATE_DATE) 
     VALUES('G0010101', '(gem_source_add.do)', '添加宝石', 1, 'G001', 'INIT', 'INIT', 1, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP) ;
 INSERT INTO t_role_action(MENU_SEQ, ROLE_ACTION_URL, ROLE_ACTION_NAME, DISPLAY_ORDER, PARENT_MENU_SEQ, UPDATE_STAFF_ID, INPUT_STAFF_ID, ACTIVE_FLAG, INPUT_DATE, UPDATE_DATE) 
     VALUES('G0010301', '(gem_source_query.do)', '查询宝石', 1, 'G001', 'INIT', 'INIT', 1, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP) ;
+INSERT INTO t_role_action(MENU_SEQ, ROLE_ACTION_URL, ROLE_ACTION_NAME, DISPLAY_ORDER, PARENT_MENU_SEQ, UPDATE_STAFF_ID, INPUT_STAFF_ID, ACTIVE_FLAG, INPUT_DATE, UPDATE_DATE) 
+    VALUES('G0010401', '(gem_source_distribution_query.do)', '宝石发放', 1, 'G001', 'INIT', 'INIT', 1, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP) ;
 
-update t_role_action set ROLE_ACTION_URL = 'gem_source_distribution_query_display.do' where MENU_SEQ='G00104' ;
-SELECT * FROM t_role_action;
+
+    
+    
+    
+update t_role_action set DISPLAY_ORDER = 1 where MENU_SEQ='G00104' ;
+DELETE FROM t_role_action where MENU_SEQ='G0010401' ;
+SELECT * FROM t_role_action WHERE INSTR(ROLE_ACTION_URL,'gem_source_distribution_query') > 0 ;
+
+
+
+
+   select
+        roleaction0_.MENU_SEQ as MENU1_14_,
+        roleaction0_.ROLE_ACTION_URL as ROLE2_14_,
+        roleaction0_.ROLE_ACTION_NAME as ROLE3_14_,
+        roleaction0_.DISPLAY_ORDER as DISPLAY4_14_,
+        roleaction0_.PARENT_MENU_SEQ as PARENT5_14_,
+        roleaction0_.UPDATE_STAFF_ID as UPDATE6_14_,
+        roleaction0_.INPUT_STAFF_ID as INPUT7_14_,
+        roleaction0_.ACTIVE_FLAG as ACTIVE8_14_,
+        roleaction0_.INPUT_DATE as INPUT9_14_,
+        roleaction0_.UPDATE_DATE as UPDATE10_14_ 
+    from
+        t_role_action roleaction0_ 
+    where
+        INSTR(roleaction0_.ROLE_ACTION_URL, 'gem_source_distribution_query.do')>0
+
+
+
+
+
+
 
 
 -- t_role_authority
@@ -213,33 +243,33 @@ WHERE  C.SOURCE_DATE = '20120901' AND C.KINGDOM_ID=5 GROUP BY C.KINGDOM_ID,C.SOU
 -- 兵力总分
 
 
-        SELECT
-            C.KINGDOM_ID,
-            K.KINGDOM_NAME,
-            C.SOURCE_DATE ,
-            U.USER_DISPLAY_NAME,
-            C.USER_ID,
-            C.SOURCE_SOLDIER_ID,
-            SUM(C.SOURCE_SOLDIER_COUNT) SSC,
-            SUM(C.SOURCE_SOLDIER_COUNT)*S.SOLDIER_POINT SP 
-        FROM
-            T_SOLDIER_SOURCE C 
-        LEFT JOIN
-            T_SOLDIER S 
-                ON S.SOLDIER_ID =  C.SOURCE_SOLDIER_ID 
-        LEFT JOIN
-            T_KINGDOM K
-            	ON K.KINGDOM_ID = C.KINGDOM_ID 
-        LEFT JOIN
-            T_USER U
-            	ON U.USER_ID = C.USER_ID 
-        WHERE
-            C.SOURCE_DATE = '20120915' 
-            AND C.KINGDOM_ID=1 
-        GROUP BY
-            C.KINGDOM_ID,
-            C.USER_ID,
-            C.SOURCE_SOLDIER_ID 
+          SELECT
+        C.KINGDOM_ID,
+        K.KINGDOM_NAME,
+        C.SOURCE_DATE ,
+        U.USER_DISPLAY_NAME,
+        C.USER_ID,
+        C.SOURCE_SOLDIER_ID,
+        SUM(C.SOURCE_SOLDIER_COUNT) SSC,
+        SUM(C.SOURCE_SOLDIER_COUNT)*S.SOLDIER_POINT SP 
+    FROM
+        T_SOLDIER_SOURCE C 
+    LEFT JOIN
+        T_SOLDIER S        
+            ON S.SOLDIER_ID =  C.SOURCE_SOLDIER_ID 
+    LEFT JOIN
+        T_KINGDOM K     
+            ON K.KINGDOM_ID = C.KINGDOM_ID 
+    LEFT JOIN
+        T_USER U     
+            ON U.USER_ID = C.USER_ID 
+    WHERE
+        C.SOURCE_DATE = '20120915'    
+        AND C.KINGDOM_ID=1 
+    GROUP BY
+        C.KINGDOM_ID,
+        C.USER_ID,
+        C.SOURCE_SOLDIER_ID 
             
 
             
@@ -505,7 +535,7 @@ SELECT
 	
 	
 	
-	
+show processlist;
 	
 	
 	
