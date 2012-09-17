@@ -9,6 +9,7 @@ import org.hibernate.HibernateException;
 import com.livedoor.flow_manager.group.beans.Group;
 import com.livedoor.flow_manager.sources.exception.SourceException;
 import com.livedoor.flow_manager.tools.lbq.Page;
+import com.livedoor.flow_manager.user.beans.User;
 
 public class SoldierSourceService implements ISoldierSourceService{
 
@@ -46,13 +47,13 @@ public class SoldierSourceService implements ISoldierSourceService{
 		updateSoldierSource(s);
 	}
 
-	public void deleteSoldierSourceByDeleteFlag(int sid) throws Exception {
+	public void deleteSoldierSourceByDeleteFlag(String sid) throws Exception {
 		SoldierSource s = getSoldierSourceBySoldierSourceId(sid);
 		s.setActiveFlag(0);
 		updateSoldierSource(s);
 	}
 
-	public SoldierSource getSoldierSourceBySoldierSourceId(Integer sid) throws Exception {
+	public SoldierSource getSoldierSourceBySoldierSourceId(String sid) throws Exception {
 		SoldierSource s = null;
 		try {
 			s = (SoldierSource)soldierSourceDao.get(SoldierSource.class, sid);
@@ -131,7 +132,10 @@ public class SoldierSourceService implements ISoldierSourceService{
 	}
 	
 	public BigDecimal queryTotalSoldierSourcePoint(String date,Integer kingdomId){
-		return (BigDecimal)soldierSourceDao.queryTotalSoldierSourcePoint(date, kingdomId).get(0);
+		
+		BigDecimal t = (BigDecimal)soldierSourceDao.queryTotalSoldierSourcePoint(date, kingdomId).get(0);
+		
+		return t == null ? BigDecimal.ZERO : t;
 	}
 	
 	
@@ -182,5 +186,12 @@ public class SoldierSourceService implements ISoldierSourceService{
 			throw new Exception("",e);		}	
 	}
 
+	public void updateSoldierSourceApprove(String id,Integer approve, User user){
+		soldierSourceDao.queryAndUpdateSoldierSourceApprove(id,approve,user);
+		LOGGER.info("update approve : id="+id+" ,approveStatus:"+approve+" ,updateUser="+user.getUserDisplayName());
+	}
 	
+	public List queryAllSoldierSourceDate() {
+		return soldierSourceDao.queryAllSoldierSourceDate();
+	}
 }

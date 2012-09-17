@@ -60,6 +60,37 @@
 		</property>
 	</bean>
 	
+	<bean name="/soldier_source_approve"
+		class="com.livedoor.flow_manager.soldierSource.action.SoldierSourceApproveAction">
+		<property name="soldierService">
+			<ref bean="soldierService" />
+		</property>
+		<property name="soldierSourceService">
+			<ref bean="soldierSourceService" />
+		</property>
+		<property name="kingdomService">
+			<ref bean="kingdomService" />
+		</property>
+		<property name="userService">
+			<ref bean="userService" />
+		</property>
+	</bean>
+	
+	<bean name="/soldier_source_cancel_approve"
+		class="com.livedoor.flow_manager.soldierSource.action.SoldierSourceApproveAction">
+		<property name="soldierService">
+			<ref bean="soldierService" />
+		</property>
+		<property name="soldierSourceService">
+			<ref bean="soldierSourceService" />
+		</property>
+		<property name="kingdomService">
+			<ref bean="kingdomService" />
+		</property>
+		<property name="userService">
+			<ref bean="userService" />
+		</property>
+	</bean>
 	
 	
 	

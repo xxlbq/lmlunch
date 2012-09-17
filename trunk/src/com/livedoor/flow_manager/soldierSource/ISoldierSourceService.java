@@ -7,12 +7,13 @@ import org.hibernate.HibernateException;
 
 import com.livedoor.flow_manager.sources.exception.SourceException;
 import com.livedoor.flow_manager.tools.lbq.Page;
+import com.livedoor.flow_manager.user.beans.User;
 
 public interface ISoldierSourceService {
 
 	void addSoldierSource(SoldierSource s) throws Exception;
 
-	SoldierSource getSoldierSourceBySoldierSourceId(Integer sid)
+	SoldierSource getSoldierSourceBySoldierSourceId(String sid)
 			throws Exception;
 
 	List<SoldierSource> getSoldierSourceBySoldierSourceName(String sname)
@@ -35,6 +36,10 @@ public interface ISoldierSourceService {
 			String date);
 
 	BigDecimal queryTotalSoldierSourcePoint(String date, Integer kingdomId);
+
+	void updateSoldierSourceApprove(String id, Integer approve, User user);
+
+	List queryAllSoldierSourceDate();
 
 
 

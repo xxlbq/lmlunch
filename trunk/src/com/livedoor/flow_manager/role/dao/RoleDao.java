@@ -93,7 +93,7 @@ public class RoleDao extends GenericDAOHibernateImpl{
 			  " FROM  com.livedoor.flow_manager.roleAction.beans.RoleAction AS ACT ," +
 			  "       com.livedoor.flow_manager.roleAuth.beans.RoleAuthority AS AUT " +
 			  " WHERE AUT.id.menuSeq =ACT.menuSeq AND AUT.id.roleId = :varRoleId AND AUT.selectedFlag=:varSelectedFlag AND ACT.parentMenuSeq =(" +
-			  "SELECT roleAct.parentMenuSeq FROM RoleAction AS  roleAct WHERE INSTR(roleActionUrl,:varActionUrl) > 0)   ORDER BY ACT.displayOrder ASC ";
+			  "SELECT roleAct.parentMenuSeq FROM RoleAction AS  roleAct WHERE INSTR(roleActionUrl,:varActionUrl) > 0) ORDER BY ACT.displayOrder ASC ";
 
 	
 //	    String SQL = " SELECT new list(ACT.menuSeq,ACT.roleActionUrl,ACT.roleActionName,ACT.displayOrder ) " +
@@ -101,9 +101,6 @@ public class RoleDao extends GenericDAOHibernateImpl{
 //		  "       com.livedoor.flow_manager.roleAuth.beans.RoleAuthority AS AUT " +
 //		  " WHERE AUT.id.menuSeq =ACT.menuSeq AND AUT.id.roleId = :varRoleId AND AUT.selectedFlag=:varSelectedFlag AND ACT.parentMenuSeq =(" +
 //		  "SELECT roleAct.parentMenuSeq FROM RoleAction AS  roleAct WHERE INSTR(roleActionUrl,:varActionUrl) > 0) ";
-//
-
-	    
 	    
 	    String SQL2 = " SELECT new RoleAction(ACT.menuSeq,ACT.roleActionUrl,ACT.roleActionName,ACT.displayOrder ) " +
 		  " FROM  com.livedoor.flow_manager.roleAction.beans.RoleAction AS ACT ," +
@@ -130,13 +127,13 @@ public class RoleDao extends GenericDAOHibernateImpl{
 	    	return new ArrayList<RoleAction>();
 		} else {
 			if( null == ra.getParentMenuSeq()){
-				
 				return getHibernateTemplate().findByNamedParam(SQL2, new String[]{"varRoleId","varSelectedFlag","varMenuSeq"}, new Object[]{new Integer(roleId),new Integer(1),  ra.getMenuSeq()});
 			}
+			
+			
+			
 			return getHibernateTemplate().findByNamedParam(SQL, new String[]{"varRoleId","varSelectedFlag","varActionUrl"}, new Object[]{new Integer(roleId),new Integer(1),uri});	
 		}
-	    
-	    
 	} 
 	
 	
@@ -191,7 +188,7 @@ public class RoleDao extends GenericDAOHibernateImpl{
 //			        	Query query = session.createQuery(querySentence);
 //			    		query	.setFirstResult(page.getBeginIndex()-1)
 //			    				.setMaxResults(page.getPageSize())
-//			    				//此处使用Source的cache
+//			    				//姝ゅ�浣跨�Source��ache
 ////			    				.setCacheable(true)
 ////			    				.setCacheRegion("com.livedoor.flow_manager.sources.beans.Source")
 //			    				//

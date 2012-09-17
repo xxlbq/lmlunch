@@ -11,18 +11,19 @@ import org.apache.struts.action.ActionForward;
 import org.apache.struts.action.ActionMapping;
 import org.apache.struts.action.ActionMessages;
 import org.apache.struts.actions.MappingDispatchAction;
+import org.apache.struts.util.LabelValueBean;
 
 import com.livedoor.flow_manager.IConstant.AttributeKeyConstant;
 import com.livedoor.flow_manager.IConstant.PageConstant;
 import com.livedoor.flow_manager.kingdom.IKingdomService;
 import com.livedoor.flow_manager.kingdom.Kingdom;
-import com.livedoor.flow_manager.role.RoleUtil;
 import com.livedoor.flow_manager.soldier.ISoldierService;
 import com.livedoor.flow_manager.soldier.Soldier;
 import com.livedoor.flow_manager.soldierSource.ISoldierSourceService;
 import com.livedoor.flow_manager.soldierSource.SoldierSource;
 import com.livedoor.flow_manager.soldierSource.SoldierSourceUtil;
 import com.livedoor.flow_manager.soldierSource.form.SoldierSourceForm;
+import com.livedoor.flow_manager.tools.CollectionTools;
 import com.livedoor.flow_manager.tools.lbq.Page;
 import com.livedoor.flow_manager.tools.lbq.PageFactory;
 import com.livedoor.flow_manager.tools.lbq.PageTemplate;
@@ -73,6 +74,12 @@ public class SoldierSourceQueryAction extends MappingDispatchAction{
 		
 		List<Kingdom> kingdomList = kingdomService.queryAllKingdom();
 		request.setAttribute("KINGDOM_LIST", kingdomList);
+		
+		List gsList = soldierSourceService.queryAllSoldierSourceDate();
+		if(null != gsList && !gsList.isEmpty()){
+			List<LabelValueBean> gsDateArr = CollectionTools.toCollection(gsList);
+			request.setAttribute("SOLDIER_SOURCE_DATE_LIST", gsDateArr);
+		}
 		
 		LOGGER.info(" SoldierSourceQueryAction display <--- ");
 		return mapping.findForward("success");
@@ -174,6 +181,11 @@ public class SoldierSourceQueryAction extends MappingDispatchAction{
 		List<Kingdom> kingdomList = kingdomService.queryAllKingdom();
 		request.setAttribute("KINGDOM_LIST", kingdomList);
 		
+		List gsList = soldierSourceService.queryAllSoldierSourceDate();
+		if(null != gsList && !gsList.isEmpty()){
+			List<LabelValueBean> gsDateArr = CollectionTools.toCollection(gsList);
+			request.setAttribute("SOLDIER_SOURCE_DATE_LIST", gsDateArr);
+		}
 		/*  page info */
 		
 //		request.setAttribute("PAGE_INFO_BEAN", SP);
@@ -184,7 +196,5 @@ public class SoldierSourceQueryAction extends MappingDispatchAction{
 //		request.setAttribute("QUERY_SOURCE_LIST", SourceList);
 		
 	}
-	
-	
-	
+
 }

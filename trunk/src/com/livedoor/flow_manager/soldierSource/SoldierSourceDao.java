@@ -1,8 +1,8 @@
 package com.livedoor.flow_manager.soldierSource;
 
 import java.lang.reflect.InvocationTargetException;
-import java.math.BigDecimal;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import org.apache.commons.lang.StringUtils;
@@ -16,9 +16,11 @@ import org.hibernate.criterion.Projections;
 import org.hibernate.criterion.Restrictions;
 import org.springframework.orm.hibernate3.HibernateCallback;
 
+import com.livedoor.flow_manager.enums.ApproveEnum;
 import com.livedoor.flow_manager.generic.dao.GenericDAOHibernateImpl;
 import com.livedoor.flow_manager.sources.beans.Source;
 import com.livedoor.flow_manager.tools.lbq.Page;
+import com.livedoor.flow_manager.user.beans.User;
 import com.lm.common.util.obj.ObjectCommonUtil;
 
 public class SoldierSourceDao extends GenericDAOHibernateImpl{
@@ -38,17 +40,29 @@ public class SoldierSourceDao extends GenericDAOHibernateImpl{
 		update(s);		//HibernateTemplate().update()		
 	}
 
-	public void deleteSoldierSourceByDeleteFlag(int sid){
+	public void deleteSoldierSourceByDeleteFlag(String sid){
 
 		SoldierSource s = getSoldierSourceBySoldierSourceId(sid);
 		s.setActiveFlag(0);
 		update(s);		//HibernateTemplate().update()
 	}
 	
-	public SoldierSource getSoldierSourceBySoldierSourceId(Integer sid) {
+	public SoldierSource getSoldierSourceBySoldierSourceId(String sid) {
 		return (SoldierSource)get(SoldierSource.class, sid);	//HibernateTemplate().get()
 	}
 
+	public void updateSoldierSource(SoldierSource s) {
+		update(s);		//HibernateTemplate().update()	
+	}
+	
+	public void queryAndUpdateSoldierSourceApprove(String id, Integer approve, User user){
+		SoldierSource ss = getSoldierSourceBySoldierSourceId(id);
+		ss.setApproved(approve);
+		ss.setUpdateDate(new Date());
+		ss.setUpdateStaffId(user.getUserDisplayName());
+		updateSoldierSource(ss);
+	}
+	
 	public List<SoldierSource> getSoldierSourceBySoldierSourceName(String SoldierSourceName) {
 		String hql = "from SoldierSource as s where s.solderName like ? and s.activeFlag <> 1";
 		return query(hql, "%" + SoldierSourceName + "%");
@@ -67,13 +81,13 @@ public class SoldierSourceDao extends GenericDAOHibernateImpl{
 	public List queryTotalSoldierSourcePoint(String date,Integer kingdomId){
 		return (List)this.querySQL(getHibernateTemplate(), "SELECT SUM(T.SP) TOTAL FROM ( " +
 				"SELECT C.KINGDOM_ID,C.SOURCE_SOLDIER_ID,SUM(C.SOURCE_SOLDIER_COUNT),SUM(C.SOURCE_SOLDIER_COUNT)*S.SOLDIER_POINT SP FROM T_SOLDIER_SOURCE C LEFT JOIN T_SOLDIER S ON C.SOURCE_SOLDIER_ID = S.SOLDIER_ID " +
-				"WHERE  C.SOURCE_DATE = '"+date+"' AND C.KINGDOM_ID = "+kingdomId+" GROUP BY C.KINGDOM_ID,C.SOURCE_SOLDIER_ID ) AS T ");
+				"WHERE  C.SOURCE_DATE = '"+date+"' AND C.APPROVED = "+ApproveEnum.APPROVED.getValue()+"   AND C.KINGDOM_ID = "+kingdomId+" GROUP BY C.KINGDOM_ID,C.SOURCE_SOLDIER_ID ) AS T ");
 	}
 	
 	public List queryTotalSoldierSource(String date){
 		return (List)this.querySQL(getHibernateTemplate(), 
 				"SELECT C.KINGDOM_ID,C.SOURCE_SOLDIER_ID,SUM(C.SOURCE_SOLDIER_COUNT),SUM(C.SOURCE_SOLDIER_COUNT)*S.SOLDIER_POINT SP FROM T_SOLDIER_SOURCE C LEFT JOIN T_SOLDIER S ON C.SOURCE_SOLDIER_ID = S.SOLDIER_ID " +
-				"WHERE  C.SOURCE_DATE = '"+date+"' GROUP BY C.KINGDOM_ID,C.SOURCE_SOLDIER_ID ");
+				"WHERE  C.SOURCE_DATE = '"+date+"' AND C.APPROVED = "+ApproveEnum.APPROVED.getValue()+"  GROUP BY C.KINGDOM_ID,C.SOURCE_SOLDIER_ID ");
 	}
 	
 	public List queryTotalSoldierSource(Integer kingdomId,String date){
@@ -100,7 +114,8 @@ public class SoldierSourceDao extends GenericDAOHibernateImpl{
         "   	ON U.USER_ID = C.USER_ID "+ 
         "WHERE "+
         "   C.SOURCE_DATE = '"+date+"' "+ 
-        "   AND C.KINGDOM_ID="+kingdomId+
+        "   AND C.KINGDOM_ID="+kingdomId+ " "+
+        "   AND C.APPROVED = "+ApproveEnum.APPROVED.getValue()+" " +
         "GROUP BY "+
         "   C.KINGDOM_ID,"+
         "   C.USER_ID,"+
@@ -129,9 +144,6 @@ public class SoldierSourceDao extends GenericDAOHibernateImpl{
 			,true);
 	}
 
-	public void updateSoldierSource(SoldierSource s) {
-		update(s);		//HibernateTemplate().update()	
-	}
 	
 	public int getSoldierSourceCount() throws HibernateException {
 
@@ -262,4 +274,8 @@ public class SoldierSourceDao extends GenericDAOHibernateImpl{
 				}, true);
 	}
 
+	
+	public List queryAllSoldierSourceDate() {
+		return query("SELECT DISTINCT(s.sourceDate) from SoldierSource as s where s.activeFlag = 1 ORDER BY s.sourceDate DESC LIMIT 24");
+	}
 }

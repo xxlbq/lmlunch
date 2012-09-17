@@ -116,24 +116,77 @@ td{font-size:10pt;}
 	<%-- ================================ --%>
 	
 		<form name="gem_source_distribution_query.do">
+				<tr><td colspan="10">
+					<table border="0" cellpadding="5" cellspacing="1" align="center" style="margin-top:10px; margin-bottom:15px;" width="560">
+						
+						<logic:present name="soldierSourceTotalPoint">
+						<tr><td bgcolor="#5F52A0" nowrap align="right">
+								<strong><font color="#ffffff">本周兵力分合计</font></strong></td>
+							<td bgcolor="#B2BECE"><bean:write name="soldierSourceTotalPoint"/></td>
+						</tr>
+						<tr><td bgcolor="#5F52A0" nowrap align="right">
+								<strong><font color="#ffffff">本周兵力分实际收益</font></strong></td>
+							<td bgcolor="#B2BECE"><bean:write name="soldierSourceTotalPointRatio"/>&nbsp;&nbsp;&nbsp;&nbsp;(本周兵力分合计 * 受益率)</td>
+						</tr>
+						</logic:present>
+						
+						<logic:present name="gemSourceTotalPoint">
+						<tr>
+							<td bgcolor="#5F52A0" nowrap align="right">
+								<strong><font color="#ffffff">本周宝石分合计</strong></td>
+							<td bgcolor="#B2BECE"><bean:write name="gemSourceTotalPoint"/></td>
+						</tr>
+						<tr>
+							<td bgcolor="#5F52A0" nowrap align="right">
+								<strong><font color="#ffffff">本周宝石分实际收益</strong></td>
+							<td bgcolor="#B2BECE"><bean:write name="gemSourceTotalPointRatio"/>&nbsp;&nbsp;&nbsp;&nbsp;(本周宝石分合计 * 受益率)</td>
+						</tr>
+						</logic:present>
+						
+						<logic:present name="gemPointPerSoldier">
+						<tr>
+							<td bgcolor="#5F52A0" nowrap align="right">
+								<strong><font color="#ffffff">本周宝石兵力比例</strong></td>
+							<td bgcolor="#B2BECE"><bean:write name="gemPointPerSoldier"/>&nbsp;&nbsp;&nbsp;&nbsp;(每1w防御对应的宝石 比率)</td>
+						</tr>
+						</logic:present>
+						
+						<logic:present name="ratio">
+						<tr>
+							<td bgcolor="#5F52A0" nowrap align="right">
+								<strong><font color="#ffffff">受益率</strong></td>
+							<td bgcolor="#B2BECE"><bean:write name="ratio"/>&nbsp;&nbsp;&nbsp;&nbsp;(若家族基金为 30%,则受益率为70%,即 0.7)</td>
+						</tr>
+						</logic:present>
+						
+						
+					</table>
+				</td>
+			</tr>
+	
+	
+	
+	
+	
 	
 		<tr>
 			
-			<td bgcolor="#5F52A0" nowrap  width="80" align="center"><strong><font color="#ffffff">国家</font></strong></td>
+			<td bgcolor="#5F52A0" nowrap  width="50" align="center"><strong><font color="#ffffff">国家</font></strong></td>
 			<td bgcolor="#5F52A0" nowrap  width="80" align="center"><strong><font color="#ffffff">日期</font></strong></td>
 			<td bgcolor="#5F52A0" nowrap  width="80" align="center"><strong><font color="#ffffff">君主</font></strong></td>
-			<td bgcolor="#5F52A0" nowrap  width="80" align="center"><strong><font color="#ffffff">枪盾</font></strong></td>
-			<td bgcolor="#5F52A0" nowrap  width="80" align="center"><strong><font color="#ffffff">大刀</font></strong></td>
-			<td bgcolor="#5F52A0" nowrap  width="80" align="center"><strong><font color="#ffffff">骑兵</font></strong></td>
-			<td bgcolor="#5F52A0" nowrap  width="80" align="center"><strong><font color="#ffffff">重甲</font></strong></td>
+			<td bgcolor="#5F52A0" nowrap  width="50" align="center"><strong><font color="#ffffff">枪盾</font></strong></td>
+			<td bgcolor="#5F52A0" nowrap  width="50" align="center"><strong><font color="#ffffff">大刀</font></strong></td>
+			<td bgcolor="#5F52A0" nowrap  width="50" align="center"><strong><font color="#ffffff">骑兵</font></strong></td>
+			<td bgcolor="#5F52A0" nowrap  width="50" align="center"><strong><font color="#ffffff">重甲</font></strong></td>
 			<td bgcolor="#5F52A0" nowrap  width="80" align="center"><strong><font color="#ffffff">原始兵分</font></strong></td>
-			<td bgcolor="#5F52A0" nowrap  width="80" align="center"><strong><font color="#ffffff">税后兵分</font></strong></td>
-			<td bgcolor="#5F52A0" nowrap  width="80" align="center"><strong><font color="#ffffff">宝石分</font></strong></td>
+			<td bgcolor="#5F52A0" nowrap  width="100" align="center"><strong><font color="#ffffff">实际收益兵分</font></strong></td>
+			<td bgcolor="#5F52A0" nowrap  width="80" align="center"><strong><font color="#ffffff">原始宝石分</font></strong></td>
+			<td bgcolor="#5F52A0" nowrap  width="100" align="center"><strong><font color="#ffffff">实际收益宝石分</font></strong></td>
 		</tr>
 	
 		<logic:present name="SOLDIER_SOURCE_SUM_INFO" >
 			<logic:iterate name="SOLDIER_SOURCE_SUM_INFO"  id="source" indexId="indexid">
-			<% if(indexid % 2 != 0){%> 从1开始编号
+			<% if(indexid % 2 != 0){%> 
 			<tr bgcolor="#e4e7ea">
 			<%}else { %>
 			<tr bgcolor="#B2BECE">
@@ -145,9 +198,10 @@ td{font-size:10pt;}
 				<td align="center"><bean:write name="source" property="dadaoSum"/></td>
 				<td align="center"><bean:write name="source" property="qibingSum"/></td>
 				<td align="center"><bean:write name="source" property="zhongjiaSum"/></td>
+				<td align="center"><bean:write name="source" property="soldierPointSum"/></td>
+				<td align="center"><bean:write name="source" property="soldierPointSumAfterTax"/></td>
 				<td align="center"><bean:write name="source" property="gemPointSum"/></td>
-				<td align="center"><bean:write name="source" property="poinSumAfterTax"/></td>
-
+				<td align="center"><bean:write name="source" property="gemPointSumAfterTax"/></td>
 			</tr>
 			</logic:iterate>
 		</logic:present>
@@ -157,26 +211,25 @@ td{font-size:10pt;}
 	<%--================================--%>
 	
 		<tr><td colspan ="7"><hr color="#5F52A0" size="1" width="300" align="center" noshade></td></tr>
-		<tr align="center">
-			
-			<td colspan ="7">
-			<input type="button" name="aSourceButton" value="审批" onclick="addSource()"/>
-			&nbsp;&nbsp;
-			<input type="button" name="uSourceButton" value="取消审批" onclick="updateSource()"/>
-			&nbsp;&nbsp;
-			<input type="button" name="dSourceButton" value="修改" onclick="delSource()"/>
-			&nbsp;&nbsp;
-			
-<%--			<a href="#" onclick="pdfReportDisplay()"><img src="images/component/pdf.gif"  border="0" /></a>--%>
-			<a href="javascript:pdfDownload()">
-				<img src="images/component/pdf.gif"  border="0" />
-			</a>
-			
-			</td>
-			
-			
-		</tr>
-		<tr><td colspan ="8"><hr color="#5F52A0" size="1" width="300" align="center" noshade></td></tr>
+<!--		<tr align="center">-->
+<!--			-->
+<!--			<td colspan ="7">-->
+<!--			<input type="button" name="aSourceButton" value="审批" onclick="addSource()"/>-->
+<!--			&nbsp;&nbsp;-->
+<!--			<input type="button" name="uSourceButton" value="取消审批" onclick="updateSource()"/>-->
+<!--			&nbsp;&nbsp;-->
+<!--			<input type="button" name="dSourceButton" value="修改" onclick="delSource()"/>-->
+<!--			&nbsp;&nbsp;-->
+<!--			-->
+<!--			<a href="javascript:pdfDownload()">-->
+<!--				<img src="images/component/pdf.gif"  border="0" />-->
+<!--			</a>-->
+<!--			-->
+<!--			</td>-->
+<!--			-->
+<!--			-->
+<!--		</tr>-->
+<!--		<tr><td colspan ="8"><hr color="#5F52A0" size="1" width="300" align="center" noshade></td></tr>-->
 		
 		</form>
 	</table>

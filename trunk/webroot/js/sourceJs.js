@@ -46,17 +46,45 @@ function selectOptionAction(){
 	
 	function approveSource(){
 		var checkedUser;
-		
-		checkedUser = isSingleChecked(document.middleform);
+		checkedUser = isSingleCheckedAtLeast(document.middleform);
 		
 		if(checkedUser != null){
 		
 			window.alert(checkedUser);
 			
-			window.location.href='showSourceUpdate.do?sourceId='+checkedUser;
+			window.location.href='soldier_source_approve.do?soldierSourceIdArray='+checkedUser;
 		
 		}
 	}
+	
+	
+	function cancelApproveSource(){
+		var checkedUser;
+		checkedUser = isSingleCheckedAtLeast4Cancel(document.middleform);
+		
+		if(checkedUser != null){
+		
+			window.alert(checkedUser);
+			
+			window.location.href='soldier_source_cancel_approve.do?soldierSourceIdArray='+checkedUser;
+		
+		}
+	}
+	
+	
+	function updateSource(){
+		var checkedUser;
+		checkedUser = isSingleCheckedAtLeast4Update(document.middleform);
+		
+		if(checkedUser != null){
+		
+			window.alert(checkedUser);
+			
+			window.location.href='soldier_source_update_display.do?soldierSourceId='+checkedUser;
+		
+		}
+	}
+	
 	
 	function isSingleCheckedAtLeast(form){
 		
@@ -89,6 +117,74 @@ function selectOptionAction(){
 		
 		return tempVar;
 	}
+	
+	function isSingleCheckedAtLeast4Cancel(form){
+		
+		var checkTimes = 0 ;
+		
+		var tempVar="" ;
+		
+		for(var i=0;i<form.elements.length;i++)
+			{
+				if(form.elements[i].type=="checkbox" && form.elements[i].name=="cancelSId"){
+			
+					if(form.elements[i].checked){
+					
+						if(tempVar == ""){
+							tempVar = form.elements[i].value;
+						}else{
+							tempVar = tempVar+","+form.elements[i].value;
+						}
+						
+						
+						checkTimes++;
+					}
+				}
+			}
+		
+		if(checkTimes < 1){
+			windowout();
+			return null;
+		}
+		
+		return tempVar;
+	}
+	
+	function isSingleCheckedAtLeast4Update(form){
+		
+		var checkTimes = 0 ;
+		
+		var tempVar="" ;
+		
+		for(var i=0;i<form.elements.length;i++)
+			{
+				if(form.elements[i].type=="checkbox" && form.elements[i].name=="sId"){
+			
+					if(form.elements[i].checked){
+					
+						if(tempVar == ""){
+							tempVar = form.elements[i].value;
+						}else{
+							tempVar = tempVar+","+form.elements[i].value;
+						}
+						
+						
+						checkTimes++;
+					}
+				}
+			}
+		
+		if(checkTimes < 1){
+			window.alert("请选择要修改的发兵记录，已经审批的记录不可以修改.");
+			return null;
+		}else if(checkTimes > 1){
+			window.alert("请选择一条记录进行修改.");
+			return null;
+		}
+		
+		return tempVar;
+	}
+	
 	
 	
 	function updateSource(){
@@ -144,15 +240,10 @@ function selectOptionAction(){
 				}
 			}
 		
-		if(checkTimes > 1)
-		{
-			window.alert("不能多选！");
 			
-			return null;
+		if(checkTimes < 1){
 			
-		}else if(checkTimes < 1){
-			
-			windowout();
+			window.alert("至少选择一个！");
 			
 			return null;
 		}
