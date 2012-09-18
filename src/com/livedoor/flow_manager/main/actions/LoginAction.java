@@ -23,6 +23,7 @@ import com.livedoor.flow_manager.IConstant.AttributeKeyConstant;
 import com.livedoor.flow_manager.common.acegi.UserDetailsServiceImp;
 import com.livedoor.flow_manager.common.action.BaseAction;
 import com.livedoor.flow_manager.main.forms.LoginForm;
+import com.livedoor.flow_manager.tools.SystemTools;
 import com.livedoor.flow_manager.tools.UtilValidate;
 import com.livedoor.flow_manager.user.beans.User;
 import com.livedoor.flow_manager.user.service.IUserService;
@@ -34,7 +35,7 @@ import com.lm.common.util.obj.ObjectCommonUtil;
  */
 public class LoginAction extends BaseAction {
 	
-	private  static Logger logger = Logger.getLogger(LoginAction.class);
+	private  static Logger LOGGER = Logger.getLogger(LoginAction.class);
 	
 	private IUserService userService;
 	private UserDetailsServiceImp userDetailsServiceImp;
@@ -69,19 +70,16 @@ public class LoginAction extends BaseAction {
 		HttpServletRequest request,
 		HttpServletResponse response)
 		throws Exception {
-		System.out.println("44444444:"+logger.getLevel());
 
 		LoginForm lnForm = (LoginForm)form;
-		/* 如果from为null ,跳转到默认的错误页面*/
 		if(ObjectCommonUtil.isEmpty(lnForm)){
 			return mapping.getInputForward();
 		}
-		/*根据login name 与 login pwd 查询*/
 		User user =userService.getUserByNameAndPwd(
 				lnForm.getLoginID() , lnForm.getLoginPwd());
 		
 		if(ObjectCommonUtil.isEmpty(user)){
-			logger.warn(" the user is invalid~~~");
+			LOGGER.warn(" the user is invalid~~~");
 			ActionMessages errores = new ActionMessages();
 			errores.add("loginIdOrPwd",new ActionMessage( "login.error" ) );
 			saveErrors(request, errores);
@@ -97,12 +95,10 @@ public class LoginAction extends BaseAction {
 		
 		UserDetails userDetails;
 		userDetails = this.userDetailsServiceImp.loadUserByUsername(user.getUserName());   
-
 		
 //		Authentication auth=SecurityContextHolder.getContext().getAuthentication();
 		UsernamePasswordAuthenticationToken auth = 
 			new UsernamePasswordAuthenticationToken(null,null,user.getAuthorities());
-		
 
 //		Authentication authResult = 
 //			authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(
@@ -111,44 +107,23 @@ public class LoginAction extends BaseAction {
 		auth.setDetails(userDetails);
 //		auth.setAuthenticated(true);
 		
-		
-		logger.info("Authentication:"+auth.toString());
+		LOGGER.info("Authentication:"+auth.toString());
 		SecurityContextHolder.getContext().setAuthentication(auth);   
 		
-		logger.info(" ====login==user========>"+user.toString());
-		logger.info("login req sessionId:"+request.getSession().getId());
-		request.getSession().setAttribute(AttributeKeyConstant.USER_INFO_KEY, user);
-
-		//		User user = (User) getSessionObject( request, AttributeKeyConstant.USER_INFO_KEY );
-//		ActionMessages msg = new ActionMessages();
-//		if ( user != null ){
-//		   return new ActionForward(  user.getType() + ".htm", true );//成功就去type.htm
-//		}
-//		else{
-//			String error = getRequestParameter( request, AttributeKeyConstant.USER_INFO_KEY );
-//		   if ( error != null ) //对于不同的错误，都加以提示
-//		   {
-//		    if ( error.equalsIgnoreCase( "wrong" ) )
-//		     msg.add( "msg", new ActionMessage( "fail.login.wrong" ) );
-//		    else if ( error.equalsIgnoreCase( "too" ) )
-//		     msg.add( "msg", new ActionMessage( "fail.login.too" ) );
-//		    else if ( error.equalsIgnoreCase( "fail" ) )
-//		     msg.add( "msg", new ActionMessage( "fail.login.fail" ) );
-//		    else
-//		     msg.add( "msg", new ActionMessage( "fail.login.please" ) );
-//		   }
-//		   else
-//		    msg.add( "msg", new ActionMessage( "fail.login.please" ) );
-//		  }
-//		  saveErrors( request, msg );
-//		  return mapping.findForward( "fail" );
+		//
+		String lastLoginIp = SystemTools.getIpAddr(request);
+		user.setUserLastLoginIp(lastLoginIp);
 		
-		logger.info(" before login return ~~~");
-		request.setAttribute("aaa", "test");
+		LOGGER.info("login user :"+user.toString());
+		LOGGER.info("login request sessionId:"+request.getSession().getId());
+		
+		userService.updateUser(user);
+		
+		request.getSession().setAttribute(AttributeKeyConstant.USER_INFO_KEY, user);
+		
+		LOGGER.info(" before login return ~~~");
 		return (mapping.findForward("successes"));
 
 	}
-	
-	
 	
 }

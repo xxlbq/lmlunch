@@ -17,7 +17,7 @@
 	<action-mappings>
 
 
-		<action   path="/member_add" name="memberForm"  scope="request" parameter="add">
+		<action   path="/member_add" name="memberForm"  scope="request" parameter="add" input="/WEB-INF/jsp/member/member_add.jsp">
 		    <forward  name="success" path="/reg_success.jsp" />
 		</action>
 

@@ -246,9 +246,9 @@ td{font-size:10pt;}
 			&nbsp;&nbsp;
 			
 <%--			<a href="#" onclick="pdfReportDisplay()"><img src="images/component/pdf.gif"  border="0" /></a>--%>
-			<a href="javascript:pdfDownload()">
-				<img src="images/component/pdf.gif"  border="0" />
-			</a>
+<!--			<a href="javascript:pdfDownload()">-->
+<!--				<img src="images/component/pdf.gif"  border="0" />-->
+<!--			</a>-->
 			
 			</td>
 			

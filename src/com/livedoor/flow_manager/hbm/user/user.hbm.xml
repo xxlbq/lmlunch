@@ -143,5 +143,22 @@
 			not-null="true"
 			type="java.lang.String"
 		 />
+		 <property
+			column="USER_REG_IP"
+			length="20"
+			name="userRegIp"
+			not-null="true"
+			type="java.lang.String"
+		 />
+		  <property
+			column="USER_LAST_LOGIN_IP"
+			length="20"
+			name="userLastLoginIp"
+			not-null="true"
+			type="java.lang.String"
+		 />
+		  
+		 
+		 
 	</class>
 </hibernate-mapping>
