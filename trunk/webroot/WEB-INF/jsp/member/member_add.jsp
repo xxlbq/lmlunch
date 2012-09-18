@@ -98,8 +98,13 @@ td {
 				width="800">
 	
 				<tr>
-					<td align="center">
-					<hr color="#5F52A0" size="1" width="700" align="center" />
+					<td align="center" class="error"> 
+						<font color="red">
+						<html:messages id="errmsg"  name="ERROR_MESSAGE_INFO" message="false">
+							<bean:write name="errmsg"/>
+							<br/>
+						</html:messages>
+						</font>	
 					</td>
 				</tr>
 				<tr>
