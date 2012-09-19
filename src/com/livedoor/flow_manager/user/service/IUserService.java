@@ -50,4 +50,8 @@ public interface IUserService {
 	
 //	public User getUserByIdAndPwd(String id,String pwd);
 	public User getUserByNameAndPwd(String name,String pwd);
+
+	public Integer queryMaxRegIp(String regIp);
+
+	public User getUniqueUserByUserDisplayName(String string);
 }

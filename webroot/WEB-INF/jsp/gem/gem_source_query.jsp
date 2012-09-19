@@ -163,7 +163,35 @@ td{font-size:10pt;}
 	<%--=======		更新   删除	========--%>
 	<%--================================--%>
 	
-		<tr><td colspan ="7"><hr color="#5F52A0" size="1" width="300" align="center" noshade></td></tr>
+		<tr>
+			<td colspan ="7"><hr color="#5F52A0" size="1" width="300" align="center" noshade></td>
+		</tr>
+		
+		<logic:iterate id="gemSource" indexId="indexid">
+		<tr>
+			<td>
+				<table border="0" cellpadding="5" cellspacing="1" align="center"
+							style="margin-top: 10px; margin-bottom: 15px;" width="560">
+					
+					<tr>
+						<td bgcolor="#5F52A0" align="right"><strong><font color="#ffffff">国家</font></strong></td>
+						<td bgcolor="#B2BECE"><bean:write /></td>
+					</tr>
+					<tr>
+						<td bgcolor="#5F52A0" align="right"><strong><font color="#ffffff"><bean:write /></font></strong></td>
+						<td bgcolor="#B2BECE"></td>
+					</tr>
+					<tr>
+						<td bgcolor="#5F52A0" align="right"><strong><font color="#ffffff"></font></strong></td>
+						<td bgcolor="#B2BECE"></td>
+					</tr>
+
+				</table>
+			</td>
+		</tr>
+		</logic:iterate>
+		
+		
 		<tr align="center">
 			
 			<td colspan ="7">
@@ -173,12 +201,7 @@ td{font-size:10pt;}
 			&nbsp;&nbsp;
 			<input type="button" name="dSourceButton" value="修改" onclick="delSource()"/>
 			&nbsp;&nbsp;
-			
-<%--			<a href="#" onclick="pdfReportDisplay()"><img src="images/component/pdf.gif"  border="0" /></a>--%>
-			<a href="javascript:pdfDownload()">
-				<img src="images/component/pdf.gif"  border="0" />
-			</a>
-			
+						
 			</td>
 			
 			

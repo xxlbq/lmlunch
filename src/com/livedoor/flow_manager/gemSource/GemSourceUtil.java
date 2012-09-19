@@ -92,7 +92,7 @@ public class GemSourceUtil {
 //		}
 //	}
 
-	public static void fillGemSourceInfo(Object[] objs,GemSourceSumInfo info, BigDecimal ratio){
+	public static void fillGemSourceSumInfo(Object[] objs,GemSourceSumInfo info, BigDecimal ratio){
 		info.setKongdomName((String)objs[1]);
 		info.setGemSourceDate((String)objs[5]);
 		info.setTaxRatio(ratio);

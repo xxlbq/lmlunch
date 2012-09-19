@@ -181,7 +181,6 @@ public class GemSourceService implements IGemSourceService{
 		return GemSourceDao.queryAllGemSourceDate();
 	}
 	
-
 	public List<GemSource> getSourceListByCriteriaQuerySource(final GemSource GemSource)
 	throws SourceException {
 		
@@ -212,8 +211,6 @@ public class GemSourceService implements IGemSourceService{
 		
 		return sList;
 	}
-
-
 
 
 	@Override

@@ -23,6 +23,7 @@ import com.livedoor.flow_manager.gemSource.IGemSourceService;
 import com.livedoor.flow_manager.gemSource.form.GemSourceForm;
 import com.livedoor.flow_manager.kingdom.IKingdomService;
 import com.livedoor.flow_manager.kingdom.Kingdom;
+import com.livedoor.flow_manager.tools.DateUtil;
 import com.livedoor.flow_manager.tools.UtilValidate;
 import com.livedoor.flow_manager.user.beans.User;
 import com.livedoor.flow_manager.user.service.IUserService;
@@ -72,10 +73,10 @@ public class GemSourceAddAction extends MappingDispatchAction{
 		User user = (User)request.getSession().getAttribute(AttributeKeyConstant.USER_INFO_KEY);
 		request.setAttribute("GEM_LIST", gemList);
 		request.setAttribute("USER_INFO", user);
-//		((SourceForm)form).setSourceFoodId(5);
 		
 		List<Kingdom> kingdomList = kingdomService.queryAllKingdom();
 		request.setAttribute("KINGDOM_LIST", kingdomList);
+
 		LOGGER.info(" GemSourceAddAction display <--- ");
 		return mapping.findForward("success");
 	
