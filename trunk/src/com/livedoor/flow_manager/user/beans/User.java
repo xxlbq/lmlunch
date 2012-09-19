@@ -7,6 +7,8 @@ import java.util.List;
 import org.acegisecurity.GrantedAuthority;
 import org.acegisecurity.GrantedAuthorityImpl;
 import org.acegisecurity.userdetails.UserDetails;
+import org.apache.commons.lang.builder.ToStringBuilder;
+import org.apache.commons.lang.builder.ToStringStyle;
 
 import com.livedoor.flow_manager.role.beans.Role;
 
@@ -15,21 +17,13 @@ import com.livedoor.flow_manager.role.beans.Role;
  * @author 		lubaoqiang <a>xxlbq@163.com</a>
  * @copyright 	2006, Moon.L(Dalian) Co.,Ltd
  * @version 	user: xxlbq
- *				date: 2007-4-22
- *              time: 下午12:53:02
- *              filename:User.java
- *				project: permission
+
  *              
  *  
  * @see                   
  */
 public class User implements Serializable, Comparable ,UserDetails {
 
-	/*
-	 * 
-	 * 以下方法为实现 UserDetails 接口的方法
-	 * */
-	
 //    private String password;
 //    private String username;
 //    private GrantedAuthority[] authorities;
@@ -162,6 +156,8 @@ public class User implements Serializable, Comparable ,UserDetails {
 	private java.lang.String userName;
 	private java.lang.String userPassword;
 	private java.lang.String userDisplayName;
+	private java.lang.String userRegIp;
+	private java.lang.String userLastLoginIp;
 	private java.lang.String userPhoto;
 	private java.lang.String userEmail;
 	private java.lang.String userMsn;
@@ -221,6 +217,22 @@ public class User implements Serializable, Comparable ,UserDetails {
 
 
 
+
+	public java.lang.String getUserRegIp() {
+		return userRegIp;
+	}
+
+	public void setUserRegIp(java.lang.String userRegIp) {
+		this.userRegIp = userRegIp;
+	}
+
+	public java.lang.String getUserLastLoginIp() {
+		return userLastLoginIp;
+	}
+
+	public void setUserLastLoginIp(java.lang.String userLastLoginIp) {
+		this.userLastLoginIp = userLastLoginIp;
+	}
 
 	public java.lang.String getUserDisplayName() {
 		return userDisplayName;
@@ -539,15 +551,14 @@ public class User implements Serializable, Comparable ,UserDetails {
 	
 	
 	
-//	==============   UserDetails 接口的方式实现类   ==============================
 	
 	
 	private StringBuffer authoritiesString = new StringBuffer(200); 
 	
 	public GrantedAuthority[] getAuthorities() {
-		//user 认证的列表
+
 		List<GrantedAuthority> authorities = new ArrayList<GrantedAuthority>();
-		//获得 user 权限的数组
+
 		String[] tokens = getUserRole().split(",");
 		
 		for (int i = 0; i < tokens.length; i++) {
@@ -606,32 +617,10 @@ public class User implements Serializable, Comparable ,UserDetails {
 		return (this.getDeletedFlag()== 1 ? false : true);
 	}
 
-
-//#############  These are really fields of The class User #########################
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	public String toString () {
-		
-		return "["+"id:"+this.userId+","
-					+"username:"+this.userName+","
-					+"userPassword:"+this.userPassword+","
-					+"roleId:"+this.role.getRoleId()+","
-					+"userDesc:"+this.userDesc+"]"
-					+"userRole:" + authoritiesString
-					
-					;
+	@Override
+	public String toString() {
+		return ToStringBuilder.reflectionToString(this, ToStringStyle.SIMPLE_STYLE);
 	}
+	
 }
 

@@ -29,6 +29,7 @@ import com.livedoor.flow_manager.kingdom.IKingdomService;
 import com.livedoor.flow_manager.kingdom.Kingdom;
 import com.livedoor.flow_manager.sysConfig.ISysConfigConstants;
 import com.livedoor.flow_manager.sysConfig.ISysConfigService;
+import com.livedoor.flow_manager.tools.DateUtil;
 import com.livedoor.flow_manager.user.beans.User;
 import com.livedoor.flow_manager.user.service.IUserService;
 
@@ -167,17 +168,14 @@ public class GemSourceQueryAction extends MappingDispatchAction{
 		request.setAttribute("KINGDOM_LIST", kingdomList);
 		
 		
-		List gsList = gemSourceService.queryAllGemSourceDate();
-		if(null != gsList || !gsList.isEmpty()){
-			List<LabelValueBean> gsDateArr = toCollection(gsList);
+		List gsDateList = gemSourceService.queryAllGemSourceDate();
+		if(null != gsDateList || !gsDateList.isEmpty()){
+			List<LabelValueBean> gsDateArr = toCollection(gsDateList);
 			request.setAttribute("GEM_SOURCE_DATE_LIST", gsDateArr);
 		}
 		
 		GemSource ss = GemSourceUtil.toGemSource4Query(sf);
 		List<Object[]> los=gemSourceService.queryGemSourcePointList(ss);
-//		List<GemSource> oneWeekGemsList = gemSourceService.getSourceListByCriteriaQuerySource(ss);
-//		List<GemSource> oneWeekGemsList =toGemSourceList(los);
-		
 		
 		String ratioValue = sysConfigService.querySysConfig(ISysConfigConstants.CONFIG_TYPE_GEM, ISysConfigConstants.CONFIG_KEY_FAMILY_FOUNDATION);
 		BigDecimal ratio = new BigDecimal(100 - Integer.parseInt(ratioValue)).divide(new BigDecimal("100"));
@@ -185,6 +183,13 @@ public class GemSourceQueryAction extends MappingDispatchAction{
 		
 		Collection<GemSourceSumInfo> infoList = toGemSourceSumInfo(los,ratio);
 		request.setAttribute("GEM_SOURCE_LIST",infoList);
+		
+		GemSource queryGs = new GemSource();
+		queryGs.setSourceGemDate(DateUtil.getCurrentSaturday());
+		List<GemSource> gsList = gemSourceService.getSourceListByCriteriaQuerySource(queryGs);
+		request.setAttribute("GEM_SOURCE_LIST", gsList);
+		
+		
 	}
 
 
@@ -193,33 +198,15 @@ public class GemSourceQueryAction extends MappingDispatchAction{
 		Map<String,GemSourceSumInfo> tempMap = new HashMap<String,GemSourceSumInfo>();
 		for (Object[] element : rs) {
 			if(tempMap.containsKey((String)element[1])){
-				GemSourceUtil.fillGemSourceInfo(element,tempMap.get((String)element[1]),ratio) ;
+				GemSourceUtil.fillGemSourceSumInfo(element,tempMap.get((String)element[1]),ratio) ;
 			}else{
 				GemSourceSumInfo n = new GemSourceSumInfo();
-				GemSourceUtil.fillGemSourceInfo(element,n,ratio) ;
+				GemSourceUtil.fillGemSourceSumInfo(element,n,ratio) ;
 				tempMap.put((String)element[1], n);
 			}
 		}
 		
 		return tempMap.values();
 	}
-	
-	
 
-
-
-//	private List<GemSource> toGemSourceList(List<Object[]> objList) {
-//		List<GemSource> r = new ArrayList<GemSource>();
-//		for (Object[] objects : objList) {
-//			GemSource gs = new GemSource();
-//			Kingdom k = new Kingdom((Integer)objects[0],(String)objects[1]);
-//			gs.setKingdom(k);
-//			Gem g = new Gem((Integer)objects[2]);
-//			gs.setGem(g);
-//			
-//			gs.se
-//			r.add(gs);
-//		}
-//		return r;
-//	}
 }

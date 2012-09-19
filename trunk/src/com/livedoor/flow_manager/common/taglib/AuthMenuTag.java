@@ -27,7 +27,6 @@ import com.livedoor.flow_manager.user.beans.User;
 //import cn.bestwiz.jhf.core.dao.bean.info.JhfCsOperator;
 
 /**
- * �����控制二级菜单是否显示����ж϶����˵��Ƿ���ʾ
  * 
  * @author JHF <jhf@bestwiz.cn>
  * 
@@ -63,7 +62,6 @@ public class AuthMenuTag extends javax.servlet.jsp.tagext.BodyTagSupport {
 	}
 
 	/**
-	 * 标签结束标记
 	 * 
 	 * @author binaryzhang <zhangwc@bestwiz.cn>
 	 */
@@ -119,8 +117,8 @@ public class AuthMenuTag extends javax.servlet.jsp.tagext.BodyTagSupport {
 		Properties p = new Properties();
 		p.setProperty("resource.loader", "class");
 		p.setProperty("class.resource.loader.class","org.apache.velocity.runtime.resource.loader.ClasspathResourceLoader");
+//		p.setProperty("class.resource.loader.class","org.apache.velocity.tools.view.WebappResourceLoader ");
 		
-//		//设置绝对路径
 //		p.setProperty(VelocityEngine.FILE_RESOURCE_LOADER_PATH,  "/WEB-INF/classes/");
 
 		//	  props.put("file.resource.loader.path", "E:\\java\\EclipseWorkSpace20060721\\lbq-velocity\\webroot\\WEB-INF\\classes");
@@ -267,208 +265,5 @@ public class AuthMenuTag extends javax.servlet.jsp.tagext.BodyTagSupport {
 		return value;
 	}
 
-	//	/**
-	//     * 通过指定的参数,在DB中检索出相对应的数据,生成Html语句.
-	//     * 
-	//     * @param webpath
-	//     * @param groupId
-	//     * @param uri
-	//     * @return
-	//     * @throws Exception
-	//     * @author zhangyl <zhangyl@bestwiz.cn>
-	//     */
-	//    private StringBuffer buildOutputHtml(String webpath, BigDecimal groupId, String uri)
-	//            throws Exception {
-	//
-	//        StringBuffer pMenuOutput = new StringBuffer();
-	//        
-	//        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-	//        
-	//        pMenuOutput.append("\n<table border=\"0\" cellpadding=\"0\" cellspacing=\"0\">");
-	//        pMenuOutput.append("\n<tr>");
-	//        pMenuOutput.append(buildPMenuOutput(webpath, groupId, uri));
-	//        pMenuOutput.append("\n  <td nowrap=\"nowrap\" class=\"menu1_bg_3\"><a href=\"chgpwd.do\">パスワード設定</a></td>");
-	//        pMenuOutput.append("\n  <td nowrap=\"nowrap\" class=\"menu1_bg_4\"><a href=\"logout.do\">ログオフ</a></td>");
-	//        
-	//        pMenuOutput.append("<td nowrap=\"nowrap\"> &nbsp;&nbsp;" + dateFormat.format(new Date()) + "</td>");
-	//        pMenuOutput.append("\n</tr>");
-	//        pMenuOutput.append("\n</table>");
-	//        
-	//        pMenuOutput.append("\n<table width=\"100%\" border=\"0\" cellspacing=\"0\" cellpadding=\"0\">");
-	//        pMenuOutput.append("\n<tr>");
-	//        pMenuOutput.append("\n  <td class=\"menu_line_1\"></td>");
-	//        pMenuOutput.append("\n</tr>");
-	//        pMenuOutput.append("\n</table>");
-	//        
-	//        pMenuOutput.append("<table width=\"100%\" border=\"0\" cellspacing=\"0\" cellpadding=\"0\">");
-	//        pMenuOutput.append("<tr>");
-	//        pMenuOutput.append("  <td class=\"pad_menu2\">");
-	//        pMenuOutput.append(this.buildSMenuOutput(webpath, groupId, uri));
-	//        pMenuOutput.append("  </td>");
-	//        pMenuOutput.append("  </tr>");
-	//        pMenuOutput.append("</table>");
-	//        
-	//        pMenuOutput.append("\n<table width=\"100%\" border=\"0\" cellspacing=\"0\" cellpadding=\"0\">");
-	//        pMenuOutput.append("\n<tr>");
-	//        pMenuOutput.append("\n  <td class=\"menu_line_2\"></td>");
-	//        pMenuOutput.append("\n</tr>");
-	//        pMenuOutput.append("\n</table>");
-	//
-	//        return pMenuOutput;
-	//    }
-	//
-	//    /**
-	//     * 获取一级菜单.
-	//     * 
-	//     * @param webpath
-	//     * @param groupId
-	//     * @param uri
-	//     * @return
-	//     * @author zhangyl <zhangyl@bestwiz.cn>
-	//     */
-	//    private StringBuffer buildPMenuOutput(String webpath, BigDecimal groupId,
-	//            String uri) {
-	//        StringBuffer pMenuOutput = new StringBuffer();
-	//        try {
-	//            List list = new CsMenuService().getParentMenus(groupId);
-	//            boolean highlight = false;
-	//            boolean isLight = false;
-	//            String[] menuStyles = null;
-	//            String styleStr = null;
-	//            if (list != null) {
-	//                List sonMenus = new CsMenuService().findCsGroupMenus(groupId, uri);
-	//                Object[] sonMenu = null;
-	//                int size = list.size();
-	//                String url = null;
-	//                for (int i = 0; i < size; i++) {
-	//                    isLight = false;
-	//                    Object[] obj = (Object[]) list.get(i);
-	//                    
-	//                    //handle menu css style.
-	//                    styleStr = (String) obj[4];
-	//                    menuStyles = null;
-	//                    if (styleStr != null) {
-	//                        menuStyles = styleStr.split(",");
-	//                    }
-	//                    if (menuStyles == null || menuStyles.length == 0) {
-	//                        menuStyles = new String[]{"menu1_bg_1", "menu1_bg_2"};
-	//                    } else {
-	//                        if (menuStyles.length == 1) {
-	//                            menuStyles = new String[]{menuStyles[0], menuStyles[0]};
-	//                        }
-	//                    }
-	//                    
-	//                    if (GenericValidator.isBlankOrNull((String) obj[3])
-	//                            || "sample.do".equals(obj[3])) {
-	//                        url = this.getUrl((String) obj[0], groupId);
-	//                    } else {
-	//                        url = (String) obj[3];
-	//                    }
-	//                    url = parseUrl(url);
-	//                    if (!highlight) {
-	//                        if (uri.equals(url)) {
-	//                            highlight = true;
-	//                            isLight = true;
-	//                        } else {
-	//                            if (!sonMenus.isEmpty()) {
-	//                                sonMenu = (Object[]) sonMenus.get(0);
-	//                                if (((JhfCsGroupMenus)sonMenu[0]).getParentMenuSeq().equals(obj[0])) {
-	//                                    isLight = true;
-	//                                } else {
-	//                                    isLight = false;
-	//                                }
-	//                            } else {
-	//                                isLight = false;
-	//                            }
-	//                        }
-	//                    }
-	//                    if (isLight) {
-	//                        pMenuOutput.append("\n  <td nowrap=\"nowrap\" class=\"" + menuStyles[1] + "\"><a href=\"");
-	//                    } else {
-	//                        pMenuOutput.append("\n  <td nowrap=\"nowrap\" class=\"" + menuStyles[0] + "\"><a href=\"");
-	//                    }
-	//                    pMenuOutput.append(url);
-	//                    pMenuOutput.append("\" class=\"menu\">");
-	//                    pMenuOutput.append(obj[1]);
-	//                    pMenuOutput.append("</a></td>");
-	//                }
-	//            }
-	//        
-	//        } catch (Exception e) {
-	//            return new StringBuffer();
-	//        }
-	//        return pMenuOutput;
-	//    }
-	//    
-	//    private String parseUrl(String url) {
-	//        String[] strArr = null;
-	//        String value = url;
-	//        strArr = url.split("\\|");
-	//        if (strArr != null && strArr.length > 0) {
-	//            value =  strArr[0];
-	//            if (value.startsWith("(")) {
-	//                value = value.substring(1, value.length());
-	//            }
-	//            if (value.endsWith(")")) {
-	//                value = value.substring(0, value.length() - 1);
-	//            }
-	//        }
-	//        return value;
-	//    }
-	//    
-	//    /**
-	//     * 获取二级菜单.
-	//     * 
-	//     * @param webpath
-	//     * @param groupId
-	//     * @param uri
-	//     * @return
-	//     * @throws Exception
-	//     * @author zhangyl <zhangyl@bestwiz.cn>
-	//     */
-	//
-	//    private StringBuffer buildSMenuOutput(String webpath, BigDecimal groupId,
-	//            String uri) throws Exception {
-	//
-	//        StringBuffer sMenuOutput = new StringBuffer();
-	//        if (GenericValidator.isBlankOrNull(uri)) {
-	//            return sMenuOutput;
-	//        }
-	//        List list = new CsMenuService().findCsGroupMenus(groupId, uri);
-	//        if (list != null) {
-	//            int size = list.size();
-	//            if (size > 0) {
-	//                JhfCsGroupMenus groupMenu = null;
-	//                for (int i = 0; i < size; i++) {
-	//                    groupMenu = (JhfCsGroupMenus) (Array.get(list.get(i), 0));
-	//                    sMenuOutput.append("<span style=\"white-space:nowrap\">");
-	//                    sMenuOutput.append("<img src=\"" + webpath + "/images/dot.gif\" border=\"0\" />");
-	//                    sMenuOutput.append("<a href=\"");
-	//                    sMenuOutput.append(parseUrl(groupMenu.getSonMenuUrl()));
-	//                    sMenuOutput.append("\" class=\"menu\">" + groupMenu.getSonMenuName() + "</a>");
-	//                    sMenuOutput.append("</span>");
-	//                }
-	//            }
-	//        }
-	//        return sMenuOutput;
-	//    }
-	//
-	//
-	//    /**
-	//     * 获取URL.[在没有缺省URL显示的时候．根据条件取得一个URL]
-	//     * 
-	//     * @param parentMenuSeq
-	//     * @param groupId
-	//     * @return
-	//     * @throws Exception
-	//     * @author zhangyl <zhangyl@bestwiz.cn>
-	//     */
-	//    private String getUrl(String parentMenuSeq, BigDecimal groupId)
-	//            throws Exception {
-	//
-	//        String url = new CsMenuService().getUrl(parentMenuSeq, groupId);
-	//        return url;
-	//
-	//    }
 
 }

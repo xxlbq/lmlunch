@@ -3,10 +3,12 @@ package com.livedoor.flow_manager.user.service;
 import java.lang.reflect.InvocationTargetException;
 import java.util.List;
 
+import org.apache.commons.collections.CollectionUtils;
 import org.apache.log4j.Logger;
 import org.hibernate.HibernateException;
 import org.springframework.dao.DataAccessException;
 
+import com.livedoor.flow_manager.tools.CollectionTools;
 import com.livedoor.flow_manager.tools.lbq.Page;
 import com.livedoor.flow_manager.user.beans.User;
 import com.livedoor.flow_manager.user.dao.imp.UserDao;
@@ -166,11 +168,14 @@ public class UserService implements IUserService{
 	
 	public User getUniqueUserByUserName(String userName) {
 		
-		return (getUserByUserName(userName).size() > 0 ?
-				getUserByUserName(userName).get(0) : null);
+		return (getUserByUserName(userName).size() > 0 ? getUserByUserName(userName).get(0) : null);
 	}
 	
-	
+	public User getUniqueUserByUserDisplayName(String userDisplayName) {
+		
+		return  CollectionTools.isEmpty(userDao.getUserByUserDisplayName(userDisplayName))? 
+				null : userDao.getUserByUserDisplayName(userDisplayName).get(0);
+	}
 	
 	public List<User> getUserListByCriteriaQueryUser(final User User)
 	throws UserExcption {
@@ -321,7 +326,10 @@ public class UserService implements IUserService{
         return count;
     }
 
-
+	public Integer queryMaxRegIp(String ip){
+		
+		return userDao.queryMaxRegIp(ip);
+	}
 
 
 

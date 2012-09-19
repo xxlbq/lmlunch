@@ -3,17 +3,18 @@ package com.livedoor.flow_manager.user.action;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.apache.commons.codec.Decoder;
 import org.apache.log4j.Logger;
 import org.apache.struts.action.ActionForm;
 import org.apache.struts.action.ActionForward;
 import org.apache.struts.action.ActionMapping;
+import org.apache.struts.action.ActionMessage;
+import org.apache.struts.action.ActionMessages;
 import org.apache.struts.actions.MappingDispatchAction;
 
 import com.livedoor.flow_manager.common.info.MessageInfo;
 import com.livedoor.flow_manager.enums.IdKeyEnum;
 import com.livedoor.flow_manager.noGenerator.INoGeneratorService;
-import com.livedoor.flow_manager.noGenerator.NoGeneratorService;
+import com.livedoor.flow_manager.tools.SystemTools;
 import com.livedoor.flow_manager.user.UserUtil;
 import com.livedoor.flow_manager.user.beans.User;
 import com.livedoor.flow_manager.user.form.UserForm;
@@ -82,23 +83,49 @@ public class UserAddAction extends MappingDispatchAction{
 			
 		
 		
-		LOGGER.info(" SoldierSourceAddAction add ---> ");
+		LOGGER.info(" UserAddAction add ---> ");
 		UserForm ssf = (UserForm)form ;
-//		ssf.setUserName(new String(ssf.getUserName().getBytes("ISO8859_1"),"gb2312"));
-//		User user = (User)request.getSession().getAttribute(AttributeKeyConstant.USER_INFO_KEY);
-//		int newUserId = ngService.getId(IdKeyEnum.LOGIN_IN_ID.getValue());
+		String regIp = SystemTools.getIpAddr(request);
+		
+		//max 
+		Integer max = userService.queryMaxRegIp(regIp);
+		
+		if(SystemTools.SAME_IP_MAX_REG <= max){
+			ActionMessages errores = new ActionMessages();
+			errores.add("sameIpMaxReg",new ActionMessage( "reg.maxIpReg" ) );
+			request.setAttribute("ERROR_MESSAGE_INFO", errores);
+			return mapping.getInputForward();
+		}
+		//
+		if(!ssf.getUserPassword().equals(ssf.getUserPassword2())){
+			ActionMessages errores = new ActionMessages();
+			errores.add("notSamePassword",new ActionMessage( "reg.notSamePassword" ) );
+			request.setAttribute("ERROR_MESSAGE_INFO", errores);
+			return mapping.getInputForward();
+		}
+
+		//same display name
+		User user = userService.getUniqueUserByUserDisplayName(ssf.getUserDisplayName());
+		if( null != user ){
+			ActionMessages errores = new ActionMessages();
+			errores.add("sameUserDisplayName",new ActionMessage( "reg.sameDisplayName" ) );
+			request.setAttribute("ERROR_MESSAGE_INFO", errores);
+			return mapping.getInputForward();
+		}
+		
 		String loginId= noGeneratorService.getPrefixId(prefix,IdKeyEnum.LOGIN_IN_ID.getValue());
-//		ssf.setId(newUserId);
 		ssf.setUserName(loginId);
+		ssf.setUserRegIp(regIp);
 		User insertUser = UserUtil.toRegUser(ssf);
-//		soldierSourceService.addSoldierSource(s);
+		LOGGER.info("reg user detail:"+insertUser);
 		userService.addUser(insertUser);
 		
 		MessageInfo info = new MessageInfo();
 		info.setMessage("OK");
 		request.setAttribute("MESSAGE_INFO", info);
 		request.setAttribute("USER_INFO", insertUser);
-		LOGGER.info(" reg user ok <--- ");
+		
+		LOGGER.info(" UserAddAction add  <--- ");
 		return mapping.findForward("success");
 		
 		}

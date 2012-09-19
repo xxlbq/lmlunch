@@ -3,7 +3,12 @@ package com.livedoor.flow_manager.user.form;
 import org.apache.struts.action.ActionForm;
 
 public class UserForm extends ActionForm{
-//	 primary key
+/**
+	 * 
+	 */
+	private static final long serialVersionUID = 3005917123633130114L;
+
+	//	 primary key
 	private java.lang.Integer id;
 
 	// fields
@@ -12,6 +17,9 @@ public class UserForm extends ActionForm{
 	private String userPassword2; 
 	private java.lang.String userRole;
 	private java.lang.String userDisplayName;
+	private java.lang.String userRegIp;
+	private java.lang.String userLastLoginIp;
+	
 	private java.lang.String userPhoto;
 	private java.lang.String userEmail;
 	private java.lang.String userMsn;
@@ -26,6 +34,18 @@ public class UserForm extends ActionForm{
 	
 	
 	
+	public java.lang.String getUserRegIp() {
+		return userRegIp;
+	}
+	public void setUserRegIp(java.lang.String userRegIp) {
+		this.userRegIp = userRegIp;
+	}
+	public java.lang.String getUserLastLoginIp() {
+		return userLastLoginIp;
+	}
+	public void setUserLastLoginIp(java.lang.String userLastLoginIp) {
+		this.userLastLoginIp = userLastLoginIp;
+	}
 	public String getUserPassword2() {
 		return userPassword2;
 	}

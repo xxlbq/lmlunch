@@ -70,7 +70,6 @@ public class UserDao extends GenericDAOHibernateImpl implements IUser {
 			        	Query query = session.createQuery(querySentence);
 			    		query	.setFirstResult(page.getBeginIndex()-1)
 			    				.setMaxResults(page.getPageSize())
-			    				//此处使用User的cache
 //			    				.setCacheable(true)
 //			    				.setCacheRegion("com.livedoor.flow_manager.Users.beans.User")
 			    				//
@@ -109,7 +108,20 @@ public class UserDao extends GenericDAOHibernateImpl implements IUser {
 		
 	}
 	
-
+	public Integer queryMaxRegIp(String ip){
+		String hql = "SELECT COUNT(*) FROM User WHERE userRegIp = ? " ;
+		return ((Long)query(hql, ip ).get(0)).intValue();
+	}
+	
+	@SuppressWarnings("unchecked")
+	public List<User> getUserByUserDisplayName(String userDisplayName) {
+		String hql = "from com.livedoor.flow_manager.user.beans.User as user where user.userDisplayName = ? and user.deletedFlag <> 1";
+		return query(hql, userDisplayName );
+		
+	}
+	
+	
+	
 	/**
 	 * @param user
 	 * @return
