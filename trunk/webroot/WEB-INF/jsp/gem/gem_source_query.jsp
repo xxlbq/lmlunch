@@ -164,33 +164,32 @@ td{font-size:10pt;}
 	<%--================================--%>
 	
 		<tr>
-			<td colspan ="7"><hr color="#5F52A0" size="1" width="300" align="center" noshade></td>
+			<td colspan ="9"><hr color="#5F52A0" size="1" width="300" align="center" noshade></td>
 		</tr>
-		
-		<logic:iterate id="gemSource" indexId="indexid">
 		<tr>
-			<td>
-				<table border="0" cellpadding="5" cellspacing="1" align="center"
-							style="margin-top: 10px; margin-bottom: 15px;" width="560">
-					
-					<tr>
-						<td bgcolor="#5F52A0" align="right"><strong><font color="#ffffff">国家</font></strong></td>
-						<td bgcolor="#B2BECE"><bean:write /></td>
-					</tr>
-					<tr>
-						<td bgcolor="#5F52A0" align="right"><strong><font color="#ffffff"><bean:write /></font></strong></td>
-						<td bgcolor="#B2BECE"></td>
-					</tr>
-					<tr>
-						<td bgcolor="#5F52A0" align="right"><strong><font color="#ffffff"></font></strong></td>
-						<td bgcolor="#B2BECE"></td>
-					</tr>
+			<td colspan ="9"><hr color="#5F52A0" size="1" width="300" align="center" noshade></td>
+		</tr>
 
+		<tr>
+			<td colspan ="9">
+				<table border="0" cellpadding="5" cellspacing="1" align="center" style="margin-top: 10px; margin-bottom: 15px;" width="560">
+					<logic:present name="GEM_SOURCE_LIST_FOR_UPDATE" >
+					<logic:iterate name="GEM_SOURCE_LIST_FOR_UPDATE" id="gemSource" indexId="indexid">
+					<bean:define id="gemVar"  name = "gemSource" property="gem" />
+					<bean:define id="kingdomVar"  name = "gemSource" property="kingdom" />
+					<tr>
+						<td bgcolor="#5F52A0" align="middle" nowrap width="20"><strong><font color="#ffffff"><input type="checkbox" name="sId" value='<bean:write name="source" property="sourceId" />'/></font></strong></td>
+						<td bgcolor="#5F52A0" align="middle" nowrap width="20"><strong><font color="#ffffff">国家</font></strong></td>
+						<td bgcolor="#B2BECE" align="middle" nowrap width="20"><bean:write name="kingdomVar" property="kingdomName"/></td>
+						<td bgcolor="#5F52A0" align="middle" nowrap width="30"><strong><font color="#ffffff"><bean:write name="gemVar" property="gemDisplayName"/></font></strong></td>
+						<td bgcolor="#B2BECE" align="middle" nowrap width="30"><bean:write name="gemSource" property="sourceGemCount"/></td>
+					</tr>
+					</logic:iterate>
+					</logic:present>
 				</table>
 			</td>
 		</tr>
-		</logic:iterate>
-		
+
 		
 		<tr align="center">
 			
