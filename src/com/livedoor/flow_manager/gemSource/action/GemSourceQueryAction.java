@@ -187,7 +187,7 @@ public class GemSourceQueryAction extends MappingDispatchAction{
 		GemSource queryGs = new GemSource();
 		queryGs.setSourceGemDate(DateUtil.getCurrentSaturday());
 		List<GemSource> gsList = gemSourceService.getSourceListByCriteriaQuerySource(queryGs);
-		request.setAttribute("GEM_SOURCE_LIST", gsList);
+		request.setAttribute("GEM_SOURCE_LIST_FOR_UPDATE", gsList);
 		
 		
 	}
