@@ -238,12 +238,25 @@ td{font-size:10pt;}
 		<tr align="center">
 			
 			<td colspan ="7">
-			<input type="button" name="aSourceButton" value="审批" onclick="approveSource()"/>
-			&nbsp;&nbsp;
-			<input type="button" name="uSourceButton" value="取消审批" onclick="cancelApproveSource()"/>
-			&nbsp;&nbsp;
+			
+			<logic:lessEqual name="<%=AttributeKeyConstant.USER_INFO_KEY %>" 
+				property="role.roleId" 
+				value="1" 
+				scope="session">
+				
+				<input type="button" name="aSourceButton" value="审批" onclick="approveSource()"/>
+				&nbsp;&nbsp;
+				
+				
+				<input type="button" name="uSourceButton" value="取消审批" onclick="cancelApproveSource()"/>
+				&nbsp;&nbsp;
+			
+			</logic:lessEqual>
+
 			<input type="button" name="dSourceButton" value="修改" onclick="updateSource()"/>
 			&nbsp;&nbsp;
+			
+			
 			
 <%--			<a href="#" onclick="pdfReportDisplay()"><img src="images/component/pdf.gif"  border="0" /></a>--%>
 <!--			<a href="javascript:pdfDownload()">-->

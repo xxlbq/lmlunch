@@ -123,7 +123,7 @@ td{font-size:10pt;}
 	
 	<%-- ================================ --%>
 	
-		<form name="source_soldier_approve.do">
+		<form name="middleform">
 	
 		<tr>
 			
@@ -167,22 +167,26 @@ td{font-size:10pt;}
 			<td colspan ="9"><hr color="#5F52A0" size="1" width="300" align="center" noshade></td>
 		</tr>
 		<tr>
+			<td colspan ="9" align="middle" nowrap>宝石明细&nbsp;[可修改]</td>
+		</tr>
+		<tr>
 			<td colspan ="9"><hr color="#5F52A0" size="1" width="300" align="center" noshade></td>
 		</tr>
 
 		<tr>
 			<td colspan ="9">
-				<table border="0" cellpadding="5" cellspacing="1" align="center" style="margin-top: 10px; margin-bottom: 15px;" width="560">
+				<table border="0" cellpadding="5" cellspacing="1" align="center" style="margin-top: 10px; margin-bottom: 15px;" width="400">
 					<logic:present name="GEM_SOURCE_LIST_FOR_UPDATE" >
 					<logic:iterate name="GEM_SOURCE_LIST_FOR_UPDATE" id="gemSource" indexId="indexid">
-					<bean:define id="gemVar"  name = "gemSource" property="gem" />
-					<bean:define id="kingdomVar"  name = "gemSource" property="kingdom" />
-					<tr>
-						<td bgcolor="#5F52A0" align="middle" nowrap width="20"><strong><font color="#ffffff"><input type="checkbox" name="sId" value='<bean:write name="source" property="sourceId" />'/></font></strong></td>
-						<td bgcolor="#5F52A0" align="middle" nowrap width="20"><strong><font color="#ffffff">国家</font></strong></td>
-						<td bgcolor="#B2BECE" align="middle" nowrap width="20"><bean:write name="kingdomVar" property="kingdomName"/></td>
-						<td bgcolor="#5F52A0" align="middle" nowrap width="30"><strong><font color="#ffffff"><bean:write name="gemVar" property="gemDisplayName"/></font></strong></td>
-						<td bgcolor="#B2BECE" align="middle" nowrap width="30"><bean:write name="gemSource" property="sourceGemCount"/></td>
+					
+					<bean:define id="gemVar"  name="gemSource" property="gem" />
+					<bean:define id="kingdomVar"  name="gemSource" property="kingdom" />
+					<tr bordercolor="white">
+						<td bgcolor="<bean:write name="kingdomVar" property="kingdomColor"/>" align="middle"  width="5"><strong><font color="#ffffff"><input type="checkbox" name="sId" value='<bean:write name="gemSource" property="gemSourcId" />'/></font></strong></td>
+						<td bgcolor="<bean:write name="kingdomVar" property="kingdomColor"/>" align="middle"  width="5"><strong><font color="#ffffff">国家</font></strong></td>
+						<td bgcolor="<bean:write name="kingdomVar" property="kingdomColor"/>" align="middle"  width="5"><bean:write name="kingdomVar" property="kingdomName"/></td>
+						<td bgcolor="<bean:write name="kingdomVar" property="kingdomColor"/>" align="middle"  width="30"><strong><font color="#ffffff"><bean:write name="gemVar" property="gemDisplayName"/></font></strong></td>
+						<td bgcolor="<bean:write name="kingdomVar" property="kingdomColor"/>" align="middle"  width="10"><bean:write name="gemSource" property="sourceGemCount"/></td>
 					</tr>
 					</logic:iterate>
 					</logic:present>
@@ -193,19 +197,13 @@ td{font-size:10pt;}
 		
 		<tr align="center">
 			
-			<td colspan ="7">
-			<input type="button" name="aSourceButton" value="审批" onclick="addSource()"/>
-			&nbsp;&nbsp;
-			<input type="button" name="uSourceButton" value="取消审批" onclick="updateSource()"/>
-			&nbsp;&nbsp;
-			<input type="button" name="dSourceButton" value="修改" onclick="delSource()"/>
-			&nbsp;&nbsp;
-						
+			<td colspan ="9" align="middle" nowrap>
+			<logic:lessEqual name="<%=AttributeKeyConstant.USER_INFO_KEY %>" property="role.roleId" value="1" scope="session">
+				<input type="button" name="dSourceButton" value="修改" onclick="updateGemSource()"/>
+			</logic:lessEqual>
 			</td>
 			
-			
 		</tr>
-		<tr><td colspan ="8"><hr color="#5F52A0" size="1" width="300" align="center" noshade></td></tr>
 		
 		</form>
 	</table>

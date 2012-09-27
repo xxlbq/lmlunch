@@ -116,8 +116,49 @@ td{font-size:10pt;}
 	<%-- ================================ --%>
 	
 		<form name="gem_source_distribution_query.do">
-				<tr><td colspan="10">
+				<tr><td colspan="11">
 					<table border="0" cellpadding="5" cellspacing="1" align="center" style="margin-top:10px; margin-bottom:15px;" width="560">
+						
+						
+						
+						
+						
+						<logic:present name="SOLDIER_SOURCE_GROUPBY_SOLDIER_ID">
+						
+						<tr><td bgcolor="#5F52A0" nowrap align="right">
+								<strong><font color="#ffffff">国家名称</font></strong></td>
+							<td bgcolor="#B2BECE"><bean:write name="SOLDIER_SOURCE_GROUPBY_SOLDIER_ID" property="kingdomName"/></td>
+						</tr>
+						
+						<tr><td bgcolor="#5F52A0" nowrap align="right">
+								<strong><font color="#ffffff">日期</font></strong></td>
+							<td bgcolor="#B2BECE"><bean:write name="SOLDIER_SOURCE_GROUPBY_SOLDIER_ID" property="sourceDate"/></td>
+						</tr>
+						
+						
+						<tr><td bgcolor="#5F52A0" nowrap align="right">
+								<strong><font color="#ffffff">枪盾&nbsp;&nbsp; (单位：万)</font></strong></td>
+							<td bgcolor="#B2BECE"><bean:write name="SOLDIER_SOURCE_GROUPBY_SOLDIER_ID" property="qiangdunSum"/> </td>
+
+						</tr>
+						<tr><td bgcolor="#5F52A0" nowrap align="right">
+								<strong><font color="#ffffff">大刀&nbsp;&nbsp; (单位：万)</font></strong></td>
+							<td bgcolor="#B2BECE"><bean:write name="SOLDIER_SOURCE_GROUPBY_SOLDIER_ID" property="dadaoSum"/></td>
+						</tr>
+						<tr><td bgcolor="#5F52A0" nowrap align="right">
+								<strong><font color="#ffffff">骑枪&nbsp;&nbsp; (单位：万)</font></strong></td>
+							<td bgcolor="#B2BECE"><bean:write name="SOLDIER_SOURCE_GROUPBY_SOLDIER_ID" property="qibingSum"/></td>
+						</tr>
+						<tr><td bgcolor="#5F52A0" nowrap align="right">
+								<strong><font color="#ffffff">重甲&nbsp;&nbsp; (单位：万)</font></strong></td>
+							<td bgcolor="#B2BECE"><bean:write name="SOLDIER_SOURCE_GROUPBY_SOLDIER_ID" property="zhongjiaSum"/></td>
+						</tr>
+						
+						
+						
+						</logic:present>
+						
+						
 						
 						<logic:present name="soldierSourceTotalPoint">
 						<tr><td bgcolor="#5F52A0" nowrap align="right">

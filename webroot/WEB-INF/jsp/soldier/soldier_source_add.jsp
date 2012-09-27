@@ -8,7 +8,7 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html lang="zh">
 <head>
-
+<script src="js/sourceJs.js" type="text/javascript"></script>
 <meta http-equiv="content-style=type" content="text/css">
 
 <title>添加发兵</title>
@@ -84,7 +84,13 @@ td {
 
 	<tr>
 		<td>
+		<logic:present name="SOLDIER_SOURCE_UPDATE_KEY" >
+		<div class="menu"><strong>修改发兵</strong></div>
+		</logic:present>
+		<logic:notPresent name="SOLDIER_SOURCE_UPDATE_KEY" > 
 		<div class="menu"><strong>添加发兵</strong></div>
+		</logic:notPresent>
+		
 		</td>
 	</tr>
 	<!-- form-->
@@ -115,34 +121,53 @@ td {
 
 						<tr>
 							<td bgcolor="#5F52A0" align="right"><strong><font color="#ffffff">发兵会员ID</font></strong></td>
-							<td bgcolor="#B2BECE">
-		
+							<td bgcolor="#B2BECE"><html:hidden name="soldierSourceForm" property="sourceId"/>
+							
+							
+								<logic:present name="SOLDIER_SOURCE_UPDATE_KEY">
+									<bean:write name="soldierSourceForm" property="userName"/><html:hidden name="soldierSourceForm" property="userId"></html:hidden>
+								</logic:present>
 								 
-								<logic:lessEqual name="<%=AttributeKeyConstant.USER_INFO_KEY %>" scope="session" property="role.roleId" value="1">
-									<html:text  maxlength="30" name="USER_INFO" property="userName" size="20" />
-								</logic:lessEqual>						
-								<logic:greaterThan name="<%=AttributeKeyConstant.USER_INFO_KEY %>" scope="session" property="role.roleId" value="1">
-									<bean:write name="USER_INFO" property="userName"/>
-									<html:hidden name="USER_INFO" property="userName"></html:hidden>
-								</logic:greaterThan> 
+								 <logic:notPresent name="SOLDIER_SOURCE_UPDATE_KEY" >
+								 
+									<logic:lessEqual name="<%=AttributeKeyConstant.USER_INFO_KEY %>" scope="session" property="role.roleId" value="1">
+										<html:text  maxlength="30" name="USER_INFO" property="userName" size="20" />
+									</logic:lessEqual>						
+									<logic:greaterThan name="<%=AttributeKeyConstant.USER_INFO_KEY %>" scope="session" property="role.roleId" value="1">
+										<bean:write name="USER_INFO" property="userName"/>
+										<html:hidden name="USER_INFO" property="userName"></html:hidden>
+									</logic:greaterThan> 
+								 </logic:notPresent>
+								 
 								 
 							</td>
 						</tr>
 						<tr>
 							<td bgcolor="#5F52A0" align="right"><strong><font color="#ffffff">发兵会员名称</font></strong></td>
 							<td bgcolor="#B2BECE">
-								<logic:present name="USER_INFO" scope="request">
-									<bean:write name="USER_INFO" property="userDisplayName"/>
-								</logic:present> 
+							
+								<logic:present name="SOLDIER_SOURCE_UPDATE_KEY">
+									<bean:write name="soldierSourceForm" property="userDisplayName"/>
+								</logic:present>
+							
+								<logic:notPresent name="SOLDIER_SOURCE_UPDATE_KEY">
+								
+									<logic:present name="USER_INFO" >
+										<bean:write name="USER_INFO" property="userDisplayName"/>
+									</logic:present>
+								
+								</logic:notPresent> 
 							</td>
 						</tr>
 						<tr>
 							<td bgcolor="#5F52A0" align="right"><strong><font color="#ffffff">发兵国家</font></strong></td>
 							<td bgcolor="#B2BECE">
-								<logic:present name="KINGDOM_LIST" scope="request">
-									<html:select property="kingdomId" style="width=162;">
+							
+							
+								<logic:present name="KINGDOM_LIST">
+									<html:select property="kingdomId" style="width=162;" >
 										<option value="-1">请选择</option>
-										<logic:present name="KINGDOM_LIST" scope="request">
+										<logic:present name="KINGDOM_LIST" >
 											<html:options collection="KINGDOM_LIST" property="kingdomId" labelProperty="kingdomName" />
 										</logic:present>
 									</html:select>
@@ -156,10 +181,10 @@ td {
 							<td bgcolor="#B2BECE">
 
 								 
-								<logic:present name="SOLDIER_LIST" scope="request">
+								<logic:present name="SOLDIER_LIST" >
 									<html:select property="sourceSoldierId" style="width=162;">
 										<option value="-1">请选择</option>
-										<logic:present name="SOLDIER_LIST" scope="request">
+										<logic:present name="SOLDIER_LIST" >
 											<html:options collection="SOLDIER_LIST" property="soldierId" labelProperty="soldierName" />
 										</logic:present>
 									</html:select>
@@ -168,7 +193,7 @@ td {
 						</tr>
 						<tr>
 							<td bgcolor="#5F52A0" align="right"><strong><font color="#ffffff">发兵数量</font></strong></td>
-							<td bgcolor="#B2BECE"><input type="text" name="sourceSoliderCount" value="" size="14"style="height:20" tabindex="1"/>
+							<td bgcolor="#B2BECE"><html:text property="sourceSoliderCount"  size="14"style="height:20" tabindex="1"/>
 							&nbsp;&nbsp;( 单位:万&nbsp;&nbsp;例如:&nbsp;实际数量为10万, 请填入10 )
 							</td>
 						</tr>
@@ -180,7 +205,18 @@ td {
 					<td></td>
 				</tr>
 				<tr>
-					<td align="center"><html:submit style="width=150;" value="添加" /></td>
+					<td align="center">
+					
+					<logic:present  name="SOLDIER_SOURCE_UPDATE_KEY" scope="request">
+					<input type="button" value="修改" onclick="updateSoldierSourceAction()"/>
+					</logic:present>
+					
+					<logic:notPresent name="SOLDIER_SOURCE_UPDATE_KEY" scope="request">
+					<input type="button" value="添加" onclick="addSoldierSourceAction()"/>
+					</logic:notPresent>
+					
+					</td>
+					
 				</tr>
 
 				<tr>

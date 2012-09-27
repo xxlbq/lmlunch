@@ -35,6 +35,40 @@
 		</property>
 
 	</bean>
+	
+	<bean name="/gem_source_update_display"
+		class="com.livedoor.flow_manager.gemSource.action.GemSourceUpdateAction">
+		<property name="userService">
+			<ref bean="userService" />
+		</property>
+		<property name="gemService">
+			<ref bean="gemService" />
+		</property>
+		<property name="kingdomService">
+			<ref bean="kingdomService" />
+		</property>
+		<property name="gemSourceService">
+			<ref bean="gemSourceService" />
+		</property>
+
+	</bean>
+	<bean name="/gem_source_update"
+		class="com.livedoor.flow_manager.gemSource.action.GemSourceUpdateAction">
+		<property name="userService">
+			<ref bean="userService" />
+		</property>
+		<property name="gemService">
+			<ref bean="gemService" />
+		</property>
+		<property name="kingdomService">
+			<ref bean="kingdomService" />
+		</property>
+		<property name="gemSourceService">
+			<ref bean="gemSourceService" />
+		</property>
+
+	</bean>
+	
 	<bean name="/gem_source_query_display"
 		class="com.livedoor.flow_manager.gemSource.action.GemSourceQueryAction">
 		<property name="userService">
