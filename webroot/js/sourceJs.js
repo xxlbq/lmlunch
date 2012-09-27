@@ -85,6 +85,22 @@ function selectOptionAction(){
 		}
 	}
 	
+	// update gem source
+	function updateGemSource(){
+		
+		window.alert(checkedUser);
+		
+		var checkedUser;
+		checkedUser = isSingleCheckedAtLeast4Update(document.middleform);
+		window.alert(checkedUser);
+		if(checkedUser != null){
+		
+			window.alert(checkedUser);
+			
+			window.location.href='gem_source_update_display.do?gemSourceId='+checkedUser;
+		
+		}
+	}
 	
 	function isSingleCheckedAtLeast(form){
 		
@@ -178,7 +194,7 @@ function selectOptionAction(){
 			window.alert("请选择要修改的发兵记录，已经审批的记录不可以修改.");
 			return null;
 		}else if(checkTimes > 1){
-			window.alert("请选择一条记录进行修改.");
+			window.alert("只能选择一条记录进行修改.");
 			return null;
 		}
 		
@@ -187,20 +203,20 @@ function selectOptionAction(){
 	
 	
 	
-	function updateSource(){
-	
-		var checkedUser;
-		
-		checkedUser = isSingleChecked(document.middleform);
-		
-		if(checkedUser != null){
-		
-			window.alert(checkedUser);
-			
-			window.location.href='showSourceUpdate.do?sourceId='+checkedUser;
-		
-		}
-	}
+//	function updateSource(){
+//	
+//		var checkedUser;
+//		
+//		checkedUser = isSingleChecked(document.middleform);
+//		
+//		if(checkedUser != null){
+//		
+//			window.alert(checkedUser);
+//			
+//			window.location.href='showSourceUpdate.do?sourceId='+checkedUser;
+//		
+//		}
+//	}
 	
 	
 	function delSource(){
@@ -265,6 +281,23 @@ function selectOptionAction(){
 	}
 	
 
+	function updateGemSourceAction(){
+		document.gemSourceForm.action="gem_source_update.do";
+		document.gemSourceForm.submit();
+	}
+	function addGemSourceAction(){
+		document.gemSourceForm.action="gem_source_add.do";
+		document.gemSourceForm.submit();
+	}
+	
+	function updateSoldierSourceAction(){
+		document.soldierSourceForm.action="soldier_source_update.do";
+		document.soldierSourceForm.submit();
+	}
+	function addSoldierSourceAction(){
+		document.soldierSourceForm.action="soldier_source_add.do";
+		document.soldierSourceForm.submit();
+	}
 	
 	
 	
