@@ -19,9 +19,9 @@ public class Log4JInit extends HttpServlet {
 	private static final long serialVersionUID = -2576462163042385406L;
 
 	public void init() {
-		System.out.println("log4j servletinit begin ");
+//		System.out.println("log4j servletinit begin ");
 		String prefix = getServletContext().getRealPath("/");
-		System.out.println("prifix:"+prefix);
+//		System.out.println("prifix:"+prefix);
 		String file = getInitParameter("log4j-init-file");
 
 		if (file != null) {
@@ -37,7 +37,7 @@ public class Log4JInit extends HttpServlet {
 						+ prop.getProperty("log4j.appender.fileout.File")
 						);
 				
-				System.out.println("log4j.appender.fileout.File:"+prop.getProperty("log4j.appender.fileout.File"));
+//				System.out.println("log4j.appender.fileout.File:"+prop.getProperty("log4j.appender.fileout.File"));
 				PropertyConfigurator.configure(prop);
 				
 			} catch (IOException e) {
@@ -45,7 +45,7 @@ public class Log4JInit extends HttpServlet {
 			}
 		}
 		
-		System.out.println("log4j servletinit end ");
+//		System.out.println("log4j servletinit end ");
 	}
 
 }

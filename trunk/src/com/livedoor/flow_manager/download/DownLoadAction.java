@@ -25,7 +25,7 @@ public class DownLoadAction extends BaseAction{
 			return mapping.findForward("error");
 		}
 		 
-		System.out.println("--->:"+path.length);
+//		System.out.println("--->:"+path.length);
 		
 		FileZip fz = new FileZip();
 		

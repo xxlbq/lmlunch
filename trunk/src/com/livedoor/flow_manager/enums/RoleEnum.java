@@ -13,4 +13,6 @@ public enum RoleEnum {
 	public int getValue(){
 		return this.value;
 	}
+	
+	
 }

@@ -17,7 +17,6 @@ public class DaoSqlConfigure {
 	 * @return String value
 	 */
 	public static String getSql(String key) {
-		//System.out.println("a:");
 		return resource.getString(key);
 	}
 	

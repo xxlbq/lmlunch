@@ -57,7 +57,6 @@ public class StrustMenuRoleFilter implements Filter {
 //		User usr = (User)request.getSession().getAttribute(AttributeKeyConstant.USER_INFO_KEY);
 		
 		/*
-		 * 从acegi中获取user的具体信息
 		 * @see HttpSessionContextIntegrationFilter 
 		 * */
 		SecurityContext contextFromSessionObject = (SecurityContext)request.getSession().getAttribute(
@@ -76,8 +75,8 @@ public class StrustMenuRoleFilter implements Filter {
 		User usr = (User)authentication.getPrincipal();
 		
 		
-		System.out.println(">>>>>>>> details:"+details.toString());
-		System.out.println(">>>>>>>> user:"+usr.toString());
+//		System.out.println(">>>>>>>> details:"+details.toString());
+//		System.out.println(">>>>>>>> user:"+usr.toString());
 		
 //		String usrName = details.getUsername();
 //		String pwd = details.getPassword();

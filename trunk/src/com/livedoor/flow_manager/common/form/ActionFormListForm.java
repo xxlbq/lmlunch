@@ -117,8 +117,8 @@ public class ActionFormListForm extends ValidatorActionForm {
 	public void setPm(PriceMaster[] pm) {
 		
 		if(null != machineType){
-			System.out.println("oooo->"+machineType.length);
-			System.out.println("oooo->"+machineCount.length);
+//			System.out.println("oooo->"+machineType.length);
+//			System.out.println("oooo->"+machineCount.length);
 		}
 		
 		

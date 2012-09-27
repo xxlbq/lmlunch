@@ -24,7 +24,7 @@ public class URLEncodingFilter implements Filter {
 		this.filterConfig = fc;
 		this.encoding = filterConfig.getInitParameter("encoding"); 
 		this.ConfigUsername = filterConfig.getInitParameter("username");
-		System.out.println("TestFilter filter init==============================-=================>");
+//		System.out.println("TestFilter filter init==============================-=================>");
 	}
 	
 	public void doFilter(ServletRequest req, 
@@ -39,10 +39,10 @@ public class URLEncodingFilter implements Filter {
 //		---------------------
 		if(ConfigUsername != null) { 
 			String username=((HttpServletRequest)req).getParameter("username");
-			System.out.println("username :"+username);
-			System.out.println("ConfigUsername :"+ConfigUsername);
+//			System.out.println("username :"+username);
+//			System.out.println("ConfigUsername :"+ConfigUsername);
 			if(username!=null && username.equals(ConfigUsername)){
-				System.out.println("filter done!");
+//				System.out.println("filter done!");
 				res.setContentType("text/html;charset");
 				PrintWriter out = res.getWriter();
 				out.print("<html><body>username is  only you !</body></html>");
