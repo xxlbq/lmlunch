@@ -33,6 +33,13 @@
 		    <forward  name="success" path="/WEB-INF/jsp/gem/gem_source_distribution.jsp" />
 		</action>
 		
+		<action   path="/gem_source_update_display" name="gemSourceForm" scope="request" parameter="display">
+		    <forward  name="success" path="/WEB-INF/jsp/gem/gem_source_add.jsp" />
+		</action>
+		<action   path="/gem_source_update" name="gemSourceForm" scope="request" parameter="update">
+		    <forward  name="success" path="/gem_source_query_display.do" />
+		</action>
+		
 	
 	</action-mappings>
 

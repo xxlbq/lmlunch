@@ -23,7 +23,12 @@
 		    <forward  name="success" path="/soldier.do" />
 		</action>
 
-
+		<action   path="/soldier_source_update_display"  scope="request" parameter="display" name="soldierSourceForm" >
+		    <forward  name="success" path="/WEB-INF/jsp/soldier/soldier_source_add.jsp" />
+		</action>
+		<action   path="/soldier_source_update"  scope="request" parameter="update" name="soldierSourceForm">
+		    <forward  name="success" path="/soldier_source_query_display.do" />
+		</action>
 
 		<action   path="/soldier_source_query_display"  scope="request" parameter="display">
 		    <forward  name="success" path="/WEB-INF/jsp/soldier/soldier_source_query.jsp" />
@@ -41,16 +46,9 @@
 		    <forward  name="success" path="/WEB-INF/jsp/soldier/soldier_source_query.jsp" />
 		</action>
 		
-		
-		
-		
-		
 		<action   path="/pagerSource" name="soldierSourceForm" scope="request" parameter="query">
 		    <forward  name="success" path="/WEB-INF/jsp/soldier/soldier_source_query.jsp" />
 		</action>
-		
-		
-		
 		
 		<action path="/soldier_add"
 			type="org.apache.struts.actions.ForwardAction"
