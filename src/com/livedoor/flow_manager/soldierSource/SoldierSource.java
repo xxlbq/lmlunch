@@ -3,8 +3,12 @@ package com.livedoor.flow_manager.soldierSource;
 import java.math.BigDecimal;
 import java.util.Date;
 
+import org.apache.commons.lang.builder.ToStringBuilder;
+import org.apache.commons.lang.builder.ToStringStyle;
+
 import com.livedoor.flow_manager.kingdom.Kingdom;
 import com.livedoor.flow_manager.soldier.Soldier;
+import com.livedoor.flow_manager.tools.BigDecimalTools;
 import com.livedoor.flow_manager.user.beans.User;
 
 public class SoldierSource{
@@ -16,9 +20,9 @@ public class SoldierSource{
 	private String sourceId;
 	private User user;
 	private Soldier soldier;
-	private int sourceSoliderCount;
+	private BigDecimal sourceSoliderCount= BigDecimal.ZERO;
 	private Kingdom kingdom;
-	private BigDecimal sourceSoliderSumCount;
+	private BigDecimal sourceSoliderSumCount= BigDecimal.ZERO;
 	private Integer approved;
 	private String sourceDate;
 	private String inputStaffId;
@@ -26,6 +30,7 @@ public class SoldierSource{
 	private Date inputDate;
 	private Date updateDate;
 
+	
 	private int activeFlag;
 
 
@@ -66,18 +71,18 @@ public class SoldierSource{
 		this.soldier = soldier;
 	}
 
-	public int getSourceSoliderCount() {
-		return sourceSoliderCount;
+
+
+	public BigDecimal getSourceSoliderCount() {
+		return BigDecimalTools.roundingDownToInt(sourceSoliderCount);
 	}
 
-	public void setSourceSoliderCount(int sourceSoliderCount) {
+	public void setSourceSoliderCount(BigDecimal sourceSoliderCount) {
 		this.sourceSoliderCount = sourceSoliderCount;
 	}
 
-
-
 	public BigDecimal getSourceSoliderSumCount() {
-		return sourceSoliderSumCount;
+		return BigDecimalTools.roundingDownToInt(sourceSoliderSumCount);
 	}
 
 	public void setSourceSoliderSumCount(BigDecimal sourceSoliderSumCount) {
@@ -146,6 +151,12 @@ public class SoldierSource{
 
 	public SoldierSource() {
 		super();
+	}
+
+	@Override
+	public String toString() {
+
+		return ToStringBuilder.reflectionToString(this,ToStringStyle.SIMPLE_STYLE);
 	}
 
 

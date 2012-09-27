@@ -360,14 +360,6 @@ public class CharacterValidator
         }
         return true;
     }
-//    
-//    public static void main(String[] args) {
-//		System.out.println("isKanji:"+isKanji("??????????"));
-//		System.out.println("isKanji:"+isKanji("?A?C?E?G?I"));
-//		
-//		System.out.println("isKanji:"+isKanji("??"));
-//		
-//	}
 	
 	 public static boolean isDigit(char c)
 	    {

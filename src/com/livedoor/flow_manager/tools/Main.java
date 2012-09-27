@@ -18,7 +18,6 @@ public class Main {
 	private static byte[] byteStr;
 	
     /**
-	 * 转换编码 将ISO-8859-1 传换为GBK
 	 */
 	public static String toGBK(String str) {
 		try {
@@ -32,13 +31,11 @@ public class Main {
 				}
 			}
 		} catch (Exception e) {
-			System.out.println("DealString::toGBK(String)运行时出错：错误为：" + e);
 		}
 		return str;
 	}
 	
     /**
-     * 字符串转换为ASCII
      */
     public static String toASCII(String str)
     {
@@ -49,13 +46,11 @@ public class Main {
             else 
                 str=new String(str.getBytes("GBK"),"ISO-8859-1"); 
         }catch (Exception e) {
-            System.out.println("DealString::toGBK(String)运行时出错：错误为："+e);
         }
         return str;
     }
     
     /**
-     * 字符串转化为字符串
      * */
     @SuppressWarnings("deprecation")
 	public static String stringToAscii(String s) 
@@ -73,13 +68,11 @@ public class Main {
             }            
             return new String(dest);
         }catch (Exception e) {
-            System.out.println("DealString::ChineseStringToAscii(String)运行时出错："+e);
             return s;
         }
     }
     
     /**
-     * 字符串转化为字符串
      * */
     @SuppressWarnings("deprecation")
 	public static String byteToAscii(byte[] s,String encodeName) 
@@ -101,7 +94,6 @@ public class Main {
     }
     
     /**
-     * ASCII转化为字符串
      * */
     @SuppressWarnings("deprecation")
 	public static String asciiToString(String s,String encodeName) 
@@ -168,7 +160,6 @@ public class Main {
     }
     
     /**
-     * 你"的gb码是：0xC4E3 ，unicode是0x4F60
      * 1 1 1 0 _ _ _ _ 1 0 _ _ _ _ _ _ 1 0 _ _ _ _ _ _
      * 1110 0100 10 1111 01 10 10 0000
      * 
@@ -203,12 +194,11 @@ public class Main {
 		}
 
 		for (int i = 0; i < c.length; i++) {
-			System.out.println(Integer.toHexString(c[i]));
+//			System.out.println(Integer.toHexString(c[i]));
 		}
 		return reStr;
 	}
 	/**
-	 * 以下是Unicode和UTF-8之间的转换关系表：
 	 * U-00000000 - U-0000007F: 0xxxxxxx
 	 * U-00000080 - U-000007FF: 110xxxxx 10xxxxxx
 	 * 				1100-0000(c0)  1101-1111(df) 1000-0000(80) 1010-1111(bf)
@@ -222,7 +212,6 @@ public class Main {
 	 * 
 	 * e4 b8 ad e6 96 87
 	 * 1110-0010 1011-1000 1010-1011 1110-0110 1001-0110 1000-0111
-	 * 中文的范围：\u4e00 - \u9fa5，日文在\u0800 - \u4e00，韩文为\u9fa5以上。
 	 */
     /**
      * utf8 Converter to byte array
@@ -232,7 +221,6 @@ public class Main {
     //e382bf
     //1110 0011 10 00 0010 10 11 1111
     //u30bf
-    //タ
     @SuppressWarnings("deprecation")
 	public static String randomStringUTF8(String encodeName){
     	Random rand = new Random();
@@ -463,7 +451,6 @@ public class Main {
 //[\xb0-\xcf][\xa0-\xd3]|[\xd0-\xf4][\xa0-\xfe]|[\xB0-\xF3]
 //[\xA1-\xFE]|[\xF4][\xA1-\xA6]|[\xA4][\xA1-\xF3]|[\xA5][\xA1-\xF6]|[\xA1][\xBC-\xBE]
 		// System.out.println(main.aa());
-		System.out.println(asciiToString(stringToAscii("質問タイトル"),encodeName));
 		//System.out.print(aa());
 		String s = "88eb";
 		byte[] b = fromHexStringToByteArray(s);
@@ -520,7 +507,6 @@ public class Main {
     	File f = new File(path);
 		//stream image file
 		BufferedOutputStream bout = null;
-		//@TODO 调整图片的大小后再保存
 		try {
 			
 			bout = new BufferedOutputStream(new FileOutputStream(f));

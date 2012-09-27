@@ -74,9 +74,10 @@ public class SoldierSourceUtil {
 
 
 	public static void fillSoldierSourceSumInfo(
-			SoldierSourceSumInfo info, String kingdomName,Integer soldierId,Integer soldierSum,Integer pointSum) {
+			SoldierSourceSumInfo info, String kingdomName,Integer soldierId,BigDecimal soldierSum,BigDecimal pointSum) {
 		info.setKingdomName(kingdomName);
-		info.setSoldierPointSum(info.getSoldierPointSum() == null ? 0 : info.getSoldierPointSum() + pointSum);
+//		info.setSoldierPointSum(info.getSoldierPointSum() == null ? 0 : info.getSoldierPointSum().add( pointSum ));
+		info.setSoldierPointSum(info.getSoldierPointSum().add( pointSum ));
 		switch (soldierId) {
 		case 1:
 			info.setQiangdunSum(soldierSum);

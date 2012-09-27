@@ -1,7 +1,8 @@
 package com.livedoor.flow_manager.soldierSource;
 
 import java.math.BigDecimal;
-import java.math.RoundingMode;
+
+import com.livedoor.flow_manager.tools.BigDecimalTools;
 
 public class SoldierSourceSumInfo {
 	
@@ -9,12 +10,12 @@ public class SoldierSourceSumInfo {
 	private String sourceDate;
 	private String userName;
 	
-	private Integer qiangdunSum = 0 ;
-	private Integer dadaoSum = 0;
-	private Integer qibingSum = 0;
-	private Integer zhongjiaSum = 0;
+	private BigDecimal qiangdunSum =BigDecimal.ZERO;
+	private BigDecimal dadaoSum = BigDecimal.ZERO;
+	private BigDecimal qibingSum = BigDecimal.ZERO;
+	private BigDecimal zhongjiaSum = BigDecimal.ZERO;
 	
-	private Integer soldierPointSum = 0;
+	private BigDecimal soldierPointSum = BigDecimal.ZERO;
 	
 	private BigDecimal taxRatio = BigDecimal.ONE;
 
@@ -22,18 +23,18 @@ public class SoldierSourceSumInfo {
 
 	
 	public BigDecimal getGemPointSumAfterTax() {
-		return gemPointPerSoldier.multiply(getSoldierPointSumAfterTax()).setScale(0,RoundingMode.DOWN) ;
+		return BigDecimalTools.roundingDownToInt(gemPointPerSoldier.multiply(getSoldierPointSumAfterTax()));
 	}
 	
 	public BigDecimal getGemPointSum() {
-		return gemPointPerSoldier.multiply(new BigDecimal(soldierPointSum)).setScale(0,RoundingMode.DOWN) ;
+		return BigDecimalTools.roundingDownToInt(gemPointPerSoldier.multiply(soldierPointSum));
 	}
 	
-	public Integer getSoldierPointSum() {
-		return soldierPointSum;
+	public BigDecimal getSoldierPointSum() {
+		return BigDecimalTools.roundingDownToInt(soldierPointSum);
 	}
 
-	public void setSoldierPointSum(Integer soldierPointSum) {
+	public void setSoldierPointSum(BigDecimal soldierPointSum) {
 		this.soldierPointSum = soldierPointSum;
 	}
 
@@ -46,7 +47,7 @@ public class SoldierSourceSumInfo {
 	}
 
 	public BigDecimal getSoldierPointSumAfterTax(){
-		return taxRatio.multiply(new BigDecimal(soldierPointSum)).setScale(0,RoundingMode.DOWN);
+		return BigDecimalTools.roundingDownToInt(taxRatio.multiply(soldierPointSum));
 	}
 	
 	public BigDecimal getTaxRatio() {
@@ -81,36 +82,35 @@ public class SoldierSourceSumInfo {
 		this.userName = userName;
 	}
 
-	
-	public Integer getQiangdunSum() {
-		return qiangdunSum;
+	public BigDecimal getQiangdunSum() {
+		return BigDecimalTools.roundingDownToInt(qiangdunSum);
 	}
 
-	public void setQiangdunSum(Integer qiangdunSum) {
+	public void setQiangdunSum(BigDecimal qiangdunSum) {
 		this.qiangdunSum = qiangdunSum;
 	}
 
-	public Integer getDadaoSum() {
-		return dadaoSum;
+	public BigDecimal getDadaoSum() {
+		return BigDecimalTools.roundingDownToInt(dadaoSum);
 	}
 
-	public void setDadaoSum(Integer dadaoSum) {
+	public void setDadaoSum(BigDecimal dadaoSum) {
 		this.dadaoSum = dadaoSum;
 	}
 
-	public Integer getQibingSum() {
-		return qibingSum;
+	public BigDecimal getQibingSum() {
+		return BigDecimalTools.roundingDownToInt(qibingSum);
 	}
 
-	public void setQibingSum(Integer qibingSum) {
+	public void setQibingSum(BigDecimal qibingSum) {
 		this.qibingSum = qibingSum;
 	}
 
-	public Integer getZhongjiaSum() {
-		return zhongjiaSum;
+	public BigDecimal getZhongjiaSum() {
+		return BigDecimalTools.roundingDownToInt(zhongjiaSum);
 	}
 
-	public void setZhongjiaSum(Integer zhongjiaSum) {
+	public void setZhongjiaSum(BigDecimal zhongjiaSum) {
 		this.zhongjiaSum = zhongjiaSum;
 	}
 

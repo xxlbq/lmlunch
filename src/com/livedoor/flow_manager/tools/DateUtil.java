@@ -73,6 +73,17 @@ public class DateUtil {
 		return true;
 	}
 	
+	public static boolean beforeNextSaturday(String date){
+		
+		return Integer.parseInt(getNextSaturday()) > Integer.parseInt(date);
+	}
+	
+	public static String getNextSaturday(){
+		Calendar cal= Calendar.getInstance();
+		cal.set(Calendar.WEEK_OF_MONTH, cal.WEEK_OF_MONTH + 1);
+		cal.set(Calendar.DAY_OF_WEEK, 7);
+		return sdf.format(cal.getTime());
+	}
 	
 	
 	
@@ -88,9 +99,13 @@ public class DateUtil {
 	}
 	
 	public static void main(String[] args) {
-		for (int i = 0; i < 10; i++) {
-			System.out.println(DateUtil.getCurrentDatetime());
-		}
+//		for (int i = 0; i < 10; i++) {
+//			System.out.println(DateUtil.getNextSaturday());
+//		}
+		
+		System.out.println(beforeNextSaturday("20120924"));
+		System.out.println(beforeNextSaturday("20120929"));
+		System.out.println(beforeNextSaturday("20120930"));
 	}
 
 

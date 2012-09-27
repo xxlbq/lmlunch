@@ -171,7 +171,7 @@ public class SourcePageInfoBean {
 		pBean.setCurrentPageSourceList(currentPageSourceList);
 		
 		for (int i = 0; i < currentPageSourceList.size(); i++) {
-			System.out.println( currentPageSourceList.get(i).toString() );
+//			System.out.println( currentPageSourceList.get(i).toString() );
 		}
 		
 		return pBean;

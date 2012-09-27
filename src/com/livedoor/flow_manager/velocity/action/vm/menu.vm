@@ -11,10 +11,10 @@
 &nbsp;&nbsp;&nbsp;
 &nbsp;&nbsp;&nbsp;
 &nbsp;&nbsp;&nbsp;
-<td>$user.role.roleName</td>
+<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;当前登录用户：$user.userDisplayName &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 用户类型：  $user.role.roleName</td>
 &nbsp;&nbsp;&nbsp;
 &nbsp;&nbsp;&nbsp;
-&nbsp;&nbsp;&nbsp;
+
 
 </tr>
 </table>

@@ -11,7 +11,7 @@ import com.livedoor.flow_manager.roleAuth.beans.RoleAuthority;
 import com.livedoor.flow_manager.roleAuth.beans.RoleAuthorityId;
 
 public class RoleDao extends GenericDAOHibernateImpl{
-	private final static Logger log = Logger.getLogger(RoleDao.class);
+	private final static Logger LOGGER = Logger.getLogger(RoleDao.class);
 	
 //	public void addFood(Food f) {
 //		save(f);
@@ -45,16 +45,6 @@ public class RoleDao extends GenericDAOHibernateImpl{
 	}
 	
 	
-//	public String getParentMenuSeq(String url){
-//		String sql = "SELECT CASE WHEN PARENT_MENU_SEQ IS NULL THEN NULL ELSE PARENT_MENU_SEQ END " +
-//				" FROM t_role_action WHERE INSTR(ROLE_ACTION_URL,'"+url+"') > 0";
-//		List menuString = queryWithSQL(getHibernateTemplate(), sql);
-//		
-//		if(menuString == null) return null;
-//		String aaa = menuString.get(0).toString();
-//		System.out.println(" =================== menu Strng : "+aaa );
-//		return aaa;
-//	}
 
 	
 	public List getRootMenu(int roleId, String uri){
@@ -80,7 +70,7 @@ public class RoleDao extends GenericDAOHibernateImpl{
 //		  "       com.livedoor.flow_manager.roleAuth.beans.RoleAuthority AS AUT  " +
 //		  " WHEREQ` AUT.id.menuSeq =ACT.menuSeq AND AUT.id.roleId = :varRoleId AND AUT.selectedFlag=:varSelectedFlag AND ACT.parentMenuSeq IS NULL ";
 		
-		System.out.println(" hib8 cache :"+getHibernateTemplate().getQueryCacheRegion());
+		LOGGER.info(" hib8 cache :"+getHibernateTemplate().getQueryCacheRegion());
 		
 		
 	    return getHibernateTemplate().findByNamedParam(SQL, new String[]{"varRoleId","varSelectedFlag"}, new Object[]{new Integer(roleId),new Integer(1)});

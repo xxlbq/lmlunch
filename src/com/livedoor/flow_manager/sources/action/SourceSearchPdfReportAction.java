@@ -187,7 +187,7 @@ public class SourceSearchPdfReportAction extends BaseAction {
 
 	    }
 		
-	    System.out.println("pdf download over ~~~~~~~~~"+System.currentTimeMillis()+"~~~~~~~~~~");
+//	    System.out.println("pdf download over ~~~~~~~~~"+System.currentTimeMillis()+"~~~~~~~~~~");
 		
 		return cancelled(mapping,
 		   form,

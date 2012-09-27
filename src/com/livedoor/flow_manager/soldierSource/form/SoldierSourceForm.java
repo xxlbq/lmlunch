@@ -1,7 +1,10 @@
 package com.livedoor.flow_manager.soldierSource.form;
 
+import java.math.BigDecimal;
 import java.util.Date;
 
+import org.apache.commons.lang.builder.ToStringBuilder;
+import org.apache.commons.lang.builder.ToStringStyle;
 import org.apache.struts.action.ActionForm;
 import org.apache.struts.action.ActionMessage;
 import org.apache.struts.action.ActionMessages;
@@ -19,9 +22,15 @@ public class SoldierSourceForm extends ActionForm{
 	private String sourceId;
 	private Integer userId;
 	private String userName;
+	
 	private int sourceSoldierId;
-	private int sourceSoliderCount;
+	private String sourceSoldierName;
+	
+	private BigDecimal sourceSoliderCount;
+
 	private int kingdomId;
+	private String kingdomDisplayName;
+	
 	private int sourceSoliderSumCount;
 	private int approved;
 	private String sourceDate;
@@ -34,6 +43,25 @@ public class SoldierSourceForm extends ActionForm{
 	private String userDisplayName;
 	
 	
+	
+	
+	
+	public String getSourceSoldierName() {
+		return sourceSoldierName;
+	}
+
+	public void setSourceSoldierName(String sourceSoldierName) {
+		this.sourceSoldierName = sourceSoldierName;
+	}
+
+	public String getKingdomDisplayName() {
+		return kingdomDisplayName;
+	}
+
+	public void setKingdomDisplayName(String kingdomDisplayName) {
+		this.kingdomDisplayName = kingdomDisplayName;
+	}
+
 	public Integer getUserId() {
 		return userId;
 	}
@@ -84,11 +112,13 @@ public class SoldierSourceForm extends ActionForm{
 		this.sourceSoldierId = sourceSoldierId;
 	}
 
-	public int getSourceSoliderCount() {
+
+
+	public BigDecimal getSourceSoliderCount() {
 		return sourceSoliderCount;
 	}
 
-	public void setSourceSoliderCount(int sourceSoliderCount) {
+	public void setSourceSoliderCount(BigDecimal sourceSoliderCount) {
 		this.sourceSoliderCount = sourceSoliderCount;
 	}
 
@@ -164,35 +194,8 @@ public class SoldierSourceForm extends ActionForm{
 	
 	@Override
 	public String toString() {
-		StringBuilder builder = new StringBuilder();
-		builder.append("SoldierSourceForm [sourceId=");
-		builder.append(sourceId);
-		builder.append(", userName=");
-		builder.append(userName);
-		builder.append(", sourceSoldierId=");
-		builder.append(sourceSoldierId);
-		builder.append(", sourceSoliderCount=");
-		builder.append(sourceSoliderCount);
-		builder.append(", kingdomId=");
-		builder.append(kingdomId);
-		builder.append(", sourceSoliderSumCount=");
-		builder.append(sourceSoliderSumCount);
-		builder.append(", approved=");
-		builder.append(approved);
-		builder.append(", sourceDate=");
-		builder.append(sourceDate);
-		builder.append(", inputStaffId=");
-		builder.append(inputStaffId);
-		builder.append(", updateStaffId=");
-		builder.append(updateStaffId);
-		builder.append(", inputDate=");
-		builder.append(inputDate);
-		builder.append(", updateDate=");
-		builder.append(updateDate);
-		builder.append(", activeFlag=");
-		builder.append(activeFlag);
-		builder.append("]");
-		return builder.toString();
+
+		return ToStringBuilder.reflectionToString(this, ToStringStyle.MULTI_LINE_STYLE);
 	}
 	
 	public ActionMessages validateSourceForm(){

@@ -138,6 +138,11 @@ public class SoldierSourceService implements ISoldierSourceService{
 		return t == null ? BigDecimal.ZERO : t;
 	}
 	
+	public List<Object[]> queryTotalSoldierSourceGroupbySoldierId(String date,Integer kingdomId){
+		
+		return soldierSourceDao.querySoldierSourceGroupbySoldierId(date, kingdomId);
+	}
+	
 	
 	public List<SoldierSource> getFoodListByCriteriaQueryFood(SoldierSource f, Page page) {
 		// TODO Auto-generated method stub
@@ -194,4 +199,10 @@ public class SoldierSourceService implements ISoldierSourceService{
 	public List queryAllSoldierSourceDate() {
 		return soldierSourceDao.queryAllSoldierSourceDate();
 	}
+	
+	public void updateSoldierSourceById(String id, Integer kingdomId, Integer soldierId, BigDecimal soldierCount, User user){
+		soldierSourceDao.queryAndUpdateSoldierSource(id, kingdomId, soldierId, soldierCount, user);
+	}
+	
+	
 }

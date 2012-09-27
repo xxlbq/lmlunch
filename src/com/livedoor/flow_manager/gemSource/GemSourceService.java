@@ -9,6 +9,7 @@ import org.hibernate.HibernateException;
 import com.livedoor.flow_manager.group.beans.Group;
 import com.livedoor.flow_manager.sources.exception.SourceException;
 import com.livedoor.flow_manager.tools.lbq.Page;
+import com.livedoor.flow_manager.user.beans.User;
 
 public class GemSourceService implements IGemSourceService{
 
@@ -46,13 +47,13 @@ public class GemSourceService implements IGemSourceService{
 		updateGemSource(s);
 	}
 
-	public void deleteGemSourceByDeleteFlag(int sid) throws Exception {
+	public void deleteGemSourceByDeleteFlag(String sid) throws Exception {
 		GemSource s = getGemSourceByGemSourceId(sid);
 		s.setActiveFlag(0);
 		updateGemSource(s);
 	}
 
-	public GemSource getGemSourceByGemSourceId(Integer sid) throws Exception {
+	public GemSource getGemSourceByGemSourceId(String sid) throws Exception {
 		GemSource s = null;
 		try {
 			s = (GemSource)GemSourceDao.get(GemSource.class, sid);
@@ -228,6 +229,8 @@ public class GemSourceService implements IGemSourceService{
 		return total == null ? BigDecimal.ZERO : total;
 	}
 	
-	
+	public void updateAfterGetGemSource(GemSource s,User user){
+		GemSourceDao.modifyGemSourceById(s,user);
+	}
 	
 }

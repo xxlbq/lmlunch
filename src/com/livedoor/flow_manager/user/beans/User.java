@@ -562,7 +562,7 @@ public class User implements Serializable, Comparable ,UserDetails {
 		String[] tokens = getUserRole().split(",");
 		
 		for (int i = 0; i < tokens.length; i++) {
-			System.out.println("roleArr, role is :"+tokens[i]);
+//			System.out.println("roleArr, role is :"+tokens[i]);
 		}
 		
 		for (int i = 0; i < tokens.length; i++) {
