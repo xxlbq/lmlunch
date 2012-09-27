@@ -15,7 +15,7 @@ public class HelloWorld implements HelloWorldMBean {
 		this.hello = hello;
 	}
 	public void sayHello() {
-		System.out.println(hello);
+//		System.out.println(hello);
 	}
 	
 //	public void sayAttr(){

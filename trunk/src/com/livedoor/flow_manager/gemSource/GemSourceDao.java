@@ -14,6 +14,7 @@ import org.hibernate.HibernateException;
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.criterion.DetachedCriteria;
+import org.hibernate.criterion.Order;
 import org.hibernate.criterion.Projections;
 import org.hibernate.criterion.Restrictions;
 import org.springframework.orm.hibernate3.HibernateCallback;
@@ -22,6 +23,7 @@ import com.livedoor.flow_manager.generic.dao.GenericDAOHibernateImpl;
 import com.livedoor.flow_manager.soldierSource.SoldierSource;
 import com.livedoor.flow_manager.sources.beans.Source;
 import com.livedoor.flow_manager.tools.lbq.Page;
+import com.livedoor.flow_manager.user.beans.User;
 import com.lm.common.util.obj.ObjectCommonUtil;
 import com.lm.common.util.str.StringCommonUtil;
 
@@ -42,14 +44,14 @@ public class GemSourceDao extends GenericDAOHibernateImpl{
 		update(s);		//HibernateTemplate().update()		
 	}
 
-	public void deleteGemSourceByDeleteFlag(int sid){
+	public void deleteGemSourceByDeleteFlag(String sid){
 
 		GemSource s = getGemSourceByGemSourceId(sid);
 		s.setActiveFlag(0);
 		update(s);		//HibernateTemplate().update()
 	}
 	
-	public GemSource getGemSourceByGemSourceId(Integer sid) {
+	public GemSource getGemSourceByGemSourceId(String sid) {
 		return (GemSource)get(GemSource.class, sid);	//HibernateTemplate().get()
 	}
 
@@ -153,7 +155,11 @@ public class GemSourceDao extends GenericDAOHibernateImpl{
 			if(ObjectCommonUtil.isNotEmpty(s.getSourceGemDate())){
 				cr.add(Restrictions.eq("sourceGemDate", s.getSourceGemDate()));
 			}
-//			
+			//order by
+			if(ObjectCommonUtil.isNotEmpty(s.getKingdom()) &&  ObjectCommonUtil.isNotEmpty(s.getKingdom().getKingdomId()) && s.getKingdom().getKingdomId() > 0 ){
+				cr.addOrder(Order.asc("kingdom.kingdomId"));
+			}
+			
 //			if(StringUtils.isNotEmpty(s.getSourceDate())){
 //				cr.add(Restrictions.eq("sourceDate", s.getSourceDate()));
 //			}
@@ -270,11 +276,22 @@ public class GemSourceDao extends GenericDAOHibernateImpl{
 						DetachedCriteria detachedCriteria = DetachedCriteria.forClass(GemSource.class);
 						Criteria criteria = detachedCriteria
 								.getExecutableCriteria(session);
+						
 						if (!buildCriteriaFromGemSourceObject(criteria, GemSource))
 							return new ArrayList<Source>();
 						return criteria.list();
 					}
 				}, true);
+	}
+
+	
+	
+	
+	public void modifyGemSourceById(GemSource s, User user) {
+		GemSource source = getGemSourceByGemSourceId(s.getGemSourcId());
+		source.setSourceGemCount(s.getSourceGemCount());
+		source.setUpdateStaffId(user.getUserDisplayName());
+		update(source);
 	}
 	
 	

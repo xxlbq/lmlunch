@@ -36,7 +36,7 @@ public class QueryCacheAction extends BaseAction {
 		HttpServletResponse response)
 		throws Exception {
 		
-		System.out.println("=================  QueryCacheAction:   fired ");
+//		System.out.println("=================  QueryCacheAction:   fired ");
 		
 		if(null == roleService){
 			System.err.println(" ============ roleService  is NUL  ============");
@@ -47,7 +47,7 @@ public class QueryCacheAction extends BaseAction {
 		List<Role> roleList = roleService.queryAllRoles();
 		for (Role role : roleList) {
 			
-			System.out.println("@ roleId:"+role.getRoleId() +",roleName:"+role.getRoleName());
+//			System.out.println("@ roleId:"+role.getRoleId() +",roleName:"+role.getRoleName());
 		}
 		
 		

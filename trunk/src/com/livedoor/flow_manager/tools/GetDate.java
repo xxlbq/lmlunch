@@ -123,7 +123,7 @@ public class GetDate {
 //		1172338157437:20070225012917
 //		System.out.println(DateUtil.getDateStringAsYYYYMMddHHmmss(d));//20070225013554
 		
-		System.out.println(DateUtil.getDateStringAsYYYYMMddHHmmss(1172338553984L));
+//		System.out.println(DateUtil.getDateStringAsYYYYMMddHHmmss(1172338553984L));
 		
 	}
 //	public static void main(String[] args) {

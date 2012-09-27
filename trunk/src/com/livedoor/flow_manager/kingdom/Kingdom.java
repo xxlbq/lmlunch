@@ -6,6 +6,7 @@ public class Kingdom {
 	
 	Integer kingdomId;
 	String kingdomName;
+	String kingdomColor;
 	String inputStaffId;
 	String updateStaffId;
 	Date inputDate;
@@ -33,6 +34,16 @@ public class Kingdom {
 		super();
 		this.kingdomId = kingdomId;
 		this.kingdomName = kingdomName;
+	}
+
+	
+	
+	public String getKingdomColor() {
+		return kingdomColor;
+	}
+
+	public void setKingdomColor(String kingdomColor) {
+		this.kingdomColor = kingdomColor;
 	}
 
 	public Integer getKingdomId() {

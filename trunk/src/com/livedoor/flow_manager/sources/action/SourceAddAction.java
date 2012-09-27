@@ -83,7 +83,7 @@ public class SourceAddAction extends Action{
 		s.setUpdateDatetime(Calendar.getInstance());
 //		s.setUpdateUserId(1);
 		s.setUpdateUser(insertAndUpdateUser);
-		System.out.println(s.getSourceFoodPrice()+":"+s.getSourceFoodCount());
+//		System.out.println(s.getSourceFoodPrice()+":"+s.getSourceFoodCount());
 		sourceService.addSource(s);
 		
 		request.setAttribute("QUERY_SOURCE_OBJECT", form);

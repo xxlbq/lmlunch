@@ -1,6 +1,7 @@
 package com.livedoor.flow_manager.soldierSource;
 
 import java.lang.reflect.InvocationTargetException;
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -63,6 +64,17 @@ public class SoldierSourceDao extends GenericDAOHibernateImpl{
 		updateSoldierSource(ss);
 	}
 	
+	
+	public void queryAndUpdateSoldierSource(String id, Integer kingdomId, Integer soldierId, BigDecimal soldierCount, User user){
+		SoldierSource entity = getSoldierSourceBySoldierSourceId(id);
+		entity.getKingdom().setKingdomId(kingdomId);
+		entity.getSoldier().setSoldierId(soldierId);
+		entity.setSourceSoliderCount(soldierCount);
+		entity.setUpdateDate(new Date());
+		entity.setUpdateStaffId(user.getUserDisplayName());
+		updateSoldierSource(entity);
+	}
+	
 	public List<SoldierSource> getSoldierSourceBySoldierSourceName(String SoldierSourceName) {
 		String hql = "from SoldierSource as s where s.solderName like ? and s.activeFlag <> 1";
 		return query(hql, "%" + SoldierSourceName + "%");
@@ -84,10 +96,11 @@ public class SoldierSourceDao extends GenericDAOHibernateImpl{
 				"WHERE  C.SOURCE_DATE = '"+date+"' AND C.APPROVED = "+ApproveEnum.APPROVED.getValue()+"   AND C.KINGDOM_ID = "+kingdomId+" GROUP BY C.KINGDOM_ID,C.SOURCE_SOLDIER_ID ) AS T ");
 	}
 	
-	public List queryTotalSoldierSource(String date){
-		return (List)this.querySQL(getHibernateTemplate(), 
-				"SELECT C.KINGDOM_ID,C.SOURCE_SOLDIER_ID,SUM(C.SOURCE_SOLDIER_COUNT),SUM(C.SOURCE_SOLDIER_COUNT)*S.SOLDIER_POINT SP FROM T_SOLDIER_SOURCE C LEFT JOIN T_SOLDIER S ON C.SOURCE_SOLDIER_ID = S.SOLDIER_ID " +
-				"WHERE  C.SOURCE_DATE = '"+date+"' AND C.APPROVED = "+ApproveEnum.APPROVED.getValue()+"  GROUP BY C.KINGDOM_ID,C.SOURCE_SOLDIER_ID ");
+	public List<Object[]> querySoldierSourceGroupbySoldierId(String date,Integer kingdomId){
+		return (List<Object[]>)this.querySQL(getHibernateTemplate(), 
+				"SELECT C.KINGDOM_ID, K.KINGDOM_NAME,C.SOURCE_SOLDIER_ID,S.SOLDIER_NAME,SUM(C.SOURCE_SOLDIER_COUNT),SUM(C.SOURCE_SOLDIER_COUNT)*S.SOLDIER_POINT SP FROM T_SOLDIER_SOURCE C LEFT JOIN T_SOLDIER S ON C.SOURCE_SOLDIER_ID = S.SOLDIER_ID " +
+				" LEFT JOIN T_KINGDOM K ON C.KINGDOM_ID = K.KINGDOM_ID " +
+				"WHERE  C.SOURCE_DATE = '"+date+"' AND C.APPROVED = "+ApproveEnum.APPROVED.getValue()+" AND C.KINGDOM_ID = "+kingdomId+" GROUP BY C.KINGDOM_ID,C.SOURCE_SOLDIER_ID ");
 	}
 	
 	public List queryTotalSoldierSource(Integer kingdomId,String date){

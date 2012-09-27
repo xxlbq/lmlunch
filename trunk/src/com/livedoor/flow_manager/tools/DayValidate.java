@@ -79,7 +79,7 @@ public class DayValidate {
 
 	public static void main(String[] args) {
 		DayValidate dv=new DayValidate();
-		System.out.println(dv.isDate("20080808"));
+//		System.out.println(dv.isDate("20080808"));
 		
 	}
 	/**

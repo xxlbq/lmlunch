@@ -80,7 +80,7 @@ public class MethodCacheInterceptor implements MethodInterceptor, InitializingBe
           .append(arguments[i]);
       }
     }
-    	System.out.println("sb.toString()="+sb.toString());
+//    	System.out.println("sb.toString()="+sb.toString());
     return sb.toString();
   }
 }

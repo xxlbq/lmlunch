@@ -151,9 +151,17 @@ public class GemSourceDistributionQueryAction extends MappingDispatchAction{
 		//国家 日期 名字 枪盾 大刀 骑兵 重甲  产生宝石分  交基金后宝石分
 		List<Object[]> rs = soldierSourceService.getKingdomSoldierSourceCountOfWeek(gsf.getKingdomId(),gsf.getSourceGemDate());
 		Collection<SoldierSourceSumInfo> ssInfoList = toSoldierSourceSumInfo(rs,gemPointPerSoldier,ratio);
+		
+		//本周兵力分种类数量合计
+		List<Object[]> soldierSourceList = soldierSourceService.queryTotalSoldierSourceGroupbySoldierId(gsf.getSourceGemDate(),gsf.getKingdomId());
+		SoldierSourceSumInfo sinfo = toSoldierSourceSumInfo(soldierSourceList);
+		sinfo.setSourceDate(gsf.getSourceGemDate());
+
+		
+		
+		
+		request.setAttribute("SOLDIER_SOURCE_GROUPBY_SOLDIER_ID", sinfo);		
 		request.setAttribute("SOLDIER_SOURCE_SUM_INFO", ssInfoList);
-		
-		
 		
 		request.setAttribute("soldierSourceTotalPoint", soldierSourceTotalPoint);
 		request.setAttribute("soldierSourceTotalPointRatio", soldierSourceTotalPoint.multiply(ratio).setScale(0, RoundingMode.DOWN));
@@ -164,8 +172,6 @@ public class GemSourceDistributionQueryAction extends MappingDispatchAction{
 		request.setAttribute("gemPointPerSoldier", gemPointPerSoldier);
 		request.setAttribute("ratio", ratio);
 		
-		
-		
 		LOGGER.info(" GemSourceDistributionQuery query <--- ");
 		
 		return mapping.findForward("success");
@@ -173,6 +179,15 @@ public class GemSourceDistributionQueryAction extends MappingDispatchAction{
 	}
 	
 	
+	private SoldierSourceSumInfo toSoldierSourceSumInfo(List<Object[]> soldierSourceList) {
+		SoldierSourceSumInfo sumInfo = new SoldierSourceSumInfo();
+		
+		for (Object[] obj : soldierSourceList) {
+			SoldierSourceUtil.fillSoldierSourceSumInfo(sumInfo, (String)obj[1], (Integer)obj[2], (BigDecimal)obj[4], (BigDecimal)obj[5]);
+		}
+		return sumInfo;
+	}
+
 	/**
 	 * 国家 兵种 数量  积分数
 	 * 
@@ -197,14 +212,14 @@ public class GemSourceDistributionQueryAction extends MappingDispatchAction{
 			BigDecimal sumPoint = (BigDecimal)objArr[7];
 			
 			if(map.containsKey(displayName)){
-				SoldierSourceUtil.fillSoldierSourceSumInfo(map.get(displayName),kingdomName,soldierId,sumSoldier.intValue(),sumPoint.intValue()) ;
+				SoldierSourceUtil.fillSoldierSourceSumInfo(map.get(displayName),kingdomName,soldierId,sumSoldier,sumPoint) ;
 			}else{
 				SoldierSourceSumInfo n = new SoldierSourceSumInfo();
 				n.setSourceDate(date);
 				n.setUserName(displayName);
 				n.setGemPointPerSoldier(gemPointPerSoldier);
 				n.setTaxRatio(ratio);
-				SoldierSourceUtil.fillSoldierSourceSumInfo(n,kingdomName,soldierId,sumSoldier.intValue(),sumPoint.intValue());
+				SoldierSourceUtil.fillSoldierSourceSumInfo(n,kingdomName,soldierId,sumSoldier,sumPoint);
 				map.put(displayName, n);
 			}
 		}

@@ -106,6 +106,23 @@ public class GenericDAOHibernateImpl
 
 	    }
 
+	public Object executeSQL(HibernateTemplate hibernateTemplate,String sql,Object[] params){
+
+	       final String tempsql = sql;
+
+	       return hibernateTemplate.execute(new HibernateCallback(){
+
+	           public Object doInHibernate(Session session)throws HibernateException{
+
+	        	   Query q = session.createSQLQuery(tempsql) ;
+//	        	   q.setParameters(params, params.)
+	        	   return q.executeUpdate();
+	           }
+
+	       });
+
+	    }
+	
 	/**
 	 * ·µ»Ø¼ÇÂ¼¼¯
 	 * @param hibernateTemplate

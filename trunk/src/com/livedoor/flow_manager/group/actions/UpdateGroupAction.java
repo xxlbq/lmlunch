@@ -36,7 +36,7 @@ public class UpdateGroupAction extends MappingDispatchAction
 	{
 		UpdateGroupForm updateGroupForm = ( UpdateGroupForm )form ;
 		BeanUtils.copyProperties( updateGroupForm , this.getGroupFromSession( request ) ) ;
-		System.out.println( updateGroupForm.getGroupName() ) ;
+//		System.out.println( updateGroupForm.getGroupName() ) ;
 		return mapping.findForward( "success" ) ;
 	}
 	public ActionForward initUpdateGroup( ActionMapping mapping , ActionForm form ,
@@ -45,7 +45,7 @@ public class UpdateGroupAction extends MappingDispatchAction
 	{
 		UpdateGroupForm updateGroupForm = ( UpdateGroupForm )form ;
 		BeanUtils.copyProperties( updateGroupForm , this.getGroupFromSession( request ) ) ;
-		System.out.println( updateGroupForm.getGroupName() ) ;
+//		System.out.println( updateGroupForm.getGroupName() ) ;
 		return mapping.findForward( "success" ) ;
 	}
 	public Group getGroupFromSession( HttpServletRequest request )

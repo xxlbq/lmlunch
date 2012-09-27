@@ -11,7 +11,12 @@
 		<id name="kingdomId" column="KINGDOM_ID" type="java.lang.Integer">
 			<generator class="identity" />
 		</id>
+		
 		<property name="kingdomName" column="KINGDOM_NAME"
+			type="java.lang.String">
+		</property>
+		
+		<property name="kingdomColor" column="KINGDOM_COLOR"
 			type="java.lang.String">
 		</property>
 

@@ -26,7 +26,7 @@ public class NoGeneratorService implements INoGeneratorService{
 		int a = 213;
 		int b = 1 ;
 		
-		System.out.println(nf.format(a));
-		System.out.println(nf.format(b));
+//		System.out.println(nf.format(a));
+//		System.out.println(nf.format(b));
 	}
 }

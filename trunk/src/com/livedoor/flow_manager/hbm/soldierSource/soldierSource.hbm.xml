@@ -25,7 +25,7 @@
 			class="com.livedoor.flow_manager.soldier.Soldier"/>
 		
 		<property  name="sourceSoliderCount" column="SOURCE_SOLDIER_COUNT"
-			type="java.lang.Integer">
+			type="java.math.BigDecimal">
 		</property>
 		
 		<many-to-one name="kingdom"

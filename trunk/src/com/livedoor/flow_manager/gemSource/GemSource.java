@@ -2,6 +2,9 @@ package com.livedoor.flow_manager.gemSource;
 
 import java.util.Date;
 
+import org.apache.commons.lang.builder.ToStringBuilder;
+import org.apache.commons.lang.builder.ToStringStyle;
+
 import com.livedoor.flow_manager.gem.Gem;
 import com.livedoor.flow_manager.kingdom.Kingdom;
 
@@ -27,6 +30,16 @@ public class GemSource {
 	public GemSource() {
 		super();
 	}
+
+	
+	
+	public GemSource(String gemSourcId, Integer sourceGemCount) {
+		super();
+		this.gemSourcId = gemSourcId;
+		this.sourceGemCount = sourceGemCount;
+	}
+
+
 
 	public GemSource(String gemSourcId) {
 		super();
@@ -111,6 +124,11 @@ public class GemSource {
 
 	public void setActiveFlag(int activeFlag) {
 		this.activeFlag = activeFlag;
+	}
+
+	@Override
+	public String toString() {
+		return ToStringBuilder.reflectionToString(this,ToStringStyle.SIMPLE_STYLE);
 	}
 
 	

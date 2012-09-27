@@ -15,8 +15,13 @@ public class GemSourceForm extends ActionForm{
 	 */
 	private static final long serialVersionUID = -3231455918646328661L;
 	private String gemSourcId;
+	
 	private Integer kingdomId;
+	private String kingdomDisplayName;
+	
 	private Integer gemId;
+	private String gemName;
+	
 	private Integer sourceGemCount;
 	private String sourceGemDate;
 	
@@ -38,6 +43,26 @@ public class GemSourceForm extends ActionForm{
 	public GemSourceForm(String gemSourcId) {
 		super();
 		this.gemSourcId = gemSourcId;
+	}
+
+	
+	
+	
+	
+	public String getKingdomDisplayName() {
+		return kingdomDisplayName;
+	}
+
+	public void setKingdomDisplayName(String kingdomDisplayName) {
+		this.kingdomDisplayName = kingdomDisplayName;
+	}
+
+	public String getGemName() {
+		return gemName;
+	}
+
+	public void setGemName(String gemName) {
+		this.gemName = gemName;
 	}
 
 	public String getGemSourcId() {

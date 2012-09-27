@@ -31,7 +31,7 @@ public class QueryEvictCacheAction extends BaseAction {
 			HttpServletRequest request, HttpServletResponse response)
 			throws Exception {
 
-		System.out.println("=================  QueryCacheAction:   fired ");
+//		System.out.println("=================  QueryCacheAction:   fired ");
 
 		if (null == roleService) {
 			System.err.println(" ============ roleService  is NUL  ============");
@@ -39,17 +39,17 @@ public class QueryEvictCacheAction extends BaseAction {
 		}
 
 		
-		System.out.println(" begin evict .... ");
+//		System.out.println(" begin evict .... ");
 		sessionFactory.evictQueries(com.livedoor.flow_manager.IConstant.SystemConstants.QUERY_CACHE_PREFIX);
 		sessionFactory.evict(Role.class);
-		System.out.println(" evict  over.    ");
+//		System.out.println(" evict  over.    ");
 		
 		List<Role> roleList = roleService.queryAllRoles();
 		
 		for (Role role : roleList) {
 
-			System.out.println("@ roleId:" + role.getRoleId() + ",roleName:"
-					+ role.getRoleName());
+//			System.out.println("@ roleId:" + role.getRoleId() + ",roleName:"
+//					+ role.getRoleName());
 		}
 
 		return (mapping.findForward("successes"));

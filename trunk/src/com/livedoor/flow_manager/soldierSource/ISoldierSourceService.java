@@ -41,6 +41,11 @@ public interface ISoldierSourceService {
 
 	List queryAllSoldierSourceDate();
 
+	void updateSoldierSourceById(String id, Integer kingdomId, Integer soldierId,
+			BigDecimal soldierCount, User user);
+
+	List queryTotalSoldierSourceGroupbySoldierId(String date, Integer kingdomId);
+
 
 
 }

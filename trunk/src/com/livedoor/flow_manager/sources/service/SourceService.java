@@ -329,11 +329,11 @@ public class SourceService implements ISourceService{
 			//--
 			sourceDao.insertMany();
 		} catch (DataAccessException e) {
-			System.out.println("++++++++++@_@+++++++++");
+//			System.out.println("++++++++++@_@+++++++++");
 			e.printStackTrace();
 			throw new SourceException(100,"insertMany2 error! :"+e.getMessage());
 		}catch (Exception e){
-			System.out.println("%%%% not customer exception%%%%%");
+//			System.out.println("%%%% not customer exception%%%%%");
 		}
 		
 	}
