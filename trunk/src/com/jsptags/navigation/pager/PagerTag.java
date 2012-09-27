@@ -29,14 +29,16 @@ import javax.servlet.jsp.tagext.TagSupport;
 
 import org.apache.commons.beanutils.PropertyUtils;
 import org.apache.commons.lang.StringUtils;
+import org.apache.log4j.Logger;
 
 import com.jsptags.navigation.pager.parser.PagerTagExport;
 import com.jsptags.navigation.pager.parser.ParseException;
 import com.jsptags.navigation.pager.parser.TagExportParser;
+import com.livedoor.flow_manager.gemSource.action.GemSourceUpdateAction;
 import com.lm.common.util.str.StringCommonUtil;
 
 public final class PagerTag extends TagSupport {
-
+	private static Logger  LOGGER = Logger.getLogger(PagerTag.class);
 	static final String
 		DEFAULT_ID = "pager";
 
@@ -626,7 +628,7 @@ public final class PagerTag extends TagSupport {
 
 	private Object getRequestObj(String name,String property){
 		
-		System.out.println("+++++"+name);
+		LOGGER.info("+++++"+name);
 		
 		ServletRequest request = pageContext.getRequest();
 		Object pagerObj = null;
@@ -638,7 +640,7 @@ public final class PagerTag extends TagSupport {
 		}
 		try {
 			
-			System.out.println("+++++"+property);
+			LOGGER.info("+++++"+property);
 			pagerObj = PropertyUtils.getProperty(objReq,property);
 			
 		} catch (Exception e) {
@@ -668,7 +670,7 @@ public final class PagerTag extends TagSupport {
 			}
 			this.items = ((Integer)requestObjItems).intValue();
 					
-			System.out.println(items);
+			LOGGER.info(items);
 		}
 		
 		if(StringUtils.isNotEmpty( maxPageItemsKeyName)){
@@ -679,7 +681,7 @@ public final class PagerTag extends TagSupport {
 				return;
 			}
 			this.maxPageItems = ((Integer)requestObjMaxPageItems).intValue();
-			System.out.println(maxPageItems);
+			LOGGER.info(maxPageItems);
 		}
 			
 		
