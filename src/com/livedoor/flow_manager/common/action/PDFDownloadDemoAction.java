@@ -84,7 +84,7 @@ public class PDFDownloadDemoAction extends MappingDispatchAction{
 //	    	JasperExportManager.exportReportToPdfFile(
 //	    	          jasperPrint, "d://simple_report_01.pdf");
 	    	
-	    	System.out.println("pdf download over ~~~~~~~~~~~~~~~~~~~");
+//	    	System.out.println("pdf download over ~~~~~~~~~~~~~~~~~~~");
 	    	
 	    }
 

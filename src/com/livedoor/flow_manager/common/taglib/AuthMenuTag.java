@@ -11,6 +11,7 @@ import javax.servlet.jsp.JspException;
 import org.apache.log4j.Logger;
 import org.apache.velocity.Template;
 import org.apache.velocity.VelocityContext;
+import org.apache.velocity.app.Velocity;
 import org.apache.velocity.app.VelocityEngine;
 import org.springframework.web.context.WebApplicationContext;
 import org.springframework.web.context.support.WebApplicationContextUtils;
@@ -18,7 +19,6 @@ import org.springframework.web.context.support.WebApplicationContextUtils;
 import com.livedoor.flow_manager.IConstant.AttributeKeyConstant;
 import com.livedoor.flow_manager.role.dao.RoleDao;
 import com.livedoor.flow_manager.roleAction.beans.RoleAction;
-import com.livedoor.flow_manager.user.action.UserAddAction;
 import com.livedoor.flow_manager.user.beans.User;
 
 //import cn.bestwiz.jhf.admin.authority.service.CsMenuService;
@@ -74,10 +74,10 @@ public class AuthMenuTag extends javax.servlet.jsp.tagext.BodyTagSupport {
 		int beginIndex = webpath.length() + 1;
 		uri = uri.substring(beginIndex);
 
-		System.out.println(" request.getContextPath():" + webpath);
-		System.out.println(" request.getRequestURI() :"
-				+ request.getRequestURI());
-		System.out.println(" after sub URI :" + uri);
+//		System.out.println(" request.getContextPath():" + webpath);
+//		System.out.println(" request.getRequestURI() :"
+//				+ request.getRequestURI());
+//		System.out.println(" after sub URI :" + uri);
 
 		try {
 
@@ -117,6 +117,9 @@ public class AuthMenuTag extends javax.servlet.jsp.tagext.BodyTagSupport {
 		Properties p = new Properties();
 		p.setProperty("resource.loader", "class");
 		p.setProperty("class.resource.loader.class","org.apache.velocity.runtime.resource.loader.ClasspathResourceLoader");
+        p.setProperty(Velocity.ENCODING_DEFAULT, "gb2312");
+        p.setProperty(Velocity.INPUT_ENCODING, "gb2312");
+        p.setProperty(Velocity.OUTPUT_ENCODING, "gb2312");  
 //		p.setProperty("class.resource.loader.class","org.apache.velocity.tools.view.WebappResourceLoader ");
 		
 //		p.setProperty(VelocityEngine.FILE_RESOURCE_LOADER_PATH,  "/WEB-INF/classes/");
@@ -141,14 +144,14 @@ public class AuthMenuTag extends javax.servlet.jsp.tagext.BodyTagSupport {
 			//	  SecurityContext sc =  (SecurityContext)pageContext.getSession().getAttribute("ACEGI_SECURITY_CONTEXT_KEY");
 			//	  sc.getAuthentication().getAuthorities()
 			int roleId = user.getRole().getRoleId();
-			System.out.println("group get from user : " + roleId);
+//			System.out.println("group get from user : " + roleId);
 
 			WebApplicationContext wac = WebApplicationContextUtils
 					.getWebApplicationContext(pageContext.getServletContext());
 
 			RoleDao rd = (RoleDao) wac.getBean("roleDao");
 			if (null == rd) {
-				System.out.println(" 88888888   role dao is null 88888888");
+//				System.out.println(" 88888888   role dao is null 88888888");
 			}
 
 			//	  String doUrl = rd.getParentMenuSeq(url);
@@ -162,6 +165,7 @@ public class AuthMenuTag extends javax.servlet.jsp.tagext.BodyTagSupport {
 			context.put("user", user);
 			
 
+//			t.setEncoding("gb2312");
 			t.merge(context, writer);
 			String result = writer.getBuffer().toString();
 //			System.out.println("00000000000000000:" + writer.toString());
@@ -178,24 +182,24 @@ public class AuthMenuTag extends javax.servlet.jsp.tagext.BodyTagSupport {
 
 	private List querySMenu(int groupId, String uri, RoleDao rd) {
 
-		System.out.println(" s menu param:" + "groupId=" + groupId + ",uri="
-				+ uri);
+//		System.out.println(" s menu param:" + "groupId=" + groupId + ",uri="
+//				+ uri);
 
 		List sList = rd.getSonMenu(groupId, uri);
 
-		System.out.println(" s menu size:" + sList.size());
+//		System.out.println(" s menu size:" + sList.size());
 
 		return convertList(sList);
 	}
 
 	private List queryPMenu(int groupId, String uri, RoleDao rd) {
-
-		System.out.println(" p menu param:" + "groupId=" + groupId + ",uri="
-				+ uri);
+//
+//		System.out.println(" p menu param:" + "groupId=" + groupId + ",uri="
+//				+ uri);
 		List pList = rd.getRootMenu(groupId, uri);
 
 		//		
-		System.out.println(" p menu size:" + pList.size());
+//		System.out.println(" p menu size:" + pList.size());
 
 		return convertList(pList);
 	}
@@ -204,7 +208,7 @@ public class AuthMenuTag extends javax.servlet.jsp.tagext.BodyTagSupport {
 
 		List entityList = new ArrayList();
 
-		System.out.println("begin -- convert !!!");
+//		System.out.println("begin -- convert !!!");
 
 		//		for (Object object : pList) {
 		//			
@@ -233,10 +237,10 @@ public class AuthMenuTag extends javax.servlet.jsp.tagext.BodyTagSupport {
 			//			String roleActionName = (String)(entity.get(2));
 			//			int diplayOrder = (Integer)(entity.get(3));
 
-			System.out.println("menuSeq:" + entity.getMenuSeq()
-					+ ",roleActionUrl:" + roleActionUrl + ",roleActionName:"
-					+ entity.getRoleActionName() + ",diplayOrder:"
-					+ entity.getDisplayOrder());
+//			System.out.println("menuSeq:" + entity.getMenuSeq()
+//					+ ",roleActionUrl:" + roleActionUrl + ",roleActionName:"
+//					+ entity.getRoleActionName() + ",diplayOrder:"
+//					+ entity.getDisplayOrder());
 
 			RoleAction ra = new RoleAction(entity.getMenuSeq(), entity
 					.getRoleActionUrl(), entity.getRoleActionName(), entity
@@ -244,7 +248,7 @@ public class AuthMenuTag extends javax.servlet.jsp.tagext.BodyTagSupport {
 			entityList.add(ra);
 		}
 
-		System.out.println("end -- convert !!!");
+//		System.out.println("end -- convert !!!");
 
 		return entityList;
 	}

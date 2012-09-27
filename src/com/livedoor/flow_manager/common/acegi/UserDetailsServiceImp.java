@@ -43,8 +43,8 @@ public class UserDetailsServiceImp implements UserDetailsService{
 //					Authentication auth = sc.getAuthentication();
 //					if ( auth != null && auth.getPrincipal() instanceof UserDetails ){
 //						
-//						UserDetails ud = (UserDetails) auth.getPrincipal();// 上面声明的sql无非就是要包装成这个对象
-//						User user = userService.getUniqueUserByUserName(ud.getUsername());//从业务逻辑里找到用户，放到session里
+//						UserDetails ud = (UserDetails) auth.getPrincipal();
+//						User user = userService.getUniqueUserByUserName(ud.getUsername());
 //						httpSession.setAttribute( AttributeKeyConstant.USER_INFO_KEY, user );
 //					}
 //				}
@@ -75,14 +75,13 @@ public class UserDetailsServiceImp implements UserDetailsService{
 
 
     /* 
-     * 实现acegi接口 loadUserByUsername .
-     * 具体数据库查询由userService 实现
+
      * 
      * @see org.acegisecurity.userdetails.UserDetailsService#loadUserByUsername(java.lang.String)
      */
     public UserDetails loadUserByUsername(String username)
         throws UsernameNotFoundException, DataAccessException {
-    	System.out.println("== spring acegi call loadUserByUsername() method ,when login fired  ====@_@====>");
+//    	System.out.println("== spring acegi call loadUserByUsername() method ,when login fired  ====@_@====>");
         return userService.getUniqueUserByUserName(username);
     }
 
