@@ -20,7 +20,7 @@ import com.livedoor.flow_manager.gem.IGemService;
 import com.livedoor.flow_manager.gemSource.GemSource;
 import com.livedoor.flow_manager.gemSource.GemSourceUtil;
 import com.livedoor.flow_manager.gemSource.IGemSourceService;
-import com.livedoor.flow_manager.gemSource.form.GemSourceForm;
+import com.livedoor.flow_manager.gemSource.form.UserForm;
 import com.livedoor.flow_manager.kingdom.IKingdomService;
 import com.livedoor.flow_manager.kingdom.Kingdom;
 import com.livedoor.flow_manager.tools.DateUtil;
@@ -97,7 +97,7 @@ public class GemSourceAddAction extends MappingDispatchAction{
 		request.setAttribute("USER_INFO", user);
 		request.setAttribute("KINGDOM_LIST", kingdomList);
 		
-		GemSourceForm ssf = (GemSourceForm)form ;
+		UserForm ssf = (UserForm)form ;
 		GemSource gs = GemSourceUtil.toGemSource4Add(ssf,user);
 		
 		if( gemSourceService.queryUniqueGemSourceAlready(gs)){

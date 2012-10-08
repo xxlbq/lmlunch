@@ -23,7 +23,7 @@ import com.livedoor.flow_manager.gem.IGemService;
 import com.livedoor.flow_manager.gemSource.GemSourceSumInfo;
 import com.livedoor.flow_manager.gemSource.GemSourceUtil;
 import com.livedoor.flow_manager.gemSource.IGemSourceService;
-import com.livedoor.flow_manager.gemSource.form.GemSourceForm;
+import com.livedoor.flow_manager.gemSource.form.UserForm;
 import com.livedoor.flow_manager.kingdom.IKingdomService;
 import com.livedoor.flow_manager.kingdom.Kingdom;
 import com.livedoor.flow_manager.soldierSource.ISoldierSourceService;
@@ -116,7 +116,7 @@ public class GemSourceDistributionQueryAction extends MappingDispatchAction{
 			   HttpServletResponse response) throws Exception {
 
 		LOGGER.info(" GemSourceDistributionQuery query ---> ");
-		GemSourceForm gsf = (GemSourceForm)form;
+		UserForm gsf = (UserForm)form;
 		//
 		User user = (User)request.getSession().getAttribute(AttributeKeyConstant.USER_INFO_KEY);
 		request.setAttribute("USER_INFO", user);

@@ -7,7 +7,7 @@ import org.apache.log4j.Logger;
 
 import com.livedoor.flow_manager.enums.ActiveEnum;
 import com.livedoor.flow_manager.gem.Gem;
-import com.livedoor.flow_manager.gemSource.form.GemSourceForm;
+import com.livedoor.flow_manager.gemSource.form.UserForm;
 import com.livedoor.flow_manager.kingdom.KingdomUtil;
 import com.livedoor.flow_manager.soldierSource.SoldierSourceSumInfo;
 import com.livedoor.flow_manager.tools.DateUtil;
@@ -20,7 +20,7 @@ import com.livedoor.flow_manager.user.beans.User;
 public class GemSourceUtil {
 	private static Logger  LOGGER = Logger.getLogger(GemSourceUtil.class);
 	
-	public static GemSource toGemSource4Add(GemSourceForm ssf, User user) {
+	public static GemSource toGemSource4Add(UserForm ssf, User user) {
 		LOGGER.info("GemSourceForm :"+ssf);
 		GemSource gs = new GemSource();
 		Date d = new Date();
@@ -40,7 +40,7 @@ public class GemSourceUtil {
 	}
 
 	
-	public static GemSource toGemSource4Query(GemSourceForm ssf) {
+	public static GemSource toGemSource4Query(UserForm ssf) {
 		LOGGER.info("GemSourceForm :"+ssf);
 		GemSource gs = new GemSource();
 		

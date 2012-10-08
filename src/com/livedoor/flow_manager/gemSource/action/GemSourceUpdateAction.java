@@ -16,7 +16,7 @@ import com.livedoor.flow_manager.gem.Gem;
 import com.livedoor.flow_manager.gem.IGemService;
 import com.livedoor.flow_manager.gemSource.GemSource;
 import com.livedoor.flow_manager.gemSource.IGemSourceService;
-import com.livedoor.flow_manager.gemSource.form.GemSourceForm;
+import com.livedoor.flow_manager.gemSource.form.UserForm;
 import com.livedoor.flow_manager.kingdom.IKingdomService;
 import com.livedoor.flow_manager.kingdom.Kingdom;
 import com.livedoor.flow_manager.user.beans.User;
@@ -80,7 +80,7 @@ public class GemSourceUpdateAction extends MappingDispatchAction{
 		List<Kingdom> kingdomList = kingdomService.queryAllKingdom();
 		request.setAttribute("KINGDOM_LIST", kingdomList);
 
-		GemSourceForm gsf =(GemSourceForm)form ;
+		UserForm gsf =(UserForm)form ;
 		gsf.setGemSourcId(gsource.getGemSourcId());
 		gsf.setKingdomId(gsource.getKingdom().getKingdomId());
 		gsf.setKingdomDisplayName(gsource.getKingdom().getKingdomName());
@@ -110,7 +110,7 @@ public class GemSourceUpdateAction extends MappingDispatchAction{
 		request.setAttribute("USER_INFO", user);
 		request.setAttribute("KINGDOM_LIST", kingdomList);
 		
-		GemSourceForm ssf = (GemSourceForm)form ;
+		UserForm ssf = (UserForm)form ;
 		
 		LOGGER.info("gem source id:"+ssf.getGemSourcId() +" ,update gem source count:"+ssf.getSourceGemCount());
 		gemSourceService.updateAfterGetGemSource(new GemSource(ssf.getGemSourcId(),ssf.getSourceGemCount()),user);
