@@ -14,17 +14,14 @@ import org.apache.struts.action.ActionMessages;
 import org.apache.struts.actions.MappingDispatchAction;
 
 import com.livedoor.flow_manager.IConstant.AttributeKeyConstant;
-import com.livedoor.flow_manager.common.info.MessageInfo;
 import com.livedoor.flow_manager.gem.Gem;
 import com.livedoor.flow_manager.gem.IGemService;
 import com.livedoor.flow_manager.gemSource.GemSource;
 import com.livedoor.flow_manager.gemSource.GemSourceUtil;
 import com.livedoor.flow_manager.gemSource.IGemSourceService;
-import com.livedoor.flow_manager.gemSource.form.UserForm;
+import com.livedoor.flow_manager.gemSource.form.GemSourceForm;
 import com.livedoor.flow_manager.kingdom.IKingdomService;
 import com.livedoor.flow_manager.kingdom.Kingdom;
-import com.livedoor.flow_manager.tools.DateUtil;
-import com.livedoor.flow_manager.tools.UtilValidate;
 import com.livedoor.flow_manager.user.beans.User;
 import com.livedoor.flow_manager.user.service.IUserService;
 
@@ -97,7 +94,7 @@ public class GemSourceAddAction extends MappingDispatchAction{
 		request.setAttribute("USER_INFO", user);
 		request.setAttribute("KINGDOM_LIST", kingdomList);
 		
-		UserForm ssf = (UserForm)form ;
+		GemSourceForm ssf = (GemSourceForm)form ;
 		GemSource gs = GemSourceUtil.toGemSource4Add(ssf,user);
 		
 		if( gemSourceService.queryUniqueGemSourceAlready(gs)){

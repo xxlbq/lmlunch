@@ -243,8 +243,7 @@ public class AuthMenuTag extends javax.servlet.jsp.tagext.BodyTagSupport {
 //					+ entity.getDisplayOrder());
 
 			RoleAction ra = new RoleAction(entity.getMenuSeq(), entity
-					.getRoleActionUrl(), entity.getRoleActionName(), entity
-					.getDisplayOrder());
+					.getRoleActionUrl(), entity.getRoleActionName(), entity.getDisplayOrder());
 			entityList.add(ra);
 		}
 

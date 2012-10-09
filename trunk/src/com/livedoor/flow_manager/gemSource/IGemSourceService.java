@@ -5,7 +5,6 @@ import java.util.List;
 
 import org.hibernate.HibernateException;
 
-import com.livedoor.flow_manager.gemSource.form.UserForm;
 import com.livedoor.flow_manager.sources.exception.SourceException;
 import com.livedoor.flow_manager.tools.lbq.Page;
 import com.livedoor.flow_manager.user.beans.User;
