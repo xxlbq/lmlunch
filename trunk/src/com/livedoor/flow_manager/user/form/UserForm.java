@@ -1,5 +1,7 @@
 package com.livedoor.flow_manager.user.form;
 
+import org.apache.commons.lang.builder.ToStringBuilder;
+import org.apache.commons.lang.builder.ToStringStyle;
 import org.apache.struts.action.ActionForm;
 
 public class UserForm extends ActionForm{
@@ -15,6 +17,8 @@ public class UserForm extends ActionForm{
 	private java.lang.String userName;
 	private java.lang.String userPassword;
 	private String userPassword2; 
+	private String previousPassword;
+	
 	private java.lang.String userRole;
 	private java.lang.String userDisplayName;
 	private java.lang.String userRegIp;
@@ -33,6 +37,13 @@ public class UserForm extends ActionForm{
 	
 	
 	
+	
+	public String getPreviousPassword() {
+		return previousPassword;
+	}
+	public void setPreviousPassword(String previousPassword) {
+		this.previousPassword = previousPassword;
+	}
 	
 	public java.lang.String getUserRegIp() {
 		return userRegIp;
@@ -143,5 +154,8 @@ public class UserForm extends ActionForm{
 		this.userSkype = userSkype;
 	}
 	
-	
+	@Override
+	public String toString() {
+		return ToStringBuilder.reflectionToString(this, ToStringStyle.MULTI_LINE_STYLE);
+	}
 }

@@ -250,6 +250,9 @@ public class UserDao extends GenericDAOHibernateImpl implements IUser {
 				
 				if (StringCommonUtil.isNotEmpty(user.getUserName()))
 					cr.add(Restrictions.like("userName", "%" + user.getUserName()+ "%"));
+				
+				if (StringCommonUtil.isNotEmpty(user.getUserDisplayName()))
+					cr.add(Restrictions.like("userDisplayName", "%" + user.getUserDisplayName()+ "%"));
 		
 				if (StringCommonUtil.isNotEmpty(user.getUserDesc()))
 					cr.add(Restrictions.like("userDesc", "%" + user.getUserDesc()+ "%"));
@@ -257,7 +260,6 @@ public class UserDao extends GenericDAOHibernateImpl implements IUser {
 				if (ObjectCommonUtil.isNotEmpty(user.getInputUserId()))
 					cr.add(Restrictions.eq("inputUserId", user.getInputUserId()));
 	
-				
 				
 				if (ObjectCommonUtil.isNotEmpty(user.getInputDatetime())) {
 					Calendar end = (Calendar) BeanUtils.cloneBean(user.getInputDatetime());
