@@ -88,7 +88,6 @@ function selectOptionAction(){
 	// update gem source
 	function updateGemSource(){
 		
-		window.alert(checkedUser);
 		
 		var checkedUser;
 		checkedUser = isSingleCheckedAtLeast4Update(document.middleform);
@@ -101,6 +100,34 @@ function selectOptionAction(){
 		
 		}
 	}
+	
+	
+	
+	
+	// update user password
+	function addUser(){
+		document.memberForm.action="member_add.do";
+		document.memberForm.submit();
+	}
+	function updateUser(){
+		document.memberForm.action="member_update.do";
+		document.memberForm.submit();
+	}
+	
+	// update user password
+	function updateUserDisplay(){
+		
+		var checkedUser;
+		checkedUser = isSingleCheckedAtLeast4Update(document.middleform);
+		window.alert(checkedUser);
+		if(checkedUser != null){
+			window.alert(checkedUser);
+			window.location.href='member_update_display.do?userId='+checkedUser;
+		}
+	}
+
+	
+	
 	
 	function isSingleCheckedAtLeast(form){
 		
@@ -191,7 +218,7 @@ function selectOptionAction(){
 			}
 		
 		if(checkTimes < 1){
-			window.alert("请选择要修改的发兵记录，已经审批的记录不可以修改.");
+			window.alert("请选择要修改的记录，(已经审批的记录不可以修改).");
 			return null;
 		}else if(checkTimes > 1){
 			window.alert("只能选择一条记录进行修改.");
@@ -299,6 +326,18 @@ function selectOptionAction(){
 		document.soldierSourceForm.submit();
 	}
 	
+	
+	
+	
+//	function updateUserPassword(){
+//		document.middleform.action="member_update.do";
+//		document.middleform.submit();
+//	}
+//	function resetUserPassword(){
+//		document.middleform.action="member_password_reset.do";
+//		document.middleform.submit();
+//	}
+//	
 	
 	
 	function windowout(){

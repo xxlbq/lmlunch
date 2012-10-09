@@ -14,6 +14,8 @@ import org.apache.struts.actions.MappingDispatchAction;
 import com.livedoor.flow_manager.common.info.MessageInfo;
 import com.livedoor.flow_manager.enums.IdKeyEnum;
 import com.livedoor.flow_manager.noGenerator.INoGeneratorService;
+import com.livedoor.flow_manager.sysConfig.ISysConfigConstants;
+import com.livedoor.flow_manager.sysConfig.ISysConfigService;
 import com.livedoor.flow_manager.tools.SystemTools;
 import com.livedoor.flow_manager.user.UserUtil;
 import com.livedoor.flow_manager.user.beans.User;
@@ -30,7 +32,11 @@ public class UserAddAction extends MappingDispatchAction{
 //	private IKingdomService kingdomService ;
 //	private ISoldierSourceService soldierSourceService;
 	private INoGeneratorService noGeneratorService;
-
+	private ISysConfigService sysConfigService;
+	
+	
+	
+	
 	
 //	public void setSoldierService(ISoldierService soldierService) {
 //		this.soldierService = soldierService;
@@ -76,6 +82,11 @@ public class UserAddAction extends MappingDispatchAction{
 	}
 
 
+	public void setSysConfigService(ISysConfigService sysConfigService) {
+		this.sysConfigService = sysConfigService;
+	}
+
+
 	public ActionForward add(ActionMapping mapping,
 			   ActionForm form,
 			   HttpServletRequest request,
@@ -87,10 +98,12 @@ public class UserAddAction extends MappingDispatchAction{
 		UserForm ssf = (UserForm)form ;
 		String regIp = SystemTools.getIpAddr(request);
 		
+		Integer MAX_REG_IP_COUNT = Integer.parseInt(sysConfigService.querySysConfig(ISysConfigConstants.CONFIG_TYPE_SYS, ISysConfigConstants.CONFIG_KEY_MAX_REG_IP_COUNT));
+		Boolean MAX_REG_IP_SWITCH = Boolean.parseBoolean(sysConfigService.querySysConfig(ISysConfigConstants.CONFIG_TYPE_SYS, ISysConfigConstants.CONFIG_KEY_MAX_REG_IP_SWITCH));
 		//max 
 		Integer max = userService.queryMaxRegIp(regIp);
 		
-		if(SystemTools.SAME_IP_MAX_REG <= max){
+		if(MAX_REG_IP_COUNT <= max && MAX_REG_IP_SWITCH){
 			ActionMessages errores = new ActionMessages();
 			errores.add("sameIpMaxReg",new ActionMessage( "reg.maxIpReg" ) );
 			request.setAttribute("ERROR_MESSAGE_INFO", errores);

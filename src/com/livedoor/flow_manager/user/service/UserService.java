@@ -290,6 +290,8 @@ public class UserService implements IUserService{
 		return sList;
 	}
 
+	
+	
 	public int getUserCount() throws HibernateException {
 		
 		int count = -1 ;
@@ -330,7 +332,6 @@ public class UserService implements IUserService{
 		
 		return userDao.queryMaxRegIp(ip);
 	}
-
 
 
 	
