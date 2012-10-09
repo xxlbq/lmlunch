@@ -24,13 +24,13 @@ import com.livedoor.flow_manager.gemSource.GemSource;
 import com.livedoor.flow_manager.gemSource.GemSourceSumInfo;
 import com.livedoor.flow_manager.gemSource.GemSourceUtil;
 import com.livedoor.flow_manager.gemSource.IGemSourceService;
-import com.livedoor.flow_manager.gemSource.form.UserForm;
+import com.livedoor.flow_manager.gemSource.form.GemSourceForm;
 import com.livedoor.flow_manager.kingdom.IKingdomService;
 import com.livedoor.flow_manager.kingdom.Kingdom;
 import com.livedoor.flow_manager.sysConfig.ISysConfigConstants;
 import com.livedoor.flow_manager.sysConfig.ISysConfigService;
-import com.livedoor.flow_manager.tools.DateUtil;
 import com.livedoor.flow_manager.user.beans.User;
+import com.livedoor.flow_manager.user.form.UserForm;
 import com.livedoor.flow_manager.user.service.IUserService;
 
 public class GemSourceQueryAction extends MappingDispatchAction{
@@ -133,7 +133,7 @@ public class GemSourceQueryAction extends MappingDispatchAction{
 //		request.setAttribute("GEM_SOURCE_LIST", gs);
 		
 		
-		UserForm sf = (UserForm)form;
+		GemSourceForm sf = (GemSourceForm)form;
 		
 		ActionMessages aMsgs = sf.validateSourceForm();
 //		
@@ -156,7 +156,7 @@ public class GemSourceQueryAction extends MappingDispatchAction{
 	}
 	
 	public void pageInfoProcess(ActionMapping mapping,
-				UserForm sf,
+				GemSourceForm sf,
 			   HttpServletRequest request,
 			   HttpServletResponse response) throws Exception {
 		
