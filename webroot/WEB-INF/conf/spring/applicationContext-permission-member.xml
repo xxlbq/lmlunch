@@ -11,7 +11,35 @@
 		<property name="noGeneratorService">
 			<ref bean="noGeneratorService" />
 		</property>
-
+		<property name="sysConfigService">
+			<ref bean="sysConfigService" />
+		</property>
 	</bean>
 	
+	<bean name="/member_query_display"
+		class="com.livedoor.flow_manager.user.action.UserQueryAction">
+		<property name="userService">
+			<ref bean="userService" />
+		</property>
+	</bean>
+	
+	<bean name="/member_query"
+		class="com.livedoor.flow_manager.user.action.UserQueryAction">
+		<property name="userService">
+			<ref bean="userService" />
+		</property>
+	</bean>
+	
+	<bean name="/member_update_display"
+		class="com.livedoor.flow_manager.user.action.UserUpdateAction">
+		<property name="userService">
+			<ref bean="userService" />
+		</property>
+	</bean>
+		<bean name="/member_update"
+		class="com.livedoor.flow_manager.user.action.UserUpdateAction">
+		<property name="userService">
+			<ref bean="userService" />
+		</property>
+	</bean>
 </beans>

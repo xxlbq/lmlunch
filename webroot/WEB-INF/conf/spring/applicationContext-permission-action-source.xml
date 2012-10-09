@@ -73,9 +73,9 @@
 	
 <!--		CUSTOMER CONFIG -->	
 	
-	<bean name="/showUserSearch" class="com.livedoor.flow_manager.user.action.ShowUserSearchAction" singleton="false">
-		<property name="userService"><ref bean="userService"/></property>
-	</bean>
+<!--	<bean name="/showUserSearch" class="com.livedoor.flow_manager.user.action.ShowUserSearchAction" singleton="false">-->
+<!--		<property name="userService"><ref bean="userService"/></property>-->
+<!--	</bean>-->
 <!--		PDF DOWNLOAD    -->
 	<bean name="/sourceSearchPdfReport" class="com.livedoor.flow_manager.sources.action.SourceSearchPdfReportAction" singleton="false">
 		<property name="dataSource">

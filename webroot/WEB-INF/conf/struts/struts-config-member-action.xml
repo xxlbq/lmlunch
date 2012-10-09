@@ -11,6 +11,9 @@
 		<form-bean name="memberForm"
 			type="com.livedoor.flow_manager.user.form.UserForm">
 		</form-bean>
+		
+		
+		
 	</form-beans>
 	
 	
@@ -20,8 +23,22 @@
 		<action   path="/member_add" name="memberForm"  scope="request" parameter="add" input="/WEB-INF/jsp/member/member_add.jsp">
 		    <forward  name="success" path="/reg_success.jsp" />
 		</action>
+		
+		<action   path="/member_update_display" name="memberForm"  scope="request" parameter="display" >
+		    <forward  name="success" path="/WEB-INF/jsp/member/member_add.jsp" />
+		</action>
 
-			
+		<action   path="/member_update" name="memberForm"  scope="request" parameter="update" input="/WEB-INF/jsp/member/member_add.jsp">
+		    <forward  name="success" path="/member_update_display.do" />
+		</action>
+
+		<action   path="/member_query_display" name="memberForm"  scope="request" parameter="display" >
+		    <forward  name="success" path="/WEB-INF/jsp/member/member_query.jsp" />
+		</action>
+		
+		<action   path="/member_query" name="memberForm"  scope="request" parameter="query" >
+		    <forward  name="success" path="/WEB-INF/jsp/member/member_query.jsp" />
+		</action>			
 			
 			
 	</action-mappings>
