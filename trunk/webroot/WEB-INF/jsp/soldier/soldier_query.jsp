@@ -77,7 +77,7 @@ td{font-size:10pt;}
 			<tr><td></td></tr>
 			<td>
 			<table border="0" cellpadding="0" cellspacing="0" align="center" width="800">
-				<tr><td align="left"><input type="button" style="width=100;" value="·µ»Ø" onclick="javascript:window.location='returnMenu.do'"></td></tr>
+				<tr><td align="left"></td></tr>
 				<tr><td align="center"><hr color="#5F52A0" size="1" width="700" align="center" noshade></td></tr>
 				<tr><td>
 					<table border="0" cellpadding="5" cellspacing="1" align="center"

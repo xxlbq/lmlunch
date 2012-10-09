@@ -49,7 +49,16 @@ td{font-size:10pt;}
 		<html:form action="member_query.do" method="post">
 		
 		<tr>
-			<tr><td>&nbsp;</td></tr>
+			<tr>
+				<td  class="error">
+					<font color="red">
+					<html:messages id="errmsg"  name="ERROR_MESSAGE_INFO" message="false">
+						<bean:write name="errmsg"/>
+						<br/>
+					</html:messages>
+					</font>	
+				</td>
+			</tr>
 			<tr><td></td></tr>
 			<td>
 			<table border="0" cellpadding="0" cellspacing="0" align="center" width="800">
@@ -58,14 +67,14 @@ td{font-size:10pt;}
 				<tr><td>
 					<table border="0" cellpadding="5" cellspacing="1" align="center" style="margin-top:10px; margin-bottom:15px;" width="560">
 						<tr><td bgcolor="#5F52A0" nowrap align="right">
-								<strong><font color="#ffffff">会员ID关键字</font></strong></td>
+								<strong><font color="#ffffff">会员ID</font></strong></td>
 							<td bgcolor="#B2BECE">
 								<html:text property="userName"></html:text>
 							</td>
 						</tr>
 						<tr>
 							<td bgcolor="#5F52A0" nowrap align="right">
-								<strong><font color="#ffffff">会员名称关键字</strong></td>
+								<strong><font color="#ffffff">会员名称</font></strong></td>
 							<td bgcolor="#B2BECE">
 								<html:text property="userDisplayName"></html:text>
 							</td>
@@ -95,30 +104,30 @@ td{font-size:10pt;}
 	<td></td>		
 	<td></td>
 	<td>
-	<table border="0" cellpadding="4" cellspacing="1" align="center" style="margin-top:10px; margin-bottom:15px;" width="800">
+	<table border="0" cellpadding="4" cellspacing="1" align="center" style="margin-top:10px; margin-bottom:15px;" width="400">
 
 		<form name="middleform">
 	
-		<tr>
-			
-			<td bgcolor="#5F52A0" nowrap  width="30" align="center"><strong><font color="#ffffff"><input type="checkbox" name="allchecked" onclick="checkedAll()">审批</font></strong></td>
-			<td bgcolor="#5F52A0" nowrap  width="30" align="center"><strong><font color="#ffffff">会员ID</font></strong></td>
-			<td bgcolor="#5F52A0" nowrap  width="50" align="center"><strong><font color="#ffffff">会员名称</font></strong></td>
-		</tr>
+
 		<tr>
 			<td colspan ="9">
-				<table border="0" cellpadding="5" cellspacing="1" align="center" style="margin-top: 10px; margin-bottom: 15px;" width="400">
+				<table border="0" cellpadding="4" cellspacing="1" align="center" style="margin-top: 10px; margin-bottom: 15px;" width="400">
+					<tr>
+					<td bgcolor="#5F52A0" align="middle"  width="5" ><strong><font color="#ffffff"><input type="checkbox" name="allchecked" onclick="checkedAll()"></font></strong></td>
+					<td bgcolor="#5F52A0" align="middle"  width="30"><strong><font color="#ffffff">会员ID</font></strong></td>
+					<td bgcolor="#5F52A0" align="middle"  width="10"><strong><font color="#ffffff">会员名称</font></strong></td>
+					</tr>
 					<logic:present name="USER_LIST" >
 					<logic:iterate name="USER_LIST" id="userEntity" indexId="indexid">
 					
-					<% if(indexid % 2 != 0){%> <!--从1开始编号-->
+					<% if(indexid % 2 != 0){%> 
 					<tr bgcolor="#e4e7ea">
 					<%}else { %>
 					<tr bgcolor="#B2BECE">
 					<%} %>
 	
 						<td align="middle"  width="5"><strong><font color="#ffffff"><input type="checkbox" name="sId" value='<bean:write name="userEntity" property="userId" />'/></font></strong></td>
-						<td align="middle"  width="30"><strong><font color="#ffffff"><bean:write name="userEntity" property="userName"/></font></strong></td>
+						<td align="middle"  width="30"><strong><font color="#425a6b"><bean:write name="userEntity" property="userName"/></font></strong></td>
 						<td align="middle"  width="10"><bean:write name="userEntity" property="userDisplayName"/></td>
 					</tr>
 					</logic:iterate>
@@ -127,11 +136,18 @@ td{font-size:10pt;}
 							
 					<tr align="center">
 						
-						<td colspan ="9" align="middle" nowrap>
-						<logic:lessEqual name="<%=AttributeKeyConstant.USER_INFO_KEY %>" property="role.roleId" value="1" scope="session">
-							<input type="button" name="dSourceButton" value="修改" onclick="updateGemSource()"/>
-						</logic:lessEqual>
+						<td colspan ="3" align="middle" nowrap>
+							<logic:lessEqual name="<%=AttributeKeyConstant.USER_INFO_KEY %>" property="role.roleId" value="1" scope="session">
+								<input type="button" name="dSourceButton" value="修改" onclick="updateUserDisplay()"/>
+							</logic:lessEqual>
+							
+							&nbsp;&nbsp;&nbsp;
+							
+							<logic:lessEqual name="<%=AttributeKeyConstant.USER_INFO_KEY %>" property="role.roleId" value="1" scope="session">
+								<input type="button" name="dSourceButton" value="密码重置" onclick="uuuuuu"/>
+							</logic:lessEqual>
 						</td>
+
 						
 					</tr>
 					</logic:present>

@@ -42,86 +42,61 @@ td{font-size:10pt;}
 
 <table border="0" cellpadding="0" cellspacing="0" align="center" width="1000">
 
-<tr><td><div class="menu">
-<strong>宝石分配信息</strong>
-</div></td></tr>
-<tr><td>
-		<html:form action="gem_source_distribution_query.do" method="post">
-		
-		<tr>
-			<tr><td>&nbsp;</td></tr>
-			<tr><td></td></tr>
-			<td>
-			<table border="0" cellpadding="0" cellspacing="0" align="center" width="800">
-				<tr><td align="left"><input type="button" style="width=100;" value="返回" onclick="javascript:window.location='returnMenu.do'"></td></tr>
-				<tr><td align="center"><hr color="#5F52A0" size="1" width="700" align="center" noshade></td></tr>
-				<tr><td>
-					<table border="0" cellpadding="5" cellspacing="1" align="center" style="margin-top:10px; margin-bottom:15px;" width="560">
-						<tr><td bgcolor="#5F52A0" nowrap align="right">
-								<strong><font color="#ffffff">产生宝石时间</font></strong></td>
-							<td bgcolor="#B2BECE">
+	<tr><td><div class="menu"><strong>宝石分配信息</strong></div></td></tr>
+	<tr><td>
+	
+			<html:form action="gem_source_distribution_query.do" method="post">
+				<table border="0" cellpadding="0" cellspacing="0" align="center" width="800">
+					
+					<tr><td align="center"><hr color="#5F52A0" size="1" width="700" align="center" noshade></td></tr>
+					<tr><td>
+							<table border="0" cellpadding="5" cellspacing="1" align="center" style="margin-top:10px; margin-bottom:15px;" width="560">
+								<tr><td bgcolor="#5F52A0" nowrap align="right"><strong><font color="#ffffff">产生宝石时间</font></strong></td>
+									<td bgcolor="#B2BECE">
+										<html:select property="sourceGemDate" style="width=162;" >
+											<logic:present name="GEM_SOURCE_DATE_LIST" scope="request">
+												<html:options collection="GEM_SOURCE_DATE_LIST" property="value" labelProperty="label"/>
+											</logic:present>
+										</html:select>
+									</td>
+								</tr>
+								<tr>
+									<td bgcolor="#5F52A0" nowrap align="right">
+										<strong><font color="#ffffff">发兵国家</strong></td>
+									<td bgcolor="#B2BECE">
+										<html:select property="kingdomId" style="width=162;" >
 											
-								<html:select property="sourceGemDate" style="width=162;" >
-									<logic:present name="GEM_SOURCE_DATE_LIST" scope="request">
-										<html:options collection="GEM_SOURCE_DATE_LIST" property="value" labelProperty="label"/>
-									</logic:present>
-								</html:select>
+											<logic:present name="KINGDOM_LIST" scope="request">
+												<html:options collection="KINGDOM_LIST" property="kingdomId" labelProperty="kingdomName" />
+											</logic:present>
+										</html:select>
+									</td>
+								</tr>
 							
-							
-							
-							</td>
-						</tr>
-						<tr>
-							<td bgcolor="#5F52A0" nowrap align="right">
-								<strong><font color="#ffffff">发兵国家</strong></td>
-							<td bgcolor="#B2BECE">
-								<html:select property="kingdomId" style="width=162;" >
-									
-									<logic:present name="KINGDOM_LIST" scope="request">
-										<html:options collection="KINGDOM_LIST" property="kingdomId" labelProperty="kingdomName" />
-									</logic:present>
-								</html:select>
-							</td>
-						</tr>
-						
-					</table>
-				</td>
-			</tr>
-
-			<tr>
-				<td align="center"><html:submit  style="width=150;" value="查询"/></td>
-			</tr>
-			
-			<tr>
-				<td align="center"><hr color="#5F52A0" size="1" width="700" align="center" noshade></td>
-			</tr>
-			
-			</table>
-			</td>
-			</tr>
-		</table>
-		</html:form>
-	</td>
-</tr>
-
-<tr>
-	<td></td>		
-	<td></td>
-	<td>
-	<table border="0" cellpadding="4" cellspacing="1" align="center" 
-	style="margin-top:10px; margin-bottom:15px;" width="800">
+							</table>
+						</td>
+					</tr>
 	
+					<tr>
+						<td align="center"><html:submit  style="width=150;" value="查询"/></td>
+					</tr>
+				
+					<tr>
+						<td align="center"><hr color="#5F52A0" size="1" width="700" align="center" noshade></td>
+					</tr>
+				</table>
+			</html:form>
+		</td>
+	</tr>
 
-	
-	<%-- ================================ --%>
-	
-		<form name="gem_source_distribution_query.do">
-				<tr><td colspan="11">
-					<table border="0" cellpadding="5" cellspacing="1" align="center" style="margin-top:10px; margin-bottom:15px;" width="560">
-						
-						
-						
-						
+</table>
+
+
+
+	<table border="0" cellpadding="0" cellspacing="0" align="center" width="1000">
+	<tr>
+		<td>
+					<table border="0" cellpadding="5" cellspacing="1" align="center" style="margin-top:10px; margin-bottom:15px;" width="800">
 						
 						<logic:present name="SOLDIER_SOURCE_GROUPBY_SOLDIER_ID">
 						
@@ -153,8 +128,6 @@ td{font-size:10pt;}
 								<strong><font color="#ffffff">重甲&nbsp;&nbsp; (单位：万)</font></strong></td>
 							<td bgcolor="#B2BECE"><bean:write name="SOLDIER_SOURCE_GROUPBY_SOLDIER_ID" property="zhongjiaSum"/></td>
 						</tr>
-						
-						
 						
 						</logic:present>
 						
@@ -200,16 +173,16 @@ td{font-size:10pt;}
 						</tr>
 						</logic:present>
 						
-						
 					</table>
-				</td>
-			</tr>
+
+			</td>
+		</tr>
 	
 	
 	
+	</table>
 	
-	
-	
+	<table border="0" cellpadding="0" cellspacing="0" align="center" width="1000">
 		<tr>
 			
 			<td bgcolor="#5F52A0" nowrap  width="50" align="center"><strong><font color="#ffffff">国家</font></strong></td>
@@ -223,6 +196,8 @@ td{font-size:10pt;}
 			<td bgcolor="#5F52A0" nowrap  width="100" align="center"><strong><font color="#ffffff">实际收益兵分</font></strong></td>
 			<td bgcolor="#5F52A0" nowrap  width="80" align="center"><strong><font color="#ffffff">原始宝石分</font></strong></td>
 			<td bgcolor="#5F52A0" nowrap  width="100" align="center"><strong><font color="#ffffff">实际收益宝石分</font></strong></td>
+			<td bgcolor="#5F52A0" nowrap  width="100" align="center"><strong><font color="#ffffff">岗哨将令</font></strong></td>
+			<td bgcolor="#5F52A0" nowrap  width="100" align="center"><strong><font color="#ffffff">最终宝石分</font></strong></td>
 		</tr>
 	
 		<logic:present name="SOLDIER_SOURCE_SUM_INFO" >
@@ -243,62 +218,19 @@ td{font-size:10pt;}
 				<td align="center"><bean:write name="source" property="soldierPointSumAfterTax"/></td>
 				<td align="center"><bean:write name="source" property="gemPointSum"/></td>
 				<td align="center"><bean:write name="source" property="gemPointSumAfterTax"/></td>
+				<td align="center"><bean:write name="source" property="gangshaoJiangling"/></td>
+				<td align="center"><bean:write name="source" property="finalSum"/></td>
+
+
 			</tr>
 			</logic:iterate>
 		</logic:present>
-		
-	<%--================================--%>
-	<%--=======		更新   删除	========--%>
-	<%--================================--%>
-	
-		<tr><td colspan ="7"><hr color="#5F52A0" size="1" width="300" align="center" noshade></td></tr>
-<!--		<tr align="center">-->
-<!--			-->
-<!--			<td colspan ="7">-->
-<!--			<input type="button" name="aSourceButton" value="审批" onclick="addSource()"/>-->
-<!--			&nbsp;&nbsp;-->
-<!--			<input type="button" name="uSourceButton" value="取消审批" onclick="updateSource()"/>-->
-<!--			&nbsp;&nbsp;-->
-<!--			<input type="button" name="dSourceButton" value="修改" onclick="delSource()"/>-->
-<!--			&nbsp;&nbsp;-->
-<!--			-->
-<!--			<a href="javascript:pdfDownload()">-->
-<!--				<img src="images/component/pdf.gif"  border="0" />-->
-<!--			</a>-->
-<!--			-->
-<!--			</td>-->
-<!--			-->
-<!--			-->
-<!--		</tr>-->
-<!--		<tr><td colspan ="8"><hr color="#5F52A0" size="1" width="300" align="center" noshade></td></tr>-->
-		
-		</form>
-	</table>
-	</td>
-</tr>
 
-<table border="0" cellpadding="4" cellspacing="1" align="center" 
-style="margin-top:10px; margin-bottom:15px;" width="800">
+		</td>
+	</tr>
 
 
-
-
-
-
-<tr>
-	<td align="center">
-	
-	<%-- ================================== --%>
-	<%-- ========= pager taglib =========== --%>
-	<%-- ================================== --%>
-	
-	
-	</td>
-</tr>
 </table>
-
-</form>
-
 
 
 

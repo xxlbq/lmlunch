@@ -189,6 +189,7 @@ td {
 										</logic:present>
 									</html:select>
 								</logic:present>
+								&nbsp;&nbsp;( 如果种类为 岗哨、将令, [发兵数量] 请填入 1 )
 							</td>
 						</tr>
 						<tr>
