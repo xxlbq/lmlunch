@@ -15,6 +15,10 @@ public class SoldierSourceSumInfo {
 	private BigDecimal qibingSum = BigDecimal.ZERO;
 	private BigDecimal zhongjiaSum = BigDecimal.ZERO;
 	
+	private BigDecimal gangshaoSum = BigDecimal.ZERO;
+	private BigDecimal jianglingSum = BigDecimal.ZERO;
+	
+	
 	private BigDecimal soldierPointSum = BigDecimal.ZERO;
 	
 	private BigDecimal taxRatio = BigDecimal.ONE;
@@ -114,7 +118,28 @@ public class SoldierSourceSumInfo {
 		this.zhongjiaSum = zhongjiaSum;
 	}
 
+	public BigDecimal getGangshaoSum() {
+		return gangshaoSum;
+	}
 
+	public void setGangshaoSum(BigDecimal gangshaoSum) {
+		this.gangshaoSum = gangshaoSum;
+	}
+
+	public BigDecimal getJianglingSum() {
+		return jianglingSum;
+	}
+
+	public void setJianglingSum(BigDecimal jianglingSum) {
+		this.jianglingSum = jianglingSum;
+	}
+
+	public BigDecimal getGangshaoJiangling(){
+		return BigDecimalTools.roundingDownToInt(getGangshaoSum().add(getJianglingSum()));
+	}
 	
-	
+	public BigDecimal getFinalSum(){
+		return BigDecimalTools.roundingDownToInt(
+				getGemPointSumAfterTax().add( getGangshaoSum() ).add(getJianglingSum()));
+	}
 }

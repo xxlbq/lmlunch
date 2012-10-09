@@ -12,17 +12,12 @@ import org.apache.struts.action.ActionMapping;
 import org.apache.struts.actions.MappingDispatchAction;
 
 import com.livedoor.flow_manager.IConstant.AttributeKeyConstant;
-import com.livedoor.flow_manager.common.info.MessageInfo;
-import com.livedoor.flow_manager.gem.Gem;
-import com.livedoor.flow_manager.gemSource.GemSource;
-import com.livedoor.flow_manager.gemSource.form.GemSourceForm;
 import com.livedoor.flow_manager.kingdom.IKingdomService;
 import com.livedoor.flow_manager.kingdom.Kingdom;
 import com.livedoor.flow_manager.soldier.ISoldierService;
 import com.livedoor.flow_manager.soldier.Soldier;
 import com.livedoor.flow_manager.soldierSource.ISoldierSourceService;
 import com.livedoor.flow_manager.soldierSource.SoldierSource;
-import com.livedoor.flow_manager.soldierSource.SoldierSourceUtil;
 import com.livedoor.flow_manager.soldierSource.form.SoldierSourceForm;
 import com.livedoor.flow_manager.user.beans.User;
 

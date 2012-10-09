@@ -79,6 +79,7 @@ public class RoleDao extends GenericDAOHibernateImpl{
 	
 	public List<RoleAction> getSonMenu(int roleId,String uri){
 
+		//
 	    String SQL = " SELECT new RoleAction(ACT.menuSeq,ACT.roleActionUrl,ACT.roleActionName,ACT.displayOrder ) " +
 			  " FROM  com.livedoor.flow_manager.roleAction.beans.RoleAction AS ACT ," +
 			  "       com.livedoor.flow_manager.roleAuth.beans.RoleAuthority AS AUT " +
@@ -92,6 +93,8 @@ public class RoleDao extends GenericDAOHibernateImpl{
 //		  " WHERE AUT.id.menuSeq =ACT.menuSeq AND AUT.id.roleId = :varRoleId AND AUT.selectedFlag=:varSelectedFlag AND ACT.parentMenuSeq =(" +
 //		  "SELECT roleAct.parentMenuSeq FROM RoleAction AS  roleAct WHERE INSTR(roleActionUrl,:varActionUrl) > 0) ";
 	    
+	    
+	    //
 	    String SQL2 = " SELECT new RoleAction(ACT.menuSeq,ACT.roleActionUrl,ACT.roleActionName,ACT.displayOrder ) " +
 		  " FROM  com.livedoor.flow_manager.roleAction.beans.RoleAction AS ACT ," +
 		  "       com.livedoor.flow_manager.roleAuth.beans.RoleAuthority AS AUT " +

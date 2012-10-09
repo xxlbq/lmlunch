@@ -19,6 +19,8 @@ import org.springframework.orm.hibernate3.HibernateCallback;
 
 import com.livedoor.flow_manager.enums.ApproveEnum;
 import com.livedoor.flow_manager.generic.dao.GenericDAOHibernateImpl;
+import com.livedoor.flow_manager.kingdom.Kingdom;
+import com.livedoor.flow_manager.soldier.Soldier;
 import com.livedoor.flow_manager.sources.beans.Source;
 import com.livedoor.flow_manager.tools.lbq.Page;
 import com.livedoor.flow_manager.user.beans.User;
@@ -67,8 +69,15 @@ public class SoldierSourceDao extends GenericDAOHibernateImpl{
 	
 	public void queryAndUpdateSoldierSource(String id, Integer kingdomId, Integer soldierId, BigDecimal soldierCount, User user){
 		SoldierSource entity = getSoldierSourceBySoldierSourceId(id);
-		entity.getKingdom().setKingdomId(kingdomId);
-		entity.getSoldier().setSoldierId(soldierId);
+		
+		Kingdom k = new Kingdom();
+		k.setKingdomId(kingdomId);
+		entity.setKingdom(k);
+		
+		Soldier s = new Soldier();
+		s.setSoldierId(soldierId);
+		entity.setSoldier(s);
+		
 		entity.setSourceSoliderCount(soldierCount);
 		entity.setUpdateDate(new Date());
 		entity.setUpdateStaffId(user.getUserDisplayName());
