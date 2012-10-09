@@ -147,6 +147,8 @@ public class GemSourceForm extends ActionForm{
 		this.activeFlag = activeFlag;
 	}
 
+	
+	
 	@Override
 	public String toString() {
 		StringBuilder builder = new StringBuilder();

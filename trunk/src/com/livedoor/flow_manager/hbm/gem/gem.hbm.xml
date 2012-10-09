@@ -9,7 +9,7 @@
 		<cache usage="read-write" region="com.livedoor.flow_manager.common.cacheTemplate"/>
 		
 		<id name="gemId" type="java.lang.Integer" column="GEM_ID" >
-			<generator class="identity" />
+			<generator class="assigned" />
 		</id>
 		<property name="gemDisplayName" column="GEM_DISPLAY_NAME"
 			type="java.lang.String">

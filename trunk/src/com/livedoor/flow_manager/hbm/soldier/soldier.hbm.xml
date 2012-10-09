@@ -9,7 +9,7 @@
 		<cache usage="read-write" region="com.livedoor.flow_manager.common.cacheTemplate"/>
 		
 		<id name="soldierId" column="SOLDIER_ID" type="java.lang.Integer" >
-			<generator class="identity" />
+			<generator class="assigned" />
 		</id>
 		
 		<property name="soldierName" column="SOLDIER_NAME"
