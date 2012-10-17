@@ -30,13 +30,13 @@
 		<td width="6%" bgcolor="#F7EEDF"><table width="443" border="0" cellspacing="0" cellpadding="5">
 	        <tr>
 	          <td width="52%" align="right" bgcolor="#F7EEDF">会员ID</td>
-	          <td width="37%" bgcolor="#F7EEDF"><input type="text" name="loginID" value="MEI" size="14"style="height:20" tabindex="1"/></td>
+	          <td width="37%" bgcolor="#F7EEDF"><input type="text" name="loginID" value="" size="14"style="height:20" tabindex="1"/></td>
 	<!--          <td width="37%" bgcolor="#F7EEDF"><input type="text" name="j_username" value="MEI" size="14"style="height:20" tabindex="1"/></td>-->
 	          <td width="11%" bgcolor="#F7EEDF"><input type="submit" value="登陆" /></td>
 	        </tr>
         	<tr>
 	          <td align="right" bgcolor="#F7EEDF">密码</td>
-	          <td bgcolor="#F7EEDF"><input type="password" value="3333" size="16" maxlength="8" name="loginPwd" style="height:20" tabindex="2"/></td>
+	          <td bgcolor="#F7EEDF"><input type="password" value="" size="16" maxlength="8" name="loginPwd" style="height:20" tabindex="2"/></td>
 	<!--          <td bgcolor="#F7EEDF"><input type="password" value="3333" size="16" maxlength="8" name="j_password" style="height:20" tabindex="2"/></td>-->
 	          <td bgcolor="#F7EEDF"><input type="reset" value="重设" /></td>
         	</tr>
