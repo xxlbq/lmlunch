@@ -50,7 +50,7 @@ function selectOptionAction(){
 		
 		if(checkedUser != null){
 		
-			window.alert(checkedUser);
+//			window.alert(checkedUser);
 			
 			window.location.href='soldier_source_approve.do?soldierSourceIdArray='+checkedUser;
 		
@@ -64,7 +64,7 @@ function selectOptionAction(){
 		
 		if(checkedUser != null){
 		
-			window.alert(checkedUser);
+//			window.alert(checkedUser);
 			
 			window.location.href='soldier_source_cancel_approve.do?soldierSourceIdArray='+checkedUser;
 		
@@ -78,7 +78,7 @@ function selectOptionAction(){
 		
 		if(checkedUser != null){
 		
-			window.alert(checkedUser);
+//			window.alert(checkedUser);
 			
 			window.location.href='soldier_source_update_display.do?soldierSourceId='+checkedUser;
 		
@@ -91,10 +91,10 @@ function selectOptionAction(){
 		
 		var checkedUser;
 		checkedUser = isSingleCheckedAtLeast4Update(document.middleform);
-		window.alert(checkedUser);
+//		window.alert(checkedUser);
 		if(checkedUser != null){
 		
-			window.alert(checkedUser);
+//			window.alert(checkedUser);
 			
 			window.location.href='gem_source_update_display.do?gemSourceId='+checkedUser;
 		
@@ -119,9 +119,9 @@ function selectOptionAction(){
 		
 		var checkedUser;
 		checkedUser = isSingleCheckedAtLeast4Update(document.middleform);
-		window.alert(checkedUser);
+//		window.alert(checkedUser);
 		if(checkedUser != null){
-			window.alert(checkedUser);
+//			window.alert(checkedUser);
 			window.location.href='member_update_display.do?userId='+checkedUser;
 		}
 	}
