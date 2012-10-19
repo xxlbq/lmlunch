@@ -62,7 +62,7 @@
 		
 		<action path="/member"
 			type="org.apache.struts.actions.ForwardAction"
-			parameter="/WEB-INF/jsp/demo/lubq_rose.jsp"/>	
+			parameter="/WEB-INF/jsp/msg.jsp"/>	
 		
 		
 		<!--================================-->
